@@ -700,7 +700,7 @@ html,body{overflow-x:clip}
         <a href="#career">Career</a>
         <a href="#contact">Contact</a>
       </nav>
-      <button class="cord hint" id="cord" type="button" aria-label="Switch to light theme"><span class="halo" aria-hidden="true"></span><span class="cl"></span><span class="flies" aria-hidden="true"></span><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3Z"/></svg></span><span class="tip" id="cord-tip">pull for light</span></button>
+      <button class="cord hint" id="cord" type="button" aria-label="Switch to light theme"><span class="halo" aria-hidden="true"></span><span class="cl"></span><span class="flies" aria-hidden="true"></span><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3Z"/></svg></span><span class="tip" id="cord-tip">pull for day</span></button>
     </div>
 
     <div class="hero">
@@ -1692,7 +1692,7 @@ document.getElementById('copyBtn').addEventListener('click',function(){
       f.style.setProperty('--dir',Math.random()<.5?'normal':'reverse');f.style.setProperty('--a',rnd(.9,2).toFixed(2)+'s');f.style.animationDelay='-'+rnd(0,3).toFixed(2)+'s';far(f);box.appendChild(f)}}
   function shoo(){[].forEach.call(box.children,function(f){far(f);f.classList.remove('in');f.classList.add('out')});setTimeout(function(){box.innerHTML=''},800)}
   function scene(arrive){var night=now()==='dark';b.classList.toggle('lit',night);if(night)summon(arrive);else if(box.children.length)shoo()}
-  function label(){var n=now()==='dark'?'light':'dark';b.setAttribute('aria-label','Switch to '+n+' theme');tip.textContent=n==='light'?'pull for light, shoo the flies':'pull for night'}
+  function label(){var n=now()==='dark'?'light':'dark';b.setAttribute('aria-label','Switch to '+n+' theme');tip.textContent=n==='light'?'pull for day':'pull for night'}
   label();scene(true);
   if(window.matchMedia)matchMedia('(prefers-color-scheme: light)').addEventListener('change',function(){if(!de.getAttribute('data-theme')){label();scene(true)}});
   b.addEventListener('click',function(){
