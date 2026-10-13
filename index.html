@@ -186,7 +186,7 @@ section.block{padding-block:clamp(56px,8vw,104px)}
 .ladder b{font-weight:600}
 .ladder span{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
 .org p.note{color:var(--muted);font-size:15px;margin-top:4px;max-width:52ch}
-.more{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,4vw,48px);margin-top:56px;padding-top:40px;border-top:1px solid var(--line)}
+.more{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,4vw,48px);margin-top:56px;padding-top:40px;border-top:1px solid var(--line)}
 @media (max-width:820px){.more{grid-template-columns:minmax(0,1fr)}}
 .more h4{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 14px;font-weight:500}
 .awards{list-style:none;margin:0;padding:0;display:grid;gap:10px}
@@ -288,6 +288,24 @@ dialog.flowwin[open]{animation:pop .28s cubic-bezier(.2,.9,.3,1.2)}
 .cf-t{font-family:var(--f-display);font-stretch:112%;font-weight:700;font-size:clamp(20px,2.2vw,26px);line-height:1.2;margin:4px 0 2px}
 .cf-s{color:var(--muted);font-size:15px}
 .cf-tag{font-family:var(--f-mono);font-size:12px;padding:6px 12px;border-radius:999px;border:1px solid var(--ok);color:var(--ok);background:var(--ok-soft);white-space:nowrap;justify-self:start}
+
+.edcert{margin-top:44px;display:grid;gap:14px}
+.edcert>h4{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 2px;font-weight:500}
+.edu{display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px 24px;align-items:center;padding:18px 24px;border-radius:14px;border:1px solid var(--line);background:var(--surface)}
+.edu .cf-icon{color:var(--accent)}
+.certfeat{margin-top:0;grid-template-columns:auto minmax(0,1fr) auto}
+.cf-thumb{display:block;padding:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;cursor:zoom-in;background:none;width:180px;transition:transform .2s ease,box-shadow .2s ease}
+.cf-thumb img{display:block;width:100%;height:auto}
+.cf-thumb:hover,.cf-thumb:focus-visible{transform:translateY(-2px) rotate(-.6deg);box-shadow:0 12px 30px rgba(5,10,20,.25)}
+.cf-view{margin-top:10px;font:600 13.5px var(--f-body);color:var(--accent);background:none;border:0;padding:0;cursor:pointer}
+@media (max-width:640px){.certfeat{grid-template-columns:auto minmax(0,1fr)}.cf-thumb{grid-column:1/-1;width:100%}}
+dialog.certwin{border:0;padding:0;background:transparent;max-width:min(1100px,calc(100vw - 24px));max-height:calc(100vh - 24px);overflow:visible}
+dialog.certwin::backdrop{background:rgba(8,13,22,.72);backdrop-filter:blur(4px)}
+dialog.certwin[open]{animation:pop .28s cubic-bezier(.2,.9,.3,1.2)}
+@media (prefers-reduced-motion:reduce){dialog.certwin[open]{animation:none}}
+dialog.certwin img{display:block;max-width:100%;max-height:calc(100vh - 80px);border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+dialog.certwin .fw-x{position:absolute;top:-14px;right:-14px;background:var(--surface)}
+dialog.certwin p{color:#cfd6e2;font-size:13.5px;text-align:center;margin-top:10px}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"Gibin Mathew","url":"https://gibin.in/","image":"https://gibin.in/og.jpg",
@@ -525,14 +543,26 @@ dialog.flowwin[open]{animation:pop .28s cubic-bezier(.2,.9,.3,1.2)}
         </div>
       </div>
 
-      <div class="certfeat">
-        <div class="cf-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 13.8 7 22l5-3 5 3-1.5-8.2"/><path d="m9.5 9 1.7 1.7L14.6 7.3"/></svg></div>
-        <div>
-          <div class="cf-k">Certification</div>
-          <h3 class="cf-t">DSA &amp; System Design</h3>
-          <p class="cf-s">Certificate of completion, HeyCoach</p>
+      <div class="edcert">
+        <h4>Education &amp; certification</h4>
+        <div class="edu">
+          <div class="cf-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9 12 4l10 5-10 5L2 9Z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg></div>
+          <div>
+            <div class="cf-k">Education</div>
+            <h3 class="cf-t">Bachelor of Computer Applications</h3>
+            <p class="cf-s">Bangalore University, 2017</p>
+          </div>
         </div>
-        <span class="cf-tag">Completed</span>
+        <div class="certfeat">
+          <div class="cf-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 13.8 7 22l5-3 5 3-1.5-8.2"/><path d="m9.5 9 1.7 1.7L14.6 7.3"/></svg></div>
+          <div>
+            <div class="cf-k">Certification</div>
+            <h3 class="cf-t">DSA &amp; System Design</h3>
+            <p class="cf-s">Certificate of completion, HeyCoach</p>
+            <button class="cf-view" type="button" data-cert>View certificate →</button>
+          </div>
+          <button class="cf-thumb" type="button" data-cert aria-label="View certificate, DSA and System Design, HeyCoach"><img src="certificate.webp" alt="HeyCoach certificate of completion for Gibin Mathew, DSA and System Design program" width="1400" height="991" loading="lazy"></button>
+        </div>
       </div>
 
       <div class="more">
@@ -554,10 +584,6 @@ dialog.flowwin[open]{animation:pop .28s cubic-bezier(.2,.9,.3,1.2)}
             <div><dt>Platform</dt><dd>Flask, Express, Docker, AWS, Linux</dd></div>
           </dl>
         </div>
-        <div>
-          <h4>Education</h4>
-          <p style="font-size:14.5px">BCA, Bangalore University, 2017</p>
-        </div>
       </div>
     </div>
   </section>
@@ -577,6 +603,11 @@ dialog.flowwin[open]{animation:pop .28s cubic-bezier(.2,.9,.3,1.2)}
       <div class="fw-ctrl"><button class="fw-btn" type="button" id="fw-prev">Back</button><button class="fw-btn primary" type="button" id="fw-play">Play</button></div>
     </div>
   </div>
+</dialog>
+<dialog class="certwin" id="certwin" aria-label="Certificate">
+  <button class="fw-x" type="button" id="cert-close" aria-label="Close">×</button>
+  <img src="certificate.webp" alt="HeyCoach certificate of completion for Gibin Mathew, DSA and System Design program" width="1400" height="991">
+  <p>DSA &amp; System Design · HeyCoach</p>
 </dialog>
 <footer class="contact" id="contact">
   <div class="container">
@@ -705,6 +736,13 @@ document.documentElement.classList.add('js');
     co.observe(imp)}
 })();
 
+/* certificate lightbox */
+(function(){var d=document.getElementById('certwin');if(!d||!d.showModal)return;var op=null;
+  document.querySelectorAll('[data-cert]').forEach(function(b){b.addEventListener('click',function(){op=b;d.showModal()})});
+  document.getElementById('cert-close').addEventListener('click',function(){d.close()});
+  d.addEventListener('click',function(e){if(e.target===d)d.close()});
+  d.addEventListener('close',function(){if(op)op.focus()});
+})();
 /* flow windows */
 (function(){
   var F={
