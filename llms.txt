@@ -1,0 +1,35 @@
+# Gibin Mathew
+
+> Gibin Mathew is an RPA and workflow automation manager based in Chennai, India. He has 9 years of experience building production automation, data pipelines and AI-assisted data validation, first at S&P Global Market Intelligence (2017-2021) and now at Edvoy (2021-present), where he leads a data and automation team.
+
+Website: https://gibin.in/
+LinkedIn: https://www.linkedin.com/in/gibinm
+GitHub: https://github.com/gibin-mathew
+Email: gibin.mat96@gmail.com
+Location: Chennai, Tamil Nadu, India
+
+## Roles he fits
+
+RPA manager, RPA lead, automation manager, workflow automation engineer or lead, intelligent automation lead, data engineering manager, automation and AI enablement manager.
+
+## Current role
+
+Data and Automation Manager at Edvoy, Chennai (July 2021 to present). Leads a team of data engineers and analysts, with full people ownership: hiring, onboarding, goals and performance reviews. Owns automation platforms, ETL and AI-assisted validation.
+
+## Selected work
+
+- Config-driven RPA across 70+ web portals: one engine fills forms on many external portals; a new portal is added as configuration, not new bot code. 3,000+ submissions, 94% success rate, 1,200+ hours saved (as of October 2026). Built with Python, Node.js, Playwright, FastAPI, Celery, RabbitMQ, Redis, MongoDB, Docker and AWS ECS. People handle OTPs, CAPTCHAs and uploads; every failure is classified automatically.
+- Markdown Extractor: an AI agent (Hermes) writes a scraper for each website; every scraper turns pages into clean Markdown stored in S3; a second agent answers plain-language questions from those files. Python, Playwright, FastAPI, APScheduler, React, MongoDB, AWS S3, Docker.
+- Subject Validator: AI-assisted QC of catalogue pages with multi-model selection (Gemini, Gemma, DeepSeek), a versioned prompt editor, an interactive text summary and JSON editor, and a subject identifier that auto-publishes only exact matches.
+- Fees Validator: an AI summariser extracts and highlights fees from scraped pages; reviewers verify and apply a fee to all related intakes in one step. Together the two validators cut manual QC by 60-70%.
+- Intake Watcher: home-built token-sort matching (no library) that reconciles course intakes between websites and the database into new, deleted, matched and modified. About 60% less manual reconciliation.
+- Workflow automation with Slack alerts (about 35% faster turnaround), travel document (passport MRZ) validation with OpenCV and Tesseract, website change monitoring.
+- S&P Global: a Python and Selenium crawler that found official social media handles across 3.4M+ company websites (about 160 FTE of research, $1.1M potential revenue); a financial filings crawler across 40+ U.S. state portals; ESG document scraping.
+
+## Skills
+
+RPA, workflow automation, web automation, web scraping, data engineering, ETL, data validation and data quality, LLM workflows, Python, Node.js, Playwright, Selenium, FastAPI, MongoDB, MySQL, RabbitMQ, Redis, Docker, AWS, Blue Prism, Appian, OCR, team leadership.
+
+## Education and recognition
+
+BCA, Bangalore University (2017). DSA & System Design certificate (HeyCoach). S&P Global awards: Essential Excellence Data Award (2020), Breakthrough Achievement (2019), Rising Star (2018), EssentialTECH Foundations badge.
