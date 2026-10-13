@@ -4,13 +4,16 @@
 
 Website: https://gibin.in/
 LinkedIn: https://www.linkedin.com/in/gibinm
-GitHub: https://github.com/gibin-mathew
 Email: gibin.mat96@gmail.com
 Location: Chennai, Tamil Nadu, India
 
 ## Roles he fits
 
-RPA manager, RPA lead, automation manager, workflow automation engineer or lead, intelligent automation lead, data engineering manager, automation and AI enablement manager.
+Automation and RPA: RPA Manager, RPA Lead, Lead Engineer (Agentic AI and RPA), Automation Manager, Senior AI Automation Manager, Automation Configurator Senior Manager, Intelligent Automation Developer, Intelligent Automation Lead, Workflow Automation Engineer, Workflow Automation Lead, Technology Automation Lead, Solutions Architect (Automation and Robotics), Senior Manager (Digital Platform Automation), Digital Process Enablement Professional, Process Improvement and Automation Manager.
+
+AI enablement and delivery: AI Automation Manager, Manager (Automation and AI Enablement), Senior Manager (Automation and AI Enablement), AI Delivery Manager, Delivery Manager (AI and Automation), AI Engineering Manager, Manager of AI, AI Transformation Manager, Manager (AI Solutions Engineering), Lead (AI and ML Solutions), AI Tech Lead (Data Engineering), Engineering Manager (AgentOps), Software Development Manager (AI), Digital Solutions AI Manager, Technology Manager (AI and Analytics), Digital Transformation Lead.
+
+Data engineering and data operations: Data and Automation Manager, Data Engineering Manager, Senior Data Engineering Manager, Engineering Manager (Data), Engineering Manager (Data and AI), Senior Engineering Manager (Data and AI), Engineering Manager (Internal Platforms), Data Engineering Lead (Data Quality), Lead (Data Operations and Automation), Data Operations and Automation Manager, Data Analytics Manager, Data Analytics Engineer, Data Strategy Manager, Team Manager (Content and Data Operations), Team Lead (Data Support).
 
 ## Current role
 
