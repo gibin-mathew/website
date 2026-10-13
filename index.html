@@ -412,6 +412,54 @@ html.js .org.in .ladder li:nth-child(2)::before{transition-delay:.5s}html.js .or
 .cl-m{font-size:13px;color:var(--muted)}
 .cl-v{font-family:var(--f-mono);font-size:11.5px;color:var(--accent);margin-top:4px}
 @media (prefers-reduced-motion:reduce){.cl-item,.cl-item:hover{transition:none;transform:none}}
+
+/* ---- hero demo: one record -> any portal ---- */
+.stage.demo{aspect-ratio:auto;cursor:default;padding:16px;display:flex;flex-direction:column;gap:14px;font-family:var(--f-body)}
+.dm-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.dm-k{font-family:var(--f-mono);font-size:12px;color:var(--band-ink)}
+.dm-tabs{display:flex;gap:4px;background:rgba(255,255,255,.04);border:1px solid var(--band-line);border-radius:999px;padding:3px}
+.dm-tab{font:500 11.5px var(--f-mono);color:var(--band-muted);background:none;border:0;border-radius:999px;padding:5px 10px;cursor:pointer;transition:background .25s,color .25s}
+.dm-tab:hover{color:var(--band-ink)}
+.dm-tab.on{background:var(--band-accent);color:#0B1320}
+.dm-body{display:grid;grid-template-columns:minmax(0,.9fr) 96px minmax(0,1.25fr);gap:10px;align-items:stretch}
+@media (max-width:520px){.dm-body{grid-template-columns:minmax(0,1fr)}.dm-mid{flex-direction:row!important;justify-content:center}.dm-arrow{transform:rotate(90deg)}}
+.dm-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-family:var(--f-mono);font-size:11px;color:var(--band-muted);margin-bottom:8px;letter-spacing:.04em}
+.dm-h span{color:var(--band-muted)}
+.dm-h #dm-pname{color:var(--band-ink)}
+.dm-rec,.dm-form{border:1px solid var(--band-line);border-radius:10px;padding:12px;background:rgba(255,255,255,.025);min-width:0;position:relative}
+.dm-rec dl{margin:0;display:grid;gap:4px}
+.dm-rec dl>div{display:grid;grid-template-columns:minmax(0,1fr);border-radius:6px;padding:5px 7px;transition:background .3s,box-shadow .3s}
+.dm-rec dt{font-family:var(--f-mono);font-size:10.5px;color:var(--band-muted)}
+.dm-rec dd{margin:0;font-family:var(--f-mono);font-size:12.5px;color:var(--band-ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dm-rec dl>div.on{background:rgba(111,149,255,.16);box-shadow:inset 2px 0 0 var(--band-accent)}
+.dm-mid{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-width:0}
+.dm-arrow{font-size:20px;color:var(--band-accent);transition:transform .3s}
+.dm-mid.go .dm-arrow{animation:shoot .6s ease}
+@keyframes shoot{50%{transform:translateX(5px);opacity:.6}}
+.dm-xf{font-family:var(--f-mono);font-size:10px;color:var(--band-amber);text-align:center;max-width:92px;line-height:1.35;min-height:2.7em}
+.dm-fields{display:grid;gap:6px}
+.dm-f{display:grid;gap:2px}
+.dm-f label{font-size:11px;color:var(--band-muted)}
+.dm-in{display:block;min-height:26px;border:1px solid var(--band-line);border-radius:6px;padding:4px 8px;font-family:var(--f-mono);font-size:12.5px;color:var(--band-ink);background:rgba(0,0,0,.18);transition:border-color .3s,background .3s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dm-f.active .dm-in{border-color:var(--band-accent);box-shadow:0 0 0 3px rgba(111,149,255,.18)}
+.dm-f.active .dm-in::after{content:"▌";color:var(--band-accent);animation:blink .8s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.dm-f.done .dm-in{border-color:rgba(79,208,143,.45)}
+.dm-f.wait .dm-in{border-color:var(--band-amber);color:var(--band-amber);background:rgba(242,169,59,.08);animation:waitp 1s ease-in-out infinite}
+@keyframes waitp{50%{box-shadow:0 0 0 4px rgba(242,169,59,.15)}}
+.dm-f.human.done .dm-in{color:var(--band-amber);border-color:rgba(242,169,59,.5)}
+.dm-stamp{position:absolute;right:8px;top:7px;font:600 12px var(--f-mono);color:#0B1320;background:var(--band-ok);border-radius:6px;padding:4px 8px;transform:rotate(-4deg) scale(.6);opacity:0;transition:opacity .3s,transform .35s cubic-bezier(.3,1.6,.5,1);pointer-events:none}
+.dm-form.sent .dm-stamp{opacity:1;transform:rotate(-4deg) scale(1)}
+.dm-race{display:grid;gap:7px;border-top:1px solid var(--band-line);padding-top:12px}
+.dm-row{display:grid;grid-template-columns:72px minmax(0,1fr) 92px;gap:10px;align-items:center;font-family:var(--f-mono);font-size:11.5px}
+.dm-rl{color:var(--band-muted)}
+.dm-rv{color:var(--band-muted);text-align:right}
+.dm-row.bot .dm-rl,.dm-row.bot .dm-rv{color:var(--band-ink)}
+.dm-bar{height:8px;border-radius:999px;background:rgba(255,255,255,.06);overflow:hidden}
+.dm-bar i{display:block;height:100%;border-radius:inherit;background:var(--band-muted);opacity:.55}
+.dm-row.bot .dm-bar i{background:linear-gradient(90deg,var(--band-accent),var(--band-ok));opacity:1}
+.dm-foot{display:flex;justify-content:space-between;gap:10px;font-family:var(--f-mono);font-size:10.5px;color:var(--band-muted)}
+.dm-foot #dm-status{color:var(--band-ink);min-height:1.4em}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"Gibin Mathew","url":"https://gibin.in/","image":"https://gibin.in/og.jpg",
@@ -451,13 +499,43 @@ html.js .org.in .ladder li:nth-child(2)::before{transition-delay:.5s}html.js .or
           <a class="btn ghost" href="https://www.linkedin.com/in/gibinm" target="_blank" rel="noopener">LinkedIn ↗</a>
         </div>
       </div>
-      <figure class="stage" style="margin:0" aria-label="Animation of RPA jobs flowing through config, bot run, an optional human checkpoint, and submission">
-        <canvas id="pipe"></canvas>
-        <div class="hint"><span>click anywhere to send a job</span><span id="sent"></span></div>
-        <figcaption class="cap">
-          <span>config-driven RPA, live model</span>
-          <span class="legend"><span><i style="background:var(--band-accent)"></i>bot</span><span><i style="background:var(--band-amber)"></i>human step</span><span><i style="background:var(--band-ok)"></i>submitted</span></span>
-        </figcaption>
+      <figure class="stage demo" id="demo" style="margin:0" aria-label="Illustration with sample data: one CRM record filled into three different web portals by config-driven RPA">
+        <div class="dm-top">
+          <span class="dm-k">One record → any portal</span>
+          <div class="dm-tabs" role="tablist" aria-label="Choose a portal">
+            <button type="button" role="tab" class="dm-tab on" data-p="0" aria-selected="true">Portal A</button>
+            <button type="button" role="tab" class="dm-tab" data-p="1" aria-selected="false">Portal B</button>
+            <button type="button" role="tab" class="dm-tab" data-p="2" aria-selected="false">Portal C</button>
+          </div>
+        </div>
+        <div class="dm-body">
+          <div class="dm-rec">
+            <div class="dm-h">CRM record <span>raw</span></div>
+            <dl>
+              <div data-k="name"><dt>full_name</dt><dd>"RAMAN, Priya S"</dd></div>
+              <div data-k="dob"><dt>dob</dt><dd>1998-03-07</dd></div>
+              <div data-k="country"><dt>country</dt><dd>IN</dd></div>
+              <div data-k="phone"><dt>phone</dt><dd>9876543210</dd></div>
+            </dl>
+          </div>
+          <div class="dm-mid" aria-hidden="true"><span class="dm-arrow">→</span><span class="dm-xf" id="dm-xf">config maps it</span></div>
+          <div class="dm-form">
+            <div class="dm-h"><span id="dm-pname">Portal A</span><span id="dm-step">5 / 5</span></div>
+            <div class="dm-fields" id="dm-fields">
+              <div class="dm-f done"><label>Given name</label><span class="dm-in">Priya</span></div>
+              <div class="dm-f done"><label>Family name</label><span class="dm-in">Raman</span></div>
+              <div class="dm-f done"><label>Date of birth</label><span class="dm-in">07/03/1998</span></div>
+              <div class="dm-f done"><label>Nationality</label><span class="dm-in">India</span></div>
+              <div class="dm-f done human"><label>One-time code</label><span class="dm-in">entered by a person</span></div>
+            </div>
+            <div class="dm-stamp" id="dm-stamp">Submitted ✓</div>
+          </div>
+        </div>
+        <div class="dm-race" aria-label="Time per submission">
+          <div class="dm-row"><span class="dm-rl">By hand</span><span class="dm-bar"><i id="dm-man" style="width:33%"></i></span><span class="dm-rv">~30 min</span></div>
+          <div class="dm-row bot"><span class="dm-rl">With RPA</span><span class="dm-bar"><i id="dm-bot" style="width:100%"></i></span><span class="dm-rv">under 10 min</span></div>
+        </div>
+        <figcaption class="dm-foot"><span id="dm-status">Same data, three different forms, no code changes.</span><span>sample data</span></figcaption>
       </figure>
     </div>
 
@@ -924,78 +1002,7 @@ document.getElementById('copyBtn').addEventListener('click',function(){
   try{navigator.clipboard.writeText(t).then(ok,fb)}catch(e){fb()}
 });
 
-(function(){
-  var cv=document.getElementById('pipe'); if(!cv) return;
-  var ctx=cv.getContext('2d'), W=0,H=0,dpr=1, parts=[], tick=0;
-  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var css=getComputedStyle(document.documentElement);
-  function c(n){return css.getPropertyValue(n).trim()||'#888'}
-  var col={line:c('--band-line'),muted:c('--band-muted'),ink:c('--band-ink'),acc:c('--band-accent'),amb:c('--band-amber'),ok:c('--band-ok'),bad:c('--band-bad')};
-  var X0=.09,X1=.91, CP0=.40,CP1=.66; // checkpoint window
-  function size(){var r=cv.getBoundingClientRect();dpr=Math.min(window.devicePixelRatio||1,2);W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
-  function mainY(){return H*.40} function cpY(){return H*.68}
-  function bump(t){if(t<CP0||t>CP1)return 0;var u=(t-CP0)/(CP1-CP0);return Math.sin(u*Math.PI)}
-  function spawn(){parts.push({t:0,v:(1/16)*(0.85+Math.random()*.3),d:Math.random()<.32,f:Math.random()<.06,a:1})}
-  var sent=0,done=0,sentEl=document.getElementById('sent');
-  function mine(){parts.push({t:0,v:1/7,d:Math.random()<.5,f:false,a:1,mine:true});sent++;label()}
-  function label(){if(sentEl)sentEl.innerHTML=sent?('your jobs: <b>'+done+'/'+sent+' submitted</b>'):''}
-  cv.addEventListener('click',function(){mine();if(reduce){for(var i=0;i<400;i++)step(1/60);draw()}});
-  var acc=0, SPAWN=0.85; // seconds between new jobs
-  function step(dt){
-    acc+=dt; while(acc>=SPAWN){acc-=SPAWN;spawn()}
-    for(var i=parts.length-1;i>=0;i--){var p=parts[i];
-      var slow=(p.d&&p.t>CP0+.06&&p.t<CP1-.06)?.35:1;
-      p.t+=p.v*slow*dt; if(p.f&&p.t>.86){p.a-=1.2*dt}
-      if(p.t>1||p.a<=0){if(p.mine&&p.t>1){done++;label()}parts.splice(i,1);}}
-  }
-  function station(x,label,sub,color){
-    var y=mainY();
-    ctx.fillStyle=col.line;ctx.beginPath();ctx.arc(x,y,9,0,7);ctx.fill();
-    ctx.strokeStyle=color;ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y,9,0,7);ctx.stroke();
-    ctx.fillStyle=col.ink;ctx.font='500 11px "JetBrains Mono", monospace';ctx.textAlign='center';
-    ctx.fillText(label,x,y-24);
-    if(sub){ctx.fillStyle=col.muted;ctx.font='400 10px "JetBrains Mono", monospace';ctx.fillText(sub,x,y-38)}
-  }
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    var y=mainY(), yc=cpY(), x0=W*X0, x1=W*X1;
-    // grid
-    ctx.strokeStyle=col.line;ctx.globalAlpha=.35;ctx.lineWidth=1;
-    for(var gx=0;gx<W;gx+=32){ctx.beginPath();ctx.moveTo(gx,0);ctx.lineTo(gx,H);ctx.stroke()}
-    ctx.globalAlpha=1;
-    // main lane
-    ctx.strokeStyle=col.line;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(x0,y);ctx.lineTo(x1,y);ctx.stroke();
-    // checkpoint detour
-    ctx.setLineDash([4,5]);ctx.lineWidth=2;ctx.strokeStyle=col.amb;ctx.globalAlpha=.55;ctx.beginPath();
-    for(var k=0;k<=40;k++){var t=CP0+(CP1-CP0)*k/40;var px=x0+(x1-x0)*t;var py=y+(yc-y)*bump(t);k?ctx.lineTo(px,py):ctx.moveTo(px,py)}
-    ctx.stroke();ctx.setLineDash([]);ctx.globalAlpha=1;
-    var cx=x0+(x1-x0)*(CP0+CP1)/2;
-    ctx.fillStyle=col.amb;ctx.font='500 11px "JetBrains Mono", monospace';ctx.textAlign='center';
-    ctx.fillText('human checkpoint',cx,yc+26);
-    ctx.fillStyle=col.muted;ctx.font='400 10px "JetBrains Mono", monospace';ctx.fillText('OTP · CAPTCHA · docs',cx,yc+40);
-    station(x0,'config','71 portals',col.acc);
-    station(x0+(x1-x0)*.30,'bot run','~5 min',col.acc);
-    station(x1,'submitted','94%',col.ok);
-    // particles
-    for(var i=0;i<parts.length;i++){var p=parts[i];
-      var px=x0+(x1-x0)*p.t, py=y+(p.d?(yc-y)*bump(p.t):0);
-      if(p.f&&p.t>.86){py+=(p.t-.86)*H*.9}
-      var cc=col.acc; if(p.d&&p.t>CP0&&p.t<CP1) cc=col.amb; if(p.t>.9) cc=p.f?col.bad:col.ok;
-      ctx.globalAlpha=Math.max(0,p.a);ctx.fillStyle=cc;
-      ctx.shadowColor=cc;ctx.shadowBlur=p.mine?18:10;ctx.beginPath();ctx.arc(px,py,p.mine?6:3.6,0,7);ctx.fill();ctx.shadowBlur=0;
-      if(p.mine){ctx.strokeStyle=col.ink;ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(px,py,10,0,7);ctx.stroke()}
-    }
-    ctx.globalAlpha=1;
-  }
-  var last=0;function loop(ts){var dt=last?Math.min((ts-last)/1000,0.1):0;last=ts;step(dt);draw();raf=requestAnimationFrame(loop)}
-  var raf;
-  function start(){size();parts=[];acc=0;for(var i=0;i<1200;i++)step(1/60);draw();if(!reduce){cancelAnimationFrame(raf);last=0;raf=requestAnimationFrame(loop)}}
-  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(start)}else start();
-  start();
-  if(window.ResizeObserver){new ResizeObserver(function(){size();draw()}).observe(cv)}
-  document.addEventListener('visibilitychange',function(){if(document.hidden)cancelAnimationFrame(raf);else if(!reduce){last=0;raf=requestAnimationFrame(loop)}});
-  if(window.IntersectionObserver&&!reduce){new IntersectionObserver(function(e){cancelAnimationFrame(raf);if(e[0].isIntersecting){last=0;raf=requestAnimationFrame(loop)}}).observe(cv)}
-})();
+
 </script>
 
 
@@ -1136,6 +1143,49 @@ document.getElementById('copyBtn').addEventListener('click',function(){
   /* back to top */
   var tt=document.getElementById('totop');
   if(tt){addEventListener('scroll',function(){tt.classList.toggle('show',scrollY>900)},{passive:true});tt.addEventListener('click',function(){scrollTo({top:0,behavior:reduce?'auto':'smooth'})})}
+})();
+
+/* hero demo: one CRM record filled into differently shaped portals */
+(function(){
+  var root=document.getElementById('demo');if(!root)return;
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var P=[
+    {name:'Portal A',f:[['Given name','name','Priya','split the full name'],['Family name','name','Raman','split the full name'],['Date of birth','dob','07/03/1998','reformat date to DD/MM/YYYY'],['Nationality','country','India','code → country name'],['One-time code',null,'entered by a person','OTP: hand over to a person']]},
+    {name:'Portal B',f:[['Full legal name','name','Priya S Raman','reorder the name'],['Mobile','phone','+91 98765 43210','add country code'],['Birth date','dob','1998-03-07','keep ISO date'],['Captcha',null,'solved by a person','CAPTCHA: hand over to a person'],['Country','country','IND','2-letter → 3-letter code']]},
+    {name:'Portal C',f:[['Forename','name','Priya','split the full name'],['Surname','name','Raman','split the full name'],['Day / month / year','dob','07 · Mar · 1998','split date into dropdowns'],['Upload document',null,'uploaded by a person','upload: hand over to a person'],['Country of residence','country','India','code → country name']]}
+  ];
+  var fieldsEl=document.getElementById('dm-fields'),pname=document.getElementById('dm-pname'),stepEl=document.getElementById('dm-step'),xf=document.getElementById('dm-xf'),mid=root.querySelector('.dm-mid'),form=root.querySelector('.dm-form'),status=document.getElementById('dm-status'),man=document.getElementById('dm-man'),bot=document.getElementById('dm-bot'),tabs=[].slice.call(root.querySelectorAll('.dm-tab')),rows=[].slice.call(root.querySelectorAll('.dm-rec dl>div'));
+  var run=0,timers=[],visible=true,cur=0;
+  function T(fn,ms){var id=setTimeout(fn,ms);timers.push(id);return id}
+  function clear(){timers.forEach(clearTimeout);timers=[]}
+  function esc(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML}
+  function setTab(i){tabs.forEach(function(t,j){t.classList.toggle('on',j===i);t.setAttribute('aria-selected',j===i?'true':'false')})}
+  function hl(k){rows.forEach(function(r){r.classList.toggle('on',r.dataset.k===k)})}
+  function render(p,filled){fieldsEl.innerHTML=p.f.map(function(x){return '<div class="dm-f'+(x[1]?'':' human')+(filled?' done':'')+'"><label>'+esc(x[0])+'</label><span class="dm-in">'+(filled?esc(x[2]):'')+'</span></div>'}).join('');pname.textContent=p.name;stepEl.textContent=(filled?p.f.length:0)+' / '+p.f.length}
+  function bars(m,b,dur){man.style.transition=bot.style.transition=dur?('width '+dur+'ms linear'):'none';man.style.width=m+'%';bot.style.width=b+'%'}
+  function play(i){
+    clear();var my=++run;cur=i;var p=P[i];setTab(i);form.classList.remove('sent');render(p,false);hl(null);bars(0,0,0);
+    status.textContent='New job: '+p.name+' has its own labels and formats';xf.textContent='config maps it';
+    if(reduce){render(p,true);form.classList.add('sent');bars(33,100,0);status.textContent='Same data, three different forms, no code changes.';return}
+    var t=700,total=0;p.f.forEach(function(x){total+=x[1]?(450+x[2].length*55):1900});total+=t;
+    T(function(){bars(33,100,total)},60);
+    p.f.forEach(function(x,n){
+      T(function(){if(my!==run)return;var el=fieldsEl.children[n],inp=el.querySelector('.dm-in');
+        stepEl.textContent=n+' / '+p.f.length;xf.textContent=x[3];mid.classList.remove('go');void mid.offsetWidth;mid.classList.add('go');
+        if(!x[1]){hl(null);el.classList.add('wait');inp.textContent='waiting for a person…';status.textContent='Bot pauses here. A person handles it, then the bot carries on.';
+          T(function(){if(my!==run)return;el.classList.remove('wait');el.classList.add('done');inp.textContent=x[2];stepEl.textContent=(n+1)+' / '+p.f.length},1600);return}
+        hl(x[1]);el.classList.add('active');status.textContent='Filling “'+x[0]+'” from '+rows.filter(function(r){return r.dataset.k===x[1]})[0].querySelector('dt').textContent;
+        var k=0;(function type(){if(my!==run)return;k++;inp.textContent=x[2].slice(0,k);if(k<x[2].length)T(type,45);else{el.classList.remove('active');el.classList.add('done');stepEl.textContent=(n+1)+' / '+p.f.length}})();
+      },t);
+      t+=x[1]?(450+x[2].length*55):1900;
+    });
+    T(function(){if(my!==run)return;hl(null);form.classList.add('sent');xf.textContent='done';status.textContent=p.name+' submitted. Nobody retyped anything.'},t+100);
+    T(function(){if(my!==run||!visible)return;play((i+1)%P.length)},t+2600);
+  }
+  tabs.forEach(function(b,i){b.addEventListener('click',function(){play(i)})});
+  if(window.IntersectionObserver){new IntersectionObserver(function(es){var was=visible;visible=es[0].isIntersecting;if(visible&&!was)play(cur);if(!visible)clear()},{threshold:.25}).observe(root)}
+  document.addEventListener('visibilitychange',function(){if(document.hidden)clear();else play(cur)});
+  play(0);
 })();
 </script>
 </body>
