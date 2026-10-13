@@ -353,12 +353,12 @@ html.js .hero-id{--d:50}html.js .hero .sub{--d:900}html.js .ctas{--d:1050}html.j
 .spot::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;opacity:0;transition:opacity .3s ease;background:radial-gradient(260px circle at var(--x,50%) var(--y,50%),color-mix(in srgb,var(--accent) 14%,transparent),transparent 70%)}
 .spot:hover::after{opacity:1}
 /* tool marquee */
-.marquee{border-bottom:1px solid var(--line);background:var(--surface);overflow:hidden;padding-block:14px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee{border-top:1px solid var(--band-line);overflow:hidden;padding-block:16px 22px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
 .mq-track{display:flex;width:max-content;animation:mq 70s linear infinite}
 .marquee:hover .mq-track{animation-play-state:paused}
-.mq-track span{font-family:var(--f-mono);font-size:13.5px;color:var(--muted);padding:0 22px;white-space:nowrap;position:relative;transition:color .2s}
-.mq-track span:hover{color:var(--accent)}
-.mq-track span::after{content:"◆";position:absolute;right:-5px;top:50%;transform:translateY(-50%);font-size:7px;color:var(--line)}
+.mq-track span{font-family:var(--f-mono);font-size:13px;color:var(--band-muted);padding:0 22px;white-space:nowrap;position:relative;transition:color .2s}
+.mq-track span:hover{color:var(--band-ink)}
+.mq-track span::after{content:"◆";position:absolute;right:-5px;top:50%;transform:translateY(-50%);font-size:7px;color:var(--band-line)}
 @keyframes mq{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.mq-track{animation:none;flex-wrap:wrap;width:auto}}
 /* case study flows draw in */
@@ -455,9 +455,9 @@ html.js .org.in .ladder li:nth-child(2)::before{transition-delay:.5s}html.js .or
       <div><b>168 FTE</b><span>of capacity from automations at S&amp;P Global</span></div>
       <div><b>3.4M+</b><span>company websites crawled for one data product</span></div>
     </div>
+    <div class="marquee" aria-label="Tools I work with"><div class="mq-track"><span>Python</span><span>SQL</span><span>Playwright</span><span>Selenium</span><span>Blue Prism</span><span>Appian</span><span>Node.js</span><span>MongoDB</span><span>MySQL</span><span>Pandas</span><span>FastAPI</span><span>Flask</span><span>Express</span><span>React</span><span>Docker</span><span>AWS</span><span>Redis Streams</span><span>RabbitMQ</span><span>OpenAI API</span><span>Gemini</span><span>DeepSeek</span><span>OCR</span><span>Slack API</span><span>Data Studio</span><span aria-hidden="true">Python</span><span aria-hidden="true">SQL</span><span aria-hidden="true">Playwright</span><span aria-hidden="true">Selenium</span><span aria-hidden="true">Blue Prism</span><span aria-hidden="true">Appian</span><span aria-hidden="true">Node.js</span><span aria-hidden="true">MongoDB</span><span aria-hidden="true">MySQL</span><span aria-hidden="true">Pandas</span><span aria-hidden="true">FastAPI</span><span aria-hidden="true">Flask</span><span aria-hidden="true">Express</span><span aria-hidden="true">React</span><span aria-hidden="true">Docker</span><span aria-hidden="true">AWS</span><span aria-hidden="true">Redis Streams</span><span aria-hidden="true">RabbitMQ</span><span aria-hidden="true">OpenAI API</span><span aria-hidden="true">Gemini</span><span aria-hidden="true">DeepSeek</span><span aria-hidden="true">OCR</span><span aria-hidden="true">Slack API</span><span aria-hidden="true">Data Studio</span></div></div>
   </div>
 </header>
-<div class="marquee" aria-label="Tools I work with"><div class="mq-track"><span>Python</span><span>SQL</span><span>Playwright</span><span>Selenium</span><span>Blue Prism</span><span>Appian</span><span>Node.js</span><span>MongoDB</span><span>MySQL</span><span>Pandas</span><span>FastAPI</span><span>Flask</span><span>Express</span><span>React</span><span>Docker</span><span>AWS</span><span>Redis Streams</span><span>RabbitMQ</span><span>OpenAI API</span><span>Gemini</span><span>DeepSeek</span><span>OCR</span><span>Slack API</span><span>Data Studio</span><span aria-hidden="true">Python</span><span aria-hidden="true">SQL</span><span aria-hidden="true">Playwright</span><span aria-hidden="true">Selenium</span><span aria-hidden="true">Blue Prism</span><span aria-hidden="true">Appian</span><span aria-hidden="true">Node.js</span><span aria-hidden="true">MongoDB</span><span aria-hidden="true">MySQL</span><span aria-hidden="true">Pandas</span><span aria-hidden="true">FastAPI</span><span aria-hidden="true">Flask</span><span aria-hidden="true">Express</span><span aria-hidden="true">React</span><span aria-hidden="true">Docker</span><span aria-hidden="true">AWS</span><span aria-hidden="true">Redis Streams</span><span aria-hidden="true">RabbitMQ</span><span aria-hidden="true">OpenAI API</span><span aria-hidden="true">Gemini</span><span aria-hidden="true">DeepSeek</span><span aria-hidden="true">OCR</span><span aria-hidden="true">Slack API</span><span aria-hidden="true">Data Studio</span></div></div>
 
 <main>
   <section class="reveal block" id="approach">
