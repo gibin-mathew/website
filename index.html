@@ -558,8 +558,12 @@ html.js .jobsteps.in .js-list::before{transform:none}
 .dm-proj{display:grid;gap:1px;min-width:0}
 .dm-pj{font:500 10.5px var(--f-mono);color:var(--band-muted)}
 .dm-ctl{display:flex;align-items:center;gap:8px}
-.dm-nextp{height:26px;border-radius:999px;border:1px solid var(--band-line);background:transparent;color:var(--band-muted);font:600 11px var(--f-mono);padding:0 10px;cursor:pointer;transition:color .2s,border-color .2s}
-.dm-nextp:hover{color:var(--band-ink);border-color:var(--band-muted)}
+.dm-nextp{height:28px;border-radius:999px;border:1px solid var(--band-accent);background:color-mix(in srgb,var(--band-accent) 16%,transparent);color:var(--band-ink);font:600 11.5px var(--f-mono);padding:0 12px;cursor:pointer;transition:background .2s,transform .2s;animation:np-ring 2.8s ease-out infinite}
+.dm-nextp:hover{background:color-mix(in srgb,var(--band-accent) 30%,transparent);transform:translateY(-1px)}
+.dm-nextp:focus-visible{outline:2px solid var(--band-accent);outline-offset:2px}
+@keyframes np-ring{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--band-accent) 45%,transparent)}70%,100%{box-shadow:0 0 0 8px transparent}}
+@media (prefers-reduced-motion:reduce){.dm-nextp{animation:none}}
+.slogan.swap{animation:sl-in .5s ease both}@keyframes sl-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 /* generic scene parts */
 .rt{display:grid;gap:7px}
 .rt-h,.rt-r{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) 112px;gap:10px;align-items:center}
@@ -1445,7 +1449,8 @@ document.getElementById('copyBtn').addEventListener('click',function(){
   var titleEl=document.getElementById('dm-title'),pjEl=document.getElementById('dm-pj'),dotsEl=document.getElementById('dm-dots'),status=document.getElementById('dm-status'),prog=document.getElementById('dm-prog'),nextp=document.getElementById('dm-nextp'),slogan=document.getElementById('slogan');
   var run=0,timers=[],visible=true,cur=0,variant=window.__heroV||'rpa',portal=0;
   function T(fn,ms){if(reduce){fn();return}var my=run;var id=setTimeout(function(){if(my===run)fn()},ms);timers.push(id)}
-  function NEXT(ms){if(reduce)return;T(function(){go((cur+1)%V[variant].scenes.length)},ms)}
+  function NEXT(ms){if(reduce)return;T(function(){var n=V[variant].scenes.length;if(cur+1<n)go(cur+1);else setVariant(nextVariant(),true)},ms)}
+  var queue=[];function nextVariant(){if(!queue.length){queue=order.filter(function(k){return k!==variant}).sort(function(){return Math.random()-.5})}return queue.shift()}
   function clear(){timers.forEach(clearTimeout);timers=[]}
   function esc(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML}
   function progress(ms){if(reduce){prog.style.width='100%';return}prog.style.transition='none';prog.style.width='0';void prog.offsetWidth;if(ms){prog.style.transition='width '+ms+'ms linear';prog.style.width='100%'}}
@@ -1513,11 +1518,11 @@ document.getElementById('copyBtn').addEventListener('click',function(){
     return 900+groups.length*900+2600}
 
   /* ---------- AI-assisted QC ---------- */
-  function qc0(){var el=scene('qc',0);say('Each subject name is checked against our master list.');
+  function qc0(){var el=scene('qc',1);say('Each subject name is checked against our master list.');
     var d=[['Business Analytics','= Business Analytics',100],['Mech. Engineering','closest: Mechanical Engineering',81],['Data Science','= Data Science',100],['Psych & Neuroscience','closest: Psychology',48],['Accounting','= Accounting',100]];
     var t=routeRows(el,['subject','match to master list','path'],d,100,'publishes','a person picks','Exact matches publish on their own. Everything else shows its closest match, and a person picks.',['published','to a person']);
     T(function(){say('Close enough isn’t good enough. Only exact matches skip the queue.')},t-800);progress(t+1600);NEXT(t+1600)}
-  function qc1(){var el=scene('qc',1);
+  function qc1(){var el=scene('qc',0);
     var items=[['Duration','12 mths, F/T','12 months · Full-time','Accept','12 months · Full-time'],['Start months','sept/jan','September, January','Override','September only'],['Annual fee','GBP15950','15,950 GBP','Accept','15,950 GBP']];
     el.innerHTML='<div class="rvw"><div class="rvw-f">field: <b class="f"></b></div><div class="rvw-cmp"><div><span>source page</span><code class="src"></code></div><div><span>AI draft</span><code class="sg"></code></div></div><div class="rvw-btn"><span>Keep</span><span>Edit</span><span>Save &amp; verify</span></div></div><ol class="lg short"></ol><p class="dm-note">The AI drafts the table. An editor checks it, and every save records who and when.</p>';
     var lgq=el.querySelector('.lg'),btn=el.querySelectorAll('.rvw-btn span'),t=300;say('An editor reviews each AI suggestion.');
@@ -1639,9 +1644,9 @@ document.getElementById('copyBtn').addEventListener('click',function(){
   function show(i){cur=i;var mine=scene(variant,i);all.forEach(function(sc){var on=sc===mine;sc.classList.toggle('on',on);sc.setAttribute('aria-hidden',on?'false':'true')});
     [].forEach.call(dotsEl.children,function(d,j){d.classList.toggle('on',j===i);d.setAttribute('aria-selected',j===i?'true':'false')});titleEl.textContent=V[variant].s[i][0];pjEl.textContent=V[variant].label}
   function go(i){clear();run++;show(i);V[variant].s[i][1]()}
-  function setVariant(v,animate){variant=v;buildDots();if(slogan&&window.__heroH&&animate){slogan.innerHTML=window.__heroH[v];[].forEach.call(slogan.querySelectorAll('*'),function(){});}
+  function setVariant(v,animate){variant=v;queue=queue.filter(function(k){return k!==v});buildDots();if(slogan&&window.__heroH&&animate){slogan.classList.remove('swap');void slogan.offsetWidth;slogan.classList.add('swap');slogan.innerHTML=window.__heroH[v];[].forEach.call(slogan.querySelectorAll('*'),function(){});}
     try{localStorage.setItem('gm-hv',v)}catch(e){}go(0)}
-  nextp.addEventListener('click',function(){setVariant(order[(order.indexOf(variant)+1)%order.length],true)});
+  nextp.addEventListener('click',function(){setVariant(nextVariant(),true)});
   buildDots();
   if(window.IntersectionObserver&&!reduce){new IntersectionObserver(function(es){var was=visible;visible=es[0].isIntersecting;if(visible&&!was)go(cur);if(!visible){clear();run++}},{threshold:.25}).observe(root)}
   document.addEventListener('visibilitychange',function(){if(reduce)return;if(document.hidden){clear();run++}else go(cur)});
