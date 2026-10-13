@@ -270,6 +270,7 @@ dialog.flowwin[open]{animation:pop .28s cubic-bezier(.2,.9,.3,1.2)}
 .fw-step.on.end .fw-dot,.fw-step.done.end .fw-dot{border-color:var(--ok);background:var(--ok);color:var(--surface)}
 .fw-step.on.end .fw-card{border-color:var(--ok)}
 .fw-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
+.fw-foot{position:sticky;bottom:-24px;background:var(--surface);padding-bottom:24px;margin-bottom:-24px}
 .fw-foot .stack{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
 .fw-ctrl{display:flex;gap:8px}
 .fw-btn{font:600 14px var(--f-body);border-radius:8px;padding:8px 14px;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--ink)}
@@ -277,12 +278,23 @@ dialog.flowwin[open]{animation:pop .28s cubic-bezier(.2,.9,.3,1.2)}
 .fw-btn:hover{border-color:var(--accent)}
 .certs{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:14.5px}
 .certs span{display:block;font-size:12.5px;color:var(--muted)}
+
+.certfeat{margin-top:44px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:20px 24px;align-items:center;padding:22px 24px;border-radius:14px;border:1px solid var(--line);background:linear-gradient(135deg,var(--accent-soft),transparent 70%),var(--surface);position:relative;overflow:hidden}
+.certfeat::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(var(--accent),var(--amber))}
+@media (max-width:640px){.certfeat{grid-template-columns:auto minmax(0,1fr)}.certfeat .cf-tag{grid-column:1/-1}}
+.cf-icon{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--surface);border:1px solid var(--line);color:var(--amber)}
+.cf-icon svg{width:28px;height:28px}
+.cf-k{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.cf-t{font-family:var(--f-display);font-stretch:112%;font-weight:700;font-size:clamp(20px,2.2vw,26px);line-height:1.2;margin:4px 0 2px}
+.cf-s{color:var(--muted);font-size:15px}
+.cf-tag{font-family:var(--f-mono);font-size:12px;padding:6px 12px;border-radius:999px;border:1px solid var(--ok);color:var(--ok);background:var(--ok-soft);white-space:nowrap;justify-self:start}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"Gibin Mathew","url":"https://gibin.in/","image":"https://gibin.in/og.jpg",
 "jobTitle":"Data and Automation Manager","worksFor":{"@type":"Organization","name":"Edvoy"},
 "address":{"@type":"PostalAddress","addressLocality":"Chennai","addressCountry":"IN"},
 "alumniOf":{"@type":"CollegeOrUniversity","name":"Bangalore University"},
+"hasCredential":{"@type":"EducationalOccupationalCredential","name":"DSA & System Design","credentialCategory":"Certificate of completion","recognizedBy":{"@type":"Organization","name":"HeyCoach"}},
 "knowsAbout":["Robotic Process Automation","Config-driven RPA","Web automation","Data engineering","ETL","Playwright","Selenium","Blue Prism","Python","AI-assisted data validation"],
 "sameAs":["https://www.linkedin.com/in/gibinm","https://github.com/gibin-mathew"]}
 </script>
@@ -513,6 +525,16 @@ dialog.flowwin[open]{animation:pop .28s cubic-bezier(.2,.9,.3,1.2)}
         </div>
       </div>
 
+      <div class="certfeat">
+        <div class="cf-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 13.8 7 22l5-3 5 3-1.5-8.2"/><path d="m9.5 9 1.7 1.7L14.6 7.3"/></svg></div>
+        <div>
+          <div class="cf-k">Certification</div>
+          <h3 class="cf-t">DSA &amp; System Design</h3>
+          <p class="cf-s">Certificate of completion, HeyCoach</p>
+        </div>
+        <span class="cf-tag">Completed</span>
+      </div>
+
       <div class="more">
         <div>
           <h4>Recognition at S&amp;P Global</h4>
@@ -535,8 +557,6 @@ dialog.flowwin[open]{animation:pop .28s cubic-bezier(.2,.9,.3,1.2)}
         <div>
           <h4>Education</h4>
           <p style="font-size:14.5px">BCA, Bangalore University, 2017</p>
-          <h4 style="margin-top:24px">Certification</h4>
-          <ul class="certs"><li>DSA &amp; System Design<span>HeyCoach</span></li></ul>
         </div>
       </div>
     </div>
