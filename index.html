@@ -587,6 +587,15 @@ html.js .jobsteps.in .js-list::before{transform:none}
 .rvw-cmp code.sg{border-color:var(--band-accent)}
 .mdx code{white-space:pre-wrap;word-break:break-word;font-size:11.5px;line-height:1.5;min-height:178px}
 .mdx code .mk{color:var(--band-accent)}
+.fsrc{border:1px solid var(--band-line);border-radius:10px;background:var(--band-well);padding:12px 14px;font:13px/1.75 var(--f-body);color:var(--band-ink)}
+.fsrc mark{background:transparent;color:inherit;border-radius:4px;padding:1px 3px;transition:background .3s,outline-color .3s;outline:1px solid transparent}
+.fsrc mark.on{background:color-mix(in srgb,var(--band-accent) 22%,transparent);outline-color:var(--band-accent)}
+.fsrc mark.warn.on{background:color-mix(in srgb,var(--band-amber) 22%,transparent);outline-color:var(--band-amber)}
+.apl{border:1px solid var(--band-line);border-radius:10px;background:var(--band-well);padding:10px 12px;display:grid;gap:4px;font:12.5px var(--f-mono);opacity:0;transform:translateY(-4px);transition:opacity .3s,transform .3s}
+.apl.on{opacity:1;transform:none}.apl b{font:500 10.5px var(--f-mono);color:var(--band-muted)}
+.apl span{padding:5px 8px;border-radius:6px;color:var(--band-ink)}.apl span.pick{background:color-mix(in srgb,var(--band-accent) 20%,transparent);outline:1px solid var(--band-accent)}
+.fin-in{display:inline-block;min-width:64px;border:1px solid var(--band-line);border-radius:6px;padding:2px 8px;font:12px var(--f-mono);color:var(--band-ink)}
+.fin-in.on{border-color:var(--band-accent)}.fin-in.ok{border-color:var(--band-ok);color:var(--band-ok)}
 .rvw-btn{display:flex;gap:6px}
 .rvw-btn span{font:600 11px var(--f-mono);border:1px solid var(--band-line);border-radius:6px;padding:5px 10px;color:var(--band-muted);transition:all .25s}
 .rvw-btn span.press{color:var(--band);background:var(--band-ok);border-color:var(--band-ok);transform:scale(.96)}
@@ -632,7 +641,7 @@ html.js .jobsteps.in .js-list::before{transform:none}
 .ts-r.on{opacity:1;border-color:var(--band-accent)}.ts-r.done{opacity:1}
 .ts-r em{font-style:normal;font:500 10.5px var(--f-mono);color:var(--band-amber)}
 .ts-r code{font:12px var(--f-mono);color:var(--band-ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.ts-r.fin{border-color:var(--band-ok)}.ts-r.fin code{color:var(--band-ok)}
+.ts-r.fin{opacity:1;border-color:var(--band-ok)}.ts-r.fin code{color:var(--band-ok)}
 @media (max-width:520px){.ts-h{display:none}.ts-r{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.ts-r em{grid-column:1/-1}}
 </style>
 <script type="application/ld+json">
@@ -668,7 +677,7 @@ html.js .jobsteps.in .js-list::before{transform:none}
       <div>
         <div class="hero-id"><div class="avatar" role="img" aria-label="Photo of Gibin Mathew"></div><div class="who"><h1 class="name">Gibin Mathew</h1><span class="kicker mono">Data &amp; Automation Manager · Chennai, India</span></div></div>
         <p class="slogan" id="slogan">Bots do the forms. People make the <em>judgment calls.</em> I build the system in between.</p>
-        <script>(function(){var H={rpa:'Bots do the forms. People make the <em>judgment calls.</em> I build the system in between.',qc:'AI does the first pass. People make the <em>final call.</em> I decide where one hands over to the other.',crawl:'3.4 million websites. One crawler. <em>Nobody copying and pasting.</em>',match:'Two systems, two spellings, <em>one match.</em> I make messy data agree with itself.',md:'Thirty-nine websites, thirty-nine layouts. <em>One clean format</em> at the end.'};var k=Object.keys(H),last=null;try{last=localStorage.getItem('gm-hv')}catch(e){}var pool=k.filter(function(x){return x!==last});var v=pool[Math.floor(Math.random()*pool.length)];try{localStorage.setItem('gm-hv',v)}catch(e){}window.__heroV=v;window.__heroH=H;document.getElementById('slogan').innerHTML=H[v]})();</script>
+        <script>(function(){var H={rpa:'Bots do the forms. People make the <em>judgment calls.</em> I build the system in between.',qc:'AI does the first pass. People make the <em>final call.</em> I decide where one hands over to the other.',crawl:'3.4 million websites. One crawler. <em>Nobody copying and pasting.</em>',match:'Two systems, two spellings, <em>one match.</em> I make messy data agree with itself.',md:'Every website looks different. An agent writes the scraper. <em>Everything comes out as Markdown.</em>',fees:'The fee is buried in a paragraph. <em>The AI finds it.</em> A person checks it once.'};var k=Object.keys(H),last=null;try{last=localStorage.getItem('gm-hv')}catch(e){}var pool=k.filter(function(x){return x!==last});var v=pool[Math.floor(Math.random()*pool.length)];try{localStorage.setItem('gm-hv',v)}catch(e){}window.__heroV=v;window.__heroH=H;document.getElementById('slogan').innerHTML=H[v]})();</script>
         <p class="sub">I'm Gibin Mathew. For <strong>nine years</strong> I've built production automation, data pipelines and AI-assisted systems for operations teams, first at <strong>S&amp;P Global Market Intelligence</strong>, now leading data engineering and automation at <strong>Edvoy</strong>.</p>
         <div class="ctas">
           <a class="btn primary" href="#work">Read the case studies</a>
@@ -712,8 +721,8 @@ html.js .jobsteps.in .js-list::before{transform:none}
           </div>
         </div>
         <div class="dm-race" aria-label="Time per submission">
-          <div class="dm-row"><span class="dm-rl">By hand</span><span class="dm-bar"><i id="dm-man" style="width:33%"></i></span><span class="dm-rv">~30 min</span></div>
-          <div class="dm-row bot"><span class="dm-rl">With RPA</span><span class="dm-bar"><i id="dm-bot" style="width:100%"></i></span><span class="dm-rv">under 10 min</span></div>
+          <div class="dm-row"><span class="dm-rl">By hand</span><span class="dm-bar"><i id="dm-man" style="width:17%"></i></span><span class="dm-rv">~30 min</span></div>
+          <div class="dm-row bot"><span class="dm-rl">With RPA</span><span class="dm-bar"><i id="dm-bot" style="width:100%"></i></span><span class="dm-rv">~5 min avg</span></div>
         </div>
           </div>
           <div class="dm-scene" data-v="rpa" data-s="1" aria-hidden="true">
@@ -762,6 +771,10 @@ html.js .jobsteps.in .js-list::before{transform:none}
           <div class="dm-scene" data-v="md" data-s="0" aria-hidden="true"></div>
           <div class="dm-scene" data-v="md" data-s="1" aria-hidden="true"></div>
           <div class="dm-scene" data-v="md" data-s="2" aria-hidden="true"></div>
+          <div class="dm-scene" data-v="md" data-s="3" aria-hidden="true"></div>
+          <div class="dm-scene" data-v="fees" data-s="0" aria-hidden="true"></div>
+          <div class="dm-scene" data-v="fees" data-s="1" aria-hidden="true"></div>
+          <div class="dm-scene" data-v="fees" data-s="2" aria-hidden="true"></div>
           </div>
         <figcaption class="dm-foot"><span id="dm-status">Same data, three different forms, no code changes.</span><span>sample data</span></figcaption>
       </figure>
@@ -801,7 +814,7 @@ html.js .jobsteps.in .js-list::before{transform:none}
           <span class="from">Seen in: portal automation</span>
         </div>
       </div>
-      <script>(function(){var P=[["rpa", "Configuration beats code", "When the hard part is variety, I'd rather the system absorb new cases as data. That's how one engine covers 71 portals. The 72nd? Config, not a deployment.", "portal automation"], ["rpa", "Measure what the system controls", "If a user cancels a job, that's their call, so it doesn't count as a platform failure. That's why I can stand behind the 94%.", "portal automation"], ["judg", "Put people where judgment lives", "OTPs, CAPTCHAs, uploads and AI drafts go to a person, on purpose. Automation earns trust when it knows when to stop.", "AI validators, portal automation"], ["judg", "Only sure things skip the queue", "If a subject matches our master list exactly, it publishes on its own. Anything less, and a person sees the closest match and makes the call. Close enough isn't good enough.", "Subject Validator"], ["data", "Fix the data before it travels", "Names, dates, country codes and phone numbers get cleaned once, in Python, before any portal sees them. Everything after that gets cheaper, simpler and a lot less surprising for the people who depend on it.", "portal automation, Intake Watcher"], ["mon", "Watch for the quiet failures", "Scrapers don't crash when a site changes its layout. They just quietly collect the wrong thing, sometimes for days, and nobody notices until the numbers look off. So a monitor compares every site with its last snapshot and pings Slack.", "website change monitoring"], ["match", "Match on words, not word order", "\"Acme Ltd, Chennai\" and \"Chennai Acme Ltd\"? Same company. Sort the words before comparing and they line up. That alone cut our manual reconciliation by about 60%.", "Intake Watcher"], ["md", "Give every source the same shape", "Thirty-nine websites, thirty-nine layouts. Each gets its own small scraper, and every one hands back the same thing: clean Markdown in S3. Whatever reads it next only has to learn one format.", "Markdown Extractor"], ["crawl", "Simple and huge belongs to a crawler", "Easy task, 3.4 million times over? Not a team's job. That's how about 160 FTE of research became one Python crawler.", "S&P Global crawler"]];var g={};P.forEach(function(p){(g[p[0]]=g[p[0]]||[]).push(p)});var ks=Object.keys(g).sort(function(){return Math.random()-.5}).slice(0,3);var box=document.currentScript.previousElementSibling;function e(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML}box.innerHTML=ks.map(function(k){var a=g[k],p=a[Math.floor(Math.random()*a.length)];return '<div class="pr"><h3>'+e(p[1])+'</h3><p>'+e(p[2])+'</p><span class="from">Seen in: '+e(p[3])+'</span></div>'}).join('')})();</script>
+      <script>(function(){var P=[["rpa", "Configuration beats code", "When the hard part is variety, I'd rather the system absorb new cases as data. That's how one engine covers 71 portals. The 72nd? Config, not a deployment.", "portal automation"], ["rpa", "Measure what the system controls", "If a user cancels a job, that's their call, so it doesn't count as a platform failure. That's why I can stand behind the 94%.", "portal automation"], ["judg", "Put people where judgment lives", "OTPs, CAPTCHAs, uploads and AI drafts go to a person, on purpose. Automation earns trust when it knows when to stop.", "AI validators, portal automation"], ["judg", "Only sure things skip the queue", "If a subject matches our master list exactly, it publishes on its own. Anything less, and a person sees the closest match and makes the call. Close enough isn't good enough.", "Subject Validator"], ["data", "Fix the data before it travels", "Names, dates, country codes and phone numbers get cleaned once, in Python, before any portal sees them. Everything after that gets cheaper, simpler and a lot less surprising for the people who depend on it.", "portal automation, Intake Watcher"], ["mon", "Watch for the quiet failures", "Scrapers don't crash when a site changes its layout. They just quietly collect the wrong thing, sometimes for days, and nobody notices until the numbers look off. So a monitor compares every site with its last snapshot and pings Slack.", "website change monitoring"], ["match", "Match on words, not word order", "\"Acme Ltd, Chennai\" and \"Chennai Acme Ltd\"? Same company. Strip it, sort it, then compare, and they line up. That alone cut our manual reconciliation by about 60%.", "Intake Watcher"], ["md", "Give every source the same shape", "Every website has its own layout. Each gets its own agent-written scraper, and every one hands back the same thing: clean Markdown. Whatever reads it next only has to learn one format.", "Markdown Extractor"], ["judg", "Check it once, apply it everywhere", "When one fee is right for every full-time intake, nobody should type it in again for each one. Verify it once, apply it to all of them, and keep a name on it.", "Fees Validator"], ["crawl", "Simple and huge belongs to a crawler", "Easy task, 3.4 million times over? Not a team's job. That's how about 160 FTE of research became one Python crawler.", "S&P Global crawler"]];var g={};P.forEach(function(p){(g[p[0]]=g[p[0]]||[]).push(p)});var ks=Object.keys(g).sort(function(){return Math.random()-.5}).slice(0,3);var box=document.currentScript.previousElementSibling;function e(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML}box.innerHTML=ks.map(function(k){var a=g[k],p=a[Math.floor(Math.random()*a.length)];return '<div class="pr"><h3>'+e(p[1])+'</h3><p>'+e(p[2])+'</p><span class="from">Seen in: '+e(p[3])+'</span></div>'}).join('')})();</script>
     </div>
   </section>
 
@@ -846,8 +859,9 @@ html.js .jobsteps.in .js-list::before{transform:none}
               <ol class="decisions">
                 <li><div><b>New portals come in as configuration.</b><span>A new portal is added as config. Coverage grew to 71 portals while the codebase stayed the same size.</span></div></li>
                 <li><div><b>Clean the data once, before the bot starts.</b><span>A Python step turns raw CRM data (names, dates, country codes, phone numbers, yes/no answers) into portal-ready values. The bot never touches messy data, and missing fields show up before a run, not halfway through it.</span></div></li>
-                <li><div><b>Let the page decide which questions apply.</b><span>Portals show and hide questions based on earlier answers. Rules in the config check what's actually on the page and skip what isn't there, so one config covers every branch of a form.</span></div></li>
+                <li><div><b>Let the page decide which questions apply.</b><span>Portals show and hide questions based on earlier answers. Rules in the config (if this is on the page, if that step worked, repeat until the list runs out) check what's really there and skip the rest, so one config covers every branch of a form.</span></div></li>
                 <li><div><b>I designed the human steps in from day one.</b><span>OTPs and CAPTCHAs go to a person, and the bot picks up again once they're done. Trying to automate those steps would have made the whole thing fragile. Small failures, like a slow page, retry on their own with a growing wait.</span></div></li>
+                <li><div><b>Every failure gets a label.</b><span>When a run fails, the platform reads the error and tags it: a config problem, a portal that changed, a connection issue, or something that needs a person. The fix goes to the right person on the first try, not after a round of guessing.</span></div></li>
                 <li><div><b>I defined success so it can't flatter us.</b><span>Success rate is successful jobs divided by successful plus failed. If a user stops a job on purpose, it doesn't count against the platform.</span></div></li>
               </ol>
             </div>
@@ -857,7 +871,31 @@ html.js .jobsteps.in .js-list::before{transform:none}
               <div><b>94%</b><span>success rate</span></div>
               <div><b>1,200+</b><span>hours saved</span></div>
             </div>
-            <p class="fine">By hand it's about 30 minutes. With the platform it's under 10, end to end. Figures as of October 2026.</p>
+            <p class="fine">By hand it's about 30 minutes. The bot's own time averages about 5 minutes per job. Figures as of October 2026.</p>
+          </div>
+        </article>
+
+        <!-- CASE 2 -->
+        <article class="case" id="markdown">
+          <aside class="case-meta">
+            <span class="where">Edvoy</span>
+            <h3>Markdown Extractor: every website, one format an AI can read</h3>
+            <dl class="kv">
+              <div><dt>My role</dt><dd>Platform design and delivery</dd></div>
+              <div><dt>Systems</dt><dd>Hermes agent, Markdown Extractor, query agent</dd></div>
+            </dl>
+            <div class="chips"><span class="chip">Python</span><span class="chip">Playwright</span><span class="chip">FastAPI</span><span class="chip">APScheduler</span><span class="chip">React</span><span class="chip">MongoDB</span><span class="chip">AWS S3</span><span class="chip">Docker</span><span class="chip">Hermes agent</span></div>
+          </aside>
+          <div class="case-body">
+            <p class="dek">No two websites lay out their data the same way. So instead of one scraper fighting all of them, an agent writes a scraper for each site, and every scraper hands back the same thing: clean Markdown.</p>
+            <div class="para">
+              <h4>The problem</h4>
+              <p>Our data comes from a long list of catalogue websites. Some load content as you scroll. Some hide it behind cookie banners. Some tuck the useful parts inside page scripts. Hand-written scrapers were slow to build, they'd break without telling anyone, and each one returned data in its own shape.</p>
+              <h4 style="margin-top:12px">What I built</h4>
+              <p>We hand a new website to the Hermes agent, and it writes a Playwright scraper. Each one sits on a shared library for the boring parts (cookies, scrolling, retries, rate limits) and turns every page into a Markdown file, with a header saying where it came from and when. The files land in Amazon S3.</p>
+              <p>I split the platform into a few small services. One schedules the runs, one executes them, one streams the logs live to a React dashboard, and one pulls in new scraper code the moment it's pushed to Bitbucket. Nobody's deploying by hand.</p>
+              <p>Then the Markdown feeds a second agent. You ask it questions in plain language and it answers from the files. You don't write a query in SQL or anything else.</p>
+            </div>
           </div>
         </article>
 
@@ -865,25 +903,51 @@ html.js .jobsteps.in .js-list::before{transform:none}
         <article class="case" id="validators">
           <aside class="case-meta">
             <span class="where">Edvoy</span>
-            <h3>AI-assisted QC for catalogue and fee data</h3>
+            <h3>Subject Validator: AI reads the page, a person signs off</h3>
             <dl class="kv">
-              <div><dt>My role</dt><dd>Designed the review workflow and decided where the AI stops and a person takes over</dd></div>
-              <div><dt>Systems</dt><dd>Subject Validator, Fees Validator</dd></div>
+              <div><dt>My role</dt><dd>Designed the review workflow and where the AI hands over to a person</dd></div>
+              <div><dt>Models</dt><dd>Gemini, Gemma and DeepSeek, picked per run</dd></div>
             </dl>
-            <div class="chips"><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">MongoDB</span><span class="chip">Gemini</span><span class="chip">DeepSeek</span></div>
+            <div class="chips"><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">MongoDB</span><span class="chip">Gemini</span><span class="chip">DeepSeek</span></div>
           </aside>
           <div class="case-body">
-            <p class="dek">Catalogue and fee data has to be right. People make real decisions on it. Checking it all by hand didn't scale. Letting AI check it with nobody watching wasn't acceptable either.</p>
+            <p class="dek">Subject requirements are written differently on every page. Reading them all by hand didn't scale. Letting an AI publish them unchecked wasn't an option.</p>
             <div class="para">
               <h4>The approach</h4>
-              <p>We don't let either tool sign off alone. A person always does. The Subject Validator sends each catalogue page to an LLM (DeepSeek or Gemini 2.5 Flash, chosen per run, with prompts editors can change) and gets back a short summary and a structured table. An editor fixes any cell that's wrong, then hits Save &amp; Verify. Subject names are checked against our master list. Exact matches publish on their own. Everything else shows its closest match, and a person picks.</p>
-              <p>The Fees Validator puts the scraped fee page and the structured fee table side by side. A reviewer checks one against the other and edits in place, and every save records who changed it and when.</p>
-              <p>Honestly, calling a model was the easy part. The real work was deciding what it's allowed to do alone. Let it publish too much and bad data goes live. Too little and you've built a slower way to check by hand. We also track token spend per run, so a bulk rerun doesn't turn into a surprise bill.</p>
+              <p>Our editors pick a model (Gemini, Gemma or DeepSeek, from lighter to heavier), tweak the prompt if a page needs it, and run it. The prompt is shared and versioned, so everyone can see who changed it last and when.</p>
+              <p>The AI gives back two things: a text summary and a structured table. Both are interactive, so you don't just read them, you edit them. The editor checks them against the highlighted source page, fixes any cell in the JSON editor, and saves. Then a subject identifier maps every subject it found to our master list. Exact matches publish on their own. Everything else shows its closest match, and a person picks.</p>
+              <p>Bulk reruns, per-person stats and token spend per run live in the same tool. Honestly, calling a model was the easy part. The real work was deciding what it's allowed to do alone.</p>
             </div>
             <div class="results three">
-              <div><b>60-70%</b><span>less manual QC on catalogue and fee data</span></div>
-              <div><b>2</b><span>LLMs, swappable per run: DeepSeek and Gemini</span></div>
+              <div><b>60-70%</b><span>less manual QC, across both validators</span></div>
+              <div><b>2</b><span>model families, swappable per run</span></div>
               <div><b>2</b><span>paths: exact matches publish, the rest go to a person</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CASE 3b -->
+        <article class="case" id="fees">
+          <aside class="case-meta">
+            <span class="where">Edvoy</span>
+            <h3>Fees Validator: find the fee, check it once, apply it everywhere</h3>
+            <dl class="kv">
+              <div><dt>My role</dt><dd>Designed the review workflow and the bulk-apply rules</dd></div>
+              <div><dt>AI</dt><dd>Summariser that pulls out and highlights fees</dd></div>
+            </dl>
+            <div class="chips"><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">Vite</span><span class="chip">Express</span><span class="chip">MongoDB</span><span class="chip">LLM summariser</span></div>
+          </aside>
+          <div class="case-body">
+            <p class="dek">Fee pages bury the numbers inside paragraphs. And one fee often applies to dozens of intakes, so typing it into each one by hand is exactly how mistakes creep in. I wanted it checked once.</p>
+            <div class="para">
+              <h4>The approach</h4>
+              <p>We put the scraped fee page on the left. One shortcut (Shift + A) runs the AI summariser, which pulls the fees out and highlights every amount, date and condition, including the slippery words like "may". On the right is each intake with its fee field.</p>
+              <p>Our reviewer compares the two, then accepts the fee or fixes it. When it's right, one click applies it more widely: to every intake, to every full-time intake, or to every intake at the same campus. Then Verify. Each record keeps who verified it and when, so there's never a question about who signed off. A dashboard tracks progress by source and by person.</p>
+            </div>
+            <div class="results three">
+              <div><b>60-70%</b><span>less manual QC, across both validators</span></div>
+              <div><b>1 fix</b><span>can update every related intake</span></div>
+              <div><b>Every</b><span>verified fee has a name and a time on it</span></div>
             </div>
           </div>
         </article>
@@ -923,8 +987,7 @@ html.js .jobsteps.in .js-list::before{transform:none}
       <span class="label">Also built</span>
       <h2 class="h-sec">Smaller things I've shipped</h2>
       <div class="grid">
-        <button type="button" class="card wide" data-flow="markdown" aria-haspopup="dialog"><span class="m">39 websites, one format</span><h3>Markdown Extractor</h3><p>One small scraper per website, one platform to run them all. Each turns a catalogue site into clean Markdown in S3. Push a script and it's picked up on its own.</p><span class="go">Read in plain words</span><span class="s">Python · Playwright · FastAPI · React · S3</span></button>
-        <button type="button" class="card" data-flow="watcher" aria-haspopup="dialog"><span class="m">−60% manual reconciliation</span><h3>Intake Watcher</h3><p>Reconciles live catalogue listings across business systems. I designed the matching behind it: clean the names, try the strictest key first, loosen only when a field is missing.</p><span class="go">Read in plain words</span><span class="s">Python · Flask · Pandas · MongoDB</span></button>
+        <button type="button" class="card" data-flow="watcher" aria-haspopup="dialog"><span class="m">−60% manual reconciliation</span><h3>Intake Watcher</h3><p>Compares what's on the websites with what's in our database. I built the token-sort matching myself, no library, and every listing comes out as new, deleted, matched or modified.</p><span class="go">Read in plain words</span><span class="s">Python · Flask · Pandas · MongoDB</span></button>
         <button type="button" class="card" data-flow="scheduler" aria-haspopup="dialog"><span class="m">−70% manual monitoring</span><h3>Intake Scheduler</h3><p>Runs each source's scrape on its own timetable, then hands the fresh data to Intake Watcher. Slack hears about every run, pass or fail.</p><span class="go">Read in plain words</span><span class="s">Python · Flask · MongoDB · Slack API</span></button>
         <button type="button" class="card" data-flow="workflow" aria-haspopup="dialog"><span class="m">−35% turnaround</span><h3>Workflow automation</h3><p>Rules that move tasks along on their own and ping the right people on Slack, so nobody has to chase updates.</p><span class="go">Read in plain words</span><span class="s">Python · REST API · Slack</span></button>
         <button type="button" class="card" data-flow="monitor" aria-haspopup="dialog"><h3>Website change monitoring</h3><p>Spots layout and content changes on target sites, so a scraper gets fixed before its data goes stale.</p><span class="go">Read in plain words</span><span class="s">Python · Slack API</span></button>
@@ -1319,7 +1382,7 @@ document.getElementById('copyBtn').addEventListener('click',function(){
 })();
 /* plain-language windows for "smaller things" */
 (function(){
-  var P={"watcher": {"k": "Edvoy", "stack": "Python · Flask · Pandas · MongoDB · Slack API", "p": ["Our business systems each keep their own copy of the same listings, and the names never quite match. One says \"Acme Ltd, Chennai\". Another says \"Chennai Acme Ltd\". Someone had to match them by hand.", "Now Intake Watcher does it. I wrote the matching. It lower-cases every name, strips the punctuation and sorts the words, so both of those become \"acme chennai ltd\". Then it builds a match key from the name and date, plus location, mode and duration when both sides have them. That's 8 possible keys, and it tries the strictest one first. It'll only drop a field when one side doesn't have it.", "Every listing lands in one of five buckets: unchanged, new date, new item, orphaned or gone. The results go to Excel and Slack. About 60% less manual reconciliation."]}, "scheduler": {"k": "Edvoy", "stack": "Python · Flask · MongoDB · Slack API", "p": ["We run dozens of scraping jobs, each on its own timetable. Someone used to keep checking that every job had run, and that its numbers looked sane.", "I built Intake Scheduler, a small Flask and MongoDB service. It keeps a next-run date and a repeat interval for every source. When one is due, it starts the scraper, checks in every 10 seconds until the scrape finishes or fails, then runs Intake Watcher on the fresh data.", "Slack hears about each step: what's due today, what started, what the watcher found. Every source's last run and status sit in one place, so nobody sits watching a dashboard. That's cut job-watching time by about 70%."]}, "workflow": {"k": "Edvoy", "stack": "Python · REST API · Slack", "p": ["Keeping work moving across teams used to mean lots of manual follow-up. People chased each other for updates.", "I wrote a Python script that reads our project tracker through its REST API. When a task changes, the rules we agreed on get applied automatically, and whoever has to act gets a Slack ping.", "Work now moves from start to finish about 35% faster."]}, "monitor": {"k": "Edvoy", "stack": "Python · Slack API", "p": ["A scraper is written for one version of a website. If the site changes its layout, the scraper can quietly start collecting wrong or empty data, and you mightn't notice for a while.", "This Python tool keeps checking the sites we scrape and compares each one with its last snapshot. Changed structure or content? It fires a Slack alert, with a severity level we set per site.", "So we fix the scraper first. We don't find out later from stale data."]}, "passport": {"k": "Edvoy", "stack": "Python · Flask · OpenCV · Tesseract · AWS S3", "p": ["Look at the bottom of a passport photo page. You'll see two lines of 44 characters each, full of letters, numbers and < signs. That's the machine-readable zone (MRZ), and it's what airport scanners read.", "This tool takes a scan or a PDF, finds that strip with OpenCV and reads it with Tesseract OCR. If the crop goes wrong, it reads the whole page instead. Then it runs the ICAO 9303 check digits, which catch a misread or mistyped character, and saves a crop of the photo.", "Out comes clean, structured data with a validity score. No one has to squint at a scan."]}, "markdown": {"k": "Edvoy", "stack": "Python · Playwright · FastAPI · APScheduler · React · MongoDB · S3 · Docker", "p": ["Our data comes from dozens of catalogue websites, and no two are built the same. Some load content as you scroll. Some hide it behind cookie banners. Some tuck the useful parts inside page scripts. One scraper can't cope with all of that.", "So we gave each website its own small Playwright script, built on a shared library of 48 helpers for the boring parts: cookies, scrolling, retries, rate limits. Every script hands back the same thing, clean Markdown saved to S3. Six small services schedule the runs, execute them, stream the logs live and pull in new code the moment it's pushed.", "39 websites so far, all in one format. Whatever reads the data next only has to understand Markdown, and a new website is a new script, not a new system."]}, "filings": {"k": "S&P Global", "stack": "Python · pypdf · PDFMiner · Google Translator API", "p": ["In the U.S., companies file financial documents with each state. Every state has its own website and its own search, and researchers used to work through them one by one.", "I built a crawler that covers 40+ of these state portals. It finds the filings, downloads the PDFs and pulls the text out with pypdf and PDFMiner. Filings in other languages go through the Google Translator API.", "It took over roughly 2.88 FTE of manual research."]}};
+  var P={"watcher": {"k": "Edvoy", "stack": "Python · Flask · Pandas · MongoDB · Slack API", "p": ["Every listing has a name, a link, and an intake month and year. The website says one thing, our database says another, and the names never quite match. \"Acme Ltd, Chennai\" on one side, \"Chennai Acme Ltd\" on the other. That's the part that was really hard.", "So I wrote my own token-sort matching, no library. Lower-case the name, strip the special characters and spaces, sort what's left, then compare. Both of those names come out identical.", "Then every listing gets a verdict. On the website but not in the database: new. In the database but gone from the website: deleted. In both: matched. In both, but the fee or campus changed: modified. Results go to Excel and Slack. It's cut manual reconciliation by about 60%."]}, "scheduler": {"k": "Edvoy", "stack": "Python · Flask · MongoDB · Slack API", "p": ["We run dozens of scraping jobs, each on its own timetable. Someone used to keep checking that every job had run, and that its numbers looked sane.", "I built Intake Scheduler, a small Flask and MongoDB service. It keeps a next-run date and a repeat interval for every source. When one is due, it starts the scraper, checks in every 10 seconds until the scrape finishes or fails, then runs Intake Watcher on the fresh data.", "Slack hears about each step: what's due today, what started, what the watcher found. Every source's last run and status sit in one place, so nobody sits watching a dashboard. That's cut job-watching time by about 70%."]}, "workflow": {"k": "Edvoy", "stack": "Python · REST API · Slack", "p": ["Keeping work moving across teams used to mean lots of manual follow-up. People chased each other for updates.", "I wrote a Python script that reads our project tracker through its REST API. When a task changes, the rules we agreed on get applied automatically, and whoever has to act gets a Slack ping.", "Work now moves from start to finish about 35% faster."]}, "monitor": {"k": "Edvoy", "stack": "Python · Slack API", "p": ["A scraper is written for one version of a website. If the site changes its layout, the scraper can quietly start collecting wrong or empty data, and you mightn't notice for a while.", "This Python tool keeps checking the sites we scrape and compares each one with its last snapshot. Changed structure or content? It fires a Slack alert, with a severity level we set per site.", "So we fix the scraper first. We don't find out later from stale data."]}, "passport": {"k": "Edvoy", "stack": "Python · Flask · OpenCV · Tesseract · AWS S3", "p": ["Look at the bottom of a passport photo page. You'll see two lines of 44 characters each, full of letters, numbers and < signs. That's the machine-readable zone (MRZ), and it's what airport scanners read.", "This tool takes a scan or a PDF, finds that strip with OpenCV and reads it with Tesseract OCR. If the crop goes wrong, it reads the whole page instead. Then it runs the ICAO 9303 check digits, which catch a misread or mistyped character, and saves a crop of the photo.", "Out comes clean, structured data with a validity score. No one has to squint at a scan."]}, "filings": {"k": "S&P Global", "stack": "Python · pypdf · PDFMiner · Google Translator API", "p": ["In the U.S., companies file financial documents with each state. Every state has its own website and its own search, and researchers used to work through them one by one.", "I built a crawler that covers 40+ of these state portals. It finds the filings, downloads the PDFs and pulls the text out with pypdf and PDFMiner. Filings in other languages go through the Google Translator API.", "It took over roughly 2.88 FTE of manual research."]}};
   var dlg=document.getElementById('flowwin');if(!dlg||!dlg.showModal)return;var op=null;
   var heads=[['The problem','?'],['What it does','⚙'],['What changed','✓']];
   function esc(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML}
@@ -1404,14 +1467,14 @@ document.getElementById('copyBtn').addEventListener('click',function(){
     form.classList.remove('sent');render(p,false);hl(null);bars(0,0,0);xf.textContent='config maps it';
     say(p.name+' has its own labels and formats. Same record, no new code.');
     var t=600,total=600;p.f.forEach(function(x){total+=x[1]?(450+x[2].length*55):1900});progress(total+2200);
-    T(function(){bars(33,100,total)},60);
+    T(function(){bars(17,100,total)},60);
     p.f.forEach(function(x,n){
       T(function(){var el=fieldsEl.children[n],inp=el.querySelector('.dm-in');stepEl.textContent=n+' / '+p.f.length;xf.textContent=x[3];mid.classList.remove('go');void mid.offsetWidth;mid.classList.add('go');
         if(!x[1]){hl(null);el.classList.add('wait');inp.textContent='waiting for a person…';say('The bot pauses here. A person handles it, then the bot carries on.');
           T(function(){el.classList.remove('wait');el.classList.add('done');inp.textContent=x[2];stepEl.textContent=(n+1)+' / '+p.f.length},1600);return}
         hl(x[1]);el.classList.add('active');var k=0;(function type(){k++;inp.textContent=x[2].slice(0,k);if(k<x[2].length)T(type,45);else{el.classList.remove('active');el.classList.add('done');stepEl.textContent=(n+1)+' / '+p.f.length}})();
       },t);t+=x[1]?(450+x[2].length*55):1900});
-    T(function(){hl(null);form.classList.add('sent');xf.textContent='done';say(p.name+' submitted in under 10 minutes. Nobody retyped anything.')},t+100);
+    T(function(){hl(null);form.classList.add('sent');xf.textContent='done';say(p.name+' submitted. About 5 minutes of bot time on average. Nobody retyped anything.')},t+100);
     if(!reduce)T(function(){portal=(portal+1)%P.length},t+2100);
     NEXT(t+2200);
   }
@@ -1464,7 +1527,7 @@ document.getElementById('copyBtn').addEventListener('click',function(){
       t+=3000});
     T(function(){btn[2].className='press';add('ok','<i>saved</i>verified · who and when recorded');say('Save & verify. The record now says who checked it, and when.')},t);progress(t+2200);NEXT(t+2200)}
   function qc2(){var el=scene('qc',2);say('What changed once the AI took the first pass.');
-    var t=compare(el,[['Manual QC on catalogue and fee data','100%',35,'60-70% less']],['60-70%','less manual QC'],'People still make the final call. They just stopped doing the part a model can do.');
+    var t=compare(el,[['Manual QC, across both validators','100%',35,'60-70% less']],['60-70%','less manual QC'],'People still make the final call. They just stopped doing the part a model can do.');
     progress(t);NEXT(t)}
 
   /* ---------- S&P crawler ---------- */
@@ -1492,46 +1555,81 @@ document.getElementById('copyBtn').addEventListener('click',function(){
 
   /* ---------- Intake Watcher ---------- */
   function mt0(){var el=scene('match',0);say('Two systems list the same company two different ways.');
-    var d=[['input','Acme Ltd, Chennai','Chennai Acme Ltd'],['lower-case','acme ltd, chennai','chennai acme ltd'],['drop punctuation','acme ltd chennai','chennai acme ltd'],['sort the words','acme chennai ltd','acme chennai ltd'],['build the key','same key','match ✓']];
-    el.innerHTML='<div class="ts"><div class="ts-h"><span>step</span><span>system A</span><span>system B</span></div>'+d.map(function(x,i){return '<div class="ts-r'+(i===0?' done':'')+'"><em>'+x[0]+'</em><code>'+esc(x[1])+'</code><code>'+esc(x[2])+'</code></div>'}).join('')+'</div><p class="dm-note">Lower-case it, drop the punctuation, sort the words. Then compare.</p>';
-    var rs=el.querySelectorAll('.ts-r');for(var i=1;i<d.length;i++)(function(i){T(function(){rs[i].classList.add('on')},600+i*1000);T(function(){rs[i].classList.remove('on');rs[i].classList.add(i===d.length-1?'fin':'done');if(i===3)say('Once the words are sorted, both sides read the same.')},1100+i*1000)})(i);
+    var d=[['input','Acme Ltd, Chennai','Chennai Acme Ltd'],['lower-case','acme ltd, chennai','chennai acme ltd'],['strip specials + spaces','acmeltdchennai','chennaiacmeltd'],['sort','acmechennailtd','acmechennailtd'],['compare','identical','match ✓']];
+    el.innerHTML='<div class="ts"><div class="ts-h"><span>step</span><span>system A</span><span>system B</span></div>'+d.map(function(x,i){return '<div class="ts-r'+(i===0?' done':'')+'"><em>'+x[0]+'</em><code>'+esc(x[1])+'</code><code>'+esc(x[2])+'</code></div>'}).join('')+'</div><p class="dm-note">Lower-case it, strip it, sort it. Then compare. No library, just my own token-sort logic.</p>';
+    var rs=el.querySelectorAll('.ts-r');for(var i=1;i<d.length;i++)(function(i){T(function(){rs[i].classList.add('on')},600+i*1000);T(function(){rs[i].classList.remove('on');rs[i].classList.add(i===d.length-1?'fin':'done');if(i===3)say('Once it’s sorted, both sides read the same.')},1100+i*1000)})(i);
     var t=1100+d.length*1000;T(function(){say('Same company. Matched without a person.')},t);progress(t+2400);NEXT(t+2400)}
-  function mt1(){var el=scene('match',1);say('Try the strictest key first. Loosen it only when a field is missing.');
-    var d=[['listing','UX Design · Sep 2026','in both systems'],['try 1','name·date·location·mode·length','B has no location'],['try 2','name·date·mode·length','same key ✓'],['bucket','existing item, same date','unchanged']];
-    el.innerHTML='<div class="ts"><div class="ts-h"><span>step</span><span>key</span><span>result</span></div>'+d.map(function(x,i){return '<div class="ts-r'+(i===0?' done':'')+'"><em>'+x[0]+'</em><code>'+esc(x[1])+'</code><code>'+esc(x[2])+'</code></div>'}).join('')+'</div><p class="dm-note">Every listing lands in one of five buckets: unchanged, new date, new item, orphaned or gone.</p>';
-    var rs=el.querySelectorAll('.ts-r');for(var i=1;i<d.length;i++)(function(i){T(function(){rs[i].classList.add('on')},600+i*1300);T(function(){rs[i].classList.remove('on');rs[i].classList.add(i===d.length-1?'fin':'done');if(i===1)say('One side has no location, so that key can’t match. Drop it and try again.');if(i===2)say('Same key. It’s the same listing.')},1300+i*1300)})(i);
-    var t=1300+d.length*1300;T(function(){say('Sorted, logged, sent to Excel and Slack. No one matched it by hand.')},t);progress(t+2400);NEXT(t+2400)}
+  function mt1(){var el=scene('match',1);say('Every listing gets a verdict.');
+    var d=[['matched','acmechennailtd · Sep 2026','in both, nothing changed'],['modified','northwindtraders · Jan 2027','in both, fee changed'],['new','bluefinfoods · Sep 2026','on the website only'],['deleted','orionlabs · Jan 2026','in the database only']];
+    el.innerHTML='<div class="ts"><div class="ts-h"><span>verdict</span><span>token-sorted name · intake</span><span>why</span></div>'+d.map(function(x){return '<div class="ts-r"><em>'+x[0]+'</em><code>'+esc(x[1])+'</code><code>'+esc(x[2])+'</code></div>'}).join('')+'</div><p class="dm-note">New, deleted, matched or modified. Then it goes to Excel and Slack.</p>';
+    var rs=el.querySelectorAll('.ts-r');d.forEach(function(x,i){T(function(){rs[i].classList.add('on')},500+i*1300);T(function(){rs[i].classList.remove('on');rs[i].classList.add(i===0?'fin':'done');if(i===1)say('Same listing, but a data point moved. That gets flagged too.')},1100+i*1300)});
+    var t=1100+d.length*1300;T(function(){say('Nobody compared these by hand.')},t);progress(t+2400);NEXT(t+2400)}
   function mt2(){var el=scene('match',2);say('What changed.');
     var t=compare(el,[['Manual reconciliation','100%',40,'~60% less']],['~60%','less manual reconciliation'],'It’s now the standard matcher across our pipelines.');progress(t);NEXT(t)}
 
   /* ---------- Markdown Extractor ---------- */
-  function md0(){var el=scene('md',0);say('Every website gets its own small scraper. They all return the same thing.');
-    var d=[['site-07.example',['cookie banner closed','86 pages → 86 .md']],['site-12.example',['scrolled to load all','143 pages → 143 .md']],['site-21.example',['data read from page scripts','58 pages → 58 .md']],['site-33.example',['1 timeout, retried','212 pages → 212 .md']]];
-    el.innerHTML='<div class="feed">'+d.map(function(x){return '<div class="feed-r"><code>'+x[0]+'</code><span class="st">queued</span><div class="ch"></div></div>'}).join('')+'</div><div class="ctr"><span>websites, one output format</span><b class="n">35</b></div><p class="dm-note">Different layouts, different tricks. Same clean Markdown in S3 at the end.</p>';
-    var rs=el.querySelectorAll('.feed-r'),nb=el.querySelector('.n');
+  function md0(){var el=scene('md',0);say('The agent writes a scraper for each website. They all return the same thing.');
+    var d=[['site-a.example',['cookie banner closed','pages → .md']],['site-b.example',['scrolled to load it all','pages → .md']],['site-c.example',['read from page scripts','pages → .md']],['site-d.example',['timeout, retried','pages → .md']]];
+    el.innerHTML='<div class="feed">'+d.map(function(x){return '<div class="feed-r"><code>'+x[0]+'</code><span class="st">queued</span><div class="ch"></div></div>'}).join('')+'</div><p class="dm-note">Different layouts, different tricks. Same clean Markdown in S3 at the end.</p>';
+    var rs=el.querySelectorAll('.feed-r');
     d.forEach(function(x,i){var r=rs[i],st=r.querySelector('.st');T(function(){r.classList.add('on');st.textContent='opening site…'},300+i*1500);T(function(){st.textContent='extracting…'},800+i*1500);
-      T(function(){r.classList.remove('on');r.classList.add('done');st.textContent='done';r.querySelector('.ch').innerHTML=x[1].map(function(c){return '<span>'+esc(c)+'</span>'}).join('');nb.textContent=36+i},1350+i*1500)});
-    var t=300+d.length*1500+600;T(function(){say('39 websites, one format. Whatever reads it next only learns Markdown.')},t);progress(t+2400);NEXT(t+2400)}
+      T(function(){r.classList.remove('on');r.classList.add('done');st.textContent='done';r.querySelector('.ch').innerHTML=x[1].map(function(c){return '<span>'+esc(c)+'</span>'}).join('')},1350+i*1500)});
+    var t=300+d.length*1500+600;T(function(){say('One format. Whatever reads it next only has to learn Markdown.')},t);progress(t+2400);NEXT(t+2400)}
   function md1(){var el=scene('md',1);say('A raw page goes in. Menus, banners and scripts stay behind.');
     var src='<nav>…</nav>\n<div id="cookie">…</div>\n<main>\n  <h1>Data Analytics</h1>\n  <div class="facts">\n    <b>Duration:</b> 12 months\n    <b>Starts:</b> September\n  </div>\n  <p>Turn raw data into…</p>\n</main>\n<script>…<\/script>';
-    var out=[['mk','---\n'],['','source: site-12.example/data-analytics\nscraped: 2026-10-13\n'],['mk','---\n\n# '],['','Data Analytics\n\n'],['mk','- **'],['','Duration:'],['mk','** '],['','12 months\n'],['mk','- **'],['','Starts:'],['mk','** '],['','September\n\n'],['','Turn raw data into…']];
+    var out=[['mk','---\n'],['','source: site-b.example/data-analytics\nscraped: 2026-10-13\n'],['mk','---\n\n# '],['','Data Analytics\n\n'],['mk','- **'],['','Duration:'],['mk','** '],['','12 months\n'],['mk','- **'],['','Starts:'],['mk','** '],['','September\n\n'],['','Turn raw data into…']];
     el.innerHTML='<div class="rvw mdx"><div class="rvw-cmp"><div><span>raw page</span><code class="src"></code></div><div><span>Markdown in S3</span><code class="sg"></code></div></div></div><p class="dm-note">What’s left is the content, with a header saying where it came from and when.</p>';
     el.querySelector('.src').textContent=src;var sg=el.querySelector('.sg');
     var flat=[];out.forEach(function(c){for(var i=0;i<c[1].length;i++)flat.push([c[0],c[1][i]])});var n=0,html='';
     T(function tick(){var k=Math.min(n+(reduce?flat.length:2),flat.length);for(;n<k;n++){var c=flat[n],ch=esc(c[1]);html+=c[0]?'<span class="'+c[0]+'">'+ch+'</span>':ch}sg.innerHTML=html;if(n<flat.length)T(tick,38);else say('Same shape for every website. That’s the whole point.')},900);
     var t=900+Math.ceil(flat.length/2)*38+600;progress(t+3200);NEXT(t+3200)}
-  function md2(){var el=scene('md',2);say('Adding a website: write a script, push it.');
-    var L=[['','11:40:02','push: new scraper for site 40'],['ok','11:40:03','✓ webhook received, code synced'],['','11:41:10','schedule set: Mondays, 02:00'],['','02:00:00','run started · logs streaming live'],['err','02:03:12','✗ page 88 timed out, retry 1'],['ok','02:03:15','✓ page 88 loaded'],['ok','02:09:47','✓ 312 pages → 312 .md files in S3'],['ok','02:09:48','✓ website 40 is live, no manual deploy']];
-    el.innerHTML='<ol class="lg"></ol><p class="dm-note">A new website is a new script, not a new system.</p>';var l=el.querySelector('.lg');
-    L.forEach(function(x,n){T(function(){var li=document.createElement('li');li.className=x[0];li.innerHTML='<i>'+x[1]+'</i>'+esc(x[2]);l.appendChild(li);if(n===3)say('The scheduler fires it. You can watch the logs as it runs.');if(n===L.length-1)say('Website 40, done. Nothing else had to change.')},500+n*1000)});
+  function md2(){var el=scene('md',2);say('A new website? The agent writes the scraper.');
+    var L=[['','11:40:02','agent: reading site-e.example'],['','11:41:37','agent: scraper drafted, test run passed'],['ok','11:41:40','✓ pushed, webhook received, code synced'],['','11:42:05','schedule set: Mondays, 02:00'],['','02:00:00','run started · logs streaming live'],['err','02:03:12','✗ page timed out, retry 1'],['ok','02:03:15','✓ page loaded'],['ok','02:09:47','✓ every page saved as .md in S3']];
+    el.innerHTML='<ol class="lg"></ol><p class="dm-note">A new website is a new scraper, not a new system. Nobody deploys by hand.</p>';var l=el.querySelector('.lg');
+    L.forEach(function(x,n){T(function(){var li=document.createElement('li');li.className=x[0];li.innerHTML='<i>'+x[1]+'</i>'+esc(x[2]);l.appendChild(li);if(n===4)say('The scheduler fires it. You can watch the logs as it runs.');if(n===L.length-1)say('Done. Nothing else had to change.')},500+n*1000)});
+    var t=500+L.length*1000+2200;progress(t);NEXT(t)}
+  function md3(){var el=scene('md',3);say('Then another agent reads the Markdown.');
+    var q='Which listings start in January and run for 12 months?';
+    el.innerHTML='<div class="rvw"><div class="rvw-f">ask in plain language</div><div class="rvw-cmp" style="grid-template-columns:1fr"><div><span>question</span><code class="src"></code></div><div><span>answer, from the .md files</span><code class="sg" style="white-space:pre-wrap;min-height:96px"></code></div></div></div><p class="dm-note">No query language, no ticket to the data team. Just ask.</p>';
+    var qe=el.querySelector('.src'),ae=el.querySelector('.sg'),k=0;
+    var a='3 listings match:\n· Data Engineering, site-c (12 months, Jan)\n· Cloud Security, site-d (12 months, Jan)\n· Brand Strategy, site-a (12 months, Jan)';
+    T(function type(){k++;qe.textContent=q.slice(0,k);if(k<q.length)T(type,reduce?0:35)},500);
+    var t0=500+q.length*35+700;T(function(){say('The agent finds the answer in the files.')},t0);
+    var lines=a.split('\n');lines.forEach(function(x,i){T(function(){ae.textContent=lines.slice(0,i+1).join('\n')},t0+600+i*700)});
+    var t=t0+600+lines.length*700+2000;progress(t);NEXT(t)}
+
+  /* ---------- Fees Validator ---------- */
+  function fe0(){var el=scene('fees',0);say('The scraped fee page. The numbers are in there somewhere.');
+    el.innerHTML='<div class="fsrc">Course fee for <mark>2026/27</mark> (courses starting on or after <mark>1 September</mark>). Full-time, main campus: <mark>15,950</mark>. Other campuses: <mark>14,600</mark>. Former students <mark class="warn">may</mark> be eligible for a <mark>500</mark> discount. A <mark>15</mark> registration fee applies.</div><ol class="lg short"></ol><p class="dm-note">The summariser pulls out every amount, date and condition. The words like “may” get flagged too.</p>';
+    var ms=el.querySelectorAll('mark'),l=el.querySelector('.lg');
+    var S=[['','fee year: 2026/27, from 1 September'],['ok','main campus, full-time: 15,950'],['ok','other campuses: 14,600'],['wait','discount of 500 is conditional (“may”)'],['ok','registration fee: 15']];
+    [].forEach.call(ms,function(m,i){T(function(){m.classList.add('on')},600+i*500)});
+    var t=600+ms.length*500+300;
+    S.forEach(function(x,i){T(function(){var li=document.createElement('li');li.className=x[0];li.innerHTML='<i>AI</i>'+esc(x[1]);l.appendChild(li)},t+i*700)});
+    t+=S.length*700;T(function(){say('Every number highlighted, so the reviewer checks rather than hunts.')},t);progress(t+2400);NEXT(t+2400)}
+  function fe1(){var el=scene('fees',1);say('The reviewer confirms one intake’s fee…');
+    var d=[['Sep 2026 · Full-time · Main'],['Jan 2027 · Full-time · Main'],['Sep 2026 · Full-time · North'],['Sep 2026 · Part-time · Main']];
+    el.innerHTML='<div class="feed">'+d.map(function(x,i){return '<div class="feed-r"><code>'+x[0]+'</code><span class="fin-in">'+(i===0?'':'—')+'</span></div>'}).join('')+'</div><div class="apl"><b>apply this fee to:</b><span>all intakes</span><span>all full-time intakes</span><span>all intakes at Main campus</span></div><p class="dm-note">Check it once. Apply it to every intake it belongs to.</p>';
+    var rs=el.querySelectorAll('.feed-r'),ins=el.querySelectorAll('.fin-in'),ap=el.querySelector('.apl'),ops=ap.querySelectorAll('span'),v='15950',k=0;
+    rs[0].classList.add('on');ins[0].classList.add('on');
+    T(function type(){k++;ins[0].textContent=v.slice(0,k);if(k<v.length)T(type,reduce?0:120);else T(function(){ap.classList.add('on');say('…and picks where else it applies.')},400)},700);
+    var t=700+v.length*120+400+1300;
+    T(function(){ops[1].classList.add('pick');say('All full-time intakes. One click.')},t);
+    T(function(){ap.classList.remove('on');[0,1,2].forEach(function(i){rs[i].classList.remove('on');rs[i].classList.add('done');ins[i].textContent='15950';ins[i].classList.remove('on');ins[i].classList.add('ok')});say('Three intakes updated. The part-time one keeps its own fee.')},t+1400);
+    progress(t+4200);NEXT(t+4200)}
+  function fe2(){var el=scene('fees',2);say('Then Verify. Every record keeps a name and a time.');
+    var L=[['','14:02:11','summary generated · amounts highlighted'],['ok','14:03:40','✓ fee confirmed for 1 intake'],['ok','14:03:44','✓ applied to all full-time intakes'],['wait','14:04:02','discount left out: conditional'],['ok','14:04:30','✓ verified by reviewer@company'],['','14:04:31','dashboard: source progress updated']];
+    el.innerHTML='<ol class="lg"></ol><p class="dm-note">The AI finds and highlights. A person checks and verifies. The record says who, and when.</p>';var l=el.querySelector('.lg');
+    L.forEach(function(x,n){T(function(){var li=document.createElement('li');li.className=x[0];li.innerHTML='<i>'+x[1]+'</i>'+esc(x[2]);l.appendChild(li);if(n===L.length-1)say('Checked once, applied everywhere, signed by a person.')},500+n*1000)});
     var t=500+L.length*1000+2200;progress(t);NEXT(t)}
 
   var V={
     rpa:{label:'Config-driven RPA · Edvoy',s:[['One record → any portal',rpa0],['Messy data in, clean data out',rpa1],['New portal = config, not code',rpa2],['Built to keep going',rpa3]]},
-    qc:{label:'AI-assisted QC · Edvoy',s:[['Only exact matches skip the queue',qc0],['The AI drafts, a person verifies',qc1],['What it saved',qc2]]},
+    qc:{label:'Subject Validator · Edvoy',s:[['The AI drafts, a person verifies',qc1],['Exact matches skip the queue',qc0],['What it saved',qc2]]},
     crawl:{label:'Company crawler · S&P Global',s:[['3.4M+ websites, one crawler',cr0],['One clean answer per company',cr1],['~160 FTE of research',cr2]]},
-    match:{label:'Intake Watcher · Edvoy',s:[['Match on words, not word order',mt0],['Strictest key first',mt1],['What it saved',mt2]]},
-    md:{label:'Markdown Extractor · Edvoy',s:[['One scraper per website',md0],['Page in, Markdown out',md1],['Push it, and it runs',md2]]}
+    match:{label:'Intake Watcher · Edvoy',s:[['Match on words, not word order',mt0],['Every listing gets a verdict',mt1],['What it saved',mt2]]},
+    md:{label:'Markdown Extractor · Edvoy',s:[['One scraper per website',md0],['Page in, Markdown out',md1],['The agent builds the scraper',md2],['Ask it in plain language',md3]]},
+    fees:{label:'Fees Validator · Edvoy',s:[['The AI finds the fee',fe0],['Check once, apply everywhere',fe1],['Verified, with a name on it',fe2]]}
   };
   Object.keys(V).forEach(function(k){V[k].scenes=V[k].s});
   var order=Object.keys(V);if(!V[variant])variant='rpa';
