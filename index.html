@@ -399,6 +399,19 @@ html.js .org.in .ladder li:nth-child(2)::before{transition-delay:.5s}html.js .or
 .totop{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:18px;cursor:pointer;box-shadow:0 10px 30px rgba(5,10,20,.2);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .3s ease,transform .3s ease;z-index:40}
 .totop.show{opacity:1;transform:none;pointer-events:auto}
 .totop:hover{border-color:var(--accent);color:var(--accent)}
+
+.certlist{border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:18px 20px 20px}
+.cl-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:12px}
+.cl-n{font-family:var(--f-mono);font-size:12px;color:var(--ok)}
+.cl-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:900px){.cl-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.cl-grid{grid-template-columns:minmax(0,1fr)}}
+.cl-item{display:flex;flex-direction:column;gap:2px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);text-decoration:none;min-width:0;transition:border-color .2s,transform .2s,box-shadow .2s}
+.cl-item:hover,.cl-item:focus-visible{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 10px 24px rgba(10,20,40,.12)}
+.cl-t{font-weight:600;font-size:15px;line-height:1.3}
+.cl-m{font-size:13px;color:var(--muted)}
+.cl-v{font-family:var(--f-mono);font-size:11.5px;color:var(--accent);margin-top:4px}
+@media (prefers-reduced-motion:reduce){.cl-item,.cl-item:hover{transition:none;transform:none}}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"Gibin Mathew","url":"https://gibin.in/","image":"https://gibin.in/og.jpg",
@@ -781,13 +794,26 @@ html.js .org.in .ladder li:nth-child(2)::before{transition-delay:.5s}html.js .or
           </div>
           <button class="cf-thumb" type="button" data-cert aria-label="View certificate, DSA and System Design, HeyCoach"><img src="certificate.webp" alt="HeyCoach certificate of completion for Gibin Mathew, DSA and System Design program" width="1400" height="991" loading="lazy"></button>
         </div>
+        <div class="certlist">
+          <div class="cl-head"><span class="cf-k">More certifications</span><span class="cl-n">9 verified</span></div>
+          <div class="cl-grid">
+          <a class="cl-item" href="https://badges.spglobal.com/2022c768-51f0-48bd-b460-2798840f6ad9#gs.fq9b7b" target="_blank" rel="noopener"><span class="cl-t">EssentialTECH Foundations</span><span class="cl-m">S&amp;P Global · Apr 2021</span><span class="cl-v">Verify badge ↗</span></a>
+          <a class="cl-item" href="https://www.linkedin.com/learning/certificates/08729782f4fc39d4b68980b0e74bfcb30c1cdd4a77fd97e7e70243d2f5becb7b" target="_blank" rel="noopener"><span class="cl-t">Introducing Blue Prism</span><span class="cl-m">LinkedIn Learning · Aug 2019</span><span class="cl-v">Verify ↗</span></a>
+          <a class="cl-item" href="https://www.linkedin.com/learning/certificates/14b6d7c27c60795cd5a47f55f5480f6f05fb99a504987318389a737a5b6b6dee" target="_blank" rel="noopener"><span class="cl-t">Become a Python Developer</span><span class="cl-m">LinkedIn Learning · Aug 2019</span><span class="cl-v">Verify ↗</span></a>
+          <a class="cl-item" href="https://www.linkedin.com/learning/certificates/497c268b315f23250c01cf17463a537ebc6f4294079cd2223620fe91880b3c2e" target="_blank" rel="noopener"><span class="cl-t">Python: Design Patterns</span><span class="cl-m">LinkedIn Learning · Aug 2019</span><span class="cl-v">Verify ↗</span></a>
+          <a class="cl-item" href="https://www.linkedin.com/learning/certificates/0bb5283fae896d2b3a15fd80c90e07b5be81c3597843b82dd80d017f515054f8" target="_blank" rel="noopener"><span class="cl-t">Python: Advanced Design Patterns</span><span class="cl-m">LinkedIn Learning · Aug 2019</span><span class="cl-v">Verify ↗</span></a>
+          <a class="cl-item" href="https://www.linkedin.com/learning/certificates/a1a37dba8641003179202075b79a47d55f560766e97fc56dad33c86b83a39696" target="_blank" rel="noopener"><span class="cl-t">Code Clinic: Python</span><span class="cl-m">LinkedIn Learning · Aug 2019</span><span class="cl-v">Verify ↗</span></a>
+          <a class="cl-item" href="https://www.linkedin.com/learning/certificates/3dafb4aa2418c05958c75ce5ac5e2e6cd5492eeb9f68681dee77ce24ab2fd8af" target="_blank" rel="noopener"><span class="cl-t">Learning Python Generators</span><span class="cl-m">LinkedIn Learning · Aug 2019</span><span class="cl-v">Verify ↗</span></a>
+          <a class="cl-item" href="https://www.linkedin.com/learning/certificates/8bf3e36cf1dd79aadef11d4f1cac57783aef544fc9f8388538a72b4c66d77b02" target="_blank" rel="noopener"><span class="cl-t">Python GUI Development with Tkinter</span><span class="cl-m">LinkedIn Learning · Aug 2019</span><span class="cl-v">Verify ↗</span></a>
+          <a class="cl-item" href="https://www.linkedin.com/learning/certificates/643221ec03d6f3c2b437fe77fd13525c7db752322a0caec6532b3e118fa9cc6f" target="_blank" rel="noopener"><span class="cl-t">Programming Foundations: Real-World Examples</span><span class="cl-m">LinkedIn Learning · Aug 2019</span><span class="cl-v">Verify ↗</span></a>
+          </div>
+        </div>
       </div>
 
       <div class="more">
         <div>
           <h4>Recognition at S&amp;P Global</h4>
           <ul class="awards">
-            <li><span class="y">2021</span><span><a href="https://badges.spglobal.com/2022c768-51f0-48bd-b460-2798840f6ad9#gs.fq9b7b" target="_blank" rel="noopener">EssentialTECH Foundations Badge ↗</a></span></li>
             <li><span class="y">Q3 2020</span><span>Essential Excellence Data Award</span></li>
             <li><span class="y">2019</span><span>Breakthrough Achievement Award</span></li>
             <li><span class="y">Q2 2018</span><span>Rising Star Award, International</span></li>
