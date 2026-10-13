@@ -218,6 +218,65 @@ section.block{padding-block:clamp(56px,8vw,104px)}
 .hero-id .who .name{margin:0;line-height:1.3;font-family:var(--f-display);font-stretch:112%;font-weight:700;font-size:17px;color:var(--band-ink)}
 .contact-id{display:flex;align-items:center;gap:16px;margin-bottom:20px}
 .contact-id .avatar{width:88px;height:88px;box-shadow:0 0 0 2px var(--band-line)}
+
+/* ---- interactive layer ---- */
+.progress{position:fixed;left:0;top:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--band-accent),var(--band-amber));z-index:50;pointer-events:none}
+.topbar.stick{position:sticky;top:0}
+.topnav a.on{color:var(--band-ink)}
+.topnav a{position:relative}
+.topnav a.on::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--band-accent);border-radius:2px}
+.stage{cursor:pointer}
+.stage .hint{position:absolute;top:12px;left:14px;right:14px;display:flex;justify-content:space-between;gap:8px;font-family:var(--f-mono);font-size:11px;color:var(--band-muted);pointer-events:none}
+.stage .hint b{color:var(--band-amber);font-weight:500}
+html.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+html.js .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){html.js .reveal{opacity:1;transform:none;transition:none}}
+button.card{font:inherit;color:inherit;text-align:left;cursor:pointer;width:100%;position:relative}
+button.card .go{font-family:var(--f-mono);font-size:12px;color:var(--accent);margin-top:2px;display:inline-flex;gap:6px;align-items:center}
+button.card .go::after{content:"→";transition:transform .2s ease}
+button.card:hover .go::after,button.card:focus-visible .go::after{transform:translateX(4px)}
+.pr{transition:transform .2s ease}
+.pr:hover{transform:translateY(-3px)}
+/* flow window */
+dialog.flowwin{border:1px solid var(--line);border-radius:16px;padding:0;background:var(--surface);color:var(--ink);width:min(760px,calc(100vw - 32px));max-height:calc(100vh - 48px);box-shadow:0 30px 80px rgba(5,10,20,.45)}
+dialog.flowwin::backdrop{background:rgba(8,13,22,.55);backdrop-filter:blur(4px)}
+dialog.flowwin[open]{animation:pop .28s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes pop{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){dialog.flowwin[open]{animation:none}}
+.fw-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:22px 24px 14px;border-bottom:1px solid var(--line)}
+.fw-head .k{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.fw-head h3{font-family:var(--f-display);font-stretch:112%;font-weight:700;font-size:22px;margin-top:4px;line-height:1.2}
+.fw-x{flex:0 0 auto;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ink);font-size:18px;cursor:pointer;line-height:1}
+.fw-x:hover{border-color:var(--accent);color:var(--accent)}
+.fw-body{padding:18px 24px 24px;overflow:auto;max-height:calc(100vh - 160px)}
+.fw-plain{background:var(--accent-soft);border-radius:10px;padding:12px 14px;font-size:15px;line-height:1.55}
+.fw-plain b{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:2px;font-weight:500}
+.fw-steps{list-style:none;margin:20px 0 0;padding:0;display:flex;flex-direction:column;gap:0}
+.fw-step{display:grid;grid-template-columns:40px minmax(0,1fr);gap:14px;position:relative;padding-bottom:18px;cursor:pointer}
+.fw-step:last-child{padding-bottom:0}
+.fw-step::before{content:"";position:absolute;left:19px;top:40px;bottom:0;width:2px;background:var(--line)}
+.fw-step:last-child::before{display:none}
+.fw-dot{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-mono);font-size:13px;border:2px solid var(--line);background:var(--bg);color:var(--muted);transition:all .3s ease;position:relative;z-index:1}
+.fw-card{border:1px solid var(--line);border-radius:10px;padding:10px 14px;background:var(--bg);transition:border-color .3s ease,background .3s ease,transform .3s ease}
+.fw-card b{display:block;font-weight:600;font-size:15.5px}
+.fw-card span{display:block;color:var(--muted);font-size:14px;line-height:1.5;margin-top:2px}
+.fw-opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.fw-opt{font-size:13px;padding:4px 10px;border-radius:999px;border:1px solid var(--line)}
+.fw-opt.ok{color:var(--ok);border-color:var(--ok);background:var(--ok-soft)}
+.fw-opt.amber{color:var(--amber);border-color:var(--amber);background:var(--amber-soft)}
+.fw-step.on .fw-dot{border-color:var(--accent);background:var(--accent);color:var(--surface)}
+.fw-step.on .fw-card{border-color:var(--accent);transform:translateX(4px)}
+.fw-step.done .fw-dot{border-color:var(--accent);color:var(--accent)}
+.fw-step.on.end .fw-dot,.fw-step.done.end .fw-dot{border-color:var(--ok);background:var(--ok);color:var(--surface)}
+.fw-step.on.end .fw-card{border-color:var(--ok)}
+.fw-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
+.fw-foot .stack{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.fw-ctrl{display:flex;gap:8px}
+.fw-btn{font:600 14px var(--f-body);border-radius:8px;padding:8px 14px;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--ink)}
+.fw-btn.primary{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.fw-btn:hover{border-color:var(--accent)}
+.certs{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:14.5px}
+.certs span{display:block;font-size:12.5px;color:var(--muted)}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"Gibin Mathew","url":"https://gibin.in/","image":"https://gibin.in/og.jpg",
@@ -231,6 +290,7 @@ section.block{padding-block:clamp(56px,8vw,104px)}
 <body>
 
 
+<div class="progress" id="progress"></div>
 <header class="band">
   <div class="container">
     <div class="topbar">
@@ -255,6 +315,7 @@ section.block{padding-block:clamp(56px,8vw,104px)}
       </div>
       <figure class="stage" style="margin:0" aria-label="Animation of RPA jobs flowing through config, bot run, an optional human checkpoint, and submission">
         <canvas id="pipe"></canvas>
+        <div class="hint"><span>click anywhere to send a job</span><span id="sent"></span></div>
         <figcaption class="cap">
           <span>config-driven RPA, live model</span>
           <span class="legend"><span><i style="background:var(--band-accent)"></i>bot</span><span><i style="background:var(--band-amber)"></i>human step</span><span><i style="background:var(--band-ok)"></i>submitted</span></span>
@@ -262,7 +323,7 @@ section.block{padding-block:clamp(56px,8vw,104px)}
       </figure>
     </div>
 
-    <div class="impact">
+    <div class="impact" id="impact">
       <div><b>3,000+</b><span>portal submissions automated</span></div>
       <div><b>94%</b><span>success rate across 70+ portals</span></div>
       <div><b>1,200+</b><span>hours of manual work saved</span></div>
@@ -273,7 +334,7 @@ section.block{padding-block:clamp(56px,8vw,104px)}
 </header>
 
 <main>
-  <section class="block" id="approach">
+  <section class="reveal block" id="approach">
     <div class="container">
       <span class="label">Approach</span>
       <h2 class="h-sec">Three rules I don't break</h2>
@@ -298,7 +359,7 @@ section.block{padding-block:clamp(56px,8vw,104px)}
     </div>
   </section>
 
-  <section class="block" id="work" style="padding-top:0">
+  <section class="reveal block" id="work" style="padding-top:0">
     <div class="container">
       <span class="label">Case studies</span>
       <h2 class="h-sec">What I've built, and why it's built that way</h2>
@@ -411,22 +472,22 @@ section.block{padding-block:clamp(56px,8vw,104px)}
     </div>
   </section>
 
-  <section class="block" style="padding-top:0">
+  <section class="reveal block" style="padding-top:0">
     <div class="container">
       <span class="label">Also built</span>
       <h2 class="h-sec">Smaller things I've shipped</h2>
       <div class="grid">
-        <div class="card"><span class="m">−60% manual reconciliation</span><h3>Intake Watcher</h3><p>Reconciles live catalogue listings across business systems. I designed the token-sort fuzzy-matching algorithm behind it, and it's now the standard matcher in our pipelines.</p><span class="s">Python · Flask · MongoDB · Pandas</span></div>
-        <div class="card"><span class="m">−70% manual monitoring</span><h3>Intake Scheduler</h3><p>Schedules and watches our scraping jobs. Slack alerts fire on thresholds you can configure per job.</p><span class="s">Python · Flask · MongoDB · Slack API</span></div>
-        <div class="card"><span class="m">−35% turnaround</span><h3>Jira workflow automation</h3><p>Ticket rules and Slack notifications automated through the Jira REST API.</p><span class="s">Python · Jira REST API · Slack</span></div>
-        <div class="card"><h3>Website change monitoring</h3><p>Spots layout and content changes on target sites, so a scraper gets fixed before its data goes stale.</p><span class="s">Python · Slack API</span></div>
-        <div class="card"><h3>Travel document validation</h3><p>OCR and MRZ parsing with ICAO-standard checks on scanned documents.</p><span class="s">Python · OCR · image processing</span></div>
-        <div class="card"><span class="m">40+ U.S. state portals</span><h3>State filings crawler (S&amp;P)</h3><p>Pulled financial filings from state portals, parsed the PDFs and translated regional filings.</p><span class="s">Python · pypdf · PDFMiner</span></div>
+        <button type="button" class="card" data-flow="watcher" aria-haspopup="dialog"><span class="m">−60% manual reconciliation</span><h3>Intake Watcher</h3><p>Reconciles live catalogue listings across business systems. I designed the token-sort fuzzy-matching algorithm behind it, and it's now the standard matcher in our pipelines.</p><span class="go">See how it works</span><span class="s">Python · Flask · MongoDB · Pandas</span></button>
+        <button type="button" class="card" data-flow="scheduler" aria-haspopup="dialog"><span class="m">−70% manual monitoring</span><h3>Intake Scheduler</h3><p>Schedules and watches our scraping jobs. Slack alerts fire on thresholds you can configure per job.</p><span class="go">See how it works</span><span class="s">Python · Flask · MongoDB · Slack API</span></button>
+        <button type="button" class="card" data-flow="jira" aria-haspopup="dialog"><span class="m">−35% turnaround</span><h3>Jira workflow automation</h3><p>Ticket rules and Slack notifications automated through the Jira REST API.</p><span class="go">See how it works</span><span class="s">Python · Jira REST API · Slack</span></button>
+        <button type="button" class="card" data-flow="monitor" aria-haspopup="dialog"><h3>Website change monitoring</h3><p>Spots layout and content changes on target sites, so a scraper gets fixed before its data goes stale.</p><span class="go">See how it works</span><span class="s">Python · Slack API</span></button>
+        <button type="button" class="card" data-flow="passport" aria-haspopup="dialog"><h3>Travel document validation</h3><p>OCR and MRZ parsing with ICAO-standard checks on scanned documents.</p><span class="go">See how it works</span><span class="s">Python · OCR · image processing</span></button>
+        <button type="button" class="card" data-flow="filings" aria-haspopup="dialog"><span class="m">40+ U.S. state portals</span><h3>State filings crawler (S&amp;P)</h3><p>Pulled financial filings from state portals, parsed the PDFs and translated regional filings.</p><span class="go">See how it works</span><span class="s">Python · pypdf · PDFMiner</span></button>
       </div>
     </div>
   </section>
 
-  <section class="block alt" id="career">
+  <section class="reveal block alt" id="career">
     <div class="container">
       <span class="label">Career</span>
       <h2 class="h-sec">I started as a data researcher. Now I run the automation team.</h2>
@@ -474,12 +535,29 @@ section.block{padding-block:clamp(56px,8vw,104px)}
         <div>
           <h4>Education</h4>
           <p style="font-size:14.5px">BCA, Bangalore University, 2017</p>
+          <h4 style="margin-top:24px">Certification</h4>
+          <ul class="certs"><li>DSA &amp; System Design<span>HeyCoach</span></li></ul>
         </div>
       </div>
     </div>
   </section>
 </main>
 
+
+<dialog class="flowwin" id="flowwin" aria-labelledby="fw-title">
+  <div class="fw-head">
+    <div><span class="k" id="fw-kicker">How it works</span><h3 id="fw-title"></h3></div>
+    <button class="fw-x" type="button" id="fw-close" aria-label="Close">×</button>
+  </div>
+  <div class="fw-body">
+    <p class="fw-plain"><b>In plain words</b><span id="fw-plain"></span></p>
+    <ol class="fw-steps" id="fw-steps"></ol>
+    <div class="fw-foot">
+      <span class="stack" id="fw-stack"></span>
+      <div class="fw-ctrl"><button class="fw-btn" type="button" id="fw-prev">Back</button><button class="fw-btn primary" type="button" id="fw-play">Play</button></div>
+    </div>
+  </div>
+</dialog>
 <footer class="contact" id="contact">
   <div class="container">
     <div class="inner">
@@ -517,13 +595,17 @@ document.getElementById('copyBtn').addEventListener('click',function(){
   function mainY(){return H*.40} function cpY(){return H*.68}
   function bump(t){if(t<CP0||t>CP1)return 0;var u=(t-CP0)/(CP1-CP0);return Math.sin(u*Math.PI)}
   function spawn(){parts.push({t:0,v:(1/16)*(0.85+Math.random()*.3),d:Math.random()<.32,f:Math.random()<.06,a:1})}
+  var sent=0,done=0,sentEl=document.getElementById('sent');
+  function mine(){parts.push({t:0,v:1/7,d:Math.random()<.5,f:false,a:1,mine:true});sent++;label()}
+  function label(){if(sentEl)sentEl.innerHTML=sent?('your jobs: <b>'+done+'/'+sent+' submitted</b>'):''}
+  cv.addEventListener('click',function(){mine();if(reduce){for(var i=0;i<400;i++)step(1/60);draw()}});
   var acc=0, SPAWN=0.85; // seconds between new jobs
   function step(dt){
     acc+=dt; while(acc>=SPAWN){acc-=SPAWN;spawn()}
     for(var i=parts.length-1;i>=0;i--){var p=parts[i];
       var slow=(p.d&&p.t>CP0+.06&&p.t<CP1-.06)?.35:1;
       p.t+=p.v*slow*dt; if(p.f&&p.t>.86){p.a-=1.2*dt}
-      if(p.t>1||p.a<=0) parts.splice(i,1);}
+      if(p.t>1||p.a<=0){if(p.mine&&p.t>1){done++;label()}parts.splice(i,1);}}
   }
   function station(x,label,sub,color){
     var y=mainY();
@@ -559,7 +641,8 @@ document.getElementById('copyBtn').addEventListener('click',function(){
       if(p.f&&p.t>.86){py+=(p.t-.86)*H*.9}
       var cc=col.acc; if(p.d&&p.t>CP0&&p.t<CP1) cc=col.amb; if(p.t>.9) cc=p.f?col.bad:col.ok;
       ctx.globalAlpha=Math.max(0,p.a);ctx.fillStyle=cc;
-      ctx.shadowColor=cc;ctx.shadowBlur=10;ctx.beginPath();ctx.arc(px,py,3.6,0,7);ctx.fill();ctx.shadowBlur=0;
+      ctx.shadowColor=cc;ctx.shadowBlur=p.mine?18:10;ctx.beginPath();ctx.arc(px,py,p.mine?6:3.6,0,7);ctx.fill();ctx.shadowBlur=0;
+      if(p.mine){ctx.strokeStyle=col.ink;ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(px,py,10,0,7);ctx.stroke()}
     }
     ctx.globalAlpha=1;
   }
@@ -570,8 +653,113 @@ document.getElementById('copyBtn').addEventListener('click',function(){
   start();
   if(window.ResizeObserver){new ResizeObserver(function(){size();draw()}).observe(cv)}
   document.addEventListener('visibilitychange',function(){if(document.hidden)cancelAnimationFrame(raf);else if(!reduce){last=0;raf=requestAnimationFrame(loop)}});
+  if(window.IntersectionObserver&&!reduce){new IntersectionObserver(function(e){cancelAnimationFrame(raf);if(e[0].isIntersecting){last=0;raf=requestAnimationFrame(loop)}}).observe(cv)}
 })();
 </script>
 
+
+<script>
+document.documentElement.classList.add('js');
+(function(){
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* scroll progress */
+  var bar=document.getElementById('progress');
+  function prog(){var h=document.documentElement;var m=h.scrollHeight-h.clientHeight;bar.style.transform='scaleX('+(m>0?h.scrollTop/m:0)+')'}
+  addEventListener('scroll',prog,{passive:true});prog();
+  if(!window.IntersectionObserver){document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in')});return}
+  /* reveal sections */
+  var ro=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el)});
+  /* active nav */
+  var links={};document.querySelectorAll('.topnav a').forEach(function(a){links[a.getAttribute('href').slice(1)]=a});
+  var no=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){for(var k in links)links[k].classList.toggle('on',k===e.target.id)}})},{rootMargin:'-45% 0px -50% 0px'});
+  ['approach','work','career','contact'].forEach(function(id){var el=document.getElementById(id);if(el)no.observe(el)});
+  /* count-up on first view (final values are already in the HTML) */
+  if(!reduce){var imp=document.getElementById('impact');
+    var co=new IntersectionObserver(function(es){if(!es[0].isIntersecting)return;co.disconnect();
+      imp.querySelectorAll('b').forEach(function(b){var txt=b.textContent,m=txt.match(/^([\d.,]+)(.*)$/);if(!m)return;
+        var num=parseFloat(m[1].replace(/,/g,'')),dec=(m[1].split('.')[1]||'').length,comma=m[1].indexOf(',')>-1,t0=null;
+        function fmt(v){var x=v.toFixed(dec);return comma?Number(x).toLocaleString('en-US'):x}
+        function tick(ts){if(!t0)t0=ts;var p=Math.min((ts-t0)/1100,1),e=1-Math.pow(1-p,3);b.textContent=fmt(num*e)+m[2];if(p<1)requestAnimationFrame(tick);else b.textContent=txt}
+        requestAnimationFrame(tick)})},{threshold:.6});
+    co.observe(imp)}
+})();
+
+/* flow windows */
+(function(){
+  var F={
+    watcher:{k:'Edvoy',t:'Intake Watcher',stack:'Python · Flask · MongoDB · Pandas',
+      plain:'Two business systems list the same items, but the names never match exactly. This tool pairs them up automatically, like matching two guest lists where people spelled the names differently.',
+      steps:[['Collect both lists','Pull the live listings from each business system.'],
+             ['Tidy the names','Lower-case, strip punctuation and sort the words, so "Data Science, MSc" and "MSc Data Science" look the same.'],
+             ['Score every pair','Token-sort fuzzy matching gives each possible pair a similarity score.'],
+             ['Close enough?','A score threshold decides.',[['Yes: matched automatically','ok'],['No: listed as a mismatch to fix','amber']]],
+             ['Reconciled list','About 60% less manual reconciliation.']]},
+    scheduler:{k:'Edvoy',t:'Intake Scheduler',stack:'Python · Flask · MongoDB · Slack API',
+      plain:'Scraping jobs collect data on a timetable. This is the timetable plus an alarm: it runs each job and tells the team as soon as one looks wrong.',
+      steps:[['Job is due','Each scraping job runs on its own schedule.'],
+             ['Run the scraper','The job collects its data.'],
+             ['Check the result','The run is compared with the thresholds set for that job.'],
+             ['Within limits?','',[['Yes: logged, nothing to do','ok'],['No: Slack alert to the team','amber']]],
+             ['Fixed early','About 70% less time spent watching jobs.']]},
+    jira:{k:'Edvoy',t:'Jira workflow automation',stack:'Python · Jira REST API · Slack',
+      plain:'Instead of people chasing tickets and pinging each other, rules move the work along and tell the right person.',
+      steps:[['A ticket changes','Someone creates or updates a Jira ticket.'],
+             ['Rules check it','A script reads the ticket through the Jira REST API and applies the team’s rules.'],
+             ['Right people told','A Slack notification goes to whoever needs to act.'],
+             ['Work moves faster','About 35% faster turnaround.']]},
+    monitor:{k:'Edvoy',t:'Website change monitoring',stack:'Python · Slack API',
+      plain:'Scrapers break quietly when a website changes its layout. This keeps an eye on those sites and raises a hand before bad data piles up.',
+      steps:[['Check the site','Each target site is checked using its own settings.'],
+             ['Compare with last time','Look for changes in page structure and content.'],
+             ['Anything changed?','',[['No: carry on','ok'],['Yes: Slack alert with a severity level','amber']]],
+             ['Scraper fixed in time','The fix lands before the data goes stale.']]},
+    passport:{k:'Edvoy',t:'Travel document validation',stack:'Python · OCR · image processing',
+      plain:'Turns a scanned travel document into typed-out, checked details, using the same international rules that airport machines use.',
+      steps:[['Scan comes in','A scanned document is uploaded.'],
+             ['Clean and read it','Image processing tidies the scan, then OCR reads the characters.'],
+             ['Find the MRZ','The machine-readable lines printed at the bottom of the page.'],
+             ['Apply ICAO checks','Check digits and field formats from the international standard.'],
+             ['Valid?','',[['Yes: details accepted','ok'],['No: marked as not valid','amber']]]]},
+    filings:{k:'S&P Global',t:'State filings crawler',stack:'Python · pypdf · PDFMiner · Google Translator API',
+      plain:'Companies file financial documents with each U.S. state, on more than 40 different websites. This crawler gathered them all into one place.',
+      steps:[['Visit 40+ state portals','Each portal has its own search and layout.'],
+             ['Find and download filings','The crawler searches each portal and saves the documents.'],
+             ['Read the PDFs','pypdf and PDFMiner pull the text out of each filing.'],
+             ['Translate regional filings','Filings in other languages go through a translation API.'],
+             ['Ready for the data team','About 2.88 FTE of manual work saved.']]}
+  };
+  var dlg=document.getElementById('flowwin'); if(!dlg||!dlg.showModal) return;
+  var list=document.getElementById('fw-steps'),play=document.getElementById('fw-play'),prev=document.getElementById('fw-prev');
+  var cur=-1,timer=null,opener=null;
+  function esc(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML}
+  function render(key){var f=F[key];
+    document.getElementById('fw-kicker').textContent='How it works · '+f.k;
+    document.getElementById('fw-title').textContent=f.t;
+    document.getElementById('fw-plain').textContent=f.plain;
+    document.getElementById('fw-stack').textContent=f.stack;
+    list.innerHTML=f.steps.map(function(st,i){
+      var opts=st[2]?'<div class="fw-opts">'+st[2].map(function(o){return '<span class="fw-opt '+o[1]+'">'+esc(o[0])+'</span>'}).join('')+'</div>':'';
+      return '<li class="fw-step'+(i===f.steps.length-1?' end':'')+'" data-i="'+i+'"><span class="fw-dot">'+(st[2]?'?':(i+1))+'</span><div class="fw-card"><b>'+esc(st[0])+'</b>'+(st[1]?'<span>'+esc(st[1])+'</span>':'')+opts+'</div></li>'}).join('');
+    go(-1)}
+  function go(i){var items=list.children;cur=Math.max(-1,Math.min(i,items.length-1));
+    for(var j=0;j<items.length;j++){items[j].classList.toggle('on',j===cur);items[j].classList.toggle('done',j<cur)}
+    play.textContent=cur>=items.length-1?'Replay':(cur<0?'Play':'Next');
+    if(cur>=0&&items[cur].scrollIntoView)items[cur].scrollIntoView({block:'nearest',behavior:'smooth'})}
+  function stop(){clearInterval(timer);timer=null}
+  play.addEventListener('click',function(){var n=list.children.length;
+    if(cur>=n-1)go(-1);
+    if(play.textContent==='Next'&&!timer){go(cur+1);return}
+    stop();go(cur+1);timer=setInterval(function(){if(cur>=n-1){stop();play.textContent='Replay';return}go(cur+1)},1400)});
+  prev.addEventListener('click',function(){stop();go(cur-1)});
+  list.addEventListener('click',function(e){var li=e.target.closest('.fw-step');if(li){stop();go(+li.dataset.i)}});
+  document.querySelectorAll('button.card[data-flow]').forEach(function(b){b.addEventListener('click',function(){opener=b;stop();render(b.dataset.flow);dlg.showModal();
+    setTimeout(function(){play.click()},350)})});
+  document.getElementById('fw-close').addEventListener('click',function(){dlg.close()});
+  dlg.addEventListener('click',function(e){if(e.target===dlg)dlg.close()});
+  dlg.addEventListener('close',function(){stop();if(opener)opener.focus()});
+  document.addEventListener('keydown',function(e){if(!dlg.open)return;if(e.key==='ArrowRight'){stop();go(cur+1)}if(e.key==='ArrowLeft'){stop();go(cur-1)}});
+})();
+</script>
 </body>
 </html>
