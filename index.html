@@ -541,6 +541,32 @@ html.js .jobsteps.in .js-list::before{transform:none}
 .cord.hint{animation:sway 2.4s ease-in-out 1.2s 2;transform-origin:50% 0}
 @keyframes sway{25%{transform:rotate(7deg)}75%{transform:rotate(-6deg)}}
 @media (prefers-reduced-motion:reduce){.cord.hint{animation:none}.cord .cl,.cord .ck{transition:none}}
+html,body{overflow-x:clip}
+/* night: the bulb glows and flies gather; pull the cord and they scatter */
+.cord .ck{z-index:2;transition:top .25s ease,box-shadow .3s ease,background .4s ease}
+.cord .ck svg{transition:color .4s}
+.cord .halo{position:absolute;left:50%;top:52px;width:96px;height:96px;margin:-48px 0 0 -48px;border-radius:50%;background:radial-gradient(circle,rgba(255,206,110,.42),rgba(255,180,70,.14) 42%,transparent 70%);opacity:0;transform:scale(.4);transition:opacity .5s ease,transform .5s ease,top .25s ease;pointer-events:none;z-index:0}
+.cord.lit .ck{background:#ffd27a;box-shadow:0 0 0 3px rgba(255,210,122,.35),0 0 14px 4px rgba(255,190,80,.65),0 0 34px 10px rgba(255,170,60,.25)}
+.cord.lit .ck svg{color:#5a3a00}
+.cord.lit .halo{opacity:1;transform:scale(1);animation:flicker 4.5s ease-in-out infinite}
+.cord.lit:hover .ck,.cord.lit:focus-visible .ck{box-shadow:0 0 0 4px rgba(255,210,122,.6),0 0 22px 8px rgba(255,190,80,.8)}
+.cord.pull .halo{top:66px}
+@keyframes flicker{0%,100%{opacity:1}46%{opacity:.82}48%{opacity:1}50%{opacity:.88}72%{opacity:.95}}
+.flies{position:absolute;left:50%;top:52px;width:0;height:0;pointer-events:none;z-index:3;transition:top .25s ease}
+.cord.pull .flies{top:66px}
+.fly{position:absolute;left:0;top:0;width:0;height:0;animation:orbit var(--t,3s) linear infinite;animation-direction:var(--dir,normal)}
+.fly i{position:absolute;left:var(--r,18px);top:0;width:3.5px;height:3.5px;margin:-1.75px;border-radius:50%;background:#2a2016;box-shadow:0 0 3px rgba(255,200,110,.9);animation:bob var(--b,.9s) ease-in-out infinite alternate}
+.fly i::before,.fly i::after{content:"";position:absolute;top:-3px;width:4px;height:3px;border-radius:50%;background:rgba(255,245,225,.75);transform-origin:50% 100%;animation:flap .07s linear infinite alternate}
+.fly i::before{left:-3px}.fly i::after{left:2.5px}
+@keyframes orbit{to{transform:rotate(360deg)}}
+@keyframes bob{from{transform:translate(0,-4px)}to{transform:translate(3px,4px)}}
+@keyframes flap{from{transform:scaleY(1)}to{transform:scaleY(.25)}}
+.fly.in i{animation:arrive var(--a,1.2s) cubic-bezier(.2,.7,.3,1) both,bob var(--b,.9s) ease-in-out var(--a,1.2s) infinite alternate}
+@keyframes arrive{from{transform:translate(var(--fx),var(--fy));opacity:0}20%{opacity:1}to{transform:none;opacity:1}}
+.fly.out{animation-play-state:paused}
+.fly.out i{animation:leave .75s cubic-bezier(.5,0,.8,.4) forwards}
+@keyframes leave{to{transform:translate(var(--fx),var(--fy)) scale(.6);opacity:0}}
+@media (prefers-reduced-motion:reduce){.flies{display:none}.cord.lit .halo{animation:none}}
 ::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}
 /* job steps runner */
 .js-run{position:absolute;z-index:2;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 22%,transparent),0 0 18px var(--accent);left:20px;top:20px;transition:left .7s cubic-bezier(.6,0,.3,1),top .7s cubic-bezier(.6,0,.3,1),background .3s;pointer-events:none;opacity:0}
@@ -674,7 +700,7 @@ html.js .jobsteps.in .js-list::before{transform:none}
         <a href="#career">Career</a>
         <a href="#contact">Contact</a>
       </nav>
-      <button class="cord hint" id="cord" type="button" aria-label="Switch to light theme"><span class="cl"></span><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3Z"/></svg></span><span class="tip" id="cord-tip">pull for light</span></button>
+      <button class="cord hint" id="cord" type="button" aria-label="Switch to light theme"><span class="halo" aria-hidden="true"></span><span class="cl"></span><span class="flies" aria-hidden="true"></span><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3Z"/></svg></span><span class="tip" id="cord-tip">pull for light</span></button>
     </div>
 
     <div class="hero">
@@ -1658,11 +1684,21 @@ document.getElementById('copyBtn').addEventListener('click',function(){
   var b=document.getElementById('cord');if(!b)return;var tip=document.getElementById('cord-tip'),de=document.documentElement;
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   function now(){var t=de.getAttribute('data-theme');if(t)return t;return window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}
-  function label(){var n=now()==='dark'?'light':'dark';b.setAttribute('aria-label','Switch to '+n+' theme');tip.textContent='pull for '+(n==='light'?'light':'dark')}
-  label();
+  var box=b.querySelector('.flies'),rnd=function(a,z){return a+Math.random()*(z-a)};
+  function far(f){var a=rnd(0,6.283),d=rnd(140,260);f.style.setProperty('--fx',Math.cos(a)*d+'px');f.style.setProperty('--fy',Math.sin(a)*d+'px')}
+  function summon(arrive){box.innerHTML='';if(reduce)return;var n=4+Math.round(Math.random());
+    for(var k=0;k<n;k++){var f=document.createElement('span');f.className='fly'+(arrive?' in':'');f.innerHTML='<i></i>';
+      f.style.setProperty('--r',rnd(13,27).toFixed(1)+'px');f.style.setProperty('--t',rnd(1.6,3.6).toFixed(2)+'s');f.style.setProperty('--b',rnd(.5,1.1).toFixed(2)+'s');
+      f.style.setProperty('--dir',Math.random()<.5?'normal':'reverse');f.style.setProperty('--a',rnd(.9,2).toFixed(2)+'s');f.style.animationDelay='-'+rnd(0,3).toFixed(2)+'s';far(f);box.appendChild(f)}}
+  function shoo(){[].forEach.call(box.children,function(f){far(f);f.classList.remove('in');f.classList.add('out')});setTimeout(function(){box.innerHTML=''},800)}
+  function scene(arrive){var night=now()==='dark';b.classList.toggle('lit',night);if(night)summon(arrive);else if(box.children.length)shoo()}
+  function label(){var n=now()==='dark'?'light':'dark';b.setAttribute('aria-label','Switch to '+n+' theme');tip.textContent=n==='light'?'pull for light, shoo the flies':'pull for night'}
+  label();scene(true);
+  if(window.matchMedia)matchMedia('(prefers-color-scheme: light)').addEventListener('change',function(){if(!de.getAttribute('data-theme')){label();scene(true)}});
   b.addEventListener('click',function(){
     var next=now()==='dark'?'light':'dark';b.classList.remove('hint');b.classList.add('pull');setTimeout(function(){b.classList.remove('pull')},260);
-    function apply(){de.setAttribute('data-theme',next);try{localStorage.setItem('gm-theme',next)}catch(e){}label()}
+    if(next==='light')shoo();
+    function apply(){de.setAttribute('data-theme',next);try{localStorage.setItem('gm-theme',next)}catch(e){}label();if(next==='dark')setTimeout(function(){scene(true)},250);else b.classList.remove('lit')}
     if(document.startViewTransition&&!reduce){var r=b.querySelector('.ck').getBoundingClientRect(),x=r.left+r.width/2,y=r.top+r.height/2,R=Math.hypot(Math.max(x,innerWidth-x),Math.max(y,innerHeight-y));
       setTimeout(function(){var tr=document.startViewTransition(apply);tr.ready.then(function(){de.animate({clipPath:['circle(0px at '+x+'px '+y+'px)','circle('+R+'px at '+x+'px '+y+'px)']},{duration:700,easing:'cubic-bezier(.6,0,.3,1)',pseudoElement:'::view-transition-new(root)'})}).catch(function(){})},180)}
     else apply()});
