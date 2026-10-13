@@ -1461,18 +1461,18 @@ document.getElementById('copyBtn').addEventListener('click',function(){
 
   /* ---------- S&P crawler ---------- */
   function cr0(){var el=scene('crawl',0);say('Every company website gets resolved, crawled and checked for official profiles.');
-    var d=[['acme-tools.com',['X @acmetools','LinkedIn /acme-tools']],['northwindtraders.io',['LinkedIn /northwind','YouTube /northwindtv']],['bluefin-foods.in',['X @bluefinfoods','Facebook /bluefinfoods']],['orionlabs.co',['LinkedIn /orion-labs']],['kestrel-energy.com',['X @kestrelenergy','LinkedIn /kestrel']]];
+    var d=[['acme-tools.com',['Twitter @acmetools','LinkedIn /acme-tools']],['northwindtraders.io',['LinkedIn /northwind','YouTube /northwindtv']],['bluefin-foods.in',['Twitter @bluefinfoods','Facebook /bluefinfoods']],['orionlabs.co',['LinkedIn /orion-labs']],['kestrel-energy.com',['Twitter @kestrelenergy','LinkedIn /kestrel']]];
     el.innerHTML='<div class="feed">'+d.map(function(x){return '<div class="feed-r"><code>'+x[0]+'</code><span class="st">queued</span><div class="ch"></div></div>'}).join('')+'</div><div class="ctr"><span>company websites processed</span><b class="n">3,399,214</b></div><p class="dm-note">Each of 3.4M+ sites gets resolved, crawled and checked for official profiles.</p>';
     var rs=el.querySelectorAll('.feed-r'),nb=el.querySelector('.n'),n0=3399214;
     d.forEach(function(x,i){var r=rs[i],st=r.querySelector('.st');T(function(){r.classList.add('on');st.textContent='resolving domain…'},300+i*1300);T(function(){st.textContent='crawling pages…'},700+i*1300);
       T(function(){r.classList.remove('on');r.classList.add('done');st.textContent='found '+x[1].length;r.querySelector('.ch').innerHTML=x[1].map(function(c){return '<span>'+esc(c)+'</span>'}).join('');nb.textContent=(n0+(i+1)*157).toLocaleString('en-US')},1150+i*1300)});
     var t=300+d.length*1300+600;T(function(){nb.textContent='3.4M+';say('Same steps, 3.4 million times. No one copying and pasting.')},t);progress(t+2400);NEXT(t+2400)}
   function cr1(){var el=scene('crawl',1);say('A company often has several links to the same profile. Keep one clean one.');
-    var d=[['twitter.com/AcmeTools','x.com/acmetools','keep'],['x.com/acmetools?ref=home','x.com/acmetools','dup'],['twitter.com/acmetools?lang=en','x.com/acmetools','dup'],['linkedin.com/company/acme-tools/','linkedin.com/company/acme-tools','keep'],['LinkedIn.com/company/acme-tools?trk=nav','linkedin.com/company/acme-tools','dup']];
+    var d=[['Twitter.com/AcmeTools','twitter.com/acmetools','keep'],['www.twitter.com/acmetools/','twitter.com/acmetools','dup'],['twitter.com/acmetools?lang=en','twitter.com/acmetools','dup'],['linkedin.com/company/acme-tools/','linkedin.com/company/acme-tools','keep'],['LinkedIn.com/company/acme-tools?trk=nav','linkedin.com/company/acme-tools','dup']];
     el.innerHTML='<div class="rvw-f" style="font:500 11px var(--f-mono);color:var(--band-muted)">raw links found for <b style="color:var(--band-ink)">Acme Tools</b></div><div class="dd">'+d.map(function(x){return '<div class="dd-r"><span class="u">'+esc(x[0])+'</span><em></em></div>'}).join('')+'</div><p class="dm-note">Five messy links, two clean answers. One per platform, per company.</p>';
     var rs=el.querySelectorAll('.dd-r');
     d.forEach(function(x,i){T(function(){rs[i].classList.add('norm');rs[i].querySelector('.u').textContent=x[1];rs[i].querySelector('em').textContent='normalised'},400+i*700)});
-    var t=400+d.length*700+500;T(function(){say('Lower-case, strip tracking bits, twitter → x. Duplicates collapse.');d.forEach(function(x,i){if(x[2]==='dup')rs[i].classList.add('dup');else{rs[i].classList.remove('norm');rs[i].classList.add('keep');rs[i].querySelector('em').textContent='canonical'}})},t);
+    var t=400+d.length*700+500;T(function(){say('Lower-case, strip www and tracking bits. Duplicates collapse.');d.forEach(function(x,i){if(x[2]==='dup')rs[i].classList.add('dup');else{rs[i].classList.remove('norm');rs[i].classList.add('keep');rs[i].querySelector('em').textContent='canonical'}})},t);
     progress(t+3200);NEXT(t+3200)}
   function cr2(){var el=scene('crawl',2);say('What the crawler replaced.');
     var h='';for(var i=0;i<160;i++)h+='<i></i>';
