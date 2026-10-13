@@ -691,7 +691,7 @@ document.documentElement.classList.add('js');
     watcher:{k:'Edvoy',t:'Intake Watcher',stack:'Python · Flask · MongoDB · Pandas',
       plain:'Two business systems list the same items, but the names never match exactly. This tool pairs them up automatically, like matching two guest lists where people spelled the names differently.',
       steps:[['Collect both lists','Pull the live listings from each business system.'],
-             ['Tidy the names','Lower-case, strip punctuation and sort the words, so "Data Science, MSc" and "MSc Data Science" look the same.'],
+             ['Tidy the names','Lower-case, strip punctuation and sort the words, so "Acme Ltd, Chennai" and "Chennai Acme Ltd" look the same.'],
              ['Score every pair','Token-sort fuzzy matching gives each possible pair a similarity score.'],
              ['Close enough?','A score threshold decides.',[['Yes: matched automatically','ok'],['No: listed as a mismatch to fix','amber']]],
              ['Reconciled list','About 60% less manual reconciliation.']]},
