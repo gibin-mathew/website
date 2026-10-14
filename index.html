@@ -479,6 +479,36 @@ html.js .org.in .ladder li:nth-child(2)::before{transition-delay:.5s}html.js .or
 .nums-fine{font-size:12.5px;color:var(--muted);margin:16px 0 0}
 @media (prefers-reduced-motion:reduce){.ppl2 i,.stk i,.stk-l div,.save,.trk i,.gap,.pc .bar i{transition:none}}
 
+
+/* ---- inside the RPA: flow, portals, trend ---- */
+.deep{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:18px;margin-top:18px}
+@media (max-width:960px){.deep{grid-template-columns:minmax(0,1fr)}}
+.deep-side{display:grid;gap:18px;min-width:0}
+.flowc{position:relative;width:100%;height:clamp(220px,24vw,290px)}
+.flowc canvas{position:absolute;inset:0;width:100%;height:100%}
+.flow-src,.flow-bin{position:absolute;font:500 11.5px var(--f-mono);color:var(--muted);line-height:1.35}
+.flow-src{left:0;top:50%;transform:translateY(-50%)}
+.flow-src b,.flow-bin b{display:block;font-family:var(--f-display);font-stretch:108%;font-weight:700;font-size:22px;color:var(--ink);font-variant-numeric:tabular-nums}
+.flow-bin{right:0;text-align:right}
+.flow-bin.ok b{color:var(--accent)}.flow-bin.bad b{color:var(--amber)}.flow-bin.usr b{color:var(--muted)}
+.formula{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px;font:500 13px var(--f-mono);color:var(--muted);border-top:1px dashed var(--line);padding-top:12px;opacity:0;transform:translateY(6px);transition:opacity .5s,transform .5s}
+.formula.on{opacity:1;transform:none}
+.formula b{color:var(--ink)}.formula .res{font-family:var(--f-display);font-weight:800;font-size:24px;color:var(--accent)}
+.formula s{text-decoration:line-through;color:var(--muted)}
+.ptl{display:grid;grid-template-columns:repeat(12,1fr);gap:4px}
+.ptl i{aspect-ratio:1;border-radius:4px;background:var(--line);transform:scale(.5);opacity:.5;transition:transform .35s cubic-bezier(.3,1.6,.5,1),background .3s,opacity .3s}
+.ptl i.on{background:var(--accent);transform:none;opacity:1}
+.ptl i.off{background:var(--muted);transform:none;opacity:.35}
+.trend svg{width:100%;height:auto;display:block;overflow:visible}
+.trend .ax{stroke:var(--line);stroke-width:1}
+.trend .ln{fill:none;stroke:var(--accent);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.trend .ar{fill:color-mix(in srgb,var(--accent) 14%,transparent);opacity:0;transition:opacity .8s}
+.trend .ar.on{opacity:1}
+.trend circle{fill:var(--surface);stroke:var(--accent);stroke-width:2.5;transform-box:fill-box;transform-origin:center;transform:scale(0);transition:transform .35s cubic-bezier(.3,1.7,.5,1)}
+.trend circle.on{transform:scale(1)}
+.trend text{font:600 11px var(--f-mono);fill:var(--ink);opacity:0;transition:opacity .4s}
+.trend text.m{font-weight:500;fill:var(--muted)}
+.trend text.on{opacity:1}
 /* ---- hero demo: one record -> any portal ---- */
 .stage.demo{aspect-ratio:auto;cursor:default;padding:16px;display:flex;flex-direction:column;gap:14px;font-family:var(--f-body)}
 .dm-nav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
@@ -1109,6 +1139,36 @@ html,body{overflow-x:clip}
         <div class="pc" style="--i:2"><b>~<span data-n="60">0</span>%</b><div class="bar"><i data-w="60"></i></div><span>less manual reconciliation</span></div>
         <div class="pc" style="--i:3"><b>~<span data-n="35">0</span>%</b><div class="bar"><i data-w="35"></i></div><span>faster turnaround with workflow automation</span></div>
       </div>
+      <div class="deep">
+        <div class="nm" id="flowcard">
+          <span class="nm-k">Every job, accounted for · config-driven RPA</span>
+          <div class="flowc" id="flowc"><canvas aria-hidden="true"></canvas>
+            <div class="flow-src"><b data-n="3422">0</b>jobs run</div>
+            <div class="flow-bin ok" style="top:6%"><b data-n="3075">0</b>succeeded</div>
+            <div class="flow-bin bad" style="top:42%"><b data-n="175">0</b>failed</div>
+            <div class="flow-bin usr" style="top:76%"><b data-n="172">0</b>stopped by the user</div>
+          </div>
+          <div class="formula" id="formula"><span>success rate =</span><span style="white-space:nowrap"><b>3,075</b> ÷ (<b>3,075</b> + <b>175</b>)</span><span style="white-space:nowrap">= <span class="res">94.6%</span></span></div>
+          <p class="nm-cap">Jobs a user stops on purpose aren't the platform's failure, so they count neither for nor against it. <b>The rate I report is one I can defend.</b></p>
+        </div>
+        <div class="deep-side">
+          <div class="nm" id="ptlcard">
+            <span class="nm-k">Portals on one engine</span>
+            <div class="nm-big"><span data-n="71">0</span><small>portals</small></div>
+            <div class="ptl" id="ptl" aria-hidden="true"></div>
+            <p class="nm-cap"><b>66 active</b>, 5 paused. Each one added as configuration, not new bot code.</p>
+          </div>
+          <div class="nm trend" id="trend">
+            <span class="nm-k">Success rate since launch</span>
+            <svg viewBox="0 0 300 120" aria-hidden="true"><line class="ax" x1="10" y1="104" x2="290" y2="104"/>
+              <path class="ar" d="M20,82 L150,52 L280,19 L280,104 L20,104 Z"/><path class="ln" d="M20,82 L150,52 L280,19"/>
+              <circle cx="20" cy="82" r="5"/><circle cx="150" cy="52" r="5"/><circle cx="280" cy="19" r="5"/>
+              <text x="20" y="70" text-anchor="start">79%</text><text x="150" y="40" text-anchor="middle">86.5%</text><text x="280" y="9" text-anchor="end">94.6%</text>
+              <text class="m" x="20" y="119" text-anchor="start">Mar 2026</text><text class="m" x="150" y="119" text-anchor="middle">Jun</text><text class="m" x="280" y="119" text-anchor="end">Oct</text></svg>
+            <p class="nm-cap">Launched at 79%. Every failure gets a label, and the labels tell us what to fix next.</p>
+          </div>
+        </div>
+      </div>
       <p class="nums-fine">Edvoy figures as of October 2026. S&amp;P Global figures from 2017 to 2021.</p>
     </div>
   </section>
@@ -1557,7 +1617,7 @@ document.getElementById('copyBtn').addEventListener('click',function(){
   var band=document.querySelector('.band');
   if(band&&fine&&!reduce){band.addEventListener('pointermove',function(e){var r=band.getBoundingClientRect();band.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');band.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%')})}
   /* staggered reveal */
-  var groups=['.reveal .label','.reveal .h-sec','.reveal .intro','.principles>.pr','.cases>.case','.grid>.card','.thead','.ttrack','.tfoot','.career>.org','.edcert>*','.more>*','.nums>.nm','.pcts>.pc'];
+  var groups=['.reveal .label','.reveal .h-sec','.reveal .intro','.principles>.pr','.cases>.case','.grid>.card','.thead','.ttrack','.tfoot','.career>.org','.edcert>*','.more>*','.nums>.nm','.pcts>.pc','.deep>.nm','.deep-side>.nm'];
   var items=[];groups.forEach(function(sel){var list=document.querySelectorAll(sel);[].forEach.call(list,function(el,i){if(el.classList.contains('rv'))return;el.classList.add('rv');
     var sib=el.parentNode?[].indexOf.call(el.parentNode.children,el):0;el.style.setProperty('--i',sel.indexOf('>')>-1?(sib%3):0);items.push(el)})});
   if(!window.IntersectionObserver||reduce){items.forEach(function(el){el.classList.add('in')});document.querySelectorAll('.flow,.org').forEach(function(el){el.classList.add('in')})}
@@ -1852,6 +1912,49 @@ document.getElementById('copyBtn').addEventListener('click',function(){
     at(function(){tr[0].style.width='100%';tr[1].style.width='17%'},200);
     at(function(){document.getElementById('gap').classList.add('on')},2700);
   },12000);
+
+  /* ---- inside the RPA: job flow, portal grid, trend ---- */
+  var fc=document.getElementById('flowc');
+  if(fc){
+    var cv=fc.querySelector('canvas'),cx=cv.getContext('2d'),parts=[],spawn=false,raf=null,W=0,H=0,col={};
+    function size(){var r=fc.getBoundingClientRect(),d=window.devicePixelRatio||1;W=r.width;H=r.height;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0);
+      var cs=getComputedStyle(document.documentElement);col={a:cs.getPropertyValue('--accent').trim(),b:cs.getPropertyValue('--amber').trim(),m:cs.getPropertyValue('--muted').trim(),l:cs.getPropertyValue('--line').trim()}}
+    function routes(){var x0=Math.max(W*0.2,92),x1=W-Math.max(W*0.26,108),y0=H*0.5;return[[x0,y0,x1,H*0.14],[x0,y0,x1,H*0.5],[x0,y0,x1,H*0.84]]}
+    function bez(r,t){var mx=(r[0]+r[2])/2,u=1-t;return[u*u*u*r[0]+3*u*u*t*mx+3*u*t*t*mx+t*t*t*r[2],u*u*u*r[1]+3*u*u*t*r[1]+3*u*t*t*r[3]+t*t*t*r[3]]}
+    function frame(){cx.clearRect(0,0,W,H);var R=routes();
+      cx.lineWidth=10;cx.lineCap='round';R.forEach(function(r){cx.strokeStyle=col.l;cx.globalAlpha=.55;cx.beginPath();var mx=(r[0]+r[2])/2;cx.moveTo(r[0],r[1]);cx.bezierCurveTo(mx,r[1],mx,r[3],r[2],r[3]);cx.stroke()});cx.globalAlpha=1;
+      if(spawn)for(var k=0;k<3;k++){var q=Math.random(),ri=q<0.899?0:q<0.95?1:2;parts.push({r:ri,t:0,v:.006+Math.random()*.006,o:(Math.random()-.5)*7})}
+      parts=parts.filter(function(p){p.t+=p.v;return p.t<1});
+      parts.forEach(function(p){var xy=bez(R[p.r],p.t);cx.fillStyle=p.r===0?col.a:p.r===1?col.b:col.m;cx.globalAlpha=p.r===2?.6:.9;cx.beginPath();cx.arc(xy[0],xy[1]+p.o,2.2,0,6.283);cx.fill()});cx.globalAlpha=1;
+      raf=requestAnimationFrame(frame)}
+    size();window.addEventListener('resize',size);
+    var fobs=null;
+    player(document.getElementById('flowcard'),function(at,timers){
+      size();parts=[];document.getElementById('formula').classList.remove('on');
+      [].forEach.call(fc.querySelectorAll('[data-n]'),function(el){counter(el,3200,timers)});
+      if(reduce){spawn=false;frame();cancelAnimationFrame(raf);document.getElementById('formula').classList.add('on');return}
+      spawn=true;if(!raf)frame();
+      at(function(){document.getElementById('formula').classList.add('on')},3400);
+    },14000);
+    if('IntersectionObserver' in window&&!reduce)new IntersectionObserver(function(es){if(!es[0].isIntersecting){spawn=false;cancelAnimationFrame(raf);raf=null}},{threshold:0}).observe(fc);
+  }
+  var pt=document.getElementById('ptl');
+  if(pt){var hh='';for(var q=0;q<71;q++)hh+='<i></i>';pt.innerHTML=hh;
+    var order=[];for(q=0;q<71;q++)order.push(q);order.sort(function(){return Math.random()-.5});var paused=order.slice(0,5);
+    player(document.getElementById('ptlcard'),function(at,timers){
+      [].forEach.call(pt.children,function(t){t.className=''});
+      counter(document.querySelector('#ptlcard [data-n]'),2200,timers);
+      order.forEach(function(ix,n){at(function(){pt.children[ix].className=paused.indexOf(ix)>-1?'off':'on'},n*30)});
+    },12000)}
+  var tr2=document.getElementById('trend');
+  if(tr2){player(tr2,function(at){
+      var ln=tr2.querySelector('.ln'),L=ln.getTotalLength(),ar=tr2.querySelector('.ar'),cs=tr2.querySelectorAll('circle'),tx=tr2.querySelectorAll('text');
+      ln.style.transition='none';ln.style.strokeDasharray=L;ln.style.strokeDashoffset=L;ar.classList.remove('on');
+      [].forEach.call(cs,function(c){c.classList.remove('on')});[].forEach.call(tx,function(t){t.classList.remove('on')});void tr2.offsetWidth;
+      ln.style.transition=reduce?'none':'stroke-dashoffset 2.2s ease-in-out';ln.style.strokeDashoffset=0;
+      [0,1,2].forEach(function(i){at(function(){cs[i].classList.add('on');tx[i].classList.add('on');tx[i+3].classList.add('on')},i*1050+80)});
+      at(function(){ar.classList.add('on')},2300);
+    },12000)}
   player(document.getElementById('pcts'),function(at,timers){
     var bars=document.querySelectorAll('#pcts .bar i');[].forEach.call(bars,function(b){b.style.transition='none';b.style.width='0'});void document.body.offsetWidth;
     [].forEach.call(bars,function(b){b.style.transition=''});
