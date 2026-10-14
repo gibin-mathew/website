@@ -433,8 +433,8 @@ html.js .org.in .ladder li:nth-child(2)::before{transition-delay:.5s}html.js .or
 @media (max-width:960px){.nums{grid-template-columns:minmax(0,1fr)}}
 .nm{border:1px solid var(--line);border-radius:16px;background:var(--surface);padding:22px 22px 20px;display:flex;flex-direction:column;gap:14px;min-width:0}
 .nm-k{font:500 11.5px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.nm-big{font-family:var(--f-display);font-stretch:118%;font-weight:800;font-size:clamp(44px,5.4vw,64px);line-height:.95;letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums}
-.nm-big small{font-size:.42em;font-weight:700;letter-spacing:0;color:var(--muted);margin-left:6px}
+.nm-big{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:8px;row-gap:2px;font-family:var(--f-display);font-stretch:108%;font-weight:800;font-size:clamp(40px,4.2vw,56px);line-height:.95;letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums;min-width:0}
+.nm-big small{font-size:.42em;font-weight:700;letter-spacing:0;color:var(--muted)}
 .nm-cap{font-size:14px;line-height:1.5;color:var(--muted);margin:0}
 .nm-cap b{color:var(--ink);font-weight:600}
 .nm-viz{min-height:150px;display:flex;flex-direction:column;justify-content:center;gap:10px}
@@ -1087,7 +1087,7 @@ html,body{overflow-x:clip}
         </div>
         <div class="nm" style="--i:1">
           <span class="nm-k">Money · S&amp;P Global</span>
-          <div class="nm-big">$<span data-n="2.5" data-dec="1">0</span><small>M</small></div>
+          <div class="nm-big"><span>$<span data-n="2.5" data-dec="1">0</span></span><small>M</small></div>
           <div class="nm-viz"><div class="stk" id="stk" aria-hidden="true"><i class="s1" data-w="44"></i><i class="s2" data-w="24"></i><i class="s3" data-w="32"></i></div>
             <div class="stk-l" id="stkl"><div><i style="background:var(--accent)"></i>Social handle crawler<b>$1.1M</b></div><div><i style="background:var(--ok)"></i>ESG document scraper<b>$600K</b></div><div><i style="background:var(--amber)"></i>Search automation<b>up to $800K</b></div></div>
             <span class="save" id="save">+ $596K in cost savings</span></div>
