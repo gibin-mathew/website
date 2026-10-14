@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gibin Mathew | RPA &amp; Workflow Automation Manager, Chennai</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://gibin.in/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gibin.in/">
+<meta property="og:title" content="Gibin Mathew | RPA &amp; Workflow Automation Manager">
+<meta property="og:description" content="Config-driven RPA, workflow automation, data pipelines and AI-assisted validation in production. Chennai, India.">
+<meta property="og:image" content="https://gibin.in/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>html,body{margin:0;height:100%;background:#0B1320;color:#8C99AD;font:14px/1.5 ui-monospace,Menlo,monospace}body{display:grid;place-items:center}a{color:#EEF2F8}</style>
+<script>
+/* Short links: gibin.in/<name> lands on the homepage and is counted.
+   gibin.in/dolby  -> referrer "resume", campaign "dolby"
+   gibin.in/cv     -> referrer "resume"
+   gibin.in/linkedin, /github, /whatsapp, /email -> referrer of that name */
+(function(){
+  var slug=location.pathname.replace(/^\/+|\/+$/g,'').toLowerCase();
+  var dest='/';
+  if(/^[a-z0-9][a-z0-9-]{0,39}$/.test(slug)){
+    var channels={linkedin:1,github:1,whatsapp:1,email:1,instagram:1,insta:1,x:1,naukri:1};
+    if(slug==='insta') slug='instagram';
+    if(slug==='cv'||slug==='resume') dest='/?ref=resume';
+    else if(channels[slug]) dest='/?ref='+slug;
+    else dest='/?ref=resume&utm_campaign='+encodeURIComponent(slug);
+  }
+  location.replace(dest+location.hash);
+})();
+</script>
+</head>
+<body><p>Taking you to <a href="https://gibin.in/">gibin.in</a>…</p></body>
+</html>
