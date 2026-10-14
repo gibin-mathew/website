@@ -479,32 +479,6 @@ html.js .org.in .ladder li:nth-child(2)::before{transition-delay:.5s}html.js .or
 .nums-fine{font-size:12.5px;color:var(--muted);margin:16px 0 0}
 @media (prefers-reduced-motion:reduce){.ppl2 i,.stk i,.stk-l div,.save,.trk i,.gap,.pc .bar i{transition:none}}
 
-/* option B */
-.rip{width:100%;height:auto;display:block}
-.rip circle{fill:var(--line);transform-box:fill-box;transform-origin:center;transform:scale(.55);transition:fill .35s,transform .45s cubic-bezier(.3,1.7,.5,1)}
-.rip circle.on{fill:var(--accent);transform:scale(1)}
-.rip circle.on.b{fill:var(--amber)}
-.jars{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:end;height:150px;padding-top:28px}
-.coins{position:absolute;inset:0;pointer-events:none}
-.coin{position:absolute;top:0;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ffe9a8,#e0a630 60%,#a8741a);box-shadow:0 1px 2px rgba(0,0,0,.25);animation:drop .7s cubic-bezier(.5,0,.9,.6) forwards}
-@keyframes drop{0%{transform:translateY(-10px) rotateY(0);opacity:0}15%{opacity:1}100%{transform:translateY(105px) rotateY(540deg);opacity:0}}
-.jar{position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;gap:6px}
-.jar .glass{position:relative;height:var(--h);border:2px solid var(--line);border-top:0;border-radius:0 0 12px 12px;overflow:hidden}
-.jar .fill{position:absolute;left:0;right:0;bottom:0;height:0;transition:height .3s ease-out;background:linear-gradient(180deg,color-mix(in srgb,var(--c) 65%,transparent),var(--c))}
-.jar span{font:600 12px var(--f-mono);color:var(--ink);text-align:center;opacity:.35;transition:opacity .4s}
-.jar em{font:500 10.5px var(--f-mono);font-style:normal;color:var(--muted);text-align:center;line-height:1.3}
-.jar.on span{opacity:1}
-.clock{display:grid;grid-template-columns:132px minmax(0,1fr);gap:16px;align-items:center}
-.clock svg{width:132px;height:132px}
-.clock .face{fill:none;stroke:var(--line);stroke-width:1.5}
-.clock .tick{stroke:var(--muted);stroke-width:1.5;opacity:.5}
-.clock .arc-hand{fill:none;stroke:var(--amber);stroke-width:9;stroke-linecap:round}
-.clock .arc-bot{fill:none;stroke:var(--accent);stroke-width:9;stroke-linecap:round}
-.clockcap{display:grid;gap:8px;font:500 12px var(--f-mono);color:var(--muted)}
-.clockcap i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
-.clockcap .x{color:var(--accent);opacity:0;transition:opacity .5s}
-.clockcap.on .x{opacity:1}
-.optlbl{font:600 11px var(--f-mono);letter-spacing:.1em;color:var(--amber);border:1px solid var(--amber);border-radius:999px;padding:3px 10px;margin-left:10px;vertical-align:middle}
 /* ---- hero demo: one record -> any portal ---- */
 .stage.demo{aspect-ratio:auto;cursor:default;padding:16px;display:flex;flex-direction:column;gap:14px;font-family:var(--f-body)}
 .dm-nav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
@@ -1101,7 +1075,7 @@ html,body{overflow-x:clip}
 
   <section class="reveal block" id="numbers" style="padding-top:0">
     <div class="container">
-      <span class="label">By the numbers <span class="optlbl">PREVIEW · OPTION A</span></span>
+      <span class="label">By the numbers</span>
       <h2 class="h-sec">What the automation adds up to</h2>
       <div class="nums" id="nums">
         <div class="nm">
@@ -1136,43 +1110,6 @@ html,body{overflow-x:clip}
         <div class="pc" style="--i:3"><b>~<span data-n="35">0</span>%</b><div class="bar"><i data-w="35"></i></div><span>faster turnaround with workflow automation</span></div>
       </div>
       <p class="nums-fine">Edvoy figures as of October 2026. S&amp;P Global figures from 2017 to 2021.</p>
-    </div>
-  </section>
-
-  <section class="reveal block" id="numbers-b" style="padding-top:0">
-    <div class="container">
-      <span class="label">By the numbers <span class="optlbl">PREVIEW · OPTION B</span></span>
-      <h2 class="h-sec">What the automation adds up to</h2>
-      <div class="nums" id="nums2">
-        <div class="nm">
-          <span class="nm-k">People's time · S&amp;P Global</span>
-          <div class="nm-big"><span data-n="168">0</span><small>FTE</small></div>
-          <div class="nm-viz"><svg class="rip" id="rip" viewBox="0 0 288 84" aria-hidden="true"></svg>
-            <div class="lgd"><span>160 from one crawler</span><span class="b">8 from other automations</span></div></div>
-          <p class="nm-cap">Manual research turning into bot work, one full-time person at a time.</p>
-        </div>
-        <div class="nm" style="--i:1">
-          <span class="nm-k">Money · S&amp;P Global</span>
-          <div class="nm-big">$<span data-n="2.5" data-dec="1">0</span><small>M</small></div>
-          <div class="nm-viz"><div class="jars" aria-hidden="true"><div class="coins"></div>
-            <div class="jar" style="--c:var(--accent)"><span>$1.1M</span><div class="glass" style="--h:100%"><div class="fill"></div></div><em>Social handle crawler</em></div>
-            <div class="jar" style="--c:var(--ok)"><span>$600K</span><div class="glass" style="--h:55%"><div class="fill"></div></div><em>ESG scraper</em></div>
-            <div class="jar" style="--c:var(--amber)"><span>≤$800K</span><div class="glass" style="--h:73%"><div class="fill"></div></div><em>Search automation</em></div>
-          </div></div>
-          <p class="nm-cap">Potential revenue from data products my automations fed, plus <b>$596K</b> in cost savings.</p>
-        </div>
-        <div class="nm" style="--i:2">
-          <span class="nm-k">Hours · Edvoy</span>
-          <div class="nm-big"><span data-n="1200" data-plus="1">0</span><small>hours</small></div>
-          <div class="nm-viz"><div class="clock">
-            <svg viewBox="0 0 132 132" aria-hidden="true"><circle class="face" cx="66" cy="66" r="62"/><line class="tick" x1="66" y1="4" x2="66" y2="9" transform="rotate(0 66 66)"/><line class="tick" x1="66" y1="4" x2="66" y2="9" transform="rotate(30 66 66)"/><line class="tick" x1="66" y1="4" x2="66" y2="9" transform="rotate(60 66 66)"/><line class="tick" x1="66" y1="4" x2="66" y2="9" transform="rotate(90 66 66)"/><line class="tick" x1="66" y1="4" x2="66" y2="9" transform="rotate(120 66 66)"/><line class="tick" x1="66" y1="4" x2="66" y2="9" transform="rotate(150 66 66)"/><line class="tick" x1="66" y1="4" x2="66" y2="9" transform="rotate(180 66 66)"/><line class="tick" x1="66" y1="4" x2="66" y2="9" transform="rotate(210 66 66)"/><line class="tick" x1="66" y1="4" x2="66" y2="9" transform="rotate(240 66 66)"/><line class="tick" x1="66" y1="4" x2="66" y2="9" transform="rotate(270 66 66)"/><line class="tick" x1="66" y1="4" x2="66" y2="9" transform="rotate(300 66 66)"/><line class="tick" x1="66" y1="4" x2="66" y2="9" transform="rotate(330 66 66)"/>
-              <circle class="arc-hand" cx="66" cy="66" r="50" transform="rotate(-90 66 66)"/>
-              <circle class="arc-bot" cx="66" cy="66" r="36" transform="rotate(-90 66 66)"/></svg>
-            <div class="clockcap"><span><i style="background:var(--amber)"></i>By hand · 30 min</span><span><i style="background:var(--accent)"></i>Config-driven RPA · 5 min</span><span class="x">× 3,000+ submissions</span></div>
-          </div></div>
-          <p class="nm-cap">Hours handed back to the team, with a <b>94% success rate</b> across 70+ portals.</p>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -1897,7 +1834,6 @@ document.getElementById('copyBtn').addEventListener('click',function(){
     if(reduce||!('IntersectionObserver' in window)){run();return}
     new IntersectionObserver(function(es){var was=vis;vis=es[0].isIntersecting;if(vis&&!was)run();if(!vis)stop()},{threshold:.3}).observe(root)}
 
-  /* ---- option A: pictogram, stacked bar, race ---- */
   var pg=document.getElementById('ppl2');
   if(pg){var h='';for(var i=0;i<168;i++)h+='<i></i>';pg.innerHTML=h}
   player(document.getElementById('nums'),function(at,timers){
@@ -1923,30 +1859,6 @@ document.getElementById('copyBtn').addEventListener('click',function(){
     [].forEach.call(bars,function(b,n){at(function(){b.style.width=b.dataset.w+'%'},n*150)});
   },12000);
 
-  /* ---- option B: ripple, coin jars, clock ---- */
-  var rp=document.getElementById('rip');
-  if(rp){var c='',W=24,H=7;for(var y=0;y<H;y++)for(var x=0;x<W;x++){var k=y*W+x;c+='<circle cx="'+(x*12+6)+'" cy="'+(y*12+6)+'" r="4" data-k="'+k+'"/>'}rp.innerHTML=c}
-  player(document.getElementById('nums2'),function(at,timers){
-    var root=document.getElementById('nums2'),big=root.querySelectorAll('.nm-big [data-n]');
-    counter(big[0],2400,timers);counter(big[1],2600,timers);counter(big[2],2800,timers);
-    /* ripple from the centre: grey people turn into bots */
-    var dots=rp.querySelectorAll('circle');[].forEach.call(dots,function(d){d.setAttribute('class','')});
-    [].forEach.call(dots,function(d){var k=+d.dataset.k,x=k%24,y=(k/24|0),dist=Math.hypot(x-11.5,(y-3)*1.6);
-      at(function(){d.setAttribute('class',k>=160?'on b':'on')},150+dist*165)});
-    /* coins drop into three jars */
-    var jars=root.querySelectorAll('.jar'),coinsBox=root.querySelector('.coins');coinsBox.innerHTML='';
-    [].forEach.call(jars,function(j){j.querySelector('.fill').style.transition='none';j.querySelector('.fill').style.height='0';j.classList.remove('on')});void root.offsetWidth;
-    [].forEach.call(jars,function(j){j.querySelector('.fill').style.transition=''});
-    var plan=[[0,11],[1,6],[2,8]],t=200;
-    plan.forEach(function(p){for(var n=0;n<p[1];n++)(function(ji,n){at(function(){var cn=document.createElement('i');cn.className='coin';cn.style.left=(ji*33.33+16.66)+'%';coinsBox.appendChild(cn);
-        setTimeout(function(){cn.remove()},900);var j=jars[ji];j.querySelector('.fill').style.height=((n+1)/p[1]*100)+'%';if(n===p[1]-1)j.classList.add('on')},t)})(p[0],n),t+=130;t+=200});
-    /* clock: by hand sweeps 30 minutes, the bot sweeps 5 */
-    var hand=root.querySelector('.arc-hand'),bot=root.querySelector('.arc-bot'),Lh=2*Math.PI*50,Lb=2*Math.PI*36,cl=root.querySelector('.clockcap');
-    hand.style.transition='none';hand.style.strokeDasharray=Lh;hand.style.strokeDashoffset=Lh;bot.style.transition='none';bot.style.strokeDasharray=Lb;bot.style.strokeDashoffset=Lb;cl.classList.remove('on');void root.offsetWidth;
-    at(function(){hand.style.transition=reduce?'none':'stroke-dashoffset 2.6s linear';hand.style.strokeDashoffset=Lh*0.5},150);
-    at(function(){bot.style.transition=reduce?'none':'stroke-dashoffset .45s ease-out';bot.style.strokeDashoffset=Lb*(1-5/60)},2900);
-    at(function(){cl.classList.add('on')},3500);
-  },13000);
 })();
 /* job steps: a job travels through the five steps */
 (function(){
