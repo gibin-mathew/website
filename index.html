@@ -427,6 +427,57 @@ html.js .org.in .ladder li:nth-child(2)::before{transition-delay:.5s}html.js .or
 .cl-v{font-family:var(--f-mono);font-size:11.5px;color:var(--accent);margin-top:4px}
 @media (prefers-reduced-motion:reduce){.cl-item,.cl-item:hover{transition:none;transform:none}}
 
+
+/* ---- by the numbers: motion graphics ---- */
+.nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:40px}
+@media (max-width:960px){.nums{grid-template-columns:minmax(0,1fr)}}
+.nm{border:1px solid var(--line);border-radius:16px;background:var(--surface);padding:22px 22px 20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.nm-k{font:500 11.5px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.nm-big{font-family:var(--f-display);font-stretch:118%;font-weight:800;font-size:clamp(44px,5.4vw,64px);line-height:.95;letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums}
+.nm-big small{font-size:.42em;font-weight:700;letter-spacing:0;color:var(--muted);margin-left:6px}
+.nm-cap{font-size:14px;line-height:1.5;color:var(--muted);margin:0}
+.nm-cap b{color:var(--ink);font-weight:600}
+.nm-viz{min-height:150px;display:flex;flex-direction:column;justify-content:center;gap:10px}
+/* FTE pictogram */
+.ppl2{display:grid;grid-template-columns:repeat(24,1fr);gap:3px}
+.ppl2 i{aspect-ratio:1/1.35;border-radius:40% 40% 18% 18%;background:var(--line);transform:scale(.6);opacity:.55;transition:background .25s,transform .35s cubic-bezier(.3,1.6,.5,1),opacity .25s}
+.ppl2 i.on{background:var(--accent);transform:none;opacity:1}
+.ppl2 i.on.b{background:var(--amber)}
+.lgd{display:flex;flex-wrap:wrap;gap:6px 14px;font:500 11.5px var(--f-mono);color:var(--muted)}
+.lgd span::before{content:"";display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--accent)}
+.lgd span.b::before{background:var(--amber)}
+/* money stack */
+.stk{display:flex;height:34px;border-radius:9px;overflow:hidden;background:var(--line)}
+.stk i{display:block;height:100%;width:0;transition:width .9s cubic-bezier(.2,.8,.2,1)}
+.stk i+i{box-shadow:inset 2px 0 0 var(--surface)}
+.stk .s1{background:var(--accent)}.stk .s2{background:var(--ok)}.stk .s3{background:var(--amber);opacity:.9}
+.stk-l{display:grid;gap:6px}
+.stk-l div{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:8px;align-items:center;font-size:13px;color:var(--muted);opacity:0;transform:translateX(-6px);transition:opacity .4s,transform .4s}
+.stk-l div.on{opacity:1;transform:none}
+.stk-l i{width:10px;height:10px;border-radius:3px}
+.stk-l b{font:600 12.5px var(--f-mono);color:var(--ink)}
+.save{font:500 12px var(--f-mono);color:var(--ok);border:1px dashed var(--ok);border-radius:8px;padding:6px 10px;align-self:flex-start;opacity:0;transition:opacity .5s}
+.save.on{opacity:1}
+/* hours race */
+.race2{display:grid;gap:12px}
+.lane{display:grid;gap:5px}
+.lane-h{display:flex;justify-content:space-between;font:500 11.5px var(--f-mono);color:var(--muted)}
+.lane-h b{color:var(--ink);font-weight:600}
+.trk{height:14px;border-radius:7px;background:var(--line);overflow:hidden}
+.trk i{display:block;height:100%;width:0;border-radius:7px;background:var(--muted)}
+.trk.bot i{background:var(--accent)}
+.gap{font:500 12px var(--f-mono);color:var(--accent);opacity:0;transition:opacity .5s}
+.gap.on{opacity:1}
+/* percentage chips */
+.pcts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:18px}
+@media (max-width:960px){.pcts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.pc{border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:16px 16px 14px;display:grid;gap:8px}
+.pc b{font-family:var(--f-display);font-stretch:112%;font-weight:700;font-size:28px;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.pc>span{font-size:13px;color:var(--muted);line-height:1.4}
+.pc .bar{height:4px;border-radius:2px;background:var(--line);overflow:hidden}
+.pc .bar i{display:block;height:100%;width:0;background:var(--accent);transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+.nums-fine{font-size:12.5px;color:var(--muted);margin:16px 0 0}
+@media (prefers-reduced-motion:reduce){.ppl2 i,.stk i,.stk-l div,.save,.trk i,.gap,.pc .bar i{transition:none}}
 /* ---- hero demo: one record -> any portal ---- */
 .stage.demo{aspect-ratio:auto;cursor:default;padding:16px;display:flex;flex-direction:column;gap:14px;font-family:var(--f-body)}
 .dm-nav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
@@ -1021,6 +1072,46 @@ html,body{overflow-x:clip}
     </div>
   </section>
 
+  <section class="reveal block" id="numbers" style="padding-top:0">
+    <div class="container">
+      <span class="label">By the numbers</span>
+      <h2 class="h-sec">What the automation adds up to</h2>
+      <div class="nums" id="nums">
+        <div class="nm">
+          <span class="nm-k">People's time · S&amp;P Global</span>
+          <div class="nm-big"><span data-n="168">0</span><small>FTE</small></div>
+          <div class="nm-viz"><div class="ppl2" id="ppl2" aria-hidden="true"></div>
+            <div class="lgd"><span>160 from one crawler</span><span class="b">8 from filings, ESG and monitoring bots</span></div></div>
+          <p class="nm-cap">Each figure is one full-time person's worth of manual research that <b>bots now do</b>.</p>
+        </div>
+        <div class="nm" style="--i:1">
+          <span class="nm-k">Money · S&amp;P Global</span>
+          <div class="nm-big">$<span data-n="2.5" data-dec="1">0</span><small>M</small></div>
+          <div class="nm-viz"><div class="stk" id="stk" aria-hidden="true"><i class="s1" data-w="44"></i><i class="s2" data-w="24"></i><i class="s3" data-w="32"></i></div>
+            <div class="stk-l" id="stkl"><div><i style="background:var(--accent)"></i>Social handle crawler<b>$1.1M</b></div><div><i style="background:var(--ok)"></i>ESG document scraper<b>$600K</b></div><div><i style="background:var(--amber)"></i>Search automation<b>up to $800K</b></div></div>
+            <span class="save" id="save">+ $596K in cost savings</span></div>
+          <p class="nm-cap">Potential revenue from data products my automations fed.</p>
+        </div>
+        <div class="nm" style="--i:2">
+          <span class="nm-k">Hours · Edvoy</span>
+          <div class="nm-big"><span data-n="1200" data-plus="1">0</span><small>hours</small></div>
+          <div class="nm-viz"><div class="race2" id="race2" aria-hidden="true">
+            <div class="lane"><div class="lane-h"><span>By hand</span><b>~30 min a job</b></div><div class="trk"><i></i></div></div>
+            <div class="lane"><div class="lane-h"><span>Config-driven RPA</span><b>~5 min a job</b></div><div class="trk bot"><i></i></div></div>
+            <span class="gap" id="gap">× 3,000+ submissions</span></div></div>
+          <p class="nm-cap">Hours handed back to the team, with a <b>94% success rate</b> across 70+ portals.</p>
+        </div>
+      </div>
+      <div class="pcts" id="pcts">
+        <div class="pc"><b><span data-n="94">0</span>%</b><div class="bar"><i data-w="94"></i></div><span>success rate, config-driven RPA</span></div>
+        <div class="pc" style="--i:1"><b><span data-n="70" data-pre="60-">0</span>%</b><div class="bar"><i data-w="70"></i></div><span>less manual QC with AI validators</span></div>
+        <div class="pc" style="--i:2"><b>~<span data-n="60">0</span>%</b><div class="bar"><i data-w="60"></i></div><span>less manual reconciliation</span></div>
+        <div class="pc" style="--i:3"><b>~<span data-n="35">0</span>%</b><div class="bar"><i data-w="35"></i></div><span>faster turnaround with workflow automation</span></div>
+      </div>
+      <p class="nums-fine">Edvoy figures as of October 2026. S&amp;P Global figures from 2017 to 2021.</p>
+    </div>
+  </section>
+
   <section class="reveal block" style="padding-top:0">
     <div class="container">
       <span class="label">Also built</span>
@@ -1465,7 +1556,7 @@ document.getElementById('copyBtn').addEventListener('click',function(){
   var band=document.querySelector('.band');
   if(band&&fine&&!reduce){band.addEventListener('pointermove',function(e){var r=band.getBoundingClientRect();band.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');band.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%')})}
   /* staggered reveal */
-  var groups=['.reveal .label','.reveal .h-sec','.reveal .intro','.principles>.pr','.cases>.case','.grid>.card','.thead','.ttrack','.tfoot','.career>.org','.edcert>*','.more>*'];
+  var groups=['.reveal .label','.reveal .h-sec','.reveal .intro','.principles>.pr','.cases>.case','.grid>.card','.thead','.ttrack','.tfoot','.career>.org','.edcert>*','.more>*','.nums>.nm','.pcts>.pc'];
   var items=[];groups.forEach(function(sel){var list=document.querySelectorAll(sel);[].forEach.call(list,function(el,i){if(el.classList.contains('rv'))return;el.classList.add('rv');
     var sib=el.parentNode?[].indexOf.call(el.parentNode.children,el):0;el.style.setProperty('--i',sel.indexOf('>')>-1?(sib%3):0);items.push(el)})});
   if(!window.IntersectionObserver||reduce){items.forEach(function(el){el.classList.add('in')});document.querySelectorAll('.flow,.org').forEach(function(el){el.classList.add('in')})}
@@ -1724,6 +1815,42 @@ document.getElementById('copyBtn').addEventListener('click',function(){
     else apply()});
 })();
 
+
+/* by the numbers: motion graphics, played once when the section scrolls into view */
+(function(){
+  var root=document.getElementById('nums');if(!root)return;
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var pg=document.getElementById('ppl2'),h='';for(var i=0;i<168;i++)h+='<i'+(i>=160?' class="x"':'')+'></i>';pg.innerHTML=h;
+  var figs=pg.children;
+  function count(el,dur){var n=parseFloat(el.dataset.n),dec=+el.dataset.dec||0,pre=el.dataset.pre||'',plus=el.dataset.plus?'+':'';
+    if(reduce){el.textContent=pre+n.toFixed(dec).replace(/\B(?=(\d{3})+(?!\d))/g,',')+plus;return}
+    var t0=null;(function f(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,3),v=n*e;
+      el.textContent=(p<1?'':pre)+v.toFixed(dec).replace(/\B(?=(\d{3})+(?!\d))/g,',')+(p<1?'':plus);if(p<1)requestAnimationFrame(f)})(performance.now())}
+  function at(fn,ms){if(reduce)fn();else setTimeout(fn,ms)}
+  function play(){
+    var big=root.querySelectorAll('.nm-big [data-n]');
+    /* 1. people */
+    count(big[0],2600);
+    for(var j=0;j<168;j++)(function(j){at(function(){figs[j].classList.add('on');if(j>=160)figs[j].classList.add('b')},j<160?j*14:160*14+400+(j-160)*90)})(j);
+    /* 2. money */
+    count(big[1],2400);
+    var seg=document.querySelectorAll('#stk i'),lab=document.querySelectorAll('#stkl div');
+    [].forEach.call(seg,function(x,n){at(function(){x.style.width=x.dataset.w+'%';lab[n].classList.add('on')},300+n*750)});
+    at(function(){document.getElementById('save').classList.add('on')},300+3*750+300);
+    /* 3. hours */
+    count(big[2],2600);
+    var tr=document.querySelectorAll('#race2 .trk i');
+    if(reduce){tr[0].style.width='100%';tr[1].style.width='17%'}
+    else{tr[0].style.transition='width 2.4s linear';tr[1].style.transition='width .4s linear';
+      at(function(){tr[0].style.width='100%';tr[1].style.width='17%'},200)}
+    at(function(){document.getElementById('gap').classList.add('on')},2700);
+  }
+  function playPcts(){[].forEach.call(document.querySelectorAll('#pcts [data-n]'),function(el,n){at(function(){count(el,1400)},n*150)});
+    [].forEach.call(document.querySelectorAll('#pcts .bar i'),function(b,n){at(function(){b.style.width=b.dataset.w+'%'},n*150)})}
+  if(!('IntersectionObserver' in window)||reduce){play();playPcts();return}
+  new IntersectionObserver(function(es,o){if(es[0].isIntersecting){o.disconnect();play()}},{threshold:.35}).observe(root);
+  new IntersectionObserver(function(es,o){if(es[0].isIntersecting){o.disconnect();playPcts()}},{threshold:.5}).observe(document.getElementById('pcts'));
+})();
 /* job steps: a job travels through the five steps */
 (function(){
   var box=document.querySelector('.jobsteps');if(!box)return;var list=box.querySelector('.js-list');if(!list)return;
