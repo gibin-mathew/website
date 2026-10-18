@@ -1,5 +1,6 @@
 name: IndexNow ping
 # Tells Bing, Yandex, Seznam and other IndexNow engines that the site changed.
+# The URL list comes from _build/urls.txt, which the page build keeps up to date.
 on:
   push:
     branches: [main]
@@ -8,10 +9,11 @@ jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Wait for GitHub Pages to publish
         run: sleep 90
       - name: Submit URLs to IndexNow
         run: |
+          BODY=$(python3 -c "import json;u=[l.strip() for l in open('_build/urls.txt') if l.strip()]+['https://gibin.in/llms.txt','https://gibin.in/sitemap.xml'];print(json.dumps({'host':'gibin.in','key':'7b10cfa22ac315815959883d3525d19f','keyLocation':'https://gibin.in/7b10cfa22ac315815959883d3525d19f.txt','urlList':u}))")
           curl -sS --fail-with-body -w "\nHTTP %{http_code}\n" -X POST "https://api.indexnow.org/indexnow" \
-            -H "Content-Type: application/json; charset=utf-8" \
-            -d '{"host":"gibin.in","key":"7b10cfa22ac315815959883d3525d19f","keyLocation":"https://gibin.in/7b10cfa22ac315815959883d3525d19f.txt","urlList":["https://gibin.in/","https://gibin.in/blog/","https://gibin.in/blog/config-driven-rpa-playwright/","https://gibin.in/blog/rpa-success-rate/","https://gibin.in/blog/token-sort-matching/","https://gibin.in/blog/playwright-vs-rpa-platforms/","https://gibin.in/blog/human-in-the-loop-rpa/","https://gibin.in/blog/llm-data-validation/","https://gibin.in/projects/","https://gibin.in/projects/config-driven-rpa/","https://gibin.in/projects/token-sort-matching/","https://gibin.in/projects/markdown-extractor/","https://gibin.in/projects/subject-validator/","https://gibin.in/projects/fees-validator/","https://gibin.in/projects/sp-global-automation/","https://gibin.in/llms.txt","https://gibin.in/sitemap.xml"]}'
+            -H "Content-Type: application/json; charset=utf-8" -d "$BODY"
