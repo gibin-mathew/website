@@ -218,6 +218,7 @@ def render(p, all_pages):
 <link rel="stylesheet" href="{FONTS}">
 <link rel="stylesheet" href="/assets/base.css">
 <link rel="stylesheet" href="/assets/pages.css">
+<link rel="stylesheet" href="/assets/dock.css">
 <script type="application/ld+json">{schema(p, url, all_pages)}</script>
 <script>document.documentElement.classList.add('js');try{{var gmT=localStorage.getItem('gm-theme');if(gmT==='light'||gmT==='dark')document.documentElement.setAttribute('data-theme',gmT)}}catch(e){{}}</script>
 </head>
@@ -247,6 +248,7 @@ def render(p, all_pages):
 {FOOTER}
 <button class="totop" id="totop" type="button" aria-label="Back to top">↑</button>
 <script src="/assets/site.js" defer></script>
+<script src="/assets/dock.js" defer></script>
 {GOAT}
 </body>
 </html>
