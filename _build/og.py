@@ -3,7 +3,6 @@
 
   og/<page>-v2.jpg   one per case study, post and index: title on the left, the page's own figure on the right
   og/home-v2.jpg     the homepage and channel short links (/cv, /linkedin ...): photo card
-  og/to/<slug>-v2.jpg one per company short link (gibin.in/dolby ...): photo card "shared with the <Company> team"
 
 Needs: Playwright (Python), the site served locally, local copies of the fonts.
   python3 -m http.server 8765          (from the repo root, in another terminal)
@@ -95,7 +94,7 @@ def main():
     pages = build.load()
     for p in pages:
         p["h1_plain"] = re.sub(r"<[^>]+>", "", p["h1"])
-    TMP.mkdir(exist_ok=True); (ROOT / "og" / "to").mkdir(parents=True, exist_ok=True)
+    TMP.mkdir(exist_ok=True)
     posts = sorted([q for q in pages if q["section"] == "blog" and q.get("slug")], key=lambda q: q.get("order", 0))
     with sync_playwright() as pw:
         b = pw.chromium.launch()
@@ -139,9 +138,6 @@ def main():
             shoot(page_card(p, fig_png, right), ROOT / "og" / f"{name}-{V}.jpg")
             print("og", name)
         shoot(person_card("gibin.in"), ROOT / "og" / f"home-{V}.jpg"); print("og home")
-        for slug, v in json.loads((ROOT / "_build" / "shortlinks.json").read_text()).items():
-            shoot(person_card(f"gibin.in/{slug}", v["company"]), ROOT / "og" / "to" / f"{slug}-{V}.jpg")
-        print("og short links done")
         b.close()
     import shutil
     shutil.rmtree(TMP, ignore_errors=True)
