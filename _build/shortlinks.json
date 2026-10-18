@@ -1,0 +1,652 @@
+{
+ "100x": {
+  "company": "100x",
+  "role": "AI Engineering Manager",
+  "roles": [
+   "AI Engineering Manager"
+  ]
+ },
+ "accenture": {
+  "company": "Accenture",
+  "role": null,
+  "roles": [
+   "AI Automation Manager",
+   "Automation Solution Architect"
+  ]
+ },
+ "acesoft": {
+  "company": "Acesoft",
+  "role": "Intelligent Automation CoE Lead",
+  "roles": [
+   "Intelligent Automation CoE Lead"
+  ]
+ },
+ "airbnb": {
+  "company": "Airbnb",
+  "role": "Business Solutions Engineer",
+  "roles": [
+   "Business Solutions Engineer"
+  ]
+ },
+ "ais": {
+  "company": "AIS",
+  "role": "AI Automation Manager",
+  "roles": [
+   "AI Automation Manager"
+  ]
+ },
+ "allianz": {
+  "company": "Allianz",
+  "role": null,
+  "roles": [
+   "AI Automation Lead",
+   "AI Automation Specialist"
+  ]
+ },
+ "amazon": {
+  "company": "Amazon",
+  "role": "ML Data Operations Manager",
+  "roles": [
+   "ML Data Operations Manager"
+  ]
+ },
+ "ametek": {
+  "company": "AMETEK",
+  "role": "AI Technical Manager",
+  "roles": [
+   "AI Technical Manager"
+  ]
+ },
+ "arada": {
+  "company": "Arada",
+  "role": "Senior AI Engineer",
+  "roles": [
+   "Senior AI Engineer"
+  ]
+ },
+ "arcesium": {
+  "company": "Arcesium",
+  "role": "Forward Deployed Engineer AI",
+  "roles": [
+   "Forward Deployed Engineer AI"
+  ]
+ },
+ "aristocrat": {
+  "company": "Aristocrat",
+  "role": "AI Automation Tech Lead",
+  "roles": [
+   "AI Automation Tech Lead"
+  ]
+ },
+ "arttech": {
+  "company": "ART Technology",
+  "role": "AI Engineering Lead",
+  "roles": [
+   "AI Engineering Lead"
+  ]
+ },
+ "ather": {
+  "company": "Ather",
+  "role": "AI Enablement Lead",
+  "roles": [
+   "AI Enablement Lead"
+  ]
+ },
+ "avalara": {
+  "company": "Avalara",
+  "role": "Staff AI Automation Engineer",
+  "roles": [
+   "Staff AI Automation Engineer"
+  ]
+ },
+ "bcg": {
+  "company": "BCG",
+  "role": "GenAI Deployment Senior Manager",
+  "roles": [
+   "GenAI Deployment Senior Manager"
+  ]
+ },
+ "bigformula": {
+  "company": "Bigformula",
+  "role": "AI Lead",
+  "roles": [
+   "AI Lead"
+  ]
+ },
+ "boundless": {
+  "company": "Boundless",
+  "role": null,
+  "roles": [
+   "AI Product Process Manager",
+   "AI Solutions Architect"
+  ]
+ },
+ "bravebird": {
+  "company": "Bravebird",
+  "role": "Senior Software Engineer Web Crawling",
+  "roles": [
+   "Senior Software Engineer Web Crawling"
+  ]
+ },
+ "bridgeglobal": {
+  "company": "Bridge Global",
+  "role": "Lead AI Engineer",
+  "roles": [
+   "Lead AI Engineer"
+  ]
+ },
+ "cimb": {
+  "company": "CIMB",
+  "role": "AI Enablement GenAI Engineer",
+  "roles": [
+   "AI Enablement GenAI Engineer"
+  ]
+ },
+ "circana": {
+  "company": "Circana",
+  "role": "Lead Software Engineer AI Automation",
+  "roles": [
+   "Lead Software Engineer AI Automation"
+  ]
+ },
+ "citco": {
+  "company": "Citco",
+  "role": "VP Digital Workflow Automation AI",
+  "roles": [
+   "VP Digital Workflow Automation AI"
+  ]
+ },
+ "citi": {
+  "company": "Citi",
+  "role": "Senior AI Engineer",
+  "roles": [
+   "Senior AI Engineer"
+  ]
+ },
+ "cognizant": {
+  "company": "Cognizant",
+  "role": "Forward Deployed AI Engineer",
+  "roles": [
+   "Forward Deployed AI Engineer"
+  ]
+ },
+ "danube": {
+  "company": "Danube",
+  "role": "AI Solutions Engineer",
+  "roles": [
+   "AI Solutions Engineer"
+  ]
+ },
+ "dataart": {
+  "company": "DataArt",
+  "role": "AI CoE Lead",
+  "roles": [
+   "AI CoE Lead"
+  ]
+ },
+ "datavruti": {
+  "company": "Datavruti",
+  "role": "Senior Technical Lead Agentic AI",
+  "roles": [
+   "Senior Technical Lead Agentic AI"
+  ]
+ },
+ "dialpad": {
+  "company": "Dialpad",
+  "role": "AI Transformation Engineer",
+  "roles": [
+   "AI Transformation Engineer"
+  ]
+ },
+ "dodge": {
+  "company": "Dodge",
+  "role": "Data Quality Engineering Lead",
+  "roles": [
+   "Data Quality Engineering Lead"
+  ]
+ },
+ "dubaichambers": {
+  "company": "Dubai Chambers",
+  "role": "AI Transformation Manager",
+  "roles": [
+   "AI Transformation Manager"
+  ]
+ },
+ "egov": {
+  "company": "eGov Foundation",
+  "role": "AI Tech Lead",
+  "roles": [
+   "AI Tech Lead"
+  ]
+ },
+ "elsevier": {
+  "company": "Elsevier",
+  "role": "Senior Data Quality Manager",
+  "roles": [
+   "Senior Data Quality Manager"
+  ]
+ },
+ "ensemble": {
+  "company": "Ensemble Health",
+  "role": "Senior Engineer RPA IA",
+  "roles": [
+   "Senior Engineer RPA IA"
+  ]
+ },
+ "epicor": {
+  "company": "Epicor",
+  "role": "AI Enablement Architect",
+  "roles": [
+   "AI Enablement Architect"
+  ]
+ },
+ "euronext": {
+  "company": "Euronext",
+  "role": "Data Ops Manager",
+  "roles": [
+   "Data Ops Manager"
+  ]
+ },
+ "everest": {
+  "company": "Everest Group",
+  "role": "Data Operations Manager",
+  "roles": [
+   "Data Operations Manager"
+  ]
+ },
+ "experion": {
+  "company": "Experion",
+  "role": "Lead AI Engineer",
+  "roles": [
+   "Lead AI Engineer"
+  ]
+ },
+ "ey": {
+  "company": "EY",
+  "role": null,
+  "roles": [
+   "AI Automation Manager",
+   "AI Solution Architect Agentic Automation",
+   "Automation AI Manager"
+  ]
+ },
+ "firmable": {
+  "company": "Firmable",
+  "role": "Data Engineering Lead Data Quality",
+  "roles": [
+   "Data Engineering Lead Data Quality"
+  ]
+ },
+ "flix": {
+  "company": "Flix",
+  "role": null,
+  "roles": [
+   "Process Automation Developer",
+   "Senior AI Automation Engineer"
+  ]
+ },
+ "foundationai": {
+  "company": "Foundation AI",
+  "role": "Data Verification Operations",
+  "roles": [
+   "Data Verification Operations"
+  ]
+ },
+ "gaude": {
+  "company": "Gaude",
+  "role": "Senior AI Engineer",
+  "roles": [
+   "Senior AI Engineer"
+  ]
+ },
+ "gehc": {
+  "company": "GE HealthCare",
+  "role": "Senior AI Engineer Automation",
+  "roles": [
+   "Senior AI Engineer Automation"
+  ]
+ },
+ "globaldata": {
+  "company": "GlobalData",
+  "role": "Senior Python Web Scraping",
+  "roles": [
+   "Senior Python Web Scraping"
+  ]
+ },
+ "idatalytics": {
+  "company": "iDatalytics",
+  "role": "AI Architect",
+  "roles": [
+   "AI Architect"
+  ]
+ },
+ "infosys": {
+  "company": "Infosys",
+  "role": "Agentic AI Automation Lead",
+  "roles": [
+   "Agentic AI Automation Lead"
+  ]
+ },
+ "issstoxx": {
+  "company": "ISS STOXX",
+  "role": "Data Operations Manager",
+  "roles": [
+   "Data Operations Manager"
+  ]
+ },
+ "jll": {
+  "company": "JLL",
+  "role": null,
+  "roles": [
+   "Intelligent Automation Manager",
+   "Intelligent Automation Senior Manager"
+  ]
+ },
+ "jnj": {
+  "company": "Johnson & Johnson",
+  "role": "AI Automation Operations Manager",
+  "roles": [
+   "AI Automation Operations Manager"
+  ]
+ },
+ "kraftheinz": {
+  "company": "Kraft Heinz",
+  "role": "Intelligent Automation COE",
+  "roles": [
+   "Intelligent Automation COE"
+  ]
+ },
+ "lseg": {
+  "company": "LSEG",
+  "role": null,
+  "roles": [
+   "Data Strategy Manager Company Data",
+   "Team Lead Index Data"
+  ]
+ },
+ "maersk": {
+  "company": "Maersk",
+  "role": "Automation GenAI Developer",
+  "roles": [
+   "Automation GenAI Developer"
+  ]
+ },
+ "mastek": {
+  "company": "Mastek",
+  "role": "AI Automation SME",
+  "roles": [
+   "AI Automation SME"
+  ]
+ },
+ "mbzuai": {
+  "company": "MBZUAI",
+  "role": "Data AI Automation Specialist",
+  "roles": [
+   "Data AI Automation Specialist"
+  ]
+ },
+ "meltwater": {
+  "company": "Meltwater",
+  "role": "AI Engineer Team Lead",
+  "roles": [
+   "AI Engineer Team Lead"
+  ]
+ },
+ "merck": {
+  "company": "Merck",
+  "role": "AI Python Tech Lead",
+  "roles": [
+   "AI Python Tech Lead"
+  ]
+ },
+ "mrdiy": {
+  "company": "MR DIY",
+  "role": "AI Automation Lead",
+  "roles": [
+   "AI Automation Lead"
+  ]
+ },
+ "myalfred": {
+  "company": "myAlfred",
+  "role": "AI Transformation Specialist",
+  "roles": [
+   "AI Transformation Specialist"
+  ]
+ },
+ "networkintl": {
+  "company": "Network International",
+  "role": "AI Forward Deployed Engineer",
+  "roles": [
+   "AI Forward Deployed Engineer"
+  ]
+ },
+ "niq": {
+  "company": "NIQ",
+  "role": "AI Solution Architect",
+  "roles": [
+   "AI Solution Architect"
+  ]
+ },
+ "nus": {
+  "company": "NUS",
+  "role": "AI Engineering Lead",
+  "roles": [
+   "AI Engineering Lead"
+  ]
+ },
+ "nxtwave": {
+  "company": "Nxtwave",
+  "role": "AI Engineering Manager",
+  "roles": [
+   "AI Engineering Manager"
+  ]
+ },
+ "ooredoo": {
+  "company": "Ooredoo",
+  "role": "Automation CoE Manager",
+  "roles": [
+   "Automation CoE Manager"
+  ]
+ },
+ "pattern": {
+  "company": "Pattern",
+  "role": "Data Collections Team Lead",
+  "roles": [
+   "Data Collections Team Lead"
+  ]
+ },
+ "principal": {
+  "company": "Principal",
+  "role": "Head of Automation",
+  "roles": [
+   "Head of Automation"
+  ]
+ },
+ "ptc": {
+  "company": "PTC",
+  "role": "Lead Forward Deployment Engineer",
+  "roles": [
+   "Lead Forward Deployment Engineer"
+  ]
+ },
+ "puffy": {
+  "company": "Puffy",
+  "role": "AI Workflow Specialist",
+  "roles": [
+   "AI Workflow Specialist"
+  ]
+ },
+ "pwc": {
+  "company": "PwC",
+  "role": "AI Agent Developer Manager",
+  "roles": [
+   "AI Agent Developer Manager"
+  ]
+ },
+ "qad": {
+  "company": "QAD",
+  "role": "Senior AI Engineer",
+  "roles": [
+   "Senior AI Engineer"
+  ]
+ },
+ "qube": {
+  "company": "Qube Cinema",
+  "role": "Digital Transformation Lead",
+  "roles": [
+   "Digital Transformation Lead"
+  ]
+ },
+ "rhythmx": {
+  "company": "RhythmX",
+  "role": "Data Engineering Lead",
+  "roles": [
+   "Data Engineering Lead"
+  ]
+ },
+ "roboyo": {
+  "company": "Roboyo",
+  "role": "Senior Python AI Engineer",
+  "roles": [
+   "Senior Python AI Engineer"
+  ]
+ },
+ "rockwell": {
+  "company": "Rockwell Automation",
+  "role": "AI Transformation Lead",
+  "roles": [
+   "AI Transformation Lead"
+  ]
+ },
+ "sandoz": {
+  "company": "Sandoz",
+  "role": "Automation Delivery Lead",
+  "roles": [
+   "Automation Delivery Lead"
+  ]
+ },
+ "sementor": {
+  "company": "SE Mentor",
+  "role": "Python Automation AI Developer",
+  "roles": [
+   "Python Automation AI Developer"
+  ]
+ },
+ "signant": {
+  "company": "Signant Health",
+  "role": "AI Business Automation Engineer",
+  "roles": [
+   "AI Business Automation Engineer"
+  ]
+ },
+ "sonata": {
+  "company": "Sonata",
+  "role": "AI Engineer Document Intelligence",
+  "roles": [
+   "AI Engineer Document Intelligence"
+  ]
+ },
+ "spglobal": {
+  "company": "S&P Global",
+  "role": "AI Enablement Specialist",
+  "roles": [
+   "AI Enablement Specialist"
+  ]
+ },
+ "standardchartered": {
+  "company": "Standard Chartered",
+  "role": null,
+  "roles": [
+   "Data Quality Manager",
+   "Lead AI Solutions"
+  ]
+ },
+ "statestreet": {
+  "company": "State Street",
+  "role": null,
+  "roles": [
+   "Automation Configurator",
+   "Lead Engineer Agentic AI RPA"
+  ]
+ },
+ "sword": {
+  "company": "Sword",
+  "role": "Senior AI Engineer",
+  "roles": [
+   "Senior AI Engineer"
+  ]
+ },
+ "temus": {
+  "company": "Temus",
+  "role": "AI Engineering Lead",
+  "roles": [
+   "AI Engineering Lead"
+  ]
+ },
+ "unitedknowledge": {
+  "company": "United Knowledge",
+  "role": "Data Quality Manager",
+  "roles": [
+   "Data Quality Manager"
+  ]
+ },
+ "ust": {
+  "company": "UST",
+  "role": null,
+  "roles": [
+   "AI LLM Engineer",
+   "Data AI Automation Lead",
+   "GenAI Lead",
+   "PMO AI Lead"
+  ]
+ },
+ "vaisesika": {
+  "company": "Vaisesika",
+  "role": "AI Solutions Enablement Lead",
+  "roles": [
+   "AI Solutions Enablement Lead"
+  ]
+ },
+ "veeva": {
+  "company": "Veeva",
+  "role": "Team Lead Data Operations",
+  "roles": [
+   "Team Lead Data Operations"
+  ]
+ },
+ "vip": {
+  "company": "VIP",
+  "role": "AI CoE Head",
+  "roles": [
+   "AI CoE Head"
+  ]
+ },
+ "vml": {
+  "company": "VML",
+  "role": "Automation Tooling Engineer",
+  "roles": [
+   "Automation Tooling Engineer"
+  ]
+ },
+ "yougotagift": {
+  "company": "YOUGotaGift",
+  "role": "AI Automation Engineer",
+  "roles": [
+   "AI Automation Engineer"
+  ]
+ },
+ "zoominfo": {
+  "company": "ZoomInfo",
+  "role": "Senior Software Engineer Crawler",
+  "roles": [
+   "Senior Software Engineer Crawler"
+  ]
+ },
+ "zurich": {
+  "company": "Zurich",
+  "role": "Senior Manager AI Ops",
+  "roles": [
+   "Senior Manager AI Ops"
+  ]
+ }
+}
