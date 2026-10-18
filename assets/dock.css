@@ -31,13 +31,8 @@
 .dock-now{display:none;font:500 12px var(--f-mono);color:var(--band-ink);padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:42vw}
 .dock-now i{font-style:normal;color:var(--band-muted)}
 @media (max-width:1020px){.dock-links a{padding:8px 9px;font-size:11px}}
-@media (max-width:860px){
-  .dock{top:auto;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translate(-50%,140%)}
-  .dock.show{transform:translate(-50%,0)}
-  .dock::after{bottom:auto;top:-1px}
-  .dock-links,.dock-sep,.dock-btn .lbl,.dock-btn kbd{display:none}
-  .dock-now{display:block}
-}
+/* Phone: the pill is swapped for a native-style bottom tab bar (see .tabs below) */
+@media (max-width:860px){.dock{display:none!important}}
 @media (prefers-reduced-motion:reduce){.dock,.dock-pill{transition:opacity .2s}}
 
 /* jump-to palette */
@@ -69,4 +64,25 @@
 .dock-btn,.dock-btn .lbl{white-space:nowrap}
 @media (max-width:860px){.totop{display:none!important}}
 @media (max-width:560px){.jump-list a small{display:none}}
-@media (max-width:860px){.dock{background:color-mix(in srgb,var(--band) 90%,transparent)}.dock-now i{display:none}}
+
+/* ---------- phone tab bar ----------
+   Solid, full width, thumb height. Hides while you read down the page, comes back the moment you scroll up. */
+.tabs{display:none}
+@media (max-width:860px){
+  .tabs{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:60;
+    display:grid;grid-template-columns:repeat(5,1fr);align-items:stretch;height:62px;padding:5px;border-radius:20px;
+    background:var(--band);border:1px solid var(--band-line);color:var(--band-muted);
+    box-shadow:0 14px 34px -10px rgba(0,0,0,.55),0 2px 6px rgba(0,0,0,.18);
+    transform:translateY(0);transition:transform .32s cubic-bezier(.2,.8,.2,1),opacity .25s ease}
+  .tabs.tuck{transform:translateY(calc(100% + 24px + env(safe-area-inset-bottom,0px)));opacity:0;pointer-events:none}
+  .tabs a,.tabs button{-webkit-tap-highlight-color:transparent;appearance:none;background:none;border:0;margin:0;padding:0;cursor:pointer;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:0;
+    color:inherit;text-decoration:none;font:600 10px/1 var(--f-mono);letter-spacing:.04em;text-transform:uppercase;border-radius:14px}
+  .tabs .ti{width:46px;height:28px;border-radius:999px;display:grid;place-items:center;transition:background .25s,color .25s}
+  .tabs svg{width:20px;height:20px}
+  .tabs .on{color:var(--band-ink)}
+  .tabs .on .ti{background:var(--band-tint2);color:var(--band-accent);box-shadow:inset 0 0 0 1px var(--band-line)}
+  .tabs a:active .ti,.tabs button:active .ti{transform:scale(.92)}
+  body{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+}
+@media (max-width:860px) and (prefers-reduced-motion:reduce){.tabs{transition:opacity .2s}.tabs.tuck{transform:none}}

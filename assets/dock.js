@@ -100,6 +100,33 @@ d.addEventListener('keydown',function(e){
   if((e.key==='k'||e.key==='K')&&(e.metaKey||e.ctrlKey)){e.preventDefault();jp.classList.contains('open')?close():open()}
   else if(e.key==='/'&&!typing&&!jp.classList.contains('open')){e.preventDefault();open()}
 });
+
+/* ---------- phone tab bar ---------- */
+var TI={home:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20h5v-6h4v6h5V9.5"/></svg>',
+  work:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg>',
+  blog:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16v4Z"/><path d="m13.5 6.5 4 4"/></svg>'};
+var tabs=d.createElement('nav');tabs.className='tabs';tabs.setAttribute('aria-label','Site');
+function tab(k,href,lbl,ic){return '<a href="'+href+'" data-t="'+k+'"><span class="ti">'+ic+'</span>'+lbl+'</a>'}
+tabs.innerHTML=tab('home','/','Home',TI.home)+tab('projects','/projects/','Projects',TI.work)+tab('blog','/blog/','Writing',TI.blog)+
+  '<button type="button" data-t="jump" aria-label="Search pages and sections"><span class="ti">'+ICON.search+'</span>Search</button>'+
+  (cord?'<button type="button" data-t="theme" aria-label="Switch theme"><span class="ti">'+ICON.sun+'</span>Theme</button>':'<a href="#contact" data-t="contact"><span class="ti">@</span>Contact</a>');
+d.body.appendChild(tabs);
+var tabEls=[].slice.call(tabs.querySelectorAll('[data-t]'));
+function tabOn(k){tabEls.forEach(function(t){var on=t.getAttribute('data-t')===k;t.classList.toggle('on',on);if(t.tagName==='A'){on?t.setAttribute('aria-current','page'):t.removeAttribute('aria-current')}})}
+tabOn(pageKey||'home');
+var _set=setActive;setActive=function(k,l){_set(k,l);tabOn(k==='blog'||k==='projects'?k:(pageKey||'home'))};
+tabs.querySelector('[data-t="jump"]').addEventListener('click',open);
+var tb=tabs.querySelector('[data-t="theme"]');if(tb)tb.addEventListener('click',function(){cord.click()});
+if(home){var hm=tabs.querySelector('[data-t="home"]');hm.addEventListener('click',function(e){e.preventDefault();scrollTo({top:0,behavior:reduce?'auto':'smooth'})})}
+/* tuck away while reading down, return on any scroll up, near the top and at the very end */
+var lastY=scrollY,acc=0;
+addEventListener('scroll',function(){
+  var y=scrollY,dy=y-lastY;lastY=y;
+  if((dy>0)!==(acc>0))acc=0;acc+=dy;
+  var end=y+innerHeight>=de.scrollHeight-40;
+  if(y<120||end||acc<-12)tabs.classList.remove('tuck');
+  else if(acc>24&&!jp.classList.contains('open'))tabs.classList.add('tuck');
+},{passive:true});
 /* the header menu gets the same shortcut button, so it's discoverable before scrolling */
 var tn=d.querySelector('.topbar .topnav');
 if(tn){var b=d.createElement('a');b.href='#';b.setAttribute('role','button');b.setAttribute('aria-label','Jump to a page or section');b.textContent=mac?'⌘K':'Ctrl K';b.className='topnav-k';
