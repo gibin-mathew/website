@@ -29,7 +29,7 @@
 <link rel="stylesheet" href="/assets/base.css">
 <link rel="stylesheet" href="/assets/pages.css">
 <link rel="stylesheet" href="/assets/dock.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://gibin.in/projects/config-driven-rpa/#article", "headline": "Config-driven RPA: one engine, 70+ portals", "description": "Case study: one Playwright engine, a JSON config per portal. 3,000+ submissions across 70+ application portals at 94% success, 1,200+ hours saved.", "url": "https://gibin.in/projects/config-driven-rpa/", "mainEntityOfPage": "https://gibin.in/projects/config-driven-rpa/", "datePublished": "2026-10-18", "dateModified": "2026-10-18", "author": {"@type": "Person", "@id": "https://gibin.in/#person", "name": "Gibin Mathew", "url": "https://gibin.in/", "jobTitle": "Data and Automation Manager", "sameAs": ["https://www.linkedin.com/in/gibinm"]}, "publisher": {"@id": "https://gibin.in/#person"}, "image": "https://gibin.in/og/config-driven-rpa.jpg", "inLanguage": "en", "keywords": "config-driven RPA, config driven RPA Playwright, RPA case study, web form automation, Playwright RPA, application portal automation", "wordCount": 1286, "isPartOf": {"@id": "https://gibin.in/#website"}, "about": [{"@type": "Thing", "name": "Robotic process automation"}, {"@type": "Thing", "name": "Playwright"}, {"@type": "Thing", "name": "Web automation"}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://gibin.in/"}, {"@type": "ListItem", "position": 2, "name": "Projects", "item": "https://gibin.in/projects/"}, {"@type": "ListItem", "position": 3, "name": "Config-driven RPA: one engine, 70+ portals", "item": "https://gibin.in/projects/config-driven-rpa/"}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://gibin.in/projects/config-driven-rpa/#article", "headline": "Config-driven RPA: one engine, 70+ portals", "description": "Case study: one Playwright engine, a JSON config per portal. 3,000+ submissions across 70+ application portals at 94% success, 1,200+ hours saved.", "url": "https://gibin.in/projects/config-driven-rpa/", "mainEntityOfPage": "https://gibin.in/projects/config-driven-rpa/", "datePublished": "2026-10-18", "dateModified": "2026-10-18", "author": {"@type": "Person", "@id": "https://gibin.in/#person", "name": "Gibin Mathew", "url": "https://gibin.in/", "jobTitle": "Data and Automation Manager", "sameAs": ["https://www.linkedin.com/in/gibinm"]}, "publisher": {"@id": "https://gibin.in/#person"}, "image": "https://gibin.in/og/config-driven-rpa.jpg", "inLanguage": "en", "keywords": "config-driven RPA, config driven RPA Playwright, RPA case study, web form automation, Playwright RPA, application portal automation", "wordCount": 1270, "isPartOf": {"@id": "https://gibin.in/#website"}, "about": [{"@type": "Thing", "name": "Robotic process automation"}, {"@type": "Thing", "name": "Playwright"}, {"@type": "Thing", "name": "Web automation"}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://gibin.in/"}, {"@type": "ListItem", "position": 2, "name": "Projects", "item": "https://gibin.in/projects/"}, {"@type": "ListItem", "position": 3, "name": "Config-driven RPA: one engine, 70+ portals", "item": "https://gibin.in/projects/config-driven-rpa/"}]}]}</script>
 <script>document.documentElement.classList.add('js');try{var gmT=localStorage.getItem('gm-theme');if(gmT==='light'||gmT==='dark')document.documentElement.setAttribute('data-theme',gmT)}catch(e){}</script>
 </head>
 <body>
@@ -67,7 +67,7 @@
       <div class="ff"><label>Given name<span class="in done">Asha</span></label><label>Family name<span class="in done">Rao</span></label><label>Date of birth<span class="in done">14/07/1999</span></label><label>Country<span class="in done">India</span></label><label>One-time code<span class="in done">done by a person</span></label></div>
     </div>
   </div>
-  <div class="fig-f"><span data-status>Portal A submitted, same engine</span><span>sample data</span></div>
+  <div class="fig-f"><span data-status>Portal A submitted, engine unchanged</span><span>sample data</span></div>
 </div>
     </div>
   </div>
@@ -83,7 +83,7 @@
 <p>I'd done this the other way before. At S&amp;P Global I automated 40+ state portals with one script per site. It saved close to 3 FTE of work, but every redesign on any one of those sites meant a code fix, a test and another deployment. With one bot per site you don't maintain one automation. You maintain forty.</p>
 
 <h2 id="the-idea-describe-the-portal-don-t-program-it">The idea: describe the portal, don't program it</h2>
-<p>So we flipped it. There's one engine that knows how to read and fill a web form. Each portal is a config file that says where each field lives, what value goes in it, and what "done" looks like. Adding a portal mostly means writing a config. A portal changes its layout? Usually you update its config, not the engine.</p>
+<p>So we flipped it. There's one engine that knows how to read and fill a web form. Each portal is a config file that says where each field lives, what value goes in it, and what "done" looks like. Adding a portal means writing a config. A portal changes its layout? Update the config. The engine doesn't move.</p>
 <p>Here's the shape of a config, heavily simplified. The real ones are longer, but they're still data.</p>
 <pre><code>{
   <span class="k">"portal"</span>: <span class="s">"portal-b"</span>,
@@ -153,12 +153,12 @@
 <p>Success rate is successful jobs divided by successful plus failed. If an operator stops a job on purpose, maybe because the record was wrong, that isn't a platform failure and it doesn't count against us. It doesn't count for us either. I explain the trade-off, with the numbers both ways, in <a href="/blog/rpa-success-rate/">how I measure RPA success rate</a>.</p>
 
 <h2 id="results">Results</h2>
-<p>As of October 2026 the engine has handled 3,000+ submissions across 70+ portals at a 94% success rate. Coverage grew to 71 configured portals while the engine stayed one codebase. By hand a submission takes about 30 minutes. The bot's own time averages about 5 minutes per job. Together that's 1,200+ hours of manual work handed back to the teams.</p>
+<p>As of October 2026 the engine has handled 3,000+ submissions across 70+ portals at a 94% success rate. Coverage grew to 71 configured portals while the engine stayed one codebase. Not one of those portals needed a redeploy to add. By hand a submission takes about 30 minutes. The bot's own time averages about 5 minutes per job. Together that's 1,200+ hours of manual work handed back to the teams.</p>
 <p>That 5 minutes is bot time only. The wall-clock time of a job is longer, because it includes the pauses where a person enters a code or gets documents ready. I don't fold those pauses into the bot's number, and I don't count them as savings.</p>
 
 <h2 id="what-i-d-tell-someone-building-this">What I'd tell someone building this</h2>
 <ul>
-<li><strong>Logic goes in the engine, differences go in the config.</strong> If you're writing site-specific code, ask why. Portal configs live in MongoDB and are edited in our own workflow editor, so config changes never need a redeploy. A handful of unusual portals did push us to add general capabilities to the engine, mostly around unusual sign-ins. We keep that portal-specific code small, and the engine now takes those startup steps as config too.</li>
+<li><strong>Logic goes in the engine, differences go in the config.</strong> If you're writing site-specific code, ask why. Every portal we run is a config, stored in MongoDB and edited in our own workflow editor. Not one of them needed a redeploy to add, and config changes never need one.</li>
 <li><strong>Make "done" explicit.</strong> A bot that can't tell success from a silent failure is worse than no bot.</li>
 <li><strong>Guard the line.</strong> The first "quick special case" in the engine is how you end up back at forty scripts. Holding that line was most of my job.</li>
 </ul>
