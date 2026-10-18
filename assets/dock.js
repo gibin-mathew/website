@@ -9,7 +9,7 @@ var NAV=[['approach','Approach',h('approach')],['projects','Projects','/projects
   ['recommendations','Recommendations',h('recommendations')],['career','Career',h('career')],['contact','Contact','#contact']];
 
 var JUMP=[
- ['Sections',[['Approach','Three rules I don\'t break',h('approach')],['Case studies','Short versions on the homepage',h('work')],['By the numbers','FTE, money and hours',h('numbers')],['Recommendations','15, word for word',h('recommendations')],['Career','Edvoy and S&P Global',h('career')],['Contact','Email and LinkedIn','#contact']]],
+ ['Sections',[['Approach','Three rules I don\'t break',h('approach')],['Case studies','Short versions on the homepage',h('work')],['By the numbers','FTE, money and hours',h('numbers')],['Recommendations','15, word for word',h('recommendations')],['Career','Edvoy and S&P Global',h('career')],['Chess','Solve a mate in 2 from my games',h('chess')],['Contact','Email and LinkedIn','#contact']]],
  ['Projects',[['All projects','RPA and data automation portfolio','/projects/'],['Config-driven RPA','70+ portals · 94% success','/projects/config-driven-rpa/'],['Token sort matching','Website ↔ database reconciliation','/projects/token-sort-matching/'],['Markdown Extractor','Agent-written scrapers','/projects/markdown-extractor/'],['Subject Validator','AI drafts, a person signs off','/projects/subject-validator/'],['Fees Validator','Check once, apply everywhere','/projects/fees-validator/'],['S&P Global automation','168 FTE · 3.4M+ websites','/projects/sp-global-automation/']]],
  ['Writing',[['All writing','Notes from automation in production','/blog/'],['Config-driven RPA with Playwright','Why I stopped writing one bot per website','/blog/config-driven-rpa-playwright/'],['RPA success rate','94% vs ~90%, same jobs','/blog/rpa-success-rate/'],['Token sort matching, explained','When you don\'t need a threshold','/blog/token-sort-matching/'],['Playwright vs Blue Prism and UiPath','When code-first RPA wins','/blog/playwright-vs-rpa-platforms/'],['Human-in-the-loop RPA','OTPs, CAPTCHAs and uploads','/blog/human-in-the-loop-rpa/'],['LLM data validation','What the AI may do alone','/blog/llm-data-validation/']]],
  ['Elsewhere',[['LinkedIn','linkedin.com/in/gibinm','https://www.linkedin.com/in/gibinm'],['Email','gibin.mat96@gmail.com','mailto:gibin.mat96@gmail.com']]]];
@@ -56,8 +56,8 @@ addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',fun
 
 /* homepage: follow the section in view */
 if(home&&'IntersectionObserver' in window){
-  var map={approach:'approach',work:'',numbers:'',recommendations:'recommendations',writing:'blog',career:'career',contact:'contact'};
-  var names={work:'Case studies',numbers:'By the numbers',writing:'Writing'};
+  var map={approach:'approach',work:'',numbers:'',recommendations:'recommendations',writing:'blog',career:'career',chess:'',contact:'contact'};
+  var names={work:'Case studies',numbers:'By the numbers',writing:'Writing',chess:'Chess'};
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var id=e.target.id;setActive(map[id],names[id])}})},{rootMargin:'-45% 0px -50% 0px'});
   Object.keys(map).forEach(function(id){var el=d.getElementById(id);if(el)io.observe(el)});
 }else if('IntersectionObserver' in window){

@@ -748,6 +748,7 @@ html,body{overflow-x:clip}
 </script>
 <script>document.documentElement.classList.add('js');try{var gmT=localStorage.getItem('gm-theme');if(gmT==='light'||gmT==='dark')document.documentElement.setAttribute('data-theme',gmT)}catch(e){}</script>
 <link rel="stylesheet" href="/assets/dock.css">
+<link rel="stylesheet" href="/assets/chess-corner.css">
 </head>
 <body>
 
@@ -1404,6 +1405,30 @@ html,body{overflow-x:clip}
       </div>
     </div>
   </section>
+
+  <section class="reveal block" id="chess">
+    <div class="container chess-wrap">
+      <div>
+        <span class="label">Off the clock</span>
+        <h2 class="h-sec">I play chess. Mostly, I solve <span class="serif">puzzles.</span></h2>
+        <p class="intro">Same itch as work: a messy position and one clean answer. Both of these finishes are from my own games on chess.com. White to move, mate in two. Your turn.</p>
+        <dl class="cstats">
+          <div><dt>Games played</dt><dd data-chess="games">4,581</dd></div>
+          <div><dt>Best puzzle rating</dt><dd data-chess="puzzle">1,496</dd></div>
+          <div><dt>Playing since</dt><dd data-chess="since">Feb 2022</dd></div>
+          <div><dt>Last played</dt><dd data-chess="seen">Recently</dd></div>
+        </dl>
+        <div class="clinks"><a href="https://www.chess.com/member/gibinmathew" target="_blank" rel="noopener">Challenge me on chess.com ↗</a></div>
+        <p class="csrc">Numbers load live from the public chess.com API.</p>
+      </div>
+      <div class="cplay">
+        <div class="cp-head"><span class="cp-turn">Puzzle <b data-num>1</b> / 2 · White to move</span><span>Mate in 2</span></div>
+        <div class="czb" role="grid" aria-label="Chess puzzle board. Tap a piece, then a square."></div>
+        <div class="cp-status" aria-live="polite">White to move. Find the move that forces mate in two.</div>
+        <div class="cp-ctl"><button type="button" data-hint>Hint</button><button type="button" data-reset>Reset</button><button type="button" class="primary" data-next>Next puzzle</button><a data-game href="https://www.chess.com/game/live/40686592083" target="_blank" rel="noopener">See the game ↗</a></div>
+      </div>
+    </div>
+  </section>
 </main>
 
 
@@ -1895,6 +1920,7 @@ document.getElementById('copyBtn').addEventListener('click',function(){
 
 </script>
 <script src="/assets/dock.js" defer></script>
+<script type="module" src="/assets/chess-corner.js"></script>
 <script>/* GoatCounter: privacy-friendly stats, live domain only. Counts once, then tidies ?ref/utm tags out of the address bar. */
 window.goatcounter={no_onload:true};
 (function(){if(!/(^|\.)gibin\.in$/.test(location.hostname))return;var g=document.createElement('script');g.async=true;g.src='https://gc.zgo.at/count.js';g.setAttribute('data-goatcounter','https://gibin.goatcounter.com/count');
