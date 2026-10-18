@@ -27,7 +27,7 @@
 <p>I'd done this the other way before. At S&amp;P Global I automated 40+ state portals with one script per site. It saved close to 3 FTE of work, but every redesign on any one of those sites meant a code fix, a test and another deployment. With one bot per site you don't maintain one automation. You maintain forty.</p>
 
 <h2>The idea: describe the portal, don't program it</h2>
-<p>So we flipped it. There's one engine that knows how to read and fill a web form. Each portal is a config file that says where each field lives, what value goes in it, and what "done" looks like. Adding a portal means writing a config. A portal changes its layout? Update the config. The engine doesn't move.</p>
+<p>So we flipped it. There's one engine that knows how to read and fill a web form. Each portal is a config file that says where each field lives, what value goes in it, and what "done" looks like. Adding a portal mostly means writing a config. A portal changes its layout? Usually you update its config, not the engine.</p>
 <p>Here's the shape of a config, heavily simplified. The real ones are longer, but they're still data.</p>
 <pre><code>{
   <span class="k">"portal"</span>: <span class="s">"portal-b"</span>,
@@ -75,7 +75,7 @@
 
 <h2>What I'd tell someone building this</h2>
 <ul>
-<li><strong>Logic goes in the engine, differences go in the config.</strong> If you're writing site-specific code, ask why. Almost every portal we run is config only. The rare exception, like an unusual sign-in handshake, is kept small and clearly marked.</li>
+<li><strong>Logic goes in the engine, differences go in the config.</strong> If you're writing site-specific code, ask why. Most of our portals run on config alone. A minority still carry a little portal-specific code in the engine, mostly to recognise when an unusual sign-in has finished. The engine now accepts those startup steps as config too, which is where they belong.</li>
 <li><strong>Make "done" explicit.</strong> A bot that can't tell success from a silent failure is worse than no bot.</li>
 <li><strong>Guard the line.</strong> The first "quick special case" in the engine is how you end up back at forty scripts. Holding that line was most of my job.</li>
 </ul>

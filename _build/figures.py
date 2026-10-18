@@ -21,7 +21,7 @@ HERO["config"] = """
       <div class="ff"><label>Given name<span class="in done">Asha</span></label><label>Family name<span class="in done">Rao</span></label><label>Date of birth<span class="in done">14/07/1999</span></label><label>Country<span class="in done">India</span></label><label>One-time code<span class="in done">done by a person</span></label></div>
     </div>
   </div>
-  <div class="fig-f"><span data-status>Portal A submitted, engine unchanged</span><span>sample data</span></div>
+  <div class="fig-f"><span data-status>Portal A submitted, same engine</span><span>sample data</span></div>
 </div>"""
 
 HERO["tokens"] = """
@@ -133,7 +133,7 @@ HERO["versus"] = """
       <li class="done">Write a config</li><li class="done">Dry run</li><li class="done">Live</li></ol>
       <div class="meter"><i style="width:100%"></i></div></div>
   </div>
-  <div class="fig-f"><span>the engine never moves</span><span>illustration</span></div>
+  <div class="fig-f"><span>logic stays in one engine</span><span>illustration</span></div>
 </div>"""
 
 HERO["gate"] = """

@@ -838,11 +838,11 @@ html,body{overflow-x:clip}
               <pre class="cf-code" id="cf-code" aria-label="Example portal configuration"></pre>
               <div class="cf-side">
                 <div class="cf-stat"><span>portals live</span><b id="cf-live">70</b></div>
-                <div class="cf-stat"><span>bot code changed</span><b>0 lines</b></div>
-                <div class="cf-stat"><span>to add a portal</span><b>config only</b></div>
+                <div class="cf-stat"><span>engines</span><b>1</b></div>
+                <div class="cf-stat"><span>to add a portal</span><b>mostly config</b></div>
               </div>
             </div>
-            <p class="dm-note">A new portal is described, not programmed. That's how coverage reached 71 portals without the codebase growing.</p>
+            <p class="dm-note">A new portal is mostly described, not programmed. That's how one engine reached 71 portals. A few with unusual sign-ins still carry a little portal-specific code.</p>
           </div>
           <div class="dm-scene" data-v="rpa" data-s="3" aria-hidden="true">
             <div class="lg-wrap">
@@ -872,7 +872,7 @@ html,body{overflow-x:clip}
           <div class="dm-scene" data-v="fees" data-s="1" aria-hidden="true"></div>
           <div class="dm-scene" data-v="fees" data-s="2" aria-hidden="true"></div>
           </div>
-        <figcaption class="dm-foot"><span id="dm-status">Same data, three different forms, no code changes.</span><span>sample data</span></figcaption>
+        <figcaption class="dm-foot"><span id="dm-status">Same data, three different forms, one engine.</span><span>sample data</span></figcaption>
       </figure>
     </div>
 
@@ -896,7 +896,7 @@ html,body{overflow-x:clip}
       <div class="principles">
         <div class="pr">
           <h3>Configuration beats code</h3>
-          <p>When the hard part is variety (70+ web portals, catalogue data that won't sit still), I'd rather the system absorb new cases as data. Adding a new portal shouldn't need a deployment.</p>
+          <p>When the hard part is variety (70+ web portals, catalogue data that won't sit still), I'd rather the system absorb new cases as data. Adding a new portal should mostly be config, not a new bot.</p>
           <span class="from">Seen in: portal automation</span>
         </div>
         <div class="pr">
@@ -910,7 +910,7 @@ html,body{overflow-x:clip}
           <span class="from">Seen in: portal automation</span>
         </div>
       </div>
-      <script>(function(){var P=[["rpa", "Configuration beats code", "When the hard part is variety, I'd rather the system absorb new cases as data. That's how one engine covers 71 portals. The 72nd? Config, not a deployment.", "portal automation"], ["rpa", "Measure what the system controls", "If a user cancels a job, that's their call, so it doesn't count as a platform failure. That's why I can stand behind the 94%.", "portal automation"], ["judg", "Put people where judgment lives", "OTPs, CAPTCHAs, uploads and AI drafts go to a person, on purpose. Automation earns trust when it knows when to stop.", "AI validators, portal automation"], ["judg", "Only sure things skip the queue", "If a subject matches our master list exactly, it publishes on its own. Anything less, and a person sees the closest match and makes the call. Close enough isn't good enough.", "Subject Validator"], ["data", "Fix the data before it travels", "Names, dates, country codes and phone numbers get cleaned once, in Python, before any portal sees them. Everything after that gets cheaper, simpler and a lot less surprising for the people who depend on it.", "portal automation, Intake Watcher"], ["mon", "Watch for the quiet failures", "Scrapers don't crash when a site changes its layout. They just quietly collect the wrong thing, sometimes for days, and nobody notices until the numbers look off. So a monitor compares every site with its last snapshot and pings Slack.", "website change monitoring"], ["match", "Match on words, not word order", "\"MSc Data Science\" and \"Data Science (MSc)\"? Same course. Strip it, sort it, then compare, and they line up. That alone cut our manual reconciliation by about 60%.", "Intake Watcher"], ["md", "Give every source the same shape", "Every website has its own layout. Each gets its own agent-written scraper, and every one hands back the same thing: clean Markdown. Whatever reads it next only has to learn one format.", "Markdown Extractor"], ["judg", "Check it once, apply it everywhere", "When one fee is right for every full-time intake, nobody should type it in again for each one. Verify it once, apply it to all of them, and keep a name on it.", "Fees Validator"], ["crawl", "Simple and huge belongs to a crawler", "Easy task, 3.4 million times over? Not a team's job. That's how about 160 FTE of research became one Python crawler.", "S&P Global crawler"]];var g={};P.forEach(function(p){(g[p[0]]=g[p[0]]||[]).push(p)});var ks=Object.keys(g).sort(function(){return Math.random()-.5}).slice(0,3);var box=document.currentScript.previousElementSibling;function e(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML}box.innerHTML=ks.map(function(k){var a=g[k],p=a[Math.floor(Math.random()*a.length)];return '<div class="pr"><h3>'+e(p[1])+'</h3><p>'+e(p[2])+'</p><span class="from">Seen in: '+e(p[3])+'</span></div>'}).join('')})();</script>
+      <script>(function(){var P=[["rpa", "Configuration beats code", "When the hard part is variety, I'd rather the system absorb new cases as data. That's how one engine covers 71 portals. The 72nd? Mostly config, not a new bot.", "portal automation"], ["rpa", "Measure what the system controls", "If a user cancels a job, that's their call, so it doesn't count as a platform failure. That's why I can stand behind the 94%.", "portal automation"], ["judg", "Put people where judgment lives", "OTPs, CAPTCHAs, uploads and AI drafts go to a person, on purpose. Automation earns trust when it knows when to stop.", "AI validators, portal automation"], ["judg", "Only sure things skip the queue", "If a subject matches our master list exactly, it publishes on its own. Anything less, and a person sees the closest match and makes the call. Close enough isn't good enough.", "Subject Validator"], ["data", "Fix the data before it travels", "Names, dates, country codes and phone numbers get cleaned once, in Python, before any portal sees them. Everything after that gets cheaper, simpler and a lot less surprising for the people who depend on it.", "portal automation, Intake Watcher"], ["mon", "Watch for the quiet failures", "Scrapers don't crash when a site changes its layout. They just quietly collect the wrong thing, sometimes for days, and nobody notices until the numbers look off. So a monitor compares every site with its last snapshot and pings Slack.", "website change monitoring"], ["match", "Match on words, not word order", "\"MSc Data Science\" and \"Data Science (MSc)\"? Same course. Strip it, sort it, then compare, and they line up. That alone cut our manual reconciliation by about 60%.", "Intake Watcher"], ["md", "Give every source the same shape", "Every website has its own layout. Each gets its own agent-written scraper, and every one hands back the same thing: clean Markdown. Whatever reads it next only has to learn one format.", "Markdown Extractor"], ["judg", "Check it once, apply it everywhere", "When one fee is right for every full-time intake, nobody should type it in again for each one. Verify it once, apply it to all of them, and keep a name on it.", "Fees Validator"], ["crawl", "Simple and huge belongs to a crawler", "Easy task, 3.4 million times over? Not a team's job. That's how about 160 FTE of research became one Python crawler.", "S&P Global crawler"]];var g={};P.forEach(function(p){(g[p[0]]=g[p[0]]||[]).push(p)});var ks=Object.keys(g).sort(function(){return Math.random()-.5}).slice(0,3);var box=document.currentScript.previousElementSibling;function e(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML}box.innerHTML=ks.map(function(k){var a=g[k],p=a[Math.floor(Math.random()*a.length)];return '<div class="pr"><h3>'+e(p[1])+'</h3><p>'+e(p[2])+'</p><span class="from">Seen in: '+e(p[3])+'</span></div>'}).join('')})();</script>
     </div>
   </section>
 
@@ -955,7 +955,7 @@ html,body{overflow-x:clip}
             <div class="para">
               <h4>Calls I made</h4>
               <ol class="decisions">
-                <li><div><b>New portals come in as configuration.</b><span>A new portal is added as config. Coverage grew to 71 portals while the codebase stayed the same size.</span></div></li>
+                <li><div><b>New portals come in as configuration.</b><span>A new portal is mostly added as config. Coverage grew to 71 portals on one engine. A few portals with unusual sign-ins still carry a little portal-specific code.</span></div></li>
                 <li><div><b>Clean the data once, before the bot starts.</b><span>A Python step turns raw CRM data (names, dates, country codes, phone numbers, yes/no answers) into portal-ready values. The bot never touches messy data, and missing fields show up before a run, not halfway through it.</span></div></li>
                 <li><div><b>Let the page decide which questions apply.</b><span>Portals show and hide questions based on earlier answers. Rules in the config (if this is on the page, if that step worked, repeat until the list runs out) check what's really there and skip the rest, so one config covers every branch of a form.</span></div></li>
                 <li><div><b>I designed the human steps in from day one.</b><span>OTPs and CAPTCHAs go to a person, and the bot picks up again once they're done. Trying to automate those steps would have made the whole thing fragile. Small failures, like a slow page, retry on their own with a growing wait.</span></div></li>
@@ -1653,7 +1653,7 @@ document.getElementById('copyBtn').addEventListener('click',function(){
   function rpa0(){
     var p=P[portal];tabs.forEach(function(t,j){t.classList.toggle('on',j===portal);t.setAttribute('aria-selected',j===portal?'true':'false')});
     form.classList.remove('sent');render(p,false);hl(null);bars(0,0,0);xf.textContent='config maps it';
-    say(p.name+' has its own labels and formats. Same record, no new code.');
+    say(p.name+' has its own labels and formats. Same record, same engine.');
     var t=600,total=600;p.f.forEach(function(x){total+=x[1]?(450+x[2].length*55):1900});progress(total+2200);
     T(function(){bars(17,100,total)},60);
     p.f.forEach(function(x,n){
@@ -1672,7 +1672,7 @@ document.getElementById('copyBtn').addEventListener('click',function(){
     clRows.forEach(function(r,n){T(function(){r.classList.add('on')},500+n*900);T(function(){r.classList.remove('on');r.classList.add('done');if(r.classList.contains('warn'))say('Gaps show up before the run starts, not halfway through it.')},500+n*900+550)});
     NEXT(clRows.length*900+3000)}
   var code=document.getElementById('cf-code'),live=document.getElementById('cf-live');
-  var CFG=[['c','// Portal D: new portal, no new code\n'],['p','{ '],['k','"portal"'],['p',': '],['v','"Portal D"'],['p',',\n  '],['k','"fields"'],['p',': [\n  { '],['k','"label"'],['p',': '],['v','"Given name"'],['p',',\n    '],['k','"value"'],['p',': '],['v','"name.first"'],['p',' },\n  { '],['k','"label"'],['p',': '],['v','"Date of birth"'],['p',',\n    '],['k','"format"'],['p',': '],['v','"DD/MM/YYYY"'],['p',' },\n  { '],['k','"label"'],['p',': '],['v','"Visa history"'],['p',',\n    '],['k','"show_if"'],['p',': '],['v','"on page"'],['p',' },\n  { '],['k','"label"'],['p',': '],['v','"One-time code"'],['p',',\n    '],['k','"action"'],['p',': '],['v','"ask_person"'],['p',' }\n]}']];
+  var CFG=[['c','// Portal D: a new portal, written as config\n'],['p','{ '],['k','"portal"'],['p',': '],['v','"Portal D"'],['p',',\n  '],['k','"fields"'],['p',': [\n  { '],['k','"label"'],['p',': '],['v','"Given name"'],['p',',\n    '],['k','"value"'],['p',': '],['v','"name.first"'],['p',' },\n  { '],['k','"label"'],['p',': '],['v','"Date of birth"'],['p',',\n    '],['k','"format"'],['p',': '],['v','"DD/MM/YYYY"'],['p',' },\n  { '],['k','"label"'],['p',': '],['v','"Visa history"'],['p',',\n    '],['k','"show_if"'],['p',': '],['v','"on page"'],['p',' },\n  { '],['k','"label"'],['p',': '],['v','"One-time code"'],['p',',\n    '],['k','"action"'],['p',': '],['v','"ask_person"'],['p',' }\n]}']];
   function rpa2(){code.innerHTML='';live.textContent='70';live.classList.remove('bump');say('Adding a portal means describing its form, not writing a new bot.');
     var flat=[];CFG.forEach(function(c){for(var i=0;i<c[1].length;i++)flat.push([c[0],c[1][i]])});var n=0,html='';progress(flat.length*16+3600);
     (function tick(){var k=Math.min(n+(reduce?flat.length:3),flat.length);for(;n<k;n++){var c=flat[n],ch=esc(c[1]);html+=c[0]==='p'?ch:'<span class="'+c[0]+'">'+ch+'</span>'}

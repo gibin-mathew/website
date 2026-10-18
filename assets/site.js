@@ -99,7 +99,7 @@ scenes.config=function(el){
       if(/waiting/.test(f[1])){s.push([1300,function(){var i=inp();i.textContent='done by a person';i.classList.remove('wait');i.classList.add('done')}])}}
     else{s=s.concat(typeInto({set textContent(v){inp().textContent=v}},f[1],30));s.push([120,function(){inp().classList.add('done')}])}
   });
-  s.push([300,function(){$$('.ln',pre).forEach(function(l){l.classList.remove('on')});if(st)st.textContent=p.n+' submitted, engine unchanged'}]);
+  s.push([300,function(){$$('.ln',pre).forEach(function(l){l.classList.remove('on')});if(st)st.textContent=p.n+' submitted, same engine'}]);
   s.push([2200,function(){}]);
   return s};
 
