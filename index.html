@@ -410,6 +410,8 @@ html.js .org.in .ladder li:nth-child(2)::before{transition-delay:.5s}html.js .or
 .pl-sec p{margin:0;font-size:16.5px;line-height:1.6}
 @media (prefers-reduced-motion:reduce){.pl-sec{opacity:1;transform:none;animation:none}}
 /* back to top */
+.case-link{display:inline-block;margin-top:18px;font:500 13px var(--f-mono);color:var(--accent);text-decoration:none}.case-link:hover{text-decoration:underline}
+a.card .go{font-family:var(--f-mono);font-size:12px;color:var(--accent);margin-top:auto}
 .totop{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:18px;cursor:pointer;box-shadow:0 10px 30px rgba(5,10,20,.2);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .3s ease,transform .3s ease;z-index:40}
 .totop.show{opacity:1;transform:none;pointer-events:auto}
 .totop:hover{border-color:var(--accent);color:var(--accent)}
@@ -742,7 +744,7 @@ html,body{overflow-x:clip}
 @media (max-width:520px){.ts-h{display:none}.ts-r{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.ts-r em{grid-column:1/-1}}
 </style>
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://gibin.in/#website", "url": "https://gibin.in/", "name": "Gibin Mathew", "alternateName": "gibin.in", "inLanguage": "en", "publisher": {"@id": "https://gibin.in/#person"}}, {"@type": "ProfilePage", "@id": "https://gibin.in/#profile", "url": "https://gibin.in/", "name": "Gibin Mathew | RPA & Workflow Automation Manager, Chennai", "isPartOf": {"@id": "https://gibin.in/#website"}, "mainEntity": {"@id": "https://gibin.in/#person"}, "primaryImageOfPage": {"@id": "https://gibin.in/#photo"}, "dateModified": "2026-10-14T01:15:00+05:30", "inLanguage": "en"}, {"@type": "Person", "@id": "https://gibin.in/#person", "name": "Gibin Mathew", "givenName": "Gibin", "familyName": "Mathew", "alternateName": ["Gibin", "Gibin M", "gibinm"], "url": "https://gibin.in/", "email": "mailto:gibin.mat96@gmail.com", "image": {"@type": "ImageObject", "@id": "https://gibin.in/#photo", "url": "https://gibin.in/gibin-mathew.jpg", "contentUrl": "https://gibin.in/gibin-mathew.jpg", "width": 1200, "height": 1200, "caption": "Gibin Mathew, RPA and workflow automation manager in Chennai"}, "jobTitle": "Data and Automation Manager", "description": "RPA and workflow automation manager in Chennai, India. Builds config-driven RPA, web automation, data pipelines and AI-assisted data validation. Previously Senior Automation Specialist at S&P Global Market Intelligence.", "hasOccupation": {"@type": "Occupation", "name": "Automation Manager", "alternateName": ["RPA Manager", "RPA Lead", "Automation Manager", "Intelligent Automation Lead", "Workflow Automation Engineer", "Workflow Automation Lead", "AI Automation Manager", "Automation and AI Enablement Manager", "AI Delivery Manager", "AI Engineering Manager", "Data Engineering Manager", "Engineering Manager, Data and AI", "Data Operations and Automation Manager", "Technology Automation Lead", "Digital Transformation Lead"], "occupationLocation": {"@type": "City", "name": "Chennai"}, "skills": "RPA, workflow automation, web automation, data engineering, ETL, Python, Playwright, AI-assisted validation"}, "worksFor": {"@type": "Organization", "name": "Edvoy", "url": "https://edvoy.com"}, "address": {"@type": "PostalAddress", "addressLocality": "Chennai", "addressRegion": "Tamil Nadu", "addressCountry": "IN"}, "homeLocation": {"@type": "Place", "name": "Chennai, India"}, "alumniOf": [{"@type": "CollegeOrUniversity", "name": "Bangalore University"}, {"@type": "Organization", "name": "S&P Global Market Intelligence"}], "hasCredential": {"@type": "EducationalOccupationalCredential", "name": "DSA & System Design", "credentialCategory": "Certificate of completion", "recognizedBy": {"@type": "Organization", "name": "HeyCoach"}}, "award": ["Essential Excellence Data Award, S&P Global (2020)", "Breakthrough Achievement Award, S&P Global (2019)", "Rising Star, S&P Global (2018)"], "knowsAbout": ["Robotic Process Automation", "RPA", "Config-driven RPA", "Workflow automation", "Intelligent automation", "Process automation", "Web automation", "Web scraping", "Data engineering", "ETL", "Data pipelines", "Data validation", "Data quality", "AI-assisted data validation", "LLM workflows", "Generative AI in production", "Python", "Playwright", "Selenium", "Node.js", "FastAPI", "MongoDB", "RabbitMQ", "Redis", "Docker", "AWS", "Blue Prism", "Appian", "OCR", "Team leadership"], "sameAs": ["https://www.linkedin.com/in/gibinm", "https://github.com/gibin-mathew"]}]}
+{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://gibin.in/#website", "url": "https://gibin.in/", "name": "Gibin Mathew", "alternateName": "gibin.in", "inLanguage": "en", "publisher": {"@id": "https://gibin.in/#person"}}, {"@type": "ProfilePage", "@id": "https://gibin.in/#profile", "url": "https://gibin.in/", "name": "Gibin Mathew | RPA & Workflow Automation Manager, Chennai", "isPartOf": {"@id": "https://gibin.in/#website"}, "mainEntity": {"@id": "https://gibin.in/#person"}, "primaryImageOfPage": {"@id": "https://gibin.in/#photo"}, "dateModified": "2026-10-18T21:00:00+05:30", "inLanguage": "en"}, {"@type": "Person", "@id": "https://gibin.in/#person", "name": "Gibin Mathew", "givenName": "Gibin", "familyName": "Mathew", "alternateName": ["Gibin", "Gibin M", "gibinm"], "url": "https://gibin.in/", "email": "mailto:gibin.mat96@gmail.com", "image": {"@type": "ImageObject", "@id": "https://gibin.in/#photo", "url": "https://gibin.in/gibin-mathew.jpg", "contentUrl": "https://gibin.in/gibin-mathew.jpg", "width": 1200, "height": 1200, "caption": "Gibin Mathew, RPA and workflow automation manager in Chennai"}, "jobTitle": "Data and Automation Manager", "description": "RPA and workflow automation manager in Chennai, India. Builds config-driven RPA, web automation, data pipelines and AI-assisted data validation. Previously Senior Automation Specialist at S&P Global Market Intelligence.", "hasOccupation": {"@type": "Occupation", "name": "Automation Manager", "alternateName": ["RPA Manager", "RPA Lead", "Automation Manager", "Data Engineering Manager", "Data Operations and Automation Manager"], "occupationLocation": {"@type": "City", "name": "Chennai"}, "skills": "RPA, workflow automation, web automation, data engineering, ETL, Python, Playwright, AI-assisted validation"}, "worksFor": {"@type": "Organization", "name": "Edvoy", "url": "https://edvoy.com"}, "address": {"@type": "PostalAddress", "addressLocality": "Chennai", "addressRegion": "Tamil Nadu", "addressCountry": "IN"}, "homeLocation": {"@type": "Place", "name": "Chennai, India"}, "alumniOf": [{"@type": "CollegeOrUniversity", "name": "Bangalore University"}, {"@type": "Organization", "name": "S&P Global Market Intelligence"}], "hasCredential": {"@type": "EducationalOccupationalCredential", "name": "DSA & System Design", "credentialCategory": "Certificate of completion", "recognizedBy": {"@type": "Organization", "name": "HeyCoach"}}, "award": ["Essential Excellence Data Award, S&P Global (2020)", "Breakthrough Achievement Award, S&P Global (2019)", "Rising Star, S&P Global (2018)"], "knowsAbout": ["Robotic Process Automation", "RPA", "Config-driven RPA", "Workflow automation", "Intelligent automation", "Process automation", "Web automation", "Web scraping", "Data engineering", "ETL", "Data pipelines", "Data validation", "Data quality", "AI-assisted data validation", "LLM workflows", "Generative AI in production", "Python", "Playwright", "Selenium", "Node.js", "FastAPI", "MongoDB", "RabbitMQ", "Redis", "Docker", "AWS", "Blue Prism", "Appian", "OCR", "Team leadership"], "sameAs": ["https://www.linkedin.com/in/gibinm", "https://github.com/gibin-mathew"], "subjectOf": {"@type": "CollectionPage", "url": "https://gibin.in/projects/", "name": "RPA and data automation portfolio"}}]}
 </script>
 <script>document.documentElement.classList.add('js');try{var gmT=localStorage.getItem('gm-theme');if(gmT==='light'||gmT==='dark')document.documentElement.setAttribute('data-theme',gmT)}catch(e){}</script>
 </head>
@@ -756,7 +758,8 @@ html,body{overflow-x:clip}
       <a class="mark" href="#top" id="top">GM<span>.</span></a>
       <nav class="topnav" aria-label="Sections">
         <a href="#approach">Approach</a>
-        <a href="#work">Case studies</a>
+        <a href="/projects/">Projects</a>
+        <a href="/blog/">Writing</a>
         <a href="#recommendations">Recommendations</a>
         <a href="#career">Career</a>
         <a href="#contact">Contact</a>
@@ -913,6 +916,7 @@ html,body{overflow-x:clip}
     <div class="container">
       <span class="label">Case studies</span>
       <h2 class="h-sec">What I've built, and why it's built that way</h2>
+      <p class="intro">Short versions below. Each has a longer write-up in the <a href="/projects/">RPA and data automation portfolio</a>.</p>
 
       <div class="cases">
 
@@ -927,6 +931,7 @@ html,body{overflow-x:clip}
               <div><dt>Used by</dt><dd>Three regional operations teams</dd></div>
             </dl>
             <div class="chips"><span class="chip">Python</span><span class="chip">Node.js</span><span class="chip">Playwright</span><span class="chip">FastAPI</span><span class="chip">MongoDB</span><span class="chip">Redis</span><span class="chip">React</span><span class="chip">Chrome extension</span><span class="chip">Docker</span></div>
+            <a class="case-link" href="/projects/config-driven-rpa/">Read the full case study →</a>
           </aside>
           <div class="case-body">
             <p class="dek">Each submission meant someone retyping the same details into yet another web portal. About 30 minutes a time.</p>
@@ -976,6 +981,7 @@ html,body{overflow-x:clip}
               <div><dt>Systems</dt><dd>Hermes agent, Markdown Extractor, query agent</dd></div>
             </dl>
             <div class="chips"><span class="chip">Python</span><span class="chip">Playwright</span><span class="chip">FastAPI</span><span class="chip">APScheduler</span><span class="chip">React</span><span class="chip">MongoDB</span><span class="chip">AWS S3</span><span class="chip">Docker</span><span class="chip">Hermes agent</span></div>
+            <a class="case-link" href="/projects/markdown-extractor/">Read the full case study →</a>
           </aside>
           <div class="case-body">
             <p class="dek">No two websites lay out their data the same way. So instead of one scraper fighting all of them, an agent writes a scraper for each site, and every scraper hands back the same thing: clean Markdown.</p>
@@ -1000,6 +1006,7 @@ html,body{overflow-x:clip}
               <div><dt>Models</dt><dd>Gemini, Gemma and DeepSeek, picked per run</dd></div>
             </dl>
             <div class="chips"><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">MongoDB</span><span class="chip">Gemini</span><span class="chip">DeepSeek</span></div>
+            <a class="case-link" href="/projects/subject-validator/">Read the full case study →</a>
           </aside>
           <div class="case-body">
             <p class="dek">Subject requirements are written differently on every page. Reading them all by hand didn't scale. Letting an AI publish them unchecked wasn't an option.</p>
@@ -1027,6 +1034,7 @@ html,body{overflow-x:clip}
               <div><dt>AI</dt><dd>Summariser that pulls out and highlights fees</dd></div>
             </dl>
             <div class="chips"><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">Vite</span><span class="chip">Express</span><span class="chip">MongoDB</span><span class="chip">LLM summariser</span></div>
+            <a class="case-link" href="/projects/fees-validator/">Read the full case study →</a>
           </aside>
           <div class="case-body">
             <p class="dek">Fee pages bury the numbers inside paragraphs. And one fee often applies to dozens of intakes, so typing it into each one by hand is exactly how mistakes creep in. I wanted it checked once.</p>
@@ -1053,6 +1061,7 @@ html,body{overflow-x:clip}
               <div><dt>Output fed</dt><dd>Market Intelligence data products</dd></div>
             </dl>
             <div class="chips"><span class="chip">Python</span><span class="chip">Selenium</span></div>
+            <a class="case-link" href="/projects/sp-global-automation/">Read the full case study →</a>
           </aside>
           <div class="case-body">
             <p class="dek">This research would have needed a floor full of people. One crawler did it.</p>
@@ -1117,6 +1126,7 @@ html,body{overflow-x:clip}
     <div class="container">
       <span class="label">Also built</span>
       <h2 class="h-sec">Smaller things I've shipped</h2>
+      <p class="intro" style="margin-bottom:28px">The matching behind Intake Watcher has its own write-up: <a href="/projects/token-sort-matching/">token sort matching for data reconciliation</a>.</p>
       <div class="grid">
         <button type="button" class="card" data-flow="watcher" aria-haspopup="dialog"><span class="m">−60% manual reconciliation</span><h3>Intake Watcher</h3><p>Compares what's on the websites with what's in our database. I built the token-sort matching myself, no library, and every listing comes out as new, deleted, matched or modified.</p><span class="go">Read in plain words</span><span class="s">Python · Flask · Pandas · MongoDB</span></button>
         <button type="button" class="card" data-flow="scheduler" aria-haspopup="dialog"><span class="m">−70% manual monitoring</span><h3>Intake Scheduler</h3><p>Runs each source's scrape on its own timetable, then hands the fresh data to Intake Watcher. Slack hears about every run, pass or fail.</p><span class="go">Read in plain words</span><span class="s">Python · Flask · MongoDB · Slack API</span></button>
@@ -1297,6 +1307,15 @@ html,body{overflow-x:clip}
         <div class="tdots" id="tdots" aria-hidden="true"></div>
         <a href="https://www.linkedin.com/in/gibinm/details/recommendations/" target="_blank" rel="noopener">See them all on LinkedIn ↗</a>
       </div>
+    </div>
+  </section>
+
+  <section class="reveal block" id="writing" style="padding-top:0">
+    <div class="container">
+      <span class="label">Writing</span>
+      <h2 class="h-sec">Notes from automation in production</h2>
+      <p class="intro" style="margin-bottom:28px">Practical write-ups from the systems above. <a href="/blog/">All writing →</a></p>
+      <div class="grid"><a class="card" href="/blog/config-driven-rpa-playwright/" style="text-decoration:none;color:inherit"><h3>Config-driven RPA with Playwright: why I stopped writing one bot per website</h3><p>Why one bot per website doesn't scale, and a minimal engine in TypeScript.</p><span class="go">Read the post</span></a><a class="card" href="/blog/rpa-success-rate/" style="text-decoration:none;color:inherit"><h3>RPA success rate: the same jobs, two honest-looking numbers</h3><p>What counts as a failure, and why it changes the number by four points.</p><span class="go">Read the post</span></a><a class="card" href="/blog/token-sort-matching/" style="text-decoration:none;color:inherit"><h3>Token sort matching, explained: when you don't need a fuzzy threshold</h3><p>Real RapidFuzz scores, and when exact keys beat a similarity cut-off.</p><span class="go">Read the post</span></a></div>
     </div>
   </section>
 

@@ -1,0 +1,15 @@
+https://gibin.in/
+https://gibin.in/blog/
+https://gibin.in/blog/config-driven-rpa-playwright/
+https://gibin.in/blog/rpa-success-rate/
+https://gibin.in/blog/token-sort-matching/
+https://gibin.in/blog/playwright-vs-rpa-platforms/
+https://gibin.in/blog/human-in-the-loop-rpa/
+https://gibin.in/blog/llm-data-validation/
+https://gibin.in/projects/
+https://gibin.in/projects/config-driven-rpa/
+https://gibin.in/projects/token-sort-matching/
+https://gibin.in/projects/markdown-extractor/
+https://gibin.in/projects/subject-validator/
+https://gibin.in/projects/fees-validator/
+https://gibin.in/projects/sp-global-automation/

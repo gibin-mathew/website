@@ -1,0 +1,71 @@
+<!--meta
+{"section":"blog","slug":"playwright-vs-rpa-platforms","order":4,
+"title":"Playwright vs Blue Prism and UiPath for RPA: When Code Wins",
+"og_title":"Playwright vs Blue Prism and UiPath: when code-first RPA wins",
+"description":"Playwright vs Blue Prism and UiPath for RPA: what each does well, what code-first automation makes you build yourself, and how to choose.",
+"kicker":"RPA · Tools",
+"h1":"Playwright vs Blue Prism and UiPath: when <em>code-first</em> RPA wins",
+"crumb":"Playwright vs RPA platforms",
+"dek":"I've built automation on Blue Prism and Appian at S&amp;P Global, with Selenium crawlers alongside them, and now run a Playwright-based RPA engine on 70+ portals at Edvoy. Neither side wins everywhere. <strong>Here's how I'd choose</strong>.",
+"fig":"versus","date":"2026-10-18","updated":"2026-10-18",
+"summary":"What platform RPA gives you, what Playwright gives you, what you have to build yourself with code-first automation, and a short decision guide.",
+"keywords":["Playwright vs UiPath","Playwright vs Blue Prism","Playwright for RPA","code-first RPA","RPA tools comparison","open source RPA"],
+"about":["Robotic process automation","Playwright","Blue Prism","UiPath"],
+"related":["/blog/config-driven-rpa-playwright/","/projects/config-driven-rpa/","/projects/sp-global-automation/"]}
+-->
+<p class="lede">Someone in a forum once answered this question with "Playwright is a testing tool, RPA is an automation tool". That's true on the box and wrong in practice. Playwright drives a browser very well, and a lot of RPA is driving a browser. The real question is what else you need.</p>
+
+<h2>Where I'm coming from</h2>
+<p>To be clear about my experience: at S&amp;P Global I built RPA on Blue Prism and Appian, and Python crawlers with Selenium. At Edvoy I lead a config-driven RPA engine on Node.js and Playwright that has handled 3,000+ submissions across 70+ portals. I haven't run UiPath in production. Where I mention it, I'm talking about what platform RPA tools have in common, not UiPath-specific details.</p>
+
+<h2>What a platform gives you on day one</h2>
+<p>Platform RPA tools like Blue Prism and UiPath are built for organisations, not just for automating a task. What you're really buying is the stuff around the bot:</p>
+<ul>
+<li><strong>Desktop and legacy apps.</strong> Windows applications, Citrix sessions, old green screens. This is where platforms are hardest to replace, because a browser library can't touch them.</li>
+<li><strong>A visual designer</strong> that people outside engineering can read, and often build with.</li>
+<li><strong>Orchestration</strong>: scheduling, queues, bot pools and a control room, ready to use.</li>
+<li><strong>Governance</strong>: credential vaults, role-based access, audit trails. In regulated teams this alone can decide it.</li>
+<li><strong>Vendor support</strong> and a hiring market that knows the tool.</li>
+</ul>
+<p>The cost is licences, a vendor's way of doing things, and, in my experience, a slower loop when you need something the designer doesn't do well.</p>
+
+<h2>What Playwright gives you</h2>
+<p>Playwright is Microsoft's open-source browser automation library. It's free, it drives Chromium, Firefox and WebKit, and you can write it in TypeScript or JavaScript, Python, Java or .NET.</p>
+<ul>
+<li><strong>Auto-waiting.</strong> Locators wait for elements to be ready before acting. Most of the sleep-and-hope code from older Selenium bots disappears.</li>
+<li><strong>Real code.</strong> Version control, code review, tests, and the same tooling as the rest of your engineering team.</li>
+<li><strong>Control of the browser</strong>: network interception, multiple isolated contexts, downloads and uploads, all in code.</li>
+<li><strong>No per-bot licence.</strong> Scaling out is an infrastructure question, not a procurement one.</li>
+</ul>
+
+<h2>What you have to build yourself</h2>
+<p>This is the part people underestimate. Playwright drives the browser. Everything a platform's control room does, you build. On our engine that meant:</p>
+<ul>
+<li>A job API and a queue (FastAPI, Celery and RabbitMQ) so work is picked up, retried and never lost.</li>
+<li>Session and result storage (Redis), and a full log of every step (MongoDB).</li>
+<li>A way for people to step in for OTPs, CAPTCHAs and uploads, then hand back to the bot.</li>
+<li>Failure labels, so the right person fixes the right problem.</li>
+<li>A dashboard with an honest success rate.</li>
+<li>Deployment, scaling and monitoring (Docker on AWS ECS).</li>
+</ul>
+<p>None of that is exotic, but it's real engineering time. If you don't have engineers who'll own it for years, a platform is probably cheaper than it looks.</p>
+
+<h2>How I'd choose</h2>
+<table>
+<thead><tr><th>If this is true</th><th>Lean towards</th></tr></thead>
+<tbody>
+<tr><td>The work lives in desktop apps, Citrix or legacy systems</td><td>Platform</td></tr>
+<tr><td>Business users will build and maintain the bots</td><td>Platform</td></tr>
+<tr><td>You need audit and access controls signed off fast</td><td>Platform</td></tr>
+<tr><td>The work is all in the browser</td><td>Playwright</td></tr>
+<tr><td>Many sites do the same job in different ways</td><td>Playwright, config-driven</td></tr>
+<tr><td>You have engineers who'll own the platform around it</td><td>Playwright</td></tr>
+<tr><td>Bot count will grow a lot and licences are the blocker</td><td>Playwright</td></tr>
+</tbody>
+</table>
+<p>For us the browser-only and many-similar-sites rows decided it. Every portal was a website, there were dozens of them, and each new one would have been another bot to build and license. With Playwright and a <a href="/blog/config-driven-rpa-playwright/">config-driven design</a>, a new portal is a config file.</p>
+
+<h2>The part that matters more than the tool</h2>
+<p>I've seen fragile bots on platforms and fragile bots in code. The tool isn't usually what makes a bot fragile. One script per site, no clear definition of "done", no plan for the steps a bot shouldn't attempt, and no labels on failures will hurt you on any tool.</p>
+<p>Get those right and either side works. Get them wrong and switching tools just moves the problem.</p>
+<p class="endnote">Product details reflect public documentation and my own use of Blue Prism, Appian, Selenium and Playwright. Check current features and pricing with each vendor before deciding.</p>

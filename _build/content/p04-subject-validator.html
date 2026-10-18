@@ -1,0 +1,49 @@
+<!--meta
+{"section":"projects","slug":"subject-validator","order":4,
+"title":"Subject Validator: AI-Assisted Data QC | Gibin Mathew",
+"og_title":"Subject Validator: AI reads the page, a person signs off",
+"description":"Case study: AI-assisted data validation with Gemini, Gemma or DeepSeek, a versioned prompt, editable output, and only exact matches auto-publish.",
+"kicker":"Case study · Edvoy",
+"h1":"Subject Validator: AI reads the page, <em>a person signs off</em>",
+"crumb":"Subject Validator",
+"dek":"Subject requirements are written differently on every page. Reading them all by hand didn't scale. Letting an AI publish them unchecked wasn't an option. So the AI drafts, and <strong>only exact matches publish on their own</strong>.",
+"facts":["<b>60-70%</b> less manual QC*","<b>3</b> model families","<b>2</b> paths: publish or review"],
+"fig":"subject","date":"2026-10-18","updated":"2026-10-18",
+"summary":"Pick a model, run a shared versioned prompt, edit the AI's table against the highlighted source. Exact matches publish; everything else goes to a person.",
+"metric":"60-70% less manual QC*","where":"Edvoy","year":"AI-assisted QC",
+"keywords":["AI data validation","LLM data validation","human in the loop AI","data quality","AI-assisted QC","Gemini DeepSeek"],
+"about":["Data validation","Large language models","Human-in-the-loop"],
+"related":["/projects/fees-validator/","/blog/llm-data-validation/","/projects/markdown-extractor/"]}
+-->
+<p class="lede">The model was never the hard part. The hard part was deciding what it's allowed to do alone, and building a screen where a person can check its work quickly enough that checking is worth it.</p>
+
+<div class="results three"><div><b>60-70%</b><span>less manual QC, across this tool and the Fees Validator together</span></div><div><b>3</b><span>model families to choose from per run</span></div><div><b>1.0</b><span>the only score that publishes without a person</span></div></div>
+
+<h2>The problem</h2>
+<p>We collect subject requirements from a lot of web pages. One page says "A-level Mathematics", another says "Maths at A2", a third buries it in a paragraph about something else. Our editors had to read every page, work out what it meant, and map it to our master list of subjects. It was careful work and there was far too much of it.</p>
+<p>An AI can read those pages faster than any of us. But a wrong subject on a published record does real damage, so "the AI said so" can't be the last step.</p>
+
+<h2>How a review works</h2>
+<h3>Pick a model and run the shared prompt</h3>
+<p>The editor chooses a model for the run, from lighter to heavier: Gemini, Gemma or DeepSeek. Each model shows its daily limit, so nobody burns through a quota by accident. The prompt is shared across the team and versioned. Anyone can see who changed it last and when. If one page needs a tweak, you can adjust it, and that change is on the record too.</p>
+
+<h3>Check the draft against the source</h3>
+<p>The AI gives back two things: a short text summary and a structured table. Both are interactive. The source page sits beside them with the relevant text highlighted, so the editor isn't hunting for where a subject came from. Any cell in the table can be edited directly, with validation and undo. When it looks right, Save &amp; Verify.</p>
+
+<h3>Map to the master list, with one hard rule</h3>
+<p>A subject identifier then maps every subject the AI found to our master list. If it's an exact match, a score of 1.0, it's ready to publish on its own. Anything less shows its closest match and a similarity score, and a person picks. "Further Maths" might sit close to "Mathematics", but close isn't the same, and that's exactly the call I want a person to make.</p>
+<p>The similarity score is plain string similarity. I'm careful not to call it semantic matching, because it isn't, and that's fine: its only job is to suggest a candidate to a person.</p>
+
+<h2>The parts around the AI</h2>
+<ul>
+<li><strong>Bulk reruns</strong> with status tracking.</li>
+<li><strong>Per-person and per-source stats</strong>, so we can see where the work is.</li>
+<li><strong>Token cost per run</strong> for DeepSeek, so cost is something we look at, not something we find out about.</li>
+</ul>
+
+<h2>What I'd keep</h2>
+<p>Separate what the AI drafts from what it may decide. In this tool it drafts everything and decides almost nothing. The one thing it may decide, an exact match, is the one thing it can't get subtly wrong. I go into that rule in more depth in <a href="/blog/llm-data-validation/">LLM-assisted data validation: what the AI is allowed to do alone</a>.</p>
+
+<h2>Stack</h2>
+<p>React with TypeScript, Node.js and Express, MongoDB, Gemini, Gemma and DeepSeek models.</p>
+<p class="endnote">My role: I designed the review workflow and where the AI hands over to a person. *The 60-70% reduction in manual QC is measured across the Subject Validator and the <a href="/projects/fees-validator/">Fees Validator</a> together.</p>

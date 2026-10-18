@@ -1,0 +1,63 @@
+<!--meta
+{"section":"projects","slug":"markdown-extractor","order":3,
+"title":"Markdown Extractor: AI-Written Web Scrapers | Gibin Mathew",
+"og_title":"Markdown Extractor: every website, one format an AI can read",
+"description":"Case study: an agent writes a Playwright scraper per website, every scraper outputs Markdown, and a second agent answers plain-language questions.",
+"kicker":"Case study · Edvoy",
+"h1":"Markdown Extractor: every website, <em>one format</em> an AI can read",
+"crumb":"Markdown Extractor",
+"dek":"No two websites lay out their data the same way. So instead of one scraper fighting all of them, an agent writes a scraper for each site, and <strong>every scraper hands back the same thing: clean Markdown</strong>. A second agent answers questions from those files in plain language.",
+"facts":["Playwright scrapers","Markdown out","S3 + streaming API","plain-language queries"],
+"fig":"md","date":"2026-10-18","updated":"2026-10-18",
+"summary":"An agent writes a Playwright scraper per website. Every scraper outputs Markdown with a source header. A second agent answers plain-language questions from the files.",
+"where":"Edvoy","year":"Platform",
+"keywords":["AI web scraping","Playwright scraper","HTML to Markdown","LLM data extraction","web scraping platform","scraper automation"],
+"about":["Web scraping","Large language models","Data pipelines"],
+"related":["/projects/token-sort-matching/","/projects/subject-validator/","/blog/llm-data-validation/"]}
+-->
+<p class="lede">Our data comes from a long list of catalogue websites. Some load content as you scroll. Some hide it behind cookie banners. Some tuck the useful parts inside page scripts. Before this, the answer was a hand-written scraper per site, each returning data in its own shape, each breaking without telling anyone.</p>
+
+<h2>The problem with hand-written scrapers</h2>
+<p>Three things hurt us. They were slow to build, so new sources waited. They failed quietly, so stale data looked like fresh data. And every one of them returned a different structure, so whatever sat downstream had to understand all of them.</p>
+<p>I'd say the last one was the real cost. You can live with slow and fragile if the output is consistent. You can't build anything clean on top of a different shape for every site.</p>
+
+<h2>One output format: Markdown</h2>
+<p>The decision that made the rest work was mine to make, and it was picking a single output. Every scraper, for every site, turns each page into one Markdown file. Each file starts with a short header saying where it came from and when it was fetched. Headings stay headings, lists stay lists, tables stay tables.</p>
+<p>Why Markdown and not JSON? Because we didn't know every question people would ask of the data. JSON forces you to decide the fields up front. Markdown keeps the page's structure and text, it's readable by a person, and language models handle it well. Structure can come later, for the cases that need it.</p>
+
+<h2>An agent writes the scraper</h2>
+<p>When we add a website, we hand it to the Hermes agent and it writes a Playwright scraper for that site. The scraper doesn't start from nothing. It sits on a shared library that handles the boring, repeated parts:</p>
+<ul>
+<li>accepting or dismissing cookie banners</li>
+<li>scrolling to trigger lazy-loaded content</li>
+<li>pulling data out of page scripts, JSON-LD and meta tags as well as the visible HTML</li>
+<li>turning HTML into Markdown with the source header</li>
+<li>retries and rate limits, so we stay polite to the sites we read</li>
+</ul>
+<p>Because the library does the hard, repeated work, each site's scraper stays short. That matters twice: it's quicker for the agent to get right, and it's quicker for a person to review.</p>
+
+<h2>A few small services instead of one big one</h2>
+<p>I split the platform into services that each do one job:</p>
+<ul>
+<li><strong>API gateway</strong> (FastAPI) with Firebase sign-in and API keys for other systems.</li>
+<li><strong>Scheduler</strong> (APScheduler) that runs each source on its own timetable.</li>
+<li><strong>Runner</strong> that executes the Playwright scripts.</li>
+<li><strong>Worker</strong> that orchestrates a run and uploads the Markdown to Amazon S3.</li>
+<li><strong>Streamer</strong> that sends live logs over server-sent events to a React dashboard (Vite, TypeScript, Zustand and React Query), so you can watch a run as it happens.</li>
+<li><strong>Repo listener</strong> that pulls in scraper code the moment it's pushed to Bitbucket. Nobody deploys scrapers by hand.</li>
+</ul>
+<p>Nginx sits in front, and a paginated streaming API serves the Markdown to whatever needs it next, including a converter that turns it into structured data for the cases where we do want fields.</p>
+
+<h2>Then a second agent answers questions</h2>
+<p>The Markdown feeds a second agent. You ask it a question in plain language, it answers from the files. You don't write SQL or learn how each website lays out its data.</p>
+
+<h2>What I learned</h2>
+<ul>
+<li><strong>Standardise the output before you standardise anything else.</strong> We still have one scraper per site. What we stopped having is one format per site.</li>
+<li><strong>Let the agent write the part that varies.</strong> The shared library is code we own and test. The per-site scraper is the small, site-specific bit, and that's where an agent saves the most time.</li>
+<li><strong>Make runs visible.</strong> Live logs and a dashboard turned "the scraper broke last week" into "the scraper broke this morning, here's the page".</li>
+</ul>
+
+<h2>Stack</h2>
+<p>Python, Playwright, FastAPI, APScheduler, React with Vite and TypeScript, MongoDB, Amazon S3, Docker Compose, Nginx, Hermes agent.</p>
+<p class="endnote">My role: platform design and delivery. Site names and volumes are left out on purpose.</p>

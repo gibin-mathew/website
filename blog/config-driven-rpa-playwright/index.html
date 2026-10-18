@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Config-Driven RPA with Playwright: One Engine, Many Portals</title>
+<meta name="description" content="Why one bot per website doesn&#x27;t scale, how a config-driven RPA engine on Playwright works, a minimal TypeScript sketch, and three rules.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="Gibin Mathew">
+<link rel="canonical" href="https://gibin.in/blog/config-driven-rpa-playwright/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://gibin.in/blog/config-driven-rpa-playwright/">
+<meta property="og:title" content="Config-driven RPA with Playwright: why I stopped writing one bot per website">
+<meta property="og:description" content="Why one bot per website doesn&#x27;t scale, how a config-driven RPA engine on Playwright works, a minimal TypeScript sketch, and three rules.">
+<meta property="og:site_name" content="Gibin Mathew">
+<meta property="og:locale" content="en_IN">
+<meta property="og:image" content="https://gibin.in/og/config-driven-rpa-playwright.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="article:published_time" content="2026-10-18"><meta property="article:modified_time" content="2026-10-18"><meta property="article:author" content="https://gibin.in/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Config-driven RPA with Playwright: why I stopped writing one bot per website">
+<meta name="twitter:description" content="Why one bot per website doesn&#x27;t scale, how a config-driven RPA engine on Playwright works, a minimal TypeScript sketch, and three rules.">
+<meta name="twitter:image" content="https://gibin.in/og/config-driven-rpa-playwright.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230B1320'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial,sans-serif' font-weight='800' font-size='28' fill='%23EEF2F8'%3EGM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100,500;112,700;125,800;125,900&family=Instrument+Serif:ital@1&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/base.css">
+<link rel="stylesheet" href="/assets/pages.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BlogPosting", "@id": "https://gibin.in/blog/config-driven-rpa-playwright/#article", "headline": "Config-driven RPA with Playwright: why I stopped writing one bot per website", "description": "Why one bot per website doesn't scale, how a config-driven RPA engine on Playwright works, a minimal TypeScript sketch, and three rules.", "url": "https://gibin.in/blog/config-driven-rpa-playwright/", "mainEntityOfPage": "https://gibin.in/blog/config-driven-rpa-playwright/", "datePublished": "2026-10-18", "dateModified": "2026-10-18", "author": {"@type": "Person", "@id": "https://gibin.in/#person", "name": "Gibin Mathew", "url": "https://gibin.in/", "jobTitle": "Data and Automation Manager", "sameAs": ["https://www.linkedin.com/in/gibinm"]}, "publisher": {"@id": "https://gibin.in/#person"}, "image": "https://gibin.in/og/config-driven-rpa-playwright.jpg", "inLanguage": "en", "keywords": "config-driven RPA, config driven RPA Playwright, Playwright RPA, RPA architecture, web form automation, one bot per site", "wordCount": 918, "isPartOf": {"@id": "https://gibin.in/#website"}, "about": [{"@type": "Thing", "name": "Robotic process automation"}, {"@type": "Thing", "name": "Playwright"}, {"@type": "Thing", "name": "Software architecture"}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://gibin.in/"}, {"@type": "ListItem", "position": 2, "name": "Writing", "item": "https://gibin.in/blog/"}, {"@type": "ListItem", "position": 3, "name": "Config-driven RPA with Playwright: why I stopped writing one bot per website", "item": "https://gibin.in/blog/config-driven-rpa-playwright/"}]}]}</script>
+<script>document.documentElement.classList.add('js');try{var gmT=localStorage.getItem('gm-theme');if(gmT==='light'||gmT==='dark')document.documentElement.setAttribute('data-theme',gmT)}catch(e){}</script>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<header class="band">
+  <div class="container">
+    <div class="topbar">
+      <a class="mark" href="/" aria-label="Gibin Mathew, home">GM<span>.</span></a>
+      <nav class="topnav" aria-label="Site"><a href="/#approach">Approach</a><a href="/projects/">Projects</a><a href="/blog/" aria-current="page">Writing</a><a href="/#recommendations">Recommendations</a><a href="/#career">Career</a><a href="#contact">Contact</a></nav>
+      <button class="cord hint" id="cord" type="button" aria-label="Switch to light theme"><span class="halo" aria-hidden="true"></span><span class="cl"></span><span class="flies" aria-hidden="true"></span><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3Z"/></svg></span><span class="tip" id="cord-tip">pull for day</span></button>
+    </div>
+    <div class="ph">
+      <div>
+        <ol class="crumbs"><li><a href="/">gibin.in</a></li><li><a href="/blog/">Writing</a></li><li>Config-driven RPA with Playwright</li></ol>
+        <span class="ph-kicker">RPA · Playwright</span>
+        <h1 class="ph-title">Config-driven RPA with Playwright: why I stopped writing <em>one bot per website</em></h1>
+        <p class="ph-dek">The best automation decision I've made wasn't a tool. It was to stop writing one bot per website. Here's the reasoning, a minimal engine you can read in five minutes, and what happened when we ran it on 70+ portals.</p>
+        
+        <div class="byline"><div class="avatar"><img src="/gibin-mathew.webp" alt="" width="40" height="40"></div><span>By <a href="/" rel="author">Gibin Mathew</a></span><span class="dot">·</span><time datetime="2026-10-18">18 Oct 2026</time><span class="dot">·</span><span>4 min read</span></div>
+      </div>
+      
+<div class="fig" data-scene="versus" role="img" aria-label="Animation: adding a new portal two ways. One bot per site means writing, testing and deploying a script, then doing it again after every redesign. Config-driven means writing a config, a dry run, and going live.">
+  <div class="fig-h"><span class="live"><b>adding portal #41</b></span><span>two ways</span></div>
+  <div class="vs">
+    <div class="panel"><h4>One bot per site</h4><ol class="tl">
+      <li class="done">Write a new script</li><li class="done">Test it</li><li class="done">Deploy it</li><li class="done">Site redesign: fix the code</li><li class="done">Test again</li><li class="done">Deploy again</li></ol>
+      <div class="meter"><i style="width:100%"></i></div></div>
+    <div class="panel ok"><h4>Config-driven</h4><ol class="tl">
+      <li class="done">Write a config</li><li class="done">Dry run</li><li class="done">Live</li></ol>
+      <div class="meter"><i style="width:100%"></i></div></div>
+  </div>
+  <div class="fig-f"><span>the engine never moves</span><span>illustration</span></div>
+</div>
+    </div>
+  </div>
+</header>
+<main><div class="container"><div class="doc"><nav class="toc" aria-label="On this page"><b>On this page</b><ol><li><a href="#forty-portals-forty-scripts">Forty portals, forty scripts</a></li><li><a href="#flip-it-one-engine-many-configs">Flip it: one engine, many configs</a></li><li><a href="#what-a-config-looks-like">What a config looks like</a></li><li><a href="#a-minimal-engine-in-playwright">A minimal engine in Playwright</a></li><li><a href="#three-rules-that-keep-it-clean">Three rules that keep it clean</a></li><li><a href="#when-config-driven-is-the-wrong-call">When config-driven is the wrong call</a></li><li><a href="#what-it-did-for-us">What it did for us</a></li></ol><div class="side"><a href="/blog/">← All writing</a></div></nav><article class="prose"><p class="lede">Earlier in my career I automated 40+ U.S. state portals, and each one had its own script. It worked. It saved close to 3 FTE of manual work. It also taught me the most expensive lesson in RPA.</p>
+
+<h2 id="forty-portals-forty-scripts">Forty portals, forty scripts</h2>
+<p>At S&amp;P Global I built a crawler for financial filings across 40+ U.S. state portals. Each state had its own search page, its own result layout and its own PDF quirks, so each one got its own script. That felt natural. The sites were different, so the code was different.</p>
+<p>Then the sites started changing. Not all at once, just one here and one there, a redesigned search page or a renamed button. And every change, on any one of those forty sites, meant the same routine: find the broken script, fix it, test it, deploy it.</p>
+<p>That's the hidden cost of one bot per site. You don't maintain an automation. You maintain forty of them. The work grows with the number of sites, not with the number of problems, and it never stops.</p>
+
+<h2 id="flip-it-one-engine-many-configs">Flip it: one engine, many configs</h2>
+<p>When I had to automate form filling across dozens of external application portals at Edvoy, I didn't want to repeat that. So we flipped the design.</p>
+<p>There's one engine that knows how to read and fill a web form. It knows how to type into a field, pick from a dropdown, click a button, wait for a page, check whether something is on screen, and stop and ask for a person. It knows nothing about any particular portal.</p>
+<p>Every portal is a config. The config says three things:</p>
+<ul>
+<li><strong>Where each field lives</strong>, as a selector.</li>
+<li><strong>What goes in it</strong>, as a path into a cleaned record.</li>
+<li><strong>What "done" looks like</strong> for each page, so the engine knows it really moved on.</li>
+</ul>
+<p>A new portal is a config. A portal changes its layout? Update the config. The engine doesn't move, so there's no release window and no risk of breaking the other 69 portals to fix one.</p>
+
+<h2 id="what-a-config-looks-like">What a config looks like</h2>
+<p>Here's a stripped-down example for an imaginary portal. Ours carry more detail, but the idea is the same: it's data a reviewer can read, not code they have to run in their head.</p>
+<pre><code class="language-json">{
+  "portal": "example-portal",
+  "url": "https://portal.example.com/apply",
+  "pages": [
+    {
+      "name": "personal",
+      "steps": [
+        { "fill": "#first-name", "from": "name.first" },
+        { "fill": "#last-name", "from": "name.last" },
+        { "select": "#country", "from": "country.name" },
+        { "if": { "visible": "#passport-section" },
+          "then": [ { "fill": "#passport-no", "from": "passport.number" } ] },
+        { "click": "button:has-text('Next')" }
+      ],
+      "done_when": { "visible": "text=Education history" }
+    }
+  ]
+}</code></pre>
+<span class="codecap">An imaginary portal. Values like name.first come from a record that was cleaned before the run.</span>
+<p>Notice what's missing: no date formats, no string splitting, no "if the country is IN write India". That all happens once, in a data step that runs before the bot starts. The config only maps clean values to places on a page.</p>
+
+<h2 id="a-minimal-engine-in-playwright">A minimal engine in Playwright</h2>
+<p>This is a sketch, not our production code, but it's the real shape. Around 50 lines of TypeScript read any config like the one above.</p>
+<pre><code class="language-ts">import { chromium, Page } from "playwright";
+
+type Step =
+  | { fill: string; from: string }
+  | { select: string; from: string }
+  | { click: string }
+  | { if: { visible: string }; then: Step[] }
+  | { handover: "otp" | "upload" | "captcha"; note?: string };
+
+type PageSpec = { name: string; steps: Step[]; done_when: { visible: string } };
+type PortalConfig = { portal: string; url: string; pages: PageSpec[] };
+type AskPerson = (step: Step) =&gt; Promise&lt;void&gt;;
+
+const get = (rec: any, path: string) =&gt;
+  path.split(".").reduce((v, k) =&gt; (v == null ? v : v[k]), rec);
+
+async function runStep(page: Page, step: Step, rec: any, ask: AskPerson): Promise&lt;void&gt; {
+  if ("if" in step) {
+    if (await page.locator(step.if.visible).isVisible()) {
+      for (const s of step.then) await runStep(page, s, rec, ask);
+    }
+    return;
+  }
+  if ("handover" in step) return ask(step);   // pause until a person is done
+  if ("fill" in step) return page.locator(step.fill).fill(String(get(rec, step.from) ?? ""));
+  if ("select" in step) {
+    await page.locator(step.select).selectOption({ label: String(get(rec, step.from)) });
+    return;
+  }
+  if ("click" in step) return page.locator(step.click).click();
+}
+
+export async function run(cfg: PortalConfig, rec: any, ask: AskPerson) {
+  const browser = await chromium.launch();
+  const page = await browser.newPage();
+  try {
+    await page.goto(cfg.url);
+    for (const p of cfg.pages) {
+      for (const step of p.steps) await runStep(page, step, rec, ask);
+      // "done" is explicit: no page is finished until its marker shows up
+      await page.locator(p.done_when.visible).waitFor({ timeout: 30_000 });
+    }
+    return { status: "success" as const };
+  } catch (err) {
+    return { status: "failed" as const, error: String(err) };
+  } finally {
+    await browser.close();
+  }
+}</code></pre>
+<p>Playwright does a lot of quiet work here. Its locators wait for elements to be ready before acting, which removes most of the sleep-and-hope code that made older Selenium bots flaky. The rest is just a loop over data.</p>
+<p>The production version adds what you'd expect: retries with a growing wait for slow pages, a "repeat until the list runs out" step for sections like multiple education entries, a label on every failure, and a log of every step against the job. None of that changes the shape. It's still one loop reading one config.</p>
+
+<h2 id="three-rules-that-keep-it-clean">Three rules that keep it clean</h2>
+<h3>1. Logic goes in the engine. Differences go in the config.</h3>
+<p>If you catch yourself writing site-specific code, ask why. Usually the answer is that the engine is missing a general capability, like "skip this section if it isn't on the page". Add that capability once and every portal gets it. On our engine almost every portal is config only. The rare exception is kept small and clearly marked.</p>
+<h3>2. Make "done" explicit.</h3>
+<p>A bot that can't tell success from a silent failure is worse than no bot. Clicking "Next" isn't success. The next page showing up is. Every page in our configs says what must be visible before the engine moves on, and the engine never assumes it got there.</p>
+<h3>3. Guard the line.</h3>
+<p>The first "quick special case" in the engine is how you end up back at forty scripts. It always arrives with a good reason and a deadline. Saying no to it, or finding the general version of it, was honestly most of my job. The code was the easy part.</p>
+
+<h2 id="when-config-driven-is-the-wrong-call">When config-driven is the wrong call</h2>
+<p>I don't think this is always right. If you're automating two or three sites, the engine is overhead you don't need yet. If a site offers an API, use the API and skip the browser. And if every site needs real judgement on every page, you don't have a config problem, you have a process that isn't ready to automate.</p>
+<p>Config-driven pays off when you have many sites that do roughly the same job in different ways. That's most form-filling work, and a lot of scraping.</p>
+
+<h2 id="what-it-did-for-us">What it did for us</h2>
+<p>As of October 2026 the engine runs 70+ portals. It's handled 3,000+ submissions at a 94% success rate and given back 1,200+ hours of manual work. Coverage grew to 71 portals while the engine stayed a single codebase. The full write-up, including the architecture and how failures are labelled, is in the <a href="/projects/config-driven-rpa/">config-driven RPA case study</a>.</p>
+<p>If you've built automation both ways, I'd like to hear which one you'd go back to. My answer is in the title.</p>
+</article></div></div><section class="related sec"><div class="container"><div class="sec-h"><div><span class="label">Keep reading</span><h2 class="h-sec">Related work</h2></div></div><div class="cards three"><a class="pcard rv" href="/projects/config-driven-rpa/"><span class="w"><span>Edvoy</span><span>2026</span></span><h3>Config-driven RPA: one engine, 70+ portals</h3><span class="m">94% success · 70+ portals</span><p>One Playwright engine, a JSON config per portal, people for OTPs and uploads. 3,000+ submissions at 94% success across 70+ application portals.</p><span class="go">Read the case study</span></a><a class="pcard rv" href="/blog/playwright-vs-rpa-platforms/"><span class="w"><span>Writing</span><span>18 Oct 2026</span></span><h3>Playwright vs Blue Prism and UiPath: when code-first RPA wins</h3><p>What platform RPA gives you, what Playwright gives you, what you have to build yourself with code-first automation, and a short decision guide.</p><span class="go">Read the post</span></a><a class="pcard rv" href="/blog/human-in-the-loop-rpa/"><span class="w"><span>Writing</span><span>18 Oct 2026</span></span><h3>Design the human steps in: OTPs, CAPTCHAs and uploads in RPA</h3><p>Why some steps belong to a person, how pause-and-resume works in a browser bot, bounded retries, and the questions to ask before automating a step.</p><span class="go">Read the post</span></a></div></div></section></main>
+<footer class="contact" id="contact">
+  <div class="container">
+    <div class="inner">
+      <div>
+        <div class="contact-id"><div class="avatar"><img src="/gibin-mathew.webp" alt="Gibin Mathew" width="360" height="360" loading="lazy"></div></div>
+        <h2>Have a process that's still <em>done by hand?</em></h2>
+        <p>Happy to talk about automation, data platforms, or getting AI into production without breaking things.</p>
+      </div>
+      <div class="reach">
+        <div class="emailrow"><code id="email">gibin.mat96@gmail.com</code><button class="copy" id="copyBtn" type="button">Copy</button></div>
+        <a href="https://www.linkedin.com/in/gibinm" target="_blank" rel="noopener">linkedin.com/in/gibinm ↗</a>
+        <a href="/">gibin.in, the full profile →</a>
+      </div>
+    </div>
+    <p class="areas">I work on RPA and workflow automation, config-driven web automation, web scraping, data engineering and ETL, and AI-assisted data validation, mostly in Python, Playwright and Node.js. Based in Chennai, India.</p>
+    <div class="foot"><span>Gibin Mathew · RPA &amp; workflow automation · Chennai, India</span><span><a href="/projects/" style="color:inherit">Projects</a> · <a href="/blog/" style="color:inherit">Writing</a></span></div>
+  </div>
+</footer>
+<button class="totop" id="totop" type="button" aria-label="Back to top">↑</button>
+<script src="/assets/site.js" defer></script>
+<script>/* GoatCounter: privacy-friendly stats, live domain only. */
+window.goatcounter={no_onload:true};
+(function(){if(!/(^|\.)gibin\.in$/.test(location.hostname))return;var g=document.createElement('script');g.async=true;g.src='https://gc.zgo.at/count.js';g.setAttribute('data-goatcounter','https://gibin.goatcounter.com/count');
+g.onload=function(){try{window.goatcounter.count()}catch(e){}
+  if(/[?&](ref|utm_[a-z]+)=/.test(location.search)){try{history.replaceState(null,'',location.pathname+location.hash)}catch(e){}}};
+document.body.appendChild(g)})();</script>
+</body>
+</html>

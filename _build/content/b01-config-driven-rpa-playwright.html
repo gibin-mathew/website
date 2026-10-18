@@ -1,0 +1,129 @@
+<!--meta
+{"section":"blog","slug":"config-driven-rpa-playwright","order":1,
+"title":"Config-Driven RPA with Playwright: One Engine, Many Portals",
+"og_title":"Config-driven RPA with Playwright: why I stopped writing one bot per website",
+"description":"Why one bot per website doesn't scale, how a config-driven RPA engine on Playwright works, a minimal TypeScript sketch, and three rules.",
+"kicker":"RPA · Playwright",
+"h1":"Config-driven RPA with Playwright: why I stopped writing <em>one bot per website</em>",
+"crumb":"Config-driven RPA with Playwright",
+"dek":"The best automation decision I've made wasn't a tool. It was to stop writing one bot per website. Here's the reasoning, a minimal engine you can read in five minutes, and what happened when we ran it on 70+ portals.",
+"fig":"versus","date":"2026-10-18","updated":"2026-10-18",
+"summary":"Why one bot per website doesn't scale, what goes in a portal config, a minimal Playwright engine in TypeScript, and three rules for keeping it clean.",
+"keywords":["config-driven RPA","config driven RPA Playwright","Playwright RPA","RPA architecture","web form automation","one bot per site"],
+"about":["Robotic process automation","Playwright","Software architecture"],
+"related":["/projects/config-driven-rpa/","/blog/playwright-vs-rpa-platforms/","/blog/human-in-the-loop-rpa/"]}
+-->
+<p class="lede">Earlier in my career I automated 40+ U.S. state portals, and each one had its own script. It worked. It saved close to 3 FTE of manual work. It also taught me the most expensive lesson in RPA.</p>
+
+<h2>Forty portals, forty scripts</h2>
+<p>At S&amp;P Global I built a crawler for financial filings across 40+ U.S. state portals. Each state had its own search page, its own result layout and its own PDF quirks, so each one got its own script. That felt natural. The sites were different, so the code was different.</p>
+<p>Then the sites started changing. Not all at once, just one here and one there, a redesigned search page or a renamed button. And every change, on any one of those forty sites, meant the same routine: find the broken script, fix it, test it, deploy it.</p>
+<p>That's the hidden cost of one bot per site. You don't maintain an automation. You maintain forty of them. The work grows with the number of sites, not with the number of problems, and it never stops.</p>
+
+<h2>Flip it: one engine, many configs</h2>
+<p>When I had to automate form filling across dozens of external application portals at Edvoy, I didn't want to repeat that. So we flipped the design.</p>
+<p>There's one engine that knows how to read and fill a web form. It knows how to type into a field, pick from a dropdown, click a button, wait for a page, check whether something is on screen, and stop and ask for a person. It knows nothing about any particular portal.</p>
+<p>Every portal is a config. The config says three things:</p>
+<ul>
+<li><strong>Where each field lives</strong>, as a selector.</li>
+<li><strong>What goes in it</strong>, as a path into a cleaned record.</li>
+<li><strong>What "done" looks like</strong> for each page, so the engine knows it really moved on.</li>
+</ul>
+<p>A new portal is a config. A portal changes its layout? Update the config. The engine doesn't move, so there's no release window and no risk of breaking the other 69 portals to fix one.</p>
+
+<h2>What a config looks like</h2>
+<p>Here's a stripped-down example for an imaginary portal. Ours carry more detail, but the idea is the same: it's data a reviewer can read, not code they have to run in their head.</p>
+<pre data-raw="json">
+{
+  "portal": "example-portal",
+  "url": "https://portal.example.com/apply",
+  "pages": [
+    {
+      "name": "personal",
+      "steps": [
+        { "fill": "#first-name", "from": "name.first" },
+        { "fill": "#last-name", "from": "name.last" },
+        { "select": "#country", "from": "country.name" },
+        { "if": { "visible": "#passport-section" },
+          "then": [ { "fill": "#passport-no", "from": "passport.number" } ] },
+        { "click": "button:has-text('Next')" }
+      ],
+      "done_when": { "visible": "text=Education history" }
+    }
+  ]
+}
+</pre>
+<span class="codecap">An imaginary portal. Values like name.first come from a record that was cleaned before the run.</span>
+<p>Notice what's missing: no date formats, no string splitting, no "if the country is IN write India". That all happens once, in a data step that runs before the bot starts. The config only maps clean values to places on a page.</p>
+
+<h2>A minimal engine in Playwright</h2>
+<p>This is a sketch, not our production code, but it's the real shape. Around 50 lines of TypeScript read any config like the one above.</p>
+<pre data-raw="ts">
+import { chromium, Page } from "playwright";
+
+type Step =
+  | { fill: string; from: string }
+  | { select: string; from: string }
+  | { click: string }
+  | { if: { visible: string }; then: Step[] }
+  | { handover: "otp" | "upload" | "captcha"; note?: string };
+
+type PageSpec = { name: string; steps: Step[]; done_when: { visible: string } };
+type PortalConfig = { portal: string; url: string; pages: PageSpec[] };
+type AskPerson = (step: Step) => Promise<void>;
+
+const get = (rec: any, path: string) =>
+  path.split(".").reduce((v, k) => (v == null ? v : v[k]), rec);
+
+async function runStep(page: Page, step: Step, rec: any, ask: AskPerson): Promise<void> {
+  if ("if" in step) {
+    if (await page.locator(step.if.visible).isVisible()) {
+      for (const s of step.then) await runStep(page, s, rec, ask);
+    }
+    return;
+  }
+  if ("handover" in step) return ask(step);   // pause until a person is done
+  if ("fill" in step) return page.locator(step.fill).fill(String(get(rec, step.from) ?? ""));
+  if ("select" in step) {
+    await page.locator(step.select).selectOption({ label: String(get(rec, step.from)) });
+    return;
+  }
+  if ("click" in step) return page.locator(step.click).click();
+}
+
+export async function run(cfg: PortalConfig, rec: any, ask: AskPerson) {
+  const browser = await chromium.launch();
+  const page = await browser.newPage();
+  try {
+    await page.goto(cfg.url);
+    for (const p of cfg.pages) {
+      for (const step of p.steps) await runStep(page, step, rec, ask);
+      // "done" is explicit: no page is finished until its marker shows up
+      await page.locator(p.done_when.visible).waitFor({ timeout: 30_000 });
+    }
+    return { status: "success" as const };
+  } catch (err) {
+    return { status: "failed" as const, error: String(err) };
+  } finally {
+    await browser.close();
+  }
+}
+</pre>
+<p>Playwright does a lot of quiet work here. Its locators wait for elements to be ready before acting, which removes most of the sleep-and-hope code that made older Selenium bots flaky. The rest is just a loop over data.</p>
+<p>The production version adds what you'd expect: retries with a growing wait for slow pages, a "repeat until the list runs out" step for sections like multiple education entries, a label on every failure, and a log of every step against the job. None of that changes the shape. It's still one loop reading one config.</p>
+
+<h2>Three rules that keep it clean</h2>
+<h3>1. Logic goes in the engine. Differences go in the config.</h3>
+<p>If you catch yourself writing site-specific code, ask why. Usually the answer is that the engine is missing a general capability, like "skip this section if it isn't on the page". Add that capability once and every portal gets it. On our engine almost every portal is config only. The rare exception is kept small and clearly marked.</p>
+<h3>2. Make "done" explicit.</h3>
+<p>A bot that can't tell success from a silent failure is worse than no bot. Clicking "Next" isn't success. The next page showing up is. Every page in our configs says what must be visible before the engine moves on, and the engine never assumes it got there.</p>
+<h3>3. Guard the line.</h3>
+<p>The first "quick special case" in the engine is how you end up back at forty scripts. It always arrives with a good reason and a deadline. Saying no to it, or finding the general version of it, was honestly most of my job. The code was the easy part.</p>
+
+<h2>When config-driven is the wrong call</h2>
+<p>I don't think this is always right. If you're automating two or three sites, the engine is overhead you don't need yet. If a site offers an API, use the API and skip the browser. And if every site needs real judgement on every page, you don't have a config problem, you have a process that isn't ready to automate.</p>
+<p>Config-driven pays off when you have many sites that do roughly the same job in different ways. That's most form-filling work, and a lot of scraping.</p>
+
+<h2>What it did for us</h2>
+<p>As of October 2026 the engine runs 70+ portals. It's handled 3,000+ submissions at a 94% success rate and given back 1,200+ hours of manual work. Coverage grew to 71 portals while the engine stayed a single codebase. The full write-up, including the architecture and how failures are labelled, is in the <a href="/projects/config-driven-rpa/">config-driven RPA case study</a>.</p>
+<p>If you've built automation both ways, I'd like to hear which one you'd go back to. My answer is in the title.</p>

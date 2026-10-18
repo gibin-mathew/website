@@ -1,0 +1,47 @@
+<!--meta
+{"section":"projects","slug":"fees-validator","order":5,
+"title":"Fees Validator: Check Once, Apply Everywhere | Gibin Mathew",
+"og_title":"Fees Validator: find the fee, check it once, apply it everywhere",
+"description":"Case study: an AI summariser highlights fees on scraped pages; a reviewer verifies once and applies the fee to every related intake, on record.",
+"kicker":"Case study · Edvoy",
+"h1":"Fees Validator: find the fee, <em>check it once</em>, apply it everywhere",
+"crumb":"Fees Validator",
+"dek":"Fee pages bury numbers inside paragraphs, and one fee often applies to dozens of intakes. Typing it into each one is how mistakes creep in. So the AI finds it, <strong>a person checks it once</strong>, and one click applies it where it belongs.",
+"facts":["<b>60-70%</b> less manual QC*","Shift + A summariser","one fix, many intakes"],
+"fig":"fees","date":"2026-10-18","updated":"2026-10-18",
+"summary":"An AI summariser highlights fees, dates and words like \"may\". A reviewer verifies once and applies the fee to all related intakes, with a name and time on record.",
+"metric":"60-70% less manual QC*","where":"Edvoy","year":"AI-assisted QC",
+"keywords":["AI fee extraction","data verification workflow","human in the loop","bulk data update","data quality tool"],
+"about":["Data validation","Human-in-the-loop","Information extraction"],
+"related":["/projects/subject-validator/","/blog/llm-data-validation/","/projects/token-sort-matching/"]}
+-->
+<p class="lede">The question for this tool wasn't "can an AI read a fee page?". It was "how do we make sure a fee is checked by a person exactly once, and then never retyped?"</p>
+
+<div class="results three"><div><b>60-70%</b><span>less manual QC, across this tool and the Subject Validator together</span></div><div><b>1</b><span>verified fix can update every related intake</span></div><div><b>Every</b><span>verified fee carries a name and a time</span></div></div>
+
+<h2>The problem</h2>
+<p>Fee pages are written for people, not databases. The number you need sits in the middle of a paragraph, next to two other numbers you don't. There are conditions: a fee for full-time study, a different one for part-time, a note that fees "may" rise. And one fee usually applies to many intakes, the same course in September and January, or at two campuses.</p>
+<p>Before this, we'd read the page and type the fee into each intake. Every extra keystroke was another chance for a typo, and nobody could easily tell later who had entered what.</p>
+
+<h2>How it works</h2>
+<h3>Left: the page, with the AI's highlights</h3>
+<p>The scraped fee page sits on the left. One shortcut, Shift + A, runs the AI summariser. It pulls out the fees and highlights every amount and date on the page. It also flags the slippery words, like "may", that change what a number means. The reviewer reads the highlights instead of the whole page.</p>
+<h3>Right: every intake, ready to verify</h3>
+<p>On the right is each intake with its details: intake date, study mode, campus and fee. The reviewer compares, then accepts the fee or fixes it.</p>
+<h3>Then apply it once, to the right set</h3>
+<p>When a fee is right, one click applies it more widely. The reviewer chooses the scope: every intake, every full-time intake, or every intake at the same campus. Part-time stays untouched when the fee is full-time only. Then Verify.</p>
+<p>Each record stores who verified it and when. If a number is ever questioned, there's a name and a time on it, not a shrug.</p>
+
+<h2>Why the scopes matter</h2>
+<p>I'll admit "apply to all" on its own would've been faster. It also would've been wrong. Fees really do differ by study mode and campus. Giving the reviewer three precise scopes kept the speed of a bulk update without flattening differences that are real. It's the same rule I use everywhere else: automate the repetition, keep the judgement with a person.</p>
+
+<h2>Around it</h2>
+<ul>
+<li>Dashboards by source and by person, so progress is visible.</li>
+<li>A contributors list with the most active and most recent verifiers.</li>
+<li>Export, for when the data needs to go somewhere else.</li>
+</ul>
+
+<h2>Stack</h2>
+<p>React with TypeScript, Vite and Tailwind, Express, MongoDB, Google sign-in, an LLM summariser.</p>
+<p class="endnote">My role: I designed the review workflow and the bulk-apply rules. *The 60-70% reduction in manual QC is measured across the Fees Validator and the <a href="/projects/subject-validator/">Subject Validator</a> together. The fee on this page is a sample.</p>

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How to Measure RPA Success Rate Honestly (94% vs 90%)</title>
+<meta name="description" content="How I measure RPA success rate: what counts as a failure, why user-stopped jobs are excluded, and bot time vs wall-clock time. Real numbers.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="Gibin Mathew">
+<link rel="canonical" href="https://gibin.in/blog/rpa-success-rate/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://gibin.in/blog/rpa-success-rate/">
+<meta property="og:title" content="RPA success rate: the same jobs, two honest-looking numbers">
+<meta property="og:description" content="How I measure RPA success rate: what counts as a failure, why user-stopped jobs are excluded, and bot time vs wall-clock time. Real numbers.">
+<meta property="og:site_name" content="Gibin Mathew">
+<meta property="og:locale" content="en_IN">
+<meta property="og:image" content="https://gibin.in/og/rpa-success-rate.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="article:published_time" content="2026-10-18"><meta property="article:modified_time" content="2026-10-18"><meta property="article:author" content="https://gibin.in/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="RPA success rate: the same jobs, two honest-looking numbers">
+<meta name="twitter:description" content="How I measure RPA success rate: what counts as a failure, why user-stopped jobs are excluded, and bot time vs wall-clock time. Real numbers.">
+<meta name="twitter:image" content="https://gibin.in/og/rpa-success-rate.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230B1320'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial,sans-serif' font-weight='800' font-size='28' fill='%23EEF2F8'%3EGM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100,500;112,700;125,800;125,900&family=Instrument+Serif:ital@1&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/base.css">
+<link rel="stylesheet" href="/assets/pages.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BlogPosting", "@id": "https://gibin.in/blog/rpa-success-rate/#article", "headline": "RPA success rate: the same jobs, two honest-looking numbers", "description": "How I measure RPA success rate: what counts as a failure, why user-stopped jobs are excluded, and bot time vs wall-clock time. Real numbers.", "url": "https://gibin.in/blog/rpa-success-rate/", "mainEntityOfPage": "https://gibin.in/blog/rpa-success-rate/", "datePublished": "2026-10-18", "dateModified": "2026-10-18", "author": {"@type": "Person", "@id": "https://gibin.in/#person", "name": "Gibin Mathew", "url": "https://gibin.in/", "jobTitle": "Data and Automation Manager", "sameAs": ["https://www.linkedin.com/in/gibinm"]}, "publisher": {"@id": "https://gibin.in/#person"}, "image": "https://gibin.in/og/rpa-success-rate.jpg", "inLanguage": "en", "keywords": "RPA success rate, RPA bot failure rate, RPA metrics, automation KPIs, RPA monitoring, bot success rate", "wordCount": 706, "isPartOf": {"@id": "https://gibin.in/#website"}, "about": [{"@type": "Thing", "name": "Robotic process automation"}, {"@type": "Thing", "name": "Key performance indicators"}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://gibin.in/"}, {"@type": "ListItem", "position": 2, "name": "Writing", "item": "https://gibin.in/blog/"}, {"@type": "ListItem", "position": 3, "name": "RPA success rate: the same jobs, two honest-looking numbers", "item": "https://gibin.in/blog/rpa-success-rate/"}]}]}</script>
+<script>document.documentElement.classList.add('js');try{var gmT=localStorage.getItem('gm-theme');if(gmT==='light'||gmT==='dark')document.documentElement.setAttribute('data-theme',gmT)}catch(e){}</script>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<header class="band">
+  <div class="container">
+    <div class="topbar">
+      <a class="mark" href="/" aria-label="Gibin Mathew, home">GM<span>.</span></a>
+      <nav class="topnav" aria-label="Site"><a href="/#approach">Approach</a><a href="/projects/">Projects</a><a href="/blog/" aria-current="page">Writing</a><a href="/#recommendations">Recommendations</a><a href="/#career">Career</a><a href="#contact">Contact</a></nav>
+      <button class="cord hint" id="cord" type="button" aria-label="Switch to light theme"><span class="halo" aria-hidden="true"></span><span class="cl"></span><span class="flies" aria-hidden="true"></span><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3Z"/></svg></span><span class="tip" id="cord-tip">pull for day</span></button>
+    </div>
+    <div class="ph">
+      <div>
+        <ol class="crumbs"><li><a href="/">gibin.in</a></li><li><a href="/blog/">Writing</a></li><li>Measuring RPA success rate</li></ol>
+        <span class="ph-kicker">RPA · Metrics</span>
+        <h1 class="ph-title">RPA success rate: the same jobs, <em>two honest-looking</em> numbers</h1>
+        <p class="ph-dek">Our config-driven RPA platform reports a 94% success rate. Count the same jobs a different way and you get about 90%. Both are arithmetic. Only one tells you <strong>how well the platform works</strong>, and the choice deserves to be explained, not hidden.</p>
+        
+        <div class="byline"><div class="avatar"><img src="/gibin-mathew.webp" alt="" width="40" height="40"></div><span>By <a href="/" rel="author">Gibin Mathew</a></span><span class="dot">·</span><time datetime="2026-10-18">18 Oct 2026</time><span class="dot">·</span><span>3 min read</span></div>
+      </div>
+      
+<div class="fig" data-scene="rate" role="img" aria-label="Animation: a bar splits roughly 3,400 jobs into successful, failed and stopped by the user. Counting user stops as failures gives about 90 percent. Measuring only what the platform controls gives 94 percent.">
+  <div class="fig-h"><span class="live"><b>what counts as a failure?</b></span><span>3,400+ jobs · Oct 2026</span></div>
+  <div class="rate">
+    <div class="stack"><i class="s" style="width:94.6%">success</i><i class="f" style="width:5.4%"></i><i class="t" style="width:0"></i></div>
+    <div class="legend2"><span style="--c:var(--band-ok)">succeeded</span><span style="--c:var(--band-bad)">failed</span><span style="--c:var(--band-muted)">stopped by a user</span></div>
+    <div class="formula dim"><span class="lbl">all jobs</span><code>success ÷ every job</code><b>~90%</b></div>
+    <div class="formula on"><span class="lbl">platform</span><code>success ÷ (success + failed)</code><b>94%</b></div>
+  </div>
+  <div class="fig-f"><span>same jobs, two honest-looking numbers</span><span>dashboard, Oct 2026</span></div>
+</div>
+    </div>
+  </div>
+</header>
+<main><div class="container"><div class="doc"><nav class="toc" aria-label="On this page"><b>On this page</b><ol><li><a href="#the-numbers">The numbers</a></li><li><a href="#why-user-stopped-jobs-don-t-count">Why user-stopped jobs don&#x27;t count</a></li><li><a href="#the-trap-stopping-is-a-loophole-if-you-let-it-be">The trap: stopping is a loophole if you let it be</a></li><li><a href="#give-every-failure-a-label">Give every failure a label</a></li><li><a href="#bot-time-is-not-wall-clock-time">Bot time is not wall-clock time</a></li><li><a href="#a-checklist-for-your-own-success-rate">A checklist for your own success rate</a></li></ol><div class="side"><a href="/blog/">← All writing</a></div></nav><article class="prose"><p class="lede">A success rate is the first number anyone asks about an automation, and the easiest one to fudge without meaning to. Here's how I define ours, with the dashboard numbers both ways, so you can decide if I'm being fair.</p>
+
+<h2 id="the-numbers">The numbers</h2>
+<p>From our dashboard on 12 October 2026, the config-driven RPA platform at Edvoy had run 3,422 jobs across 71 configured portals, 66 of them active:</p>
+<table>
+<thead><tr><th>Outcome</th><th>Jobs</th><th>What it means</th></tr></thead>
+<tbody>
+<tr><td>Succeeded</td><td>3,075</td><td>The portal submission went through.</td></tr>
+<tr><td>Failed</td><td>175</td><td>The platform couldn't finish the job.</td></tr>
+<tr><td>Stopped by a user</td><td>172</td><td>An operator ended the job on purpose.</td></tr>
+</tbody>
+</table>
+<p>Divide successes by every job and you get about 90%. Divide successes by successes plus failures and you get 94%. Same jobs, same dashboard, a four-point gap.</p>
+
+<h2 id="why-user-stopped-jobs-don-t-count">Why user-stopped jobs don't count</h2>
+<p>An operator stops a job for their own reasons. Maybe the record had a mistake, or they picked the wrong portal. Whatever it is, the platform didn't fail. It was told to stop, and it stopped.</p>
+<p>If I counted those as failures, the success rate would move every time operators changed how they work, even if the platform didn't change at all. That makes it a bad number to manage the platform by. So the rate I report is:</p>
+<pre><code class="language-text">success rate = successful jobs / (successful jobs + failed jobs)</code></pre>
+<p>The important half of this rule is that user-stopped jobs don't count <strong>for</strong> the platform either. They're not in the top of the fraction or the bottom. They get their own line on the dashboard, and if that line grows, it's a question worth asking, just not a platform failure.</p>
+
+<h2 id="the-trap-stopping-is-a-loophole-if-you-let-it-be">The trap: stopping is a loophole if you let it be</h2>
+<p>Excluding a category is only fair if nobody can push failures into it. If the bot could quietly "stop" itself when it got stuck, every hard failure would vanish from the denominator and the rate would look great.</p>
+<p>So the platform tells the two apart. When a job ends because a person closed it, that's detected and recorded as a user stop. When it ends because the platform gave up, that's a failure, with a reason. The bot can't choose which bucket it lands in.</p>
+
+<h2 id="give-every-failure-a-label">Give every failure a label</h2>
+<p>A success rate tells you how often things go wrong. It doesn't tell you what to do about it. For that, every failed job on our platform gets one of four labels:</p>
+<ul>
+<li><strong>Config error:</strong> our mistake. Someone fixes the portal's config.</li>
+<li><strong>Site changes:</strong> the portal moved something. The config needs an update.</li>
+<li><strong>Connection issue:</strong> timeouts and slow pages. Usually fine on a retry.</li>
+<li><strong>Blocked, attention required:</strong> the bot hit something it shouldn't guess at. A person looks.</li>
+</ul>
+<p>The labels matter more than the rate. A 94% that's mostly connection blips is a healthy platform. A 94% that's mostly site changes on one portal is a config that needs attention this week.</p>
+
+<h2 id="bot-time-is-not-wall-clock-time">Bot time is not wall-clock time</h2>
+<p>The other number people ask about is speed. By hand, one submission took about 30 minutes. The bot's own time averages about 5 minutes per job.</p>
+<p>That 5 minutes is bot time only. A job's wall-clock time is longer, because it includes pauses where a person enters a one-time code or gets documents ready. Those pauses can be long, and they're not the bot's doing. If I quoted wall-clock time, I'd be blaming the bot for waiting on people. If I counted the pauses as savings, I'd be inflating the hours saved. So I quote bot time, and I say that's what it is.</p>
+
+<h2 id="a-checklist-for-your-own-success-rate">A checklist for your own success rate</h2>
+<ol>
+<li>Write down what counts as a success. "The bot finished" isn't it. "The target system confirmed it" is.</li>
+<li>Decide which outcomes aren't the platform's to own, and make sure the bot can't push failures into them.</li>
+<li>Report the excluded outcomes next to the rate, not instead of it.</li>
+<li>Label every failure with a reason that tells you who fixes it.</li>
+<li>Separate machine time from waiting time before you quote speed or savings.</li>
+</ol>
+<p>None of this is clever. It just means that when someone asks "is 94% real?", you can show them the table above and let them check.</p>
+<p class="endnote">Figures are from the live dashboard of the platform described in the <a href="/projects/config-driven-rpa/">config-driven RPA case study</a>, October 2026.</p>
+</article></div></div><section class="related sec"><div class="container"><div class="sec-h"><div><span class="label">Keep reading</span><h2 class="h-sec">Related work</h2></div></div><div class="cards three"><a class="pcard rv" href="/projects/config-driven-rpa/"><span class="w"><span>Edvoy</span><span>2026</span></span><h3>Config-driven RPA: one engine, 70+ portals</h3><span class="m">94% success · 70+ portals</span><p>One Playwright engine, a JSON config per portal, people for OTPs and uploads. 3,000+ submissions at 94% success across 70+ application portals.</p><span class="go">Read the case study</span></a><a class="pcard rv" href="/blog/human-in-the-loop-rpa/"><span class="w"><span>Writing</span><span>18 Oct 2026</span></span><h3>Design the human steps in: OTPs, CAPTCHAs and uploads in RPA</h3><p>Why some steps belong to a person, how pause-and-resume works in a browser bot, bounded retries, and the questions to ask before automating a step.</p><span class="go">Read the post</span></a><a class="pcard rv" href="/blog/config-driven-rpa-playwright/"><span class="w"><span>Writing</span><span>18 Oct 2026</span></span><h3>Config-driven RPA with Playwright: why I stopped writing one bot per website</h3><p>Why one bot per website doesn&#x27;t scale, what goes in a portal config, a minimal Playwright engine in TypeScript, and three rules for keeping it clean.</p><span class="go">Read the post</span></a></div></div></section></main>
+<footer class="contact" id="contact">
+  <div class="container">
+    <div class="inner">
+      <div>
+        <div class="contact-id"><div class="avatar"><img src="/gibin-mathew.webp" alt="Gibin Mathew" width="360" height="360" loading="lazy"></div></div>
+        <h2>Have a process that's still <em>done by hand?</em></h2>
+        <p>Happy to talk about automation, data platforms, or getting AI into production without breaking things.</p>
+      </div>
+      <div class="reach">
+        <div class="emailrow"><code id="email">gibin.mat96@gmail.com</code><button class="copy" id="copyBtn" type="button">Copy</button></div>
+        <a href="https://www.linkedin.com/in/gibinm" target="_blank" rel="noopener">linkedin.com/in/gibinm ↗</a>
+        <a href="/">gibin.in, the full profile →</a>
+      </div>
+    </div>
+    <p class="areas">I work on RPA and workflow automation, config-driven web automation, web scraping, data engineering and ETL, and AI-assisted data validation, mostly in Python, Playwright and Node.js. Based in Chennai, India.</p>
+    <div class="foot"><span>Gibin Mathew · RPA &amp; workflow automation · Chennai, India</span><span><a href="/projects/" style="color:inherit">Projects</a> · <a href="/blog/" style="color:inherit">Writing</a></span></div>
+  </div>
+</footer>
+<button class="totop" id="totop" type="button" aria-label="Back to top">↑</button>
+<script src="/assets/site.js" defer></script>
+<script>/* GoatCounter: privacy-friendly stats, live domain only. */
+window.goatcounter={no_onload:true};
+(function(){if(!/(^|\.)gibin\.in$/.test(location.hostname))return;var g=document.createElement('script');g.async=true;g.src='https://gc.zgo.at/count.js';g.setAttribute('data-goatcounter','https://gibin.goatcounter.com/count');
+g.onload=function(){try{window.goatcounter.count()}catch(e){}
+  if(/[?&](ref|utm_[a-z]+)=/.test(location.search)){try{history.replaceState(null,'',location.pathname+location.hash)}catch(e){}}};
+document.body.appendChild(g)})();</script>
+</body>
+</html>

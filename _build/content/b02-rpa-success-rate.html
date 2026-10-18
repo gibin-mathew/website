@@ -1,0 +1,65 @@
+<!--meta
+{"section":"blog","slug":"rpa-success-rate","order":2,
+"title":"How to Measure RPA Success Rate Honestly (94% vs 90%)",
+"og_title":"RPA success rate: the same jobs, two honest-looking numbers",
+"description":"How I measure RPA success rate: what counts as a failure, why user-stopped jobs are excluded, and bot time vs wall-clock time. Real numbers.",
+"kicker":"RPA · Metrics",
+"h1":"RPA success rate: the same jobs, <em>two honest-looking</em> numbers",
+"crumb":"Measuring RPA success rate",
+"dek":"Our config-driven RPA platform reports a 94% success rate. Count the same jobs a different way and you get about 90%. Both are arithmetic. Only one tells you <strong>how well the platform works</strong>, and the choice deserves to be explained, not hidden.",
+"fig":"rate","date":"2026-10-18","updated":"2026-10-18",
+"summary":"Success ÷ (success + failed), why user-stopped jobs don't count either way, bot time vs wall-clock time, and why every failure needs a label.",
+"keywords":["RPA success rate","RPA bot failure rate","RPA metrics","automation KPIs","RPA monitoring","bot success rate"],
+"about":["Robotic process automation","Key performance indicators"],
+"related":["/projects/config-driven-rpa/","/blog/human-in-the-loop-rpa/","/blog/config-driven-rpa-playwright/"]}
+-->
+<p class="lede">A success rate is the first number anyone asks about an automation, and the easiest one to fudge without meaning to. Here's how I define ours, with the dashboard numbers both ways, so you can decide if I'm being fair.</p>
+
+<h2>The numbers</h2>
+<p>From our dashboard on 12 October 2026, the config-driven RPA platform at Edvoy had run 3,422 jobs across 71 configured portals, 66 of them active:</p>
+<table>
+<thead><tr><th>Outcome</th><th>Jobs</th><th>What it means</th></tr></thead>
+<tbody>
+<tr><td>Succeeded</td><td>3,075</td><td>The portal submission went through.</td></tr>
+<tr><td>Failed</td><td>175</td><td>The platform couldn't finish the job.</td></tr>
+<tr><td>Stopped by a user</td><td>172</td><td>An operator ended the job on purpose.</td></tr>
+</tbody>
+</table>
+<p>Divide successes by every job and you get about 90%. Divide successes by successes plus failures and you get 94%. Same jobs, same dashboard, a four-point gap.</p>
+
+<h2>Why user-stopped jobs don't count</h2>
+<p>An operator stops a job for their own reasons. Maybe the record had a mistake, or they picked the wrong portal. Whatever it is, the platform didn't fail. It was told to stop, and it stopped.</p>
+<p>If I counted those as failures, the success rate would move every time operators changed how they work, even if the platform didn't change at all. That makes it a bad number to manage the platform by. So the rate I report is:</p>
+<pre data-raw="text">
+success rate = successful jobs / (successful jobs + failed jobs)
+</pre>
+<p>The important half of this rule is that user-stopped jobs don't count <strong>for</strong> the platform either. They're not in the top of the fraction or the bottom. They get their own line on the dashboard, and if that line grows, it's a question worth asking, just not a platform failure.</p>
+
+<h2>The trap: stopping is a loophole if you let it be</h2>
+<p>Excluding a category is only fair if nobody can push failures into it. If the bot could quietly "stop" itself when it got stuck, every hard failure would vanish from the denominator and the rate would look great.</p>
+<p>So the platform tells the two apart. When a job ends because a person closed it, that's detected and recorded as a user stop. When it ends because the platform gave up, that's a failure, with a reason. The bot can't choose which bucket it lands in.</p>
+
+<h2>Give every failure a label</h2>
+<p>A success rate tells you how often things go wrong. It doesn't tell you what to do about it. For that, every failed job on our platform gets one of four labels:</p>
+<ul>
+<li><strong>Config error:</strong> our mistake. Someone fixes the portal's config.</li>
+<li><strong>Site changes:</strong> the portal moved something. The config needs an update.</li>
+<li><strong>Connection issue:</strong> timeouts and slow pages. Usually fine on a retry.</li>
+<li><strong>Blocked, attention required:</strong> the bot hit something it shouldn't guess at. A person looks.</li>
+</ul>
+<p>The labels matter more than the rate. A 94% that's mostly connection blips is a healthy platform. A 94% that's mostly site changes on one portal is a config that needs attention this week.</p>
+
+<h2>Bot time is not wall-clock time</h2>
+<p>The other number people ask about is speed. By hand, one submission took about 30 minutes. The bot's own time averages about 5 minutes per job.</p>
+<p>That 5 minutes is bot time only. A job's wall-clock time is longer, because it includes pauses where a person enters a one-time code or gets documents ready. Those pauses can be long, and they're not the bot's doing. If I quoted wall-clock time, I'd be blaming the bot for waiting on people. If I counted the pauses as savings, I'd be inflating the hours saved. So I quote bot time, and I say that's what it is.</p>
+
+<h2>A checklist for your own success rate</h2>
+<ol>
+<li>Write down what counts as a success. "The bot finished" isn't it. "The target system confirmed it" is.</li>
+<li>Decide which outcomes aren't the platform's to own, and make sure the bot can't push failures into them.</li>
+<li>Report the excluded outcomes next to the rate, not instead of it.</li>
+<li>Label every failure with a reason that tells you who fixes it.</li>
+<li>Separate machine time from waiting time before you quote speed or savings.</li>
+</ol>
+<p>None of this is clever. It just means that when someone asks "is 94% real?", you can show them the table above and let them check.</p>
+<p class="endnote">Figures are from the live dashboard of the platform described in the <a href="/projects/config-driven-rpa/">config-driven RPA case study</a>, October 2026.</p>

@@ -1,0 +1,94 @@
+<!--meta
+{"section":"blog","slug":"token-sort-matching","order":3,
+"title":"Token Sort Matching Explained, with Python Examples",
+"og_title":"Token sort matching, explained: when you don't need a fuzzy threshold",
+"description":"Token sort matching explained: real RapidFuzz token_sort_ratio and token_set_ratio scores, a Python key function, and when exact keys win.",
+"kicker":"Data matching · Python",
+"h1":"Token sort matching, explained: when you <em>don't need</em> a fuzzy threshold",
+"crumb":"Token sort matching explained",
+"dek":"Token sort is the simplest useful trick in record matching: sort the words, then compare. Most tutorials pair it with a similarity score and a cut-off. For our reconciliation work I compared the sorted keys exactly instead, and it was <strong>the more honest choice</strong>. Here's why, with real scores.",
+"fig":"tokens","date":"2026-10-18","updated":"2026-10-18",
+"summary":"Token sort with real RapidFuzz scores, a Python key function, strictest-key-first fallback, and when exact keys beat a fuzzy threshold.",
+"keywords":["token sort matching","token sort ratio","token_sort_ratio vs token_set_ratio","fuzzy matching Python","rapidfuzz","data reconciliation"],
+"about":["Fuzzy string matching","Record linkage","Python"],
+"related":["/projects/token-sort-matching/","/blog/llm-data-validation/","/projects/markdown-extractor/"]}
+-->
+<p class="lede">If two systems describe the same thing, they rarely write it the same way. Token sort fixes the most common difference, word order, in one line of code. What you do after that line is where most of the real decisions are.</p>
+
+<h2>What token sort does</h2>
+<p>Take a name, lower-case it, remove punctuation, split it into words, sort the words, and put them back together. Two names that differ only in order and punctuation come out identical.</p>
+<pre data-raw="python">
+import re
+
+def token_sort_key(name: str) -> str:
+    words = re.sub(r"[^a-z0-9 ]+", " ", name.lower()).split()
+    return "".join(sorted(words))
+
+token_sort_key("MSc Data Science (Full Time)")   # 'datafullmscsciencetime'
+token_sort_key("Data Science MSc - Full Time")   # 'datafullmscsciencetime'
+</pre>
+<p>That's all of it. In our reconciliation tool, <a href="/projects/token-sort-matching/">Intake Watcher</a>, this key does most of the work of deciding whether a listing on a website is the same as a listing in our database.</p>
+
+<h2>How it compares to RapidFuzz</h2>
+<p>If you've used RapidFuzz or the older fuzzywuzzy, you'll know <code>token_sort_ratio</code>. It does the same sorting, then returns a similarity score from 0 to 100. Its sibling <code>token_set_ratio</code> goes further and ignores words that appear on only one side. Here are real scores from RapidFuzz 3.14, using its default processor to lower-case and strip punctuation, next to the exact-key check:</p>
+<table>
+<thead><tr><th>Name A</th><th>Name B</th><th>ratio</th><th>token sort</th><th>token set</th><th>same key?</th></tr></thead>
+<tbody>
+<tr><td>MSc Data Science (Full Time)</td><td>Data Science MSc - Full Time</td><td>84</td><td>100</td><td>100</td><td>yes</td></tr>
+<tr><td>Data Science MSc</td><td>MSc in Data Science</td><td>69</td><td>91</td><td>100</td><td>no</td></tr>
+<tr><td>Data Science</td><td>Data Science and AI</td><td>77</td><td>77</td><td>100</td><td>no</td></tr>
+<tr><td>MSc Data Science</td><td>MSc Data Sciences</td><td>97</td><td>97</td><td>97</td><td>no</td></tr>
+<tr><td>MSc Data Science</td><td>Master of Science in Data Science</td><td>65</td><td>65</td><td>86</td><td>no</td></tr>
+</tbody>
+</table>
+<p>Look at row three. <code>token_set_ratio</code> scores "Data Science" and "Data Science and AI" a perfect 100, because every word in the shorter name appears in the longer one. Those are different courses. In a reconciliation job, that's a false match, and false matches are the worst kind of error: they hide a new listing and a deleted one at the same time.</p>
+<p>One small trap if you try this yourself: since RapidFuzz 3.0 the scorers don't pre-process strings by default. Without <code>processor=utils.default_process</code>, the first row scores 79 on token sort instead of 100, because the brackets and dash stay attached to the words.</p>
+<pre data-raw="python">
+from rapidfuzz import fuzz, utils
+
+a, b = "MSc Data Science (Full Time)", "Data Science MSc - Full Time"
+fuzz.token_sort_ratio(a, b)                                   # 78.6
+fuzz.token_sort_ratio(a, b, processor=utils.default_process)  # 100.0
+</pre>
+
+<h2>Why I compared keys exactly</h2>
+<p>With a score you need a threshold. Pick 95 and you miss row two, which scores 91. Pick 85 and you're one odd name away from matching two different courses. Every threshold is a guess about your future data, and you only learn it was wrong after something gets matched that shouldn't have.</p>
+<p>Our mismatches were almost all about order and punctuation. Exact keys handle those perfectly, and they fail in a safe direction: when two names don't produce the same key, the listing shows up as new or deleted, and a person looks. A missed match costs a minute of review. A false match costs a wrong record that nobody notices.</p>
+<p>There's a second reason. When someone asks why two listings were matched, I can show them the key. "They both reduce to <code>datafullmscsciencetime</code>" is an answer anyone can check. "The score was 87" isn't.</p>
+
+<h2>The name isn't the whole key</h2>
+<p>The same course can run in two intakes, at two campuses, full-time and part-time. So the real match key is the sorted name plus the intake month and year, and then campus, study mode and duration when both sides have them.</p>
+<pre data-raw="python">
+from itertools import combinations
+
+EXTRA = ["campus", "study_mode", "duration"]
+
+def candidate_keys(row: dict, other_side_has) -> list[tuple]:
+    """Most specific key first. A field joins only if both sides have it."""
+    base = (token_sort_key(row["name"]), row["intake_month"], row["intake_year"])
+    usable = [f for f in EXTRA if row.get(f) and other_side_has(f)]
+    keys = []
+    for n in range(len(usable), -1, -1):
+        for combo in combinations(usable, n):
+            keys.append(base + tuple(row[f] for f in combo))
+    return keys
+</pre>
+<p>With three optional fields that's up to eight keys per listing, tried from strictest to loosest. A listing never matches on a vague key while a precise one is available. We also check a couple of alias name fields, because some listings get renamed and the old name lives on somewhere on the web.</p>
+
+<h2>When you do need fuzzy scores</h2>
+<p>Exact keys aren't always enough. Rows four and five above are real problems that token sort can't solve:</p>
+<ul>
+<li><strong>Typos and plurals</strong>, like "Sciences" versus "Science". A score catches these; a key doesn't.</li>
+<li><strong>Abbreviations</strong>, like "MSc" versus "Master of Science". Neither approach really fixes this. A small synonym table does, or an alias field.</li>
+<li><strong>Extra filler words</strong>, like "in" or "and". You can drop a short list of stop words before sorting, but test it, because sometimes "and" is the whole difference.</li>
+</ul>
+<p>If your data is full of typos, use scores, but send anything under a perfect score to a person rather than trusting a threshold. That keeps the speed of fuzzy matching without letting it make the final call.</p>
+
+<h2>Summary</h2>
+<ul>
+<li>Token sort removes word order and punctuation as a difference. That's the most common difference in names.</li>
+<li><code>token_set_ratio</code> is generous enough to match different things. Be careful with it in reconciliation.</li>
+<li>Exact sorted keys, tried from strictest to loosest, fail safely and are easy to explain.</li>
+<li>Use scores for typos, but let them suggest, not decide.</li>
+</ul>
+<p class="endnote">Scores computed with RapidFuzz 3.14.6 and <code>utils.default_process</code>. The course names are examples, not real listings. The approach is the one behind <a href="/projects/token-sort-matching/">Intake Watcher</a>, which cut manual reconciliation by about 60%.</p>

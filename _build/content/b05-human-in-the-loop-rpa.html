@@ -1,0 +1,55 @@
+<!--meta
+{"section":"blog","slug":"human-in-the-loop-rpa","order":5,
+"title":"Human-in-the-Loop RPA: Designing OTP, CAPTCHA and Upload Steps",
+"og_title":"Design the human steps in: OTPs, CAPTCHAs and uploads in RPA",
+"description":"Why RPA should hand OTPs, CAPTCHAs and uploads to a person on purpose, how pause-and-resume works, and why retries should be bounded.",
+"kicker":"RPA · Design",
+"h1":"Design the human steps in: <em>OTPs, CAPTCHAs</em> and uploads in RPA",
+"crumb":"Human-in-the-loop RPA",
+"dek":"The most reliable thing our RPA platform does is stop. One-time codes, CAPTCHAs and document uploads go to a person, on purpose, and the bot picks up where it left off. <strong>Automation earns trust when it knows when to stop.</strong>",
+"fig":"human","date":"2026-10-18","updated":"2026-10-18",
+"summary":"Why some steps belong to a person, how pause-and-resume works in a browser bot, bounded retries, and the questions to ask before automating a step.",
+"keywords":["human in the loop automation","RPA OTP handling","RPA CAPTCHA","attended automation","RPA design","exception handling RPA"],
+"about":["Robotic process automation","Human-in-the-loop"],
+"related":["/projects/config-driven-rpa/","/blog/rpa-success-rate/","/blog/llm-data-validation/"]}
+-->
+<p class="lede">Every RPA project hits the same wall sooner or later: a step the bot can't do on its own. A code sent to someone's phone. A CAPTCHA. A document only a person can sign. The tempting move is to work around it. The better move is to design for it.</p>
+
+<h2>Three steps we don't automate</h2>
+<p>Our config-driven RPA platform at Edvoy has filled forms on 70+ external portals since March 2026, built on Node.js and Playwright. On it, three kinds of step always go to a person, and I'd make the same call again:</p>
+<ul>
+<li><strong>One-time codes.</strong> They're sent to a real person's email or phone, for a reason: the portal wants proof that a human is involved.</li>
+<li><strong>CAPTCHAs.</strong> They exist to stop bots. Defeating them is an arms race you'll lose eventually, and it isn't a fight a business should pick with the sites it depends on.</li>
+<li><strong>Document uploads.</strong> Picking the right, current, signed file is a judgement call, and the cost of the wrong file is high.</li>
+</ul>
+<p>That's a choice about what's right as much as what's possible. A person doing those steps keeps the bot on the right side of the portals' rules and keeps a human accountable for the parts that need one.</p>
+
+<h2>Pause, hand over, resume</h2>
+<p>I'll be honest, the design is simple to describe. When the bot reaches one of those steps, it pauses. The operator who started the job does that step. The bot then carries on from exactly where it stopped, with the same session, on the same page.</p>
+<p>In the config, a handover is just another step, so the engine treats it like any other: something to do, then a check that it's done before moving on.</p>
+<pre data-raw="json">
+{ "handover": "otp", "note": "code is emailed to the applicant" },
+{ "fill": "#address-line-1", "from": "address.line1" }
+</pre>
+<p>Two details made this work well in practice:</p>
+<ol>
+<li><strong>The job stays alive.</strong> A pause isn't a failure and isn't a timeout. The session is held in Redis while the person works.</li>
+<li><strong>Waiting time isn't bot time.</strong> When we report speed, the pauses are left out of the bot's number, and they aren't counted as hours saved. More on that in <a href="/blog/rpa-success-rate/">how I measure RPA success rate</a>.</li>
+</ol>
+
+<h2>When the bot gets stuck</h2>
+<p>Not every pause is planned, and Playwright can't save you from every surprise. Sometimes a portal shows something unexpected, a pop-up or a changed section, and the bot can't find what it's looking for.</p>
+<p>Small problems retry on their own. A slow page gets a longer wait. For anything bigger, the bot pauses and lets the operator clear whatever is in the way, then tries again. The retries are bounded, 3 attempts by default and no more, so a stuck job turns into a labelled failure instead of a loop that runs all night.</p>
+<p>I care most about the bounded part. A bot that retries forever hides problems. A bot that gives up after a few tries, with a reason attached, tells you exactly where your config or the portal needs attention.</p>
+
+<h2>Questions to ask before you automate a step</h2>
+<ul>
+<li>Was this step put there to prove a person is present? Then a person should do it.</li>
+<li>If the bot gets it wrong, does anyone find out before it matters? If not, keep a person on it.</li>
+<li>Is it rare? Automating a step that happens once in fifty jobs is usually not worth the fragility.</li>
+<li>Does it need judgement that isn't written down anywhere? Then it isn't ready to automate yet.</li>
+</ul>
+
+<h2>The payoff</h2>
+<p>Designing the human steps in from day one made our platform simpler, not more complicated. It's handled 3,000+ submissions at 94% success with them in place. There's no CAPTCHA-solving code to maintain, no clever OTP inbox hack to break, and no argument about who's responsible for a wrong upload. The bot does the repetitive bulk of the form. People do the parts that need a person. Bots do the forms, people make the judgment calls, and the system in between is the part worth engineering.</p>
+<p class="endnote">This is how the <a href="/projects/config-driven-rpa/">config-driven RPA platform</a> handles 3,000+ submissions across 70+ portals at a 94% success rate.</p>

@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Config-Driven RPA with Playwright, 70+ Portals | Gibin Mathew</title>
+<meta name="description" content="Case study: one Playwright engine, a JSON config per portal. 3,000+ submissions across 70+ application portals at 94% success, 1,200+ hours saved.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="Gibin Mathew">
+<link rel="canonical" href="https://gibin.in/projects/config-driven-rpa/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://gibin.in/projects/config-driven-rpa/">
+<meta property="og:title" content="Config-driven RPA: one engine, 70+ application portals">
+<meta property="og:description" content="Case study: one Playwright engine, a JSON config per portal. 3,000+ submissions across 70+ application portals at 94% success, 1,200+ hours saved.">
+<meta property="og:site_name" content="Gibin Mathew">
+<meta property="og:locale" content="en_IN">
+<meta property="og:image" content="https://gibin.in/og/config-driven-rpa.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="article:published_time" content="2026-10-18"><meta property="article:modified_time" content="2026-10-18"><meta property="article:author" content="https://gibin.in/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Config-driven RPA: one engine, 70+ application portals">
+<meta name="twitter:description" content="Case study: one Playwright engine, a JSON config per portal. 3,000+ submissions across 70+ application portals at 94% success, 1,200+ hours saved.">
+<meta name="twitter:image" content="https://gibin.in/og/config-driven-rpa.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230B1320'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial,sans-serif' font-weight='800' font-size='28' fill='%23EEF2F8'%3EGM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100,500;112,700;125,800;125,900&family=Instrument+Serif:ital@1&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/base.css">
+<link rel="stylesheet" href="/assets/pages.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://gibin.in/projects/config-driven-rpa/#article", "headline": "Config-driven RPA: one engine, 70+ portals", "description": "Case study: one Playwright engine, a JSON config per portal. 3,000+ submissions across 70+ application portals at 94% success, 1,200+ hours saved.", "url": "https://gibin.in/projects/config-driven-rpa/", "mainEntityOfPage": "https://gibin.in/projects/config-driven-rpa/", "datePublished": "2026-10-18", "dateModified": "2026-10-18", "author": {"@type": "Person", "@id": "https://gibin.in/#person", "name": "Gibin Mathew", "url": "https://gibin.in/", "jobTitle": "Data and Automation Manager", "sameAs": ["https://www.linkedin.com/in/gibinm"]}, "publisher": {"@id": "https://gibin.in/#person"}, "image": "https://gibin.in/og/config-driven-rpa.jpg", "inLanguage": "en", "keywords": "config-driven RPA, config driven RPA Playwright, RPA case study, web form automation, Playwright RPA, application portal automation", "wordCount": 1124, "isPartOf": {"@id": "https://gibin.in/#website"}, "about": [{"@type": "Thing", "name": "Robotic process automation"}, {"@type": "Thing", "name": "Playwright"}, {"@type": "Thing", "name": "Web automation"}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://gibin.in/"}, {"@type": "ListItem", "position": 2, "name": "Projects", "item": "https://gibin.in/projects/"}, {"@type": "ListItem", "position": 3, "name": "Config-driven RPA: one engine, 70+ portals", "item": "https://gibin.in/projects/config-driven-rpa/"}]}]}</script>
+<script>document.documentElement.classList.add('js');try{var gmT=localStorage.getItem('gm-theme');if(gmT==='light'||gmT==='dark')document.documentElement.setAttribute('data-theme',gmT)}catch(e){}</script>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<header class="band">
+  <div class="container">
+    <div class="topbar">
+      <a class="mark" href="/" aria-label="Gibin Mathew, home">GM<span>.</span></a>
+      <nav class="topnav" aria-label="Site"><a href="/#approach">Approach</a><a href="/projects/" aria-current="page">Projects</a><a href="/blog/">Writing</a><a href="/#recommendations">Recommendations</a><a href="/#career">Career</a><a href="#contact">Contact</a></nav>
+      <button class="cord hint" id="cord" type="button" aria-label="Switch to light theme"><span class="halo" aria-hidden="true"></span><span class="cl"></span><span class="flies" aria-hidden="true"></span><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3Z"/></svg></span><span class="tip" id="cord-tip">pull for day</span></button>
+    </div>
+    <div class="ph">
+      <div>
+        <ol class="crumbs"><li><a href="/">gibin.in</a></li><li><a href="/projects/">Projects</a></li><li>Config-driven RPA</li></ol>
+        <span class="ph-kicker">Case study · Edvoy · 2026</span>
+        <h1 class="ph-title">Config-driven RPA: one engine, <em>70+ portals</em></h1>
+        <p class="ph-dek">Our teams were retyping the same record into dozens of external application portals, about 30 minutes a time. I led the design of one Playwright engine that reads a small config per portal, so a new portal is <strong>described, not programmed</strong>.</p>
+        <div class="ph-facts"><span><b>3,000+</b> submissions</span><span><b>94%</b> success rate</span><span><b>70+</b> portals</span><span><b>1,200+</b> hours saved</span></div>
+        <div class="byline"><div class="avatar"><img src="/gibin-mathew.webp" alt="" width="40" height="40"></div><span>Case study by <a href="/" rel="author">Gibin Mathew</a></span><span class="dot">·</span><span>Updated <time datetime="2026-10-18">18 Oct 2026</time></span></div>
+      </div>
+      
+<div class="fig" data-scene="config" role="img" aria-label="Animation: one engine fills three different portal forms from the same record. Each portal is a small config file.">
+  <div class="fig-h"><span class="live"><b data-file>portal-a.json</b></span><div class="tabs" aria-hidden="true"><span class="on">Portal A</span><span>Portal B</span><span>Portal C</span></div></div>
+  <div class="cfg">
+    <div class="panel"><div class="panel-k"><span>config</span><span>data, not code</span></div>
+<pre>{ "portal": "Portal A",
+  "steps": [
+  { "#first": "name.first" },
+  { "#last": "name.last" },
+  { "#dob": "dob | DD/MM/YYYY" },
+  { "#country": "country.name" },
+  { "otp": "person" },
+] }</pre></div>
+    <div class="panel"><div class="panel-k"><span>portal form</span><span class="tag blue">live</span></div>
+      <div class="ff"><label>Given name<span class="in done">Asha</span></label><label>Family name<span class="in done">Rao</span></label><label>Date of birth<span class="in done">14/07/1999</span></label><label>Country<span class="in done">India</span></label><label>One-time code<span class="in done">done by a person</span></label></div>
+    </div>
+  </div>
+  <div class="fig-f"><span data-status>Portal A submitted, engine unchanged</span><span>sample data</span></div>
+</div>
+    </div>
+  </div>
+</header>
+<main><div class="container"><div class="doc"><nav class="toc" aria-label="On this page"><b>On this page</b><ol><li><a href="#the-problem">The problem</a></li><li><a href="#the-idea-describe-the-portal-don-t-program-it">The idea: describe the portal, don&#x27;t program it</a></li><li><a href="#how-one-job-runs">How one job runs</a></li><li><a href="#calls-i-made-and-why">Calls I made, and why</a></li><li><a href="#results">Results</a></li><li><a href="#what-i-d-tell-someone-building-this">What I&#x27;d tell someone building this</a></li><li><a href="#stack">Stack</a></li></ol><div class="side"><a href="/blog/config-driven-rpa-playwright/">The thinking behind it →</a><a href="/projects/">← All projects</a></div></nav><article class="prose"><p class="lede">If you automate forms on other people's websites, the hard part isn't filling a field. It's that every site is different and keeps changing. This page covers how we built around that, what the numbers look like, and the calls I'd make again.</p>
+
+<div class="results"><div><b>3,000+</b><span>portal submissions processed</span></div><div><b>94%</b><span>success rate, measured on what the platform controls</span></div><div><b>~5 min</b><span>average bot time per job, against ~30 min by hand</span></div><div><b>1,200+</b><span>hours of manual work handed back</span></div></div>
+<p class="fine">Dashboard figures as of October 2026. Live since March 2026, used by three regional operations teams.</p>
+
+<h2 id="the-problem">The problem</h2>
+<p>Our operations teams submit the same kind of record to a long list of external application portals. No two portals behave alike. Field names differ. Page order differs. One wants the date as 14/07/1999, the next wants 1999-07-14. Some ask for a one-time code halfway through. Some show a whole extra section only if you tick a box three pages earlier.</p>
+<p>By hand, one submission took about 30 minutes of careful retyping. Multiply that by thousands and you get a team doing copy-paste for a living, plus the errors that come with it.</p>
+<p>I'd done this the other way before. At S&amp;P Global I automated 40+ state portals with one script per site. It saved close to 3 FTE of work, but every redesign on any one of those sites meant a code fix, a test and another deployment. With one bot per site you don't maintain one automation. You maintain forty.</p>
+
+<h2 id="the-idea-describe-the-portal-don-t-program-it">The idea: describe the portal, don't program it</h2>
+<p>So we flipped it. There's one engine that knows how to read and fill a web form. Each portal is a config file that says where each field lives, what value goes in it, and what "done" looks like. Adding a portal means writing a config. A portal changes its layout? Update the config. The engine doesn't move.</p>
+<p>Here's the shape of a config, heavily simplified. The real ones are longer, but they're still data.</p>
+<pre><code>{
+  <span class="k">"portal"</span>: <span class="s">"portal-b"</span>,
+  <span class="k">"pages"</span>: [
+    { <span class="k">"name"</span>: <span class="s">"personal"</span>, <span class="k">"steps"</span>: [
+      { <span class="k">"fill"</span>: <span class="s">"input[name=full_name]"</span>, <span class="k">"from"</span>: <span class="s">"name.last_first"</span> },
+      { <span class="k">"fill"</span>: <span class="s">"#birth-date"</span>, <span class="k">"from"</span>: <span class="s">"dob"</span>, <span class="k">"format"</span>: <span class="s">"YYYY-MM-DD"</span> },
+      { <span class="k">"select"</span>: <span class="s">"#nationality"</span>, <span class="k">"from"</span>: <span class="s">"country.iso3"</span> },
+      { <span class="k">"if"</span>: { <span class="k">"visible"</span>: <span class="s">"#visa-section"</span> },
+        <span class="k">"then"</span>: [ { <span class="k">"fill"</span>: <span class="s">"#visa-number"</span>, <span class="k">"from"</span>: <span class="s">"visa.number"</span> } ] },
+      { <span class="k">"handover"</span>: <span class="s">"otp"</span>, <span class="k">"note"</span>: <span class="s">"code is emailed to the applicant"</span> }
+    ], <span class="k">"done_when"</span>: { <span class="k">"visible"</span>: <span class="s">"text=Education history"</span> } }
+  ]
+}</code></pre>
+<span class="codecap">Illustrative only. Not a real portal or our real schema.</span>
+
+<h2 id="how-one-job-runs">How one job runs</h2>
+<p>An operator picks a record and a portal from a browser side panel. That's the only click they make until the bot needs them.</p>
+
+<figure class="bfig" data-scene="arch">
+  <div class="bk"><span>How one job moves through the system</span><span>production stack</span></div>
+  <div class="arch">
+    <div><b>Side panel</b><span>operator picks record + portal</span></div>
+    <div><b>API</b><span>FastAPI · validates the job</span></div>
+    <div><b>Queue</b><span>Celery + RabbitMQ</span></div>
+    <div><b>Engine</b><span>Node.js + Playwright · reads the config</span></div>
+    <div><b>Portal</b><span>fills, pauses for people, submits</span></div>
+  </div>
+  <div class="arch-sub"><div><b>Redis</b> sessions and results</div><div><b>MongoDB</b> configs, jobs, step logs</div><div><b>AWS ECS Fargate</b> staging + production, in Docker</div></div>
+  <figcaption>Simplified. The engine is the only part that touches a portal, and it reads its instructions from config.</figcaption>
+</figure>
+<p>The API (FastAPI) checks the job and puts it on a queue (Celery with RabbitMQ). The engine, written in Node.js on Playwright, picks it up, loads the portal's config and works through the pages. Redis holds sessions and results. MongoDB holds the configs, the jobs and a log of every step. It all runs in Docker on AWS ECS Fargate, with separate staging and production clusters.</p>
+
+<h2 id="calls-i-made-and-why">Calls I made, and why</h2>
+<h3>Clean the data once, before the bot starts</h3>
+<p>Our CRM keeps a full name in one field, countries as codes and dates in one format. Every portal wants something different. So a Python step runs first and turns raw CRM values into portal-ready values: names split and reordered, emails trimmed and lower-cased, country codes turned into names or three-letter codes, yes/no answers normalised, phone numbers given a country prefix.</p>
+<p>Two good things fall out of this. The bot never touches messy data. And a missing field shows up before the run starts, not on page six of a portal with a session about to time out.</p>
+
+<h3>Let the page decide which questions apply</h3>
+<p>Portals show and hide questions based on earlier answers. Writing a separate config for every path through a form would have multiplied the work. Instead the config has a small logic layer: do these in order, do this only if an element is on the page (or visible, or the previous step worked), and repeat a section until the list runs out. That last one handles things like "add another education entry" without anyone counting rows in advance.</p>
+
+<h3>Design the human steps in from day one</h3>
+<p>OTPs, CAPTCHAs and document uploads go to a person, on purpose. The bot pauses, the operator does that step, and the bot picks up where it stopped. Trying to automate those steps would have made the whole system fragile, and some of them shouldn't be automated at all. I wrote more about this in <a href="/blog/human-in-the-loop-rpa/">designing the human steps in</a>.</p>
+<p>Small failures retry on their own. A slow page gets a longer wait. If the bot can't find the next section, it pauses so the operator can clear whatever's blocking it, then tries again, up to a fixed limit.</p>
+
+<h3>Give every failure a label</h3>
+<p>When a run fails, the platform reads the error and tags it. That tag decides who fixes it.</p>
+
+<figure class="bfig" data-scene="bins">
+  <div class="bk"><span>Every failed job gets one label</span><span>illustration</span></div>
+  <div class="bins">
+    <div class="bin" style="--c:var(--accent)"><b>Config error</b><span>our mistake in the config</span><div class="dots"><i></i><i></i><i></i></div></div>
+    <div class="bin" style="--c:var(--amber)"><b>Site changed</b><span>the portal moved something</span><div class="dots"><i></i><i></i></div></div>
+    <div class="bin" style="--c:#8a63d2"><b>Connection</b><span>timeouts, network, slow pages</span><div class="dots"><i></i><i></i></div></div>
+    <div class="bin" style="--c:var(--ok)"><b>Needs a person</b><span>blocked, attention required</span><div class="dots"><i></i><i></i></div></div>
+    <div class="bin x" style="--c:var(--muted)"><b>User stopped it</b><span>not counted against the platform</span><div class="dots"><i></i><i></i><i></i></div></div>
+  </div>
+  <figcaption>The dots are an illustration, not the real split. What matters is that each label sends the fix to a different person.</figcaption>
+</figure>
+<p>A config error is ours. A site change means a portal moved something, and the config needs an update. A connection issue usually fixes itself on a retry. "Needs a person" means the bot hit something it shouldn't guess at.</p>
+
+<h3>Define success so it can't flatter us</h3>
+<p>Success rate is successful jobs divided by successful plus failed. If an operator stops a job on purpose, maybe because the record was wrong, that isn't a platform failure and it doesn't count against us. It doesn't count for us either. I explain the trade-off, with the numbers both ways, in <a href="/blog/rpa-success-rate/">how I measure RPA success rate</a>.</p>
+
+<h2 id="results">Results</h2>
+<p>As of October 2026 the engine has handled 3,000+ submissions across 70+ portals at a 94% success rate. Coverage grew to 71 configured portals while the engine stayed one codebase. By hand a submission takes about 30 minutes. The bot's own time averages about 5 minutes per job. Together that's 1,200+ hours of manual work handed back to the teams.</p>
+<p>That 5 minutes is bot time only. The wall-clock time of a job is longer, because it includes the pauses where a person enters a code or gets documents ready. I don't fold those pauses into the bot's number, and I don't count them as savings.</p>
+
+<h2 id="what-i-d-tell-someone-building-this">What I'd tell someone building this</h2>
+<ul>
+<li><strong>Logic goes in the engine, differences go in the config.</strong> If you're writing site-specific code, ask why. Almost every portal we run is config only. The rare exception, like an unusual sign-in handshake, is kept small and clearly marked.</li>
+<li><strong>Make "done" explicit.</strong> A bot that can't tell success from a silent failure is worse than no bot.</li>
+<li><strong>Guard the line.</strong> The first "quick special case" in the engine is how you end up back at forty scripts. Holding that line was most of my job.</li>
+</ul>
+
+<h2 id="stack">Stack</h2>
+<p>Python, Node.js, Playwright, FastAPI, Celery, RabbitMQ, Redis, MongoDB, React, a Chrome extension for the side panel, Docker, AWS ECS Fargate.</p>
+<p class="endnote">My role: I led the design and rollout, worked hands-on on the critical components, and set the rules above with a small engineering team. Portal names and internal details are left out on purpose. Figures are from the live dashboard, October 2026.</p>
+</article></div></div><section class="related sec"><div class="container"><div class="sec-h"><div><span class="label">Keep reading</span><h2 class="h-sec">Related work</h2></div></div><div class="cards three"><a class="pcard rv" href="/blog/config-driven-rpa-playwright/"><span class="w"><span>Writing</span><span>18 Oct 2026</span></span><h3>Config-driven RPA with Playwright: why I stopped writing one bot per website</h3><p>Why one bot per website doesn&#x27;t scale, what goes in a portal config, a minimal Playwright engine in TypeScript, and three rules for keeping it clean.</p><span class="go">Read the post</span></a><a class="pcard rv" href="/blog/rpa-success-rate/"><span class="w"><span>Writing</span><span>18 Oct 2026</span></span><h3>RPA success rate: the same jobs, two honest-looking numbers</h3><p>Success ÷ (success + failed), why user-stopped jobs don&#x27;t count either way, bot time vs wall-clock time, and why every failure needs a label.</p><span class="go">Read the post</span></a><a class="pcard rv" href="/blog/human-in-the-loop-rpa/"><span class="w"><span>Writing</span><span>18 Oct 2026</span></span><h3>Design the human steps in: OTPs, CAPTCHAs and uploads in RPA</h3><p>Why some steps belong to a person, how pause-and-resume works in a browser bot, bounded retries, and the questions to ask before automating a step.</p><span class="go">Read the post</span></a></div></div></section></main>
+<footer class="contact" id="contact">
+  <div class="container">
+    <div class="inner">
+      <div>
+        <div class="contact-id"><div class="avatar"><img src="/gibin-mathew.webp" alt="Gibin Mathew" width="360" height="360" loading="lazy"></div></div>
+        <h2>Have a process that's still <em>done by hand?</em></h2>
+        <p>Happy to talk about automation, data platforms, or getting AI into production without breaking things.</p>
+      </div>
+      <div class="reach">
+        <div class="emailrow"><code id="email">gibin.mat96@gmail.com</code><button class="copy" id="copyBtn" type="button">Copy</button></div>
+        <a href="https://www.linkedin.com/in/gibinm" target="_blank" rel="noopener">linkedin.com/in/gibinm ↗</a>
+        <a href="/">gibin.in, the full profile →</a>
+      </div>
+    </div>
+    <p class="areas">I work on RPA and workflow automation, config-driven web automation, web scraping, data engineering and ETL, and AI-assisted data validation, mostly in Python, Playwright and Node.js. Based in Chennai, India.</p>
+    <div class="foot"><span>Gibin Mathew · RPA &amp; workflow automation · Chennai, India</span><span><a href="/projects/" style="color:inherit">Projects</a> · <a href="/blog/" style="color:inherit">Writing</a></span></div>
+  </div>
+</footer>
+<button class="totop" id="totop" type="button" aria-label="Back to top">↑</button>
+<script src="/assets/site.js" defer></script>
+<script>/* GoatCounter: privacy-friendly stats, live domain only. */
+window.goatcounter={no_onload:true};
+(function(){if(!/(^|\.)gibin\.in$/.test(location.hostname))return;var g=document.createElement('script');g.async=true;g.src='https://gc.zgo.at/count.js';g.setAttribute('data-goatcounter','https://gibin.goatcounter.com/count');
+g.onload=function(){try{window.goatcounter.count()}catch(e){}
+  if(/[?&](ref|utm_[a-z]+)=/.test(location.search)){try{history.replaceState(null,'',location.pathname+location.hash)}catch(e){}}};
+document.body.appendChild(g)})();</script>
+</body>
+</html>

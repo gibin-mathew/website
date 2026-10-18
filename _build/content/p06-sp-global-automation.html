@@ -1,0 +1,51 @@
+<!--meta
+{"section":"projects","slug":"sp-global-automation","order":6,
+"title":"Web Crawlers & RPA at S&P Global, 168 FTE | Gibin Mathew",
+"og_title":"Crawlers and RPA at S&P Global: 168 FTE of capacity",
+"description":"Case study: Python and Selenium crawlers across 3.4M+ websites and 40+ U.S. state portals, plus Blue Prism and Appian RPA at S&P Global.",
+"kicker":"Case study · S&P Global Market Intelligence · 2017-2021",
+"h1":"Crawlers and RPA at S&amp;P Global: <em>168 FTE</em> of capacity",
+"crumb":"S&P Global automation",
+"dek":"Four years as a Senior Automation Specialist, building the crawlers and bots behind Market Intelligence data products. The biggest one visited <strong>3.4 million company websites</strong> to find each company's official social handles.",
+"facts":["<b>3.4M+</b> websites crawled","<b>168 FTE</b> of capacity","<b>40+</b> state portals"],
+"fig":"crawl","date":"2026-10-18","updated":"2026-10-18",
+"summary":"A social handle crawler across 3.4M+ websites (160 FTE, $1.1M), a filings crawler across 40+ U.S. state portals, ESG scraping, and Blue Prism and Appian RPA.",
+"metric":"168 FTE of capacity","where":"S&P Global","year":"2017-2021",
+"card_title":"Crawlers and RPA at S&amp;P Global",
+"keywords":["web crawler case study","Selenium crawler","Blue Prism","Appian","RPA developer","web scraping at scale"],
+"about":["Web crawling","Robotic process automation","Financial data"],
+"related":["/blog/config-driven-rpa-playwright/","/blog/playwright-vs-rpa-platforms/","/projects/config-driven-rpa/"]}
+-->
+<p class="lede">The output of this work fed S&amp;P Global Market Intelligence data products used by financial institutions. I wasn't client-facing. My job was to turn research that needed rooms full of people into crawlers and bots that ran on their own.</p>
+
+<div class="results"><div><b>168</b><span>FTE of capacity across my automations</span></div><div><b>3.4M+</b><span>company websites crawled for one product</span></div><div><b>$1.1M</b><span>potential revenue, social handle data</span></div><div><b>40+</b><span>U.S. state portals in the filings crawler</span></div></div>
+
+<h2>Finding social handles for 3.4 million companies</h2>
+<p>Researchers were collecting companies' official social media handles, on Twitter and other networks, by visiting company websites one at a time. Across S&amp;P's company universe that meant millions of visits.</p>
+<p>I wrote a Python and Selenium crawler. It ran across 3.4M+ company websites. Two things made it usable rather than just big. Domain resolution made sure it hit the right site for each company. De-duplication left each company with one clean answer.</p>
+<p>It replaced about 160 FTE of manual research and fed a data product with $1.1M of potential revenue. It was the largest of my S&amp;P automations, which together came to about 168 FTE of capacity.</p>
+
+<h2>A filings crawler across 40+ state portals</h2>
+<p>Financial filings were spread across U.S. state portals, each with its own search, its own layout and its own PDFs. I built a crawler that covered 40+ of them: it found the filings, downloaded the PDFs, pulled the text out with pypdf and PDFMiner, and translated regional filings. It saved close to 3 FTE.</p>
+<p>It's also where I learned the lesson behind my later work. Each portal had its own script, and every redesign on any one of them meant a code fix, a test and a deployment. That's the problem the <a href="/projects/config-driven-rpa/">config-driven RPA engine</a> solves, and I wrote about the shift in <a href="/blog/config-driven-rpa-playwright/">why I stopped writing one bot per website</a>.</p>
+
+<h2>The rest of the toolkit</h2>
+<ul>
+<li><strong>ESG document scraper:</strong> collected ESG documents for data products. About 1.2 FTE and $600K of potential revenue.</li>
+<li><strong>Search automation:</strong> $400-800K of potential revenue.</li>
+<li><strong>Website change watcher on Blue Prism and Appian:</strong> RPA that tracked changes on monitored sites. About 1.2 FTE.</li>
+<li><strong>MySQL reporting automation:</strong> cut reporting effort by about half.</li>
+</ul>
+<p>Working with Blue Prism and Appian next to plain Python gave me a practical view of platform RPA versus code-first automation. I compare the two in <a href="/blog/playwright-vs-rpa-platforms/">Playwright vs Blue Prism and UiPath</a>.</p>
+
+<h2>Recognition</h2>
+<ul>
+<li>Essential Excellence Data Award, Q3 2020</li>
+<li>Breakthrough Achievement Award, 2019</li>
+<li>Rising Star, Q2 2018</li>
+<li>EssentialTECH Foundations badge, 2021</li>
+</ul>
+
+<h2>Stack</h2>
+<p>Python, Selenium, pypdf, PDFMiner, MySQL, Blue Prism, Appian.</p>
+<p class="endnote">Role: Senior Automation Specialist, S&amp;P Global Market Intelligence, Hyderabad, September 2017 to July 2021. Revenue figures are potential revenue of the data products the automations fed.</p>

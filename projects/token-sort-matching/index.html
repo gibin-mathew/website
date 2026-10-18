@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Token Sort Matching for Data Reconciliation | Gibin Mathew</title>
+<meta name="description" content="Case study: home-built token sort matching reconciles website listings with a database into new, deleted, matched or modified. ~60% less manual work.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="Gibin Mathew">
+<link rel="canonical" href="https://gibin.in/projects/token-sort-matching/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://gibin.in/projects/token-sort-matching/">
+<meta property="og:title" content="Token sort matching: reconciling websites with a database">
+<meta property="og:description" content="Case study: home-built token sort matching reconciles website listings with a database into new, deleted, matched or modified. ~60% less manual work.">
+<meta property="og:site_name" content="Gibin Mathew">
+<meta property="og:locale" content="en_IN">
+<meta property="og:image" content="https://gibin.in/og/token-sort-matching.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="article:published_time" content="2026-10-18"><meta property="article:modified_time" content="2026-10-18"><meta property="article:author" content="https://gibin.in/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Token sort matching: reconciling websites with a database">
+<meta name="twitter:description" content="Case study: home-built token sort matching reconciles website listings with a database into new, deleted, matched or modified. ~60% less manual work.">
+<meta name="twitter:image" content="https://gibin.in/og/token-sort-matching.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230B1320'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial,sans-serif' font-weight='800' font-size='28' fill='%23EEF2F8'%3EGM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100,500;112,700;125,800;125,900&family=Instrument+Serif:ital@1&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/base.css">
+<link rel="stylesheet" href="/assets/pages.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://gibin.in/projects/token-sort-matching/#article", "headline": "Token sort matching: reconciling websites with a database", "description": "Case study: home-built token sort matching reconciles website listings with a database into new, deleted, matched or modified. ~60% less manual work.", "url": "https://gibin.in/projects/token-sort-matching/", "mainEntityOfPage": "https://gibin.in/projects/token-sort-matching/", "datePublished": "2026-10-18", "dateModified": "2026-10-18", "author": {"@type": "Person", "@id": "https://gibin.in/#person", "name": "Gibin Mathew", "url": "https://gibin.in/", "jobTitle": "Data and Automation Manager", "sameAs": ["https://www.linkedin.com/in/gibinm"]}, "publisher": {"@id": "https://gibin.in/#person"}, "image": "https://gibin.in/og/token-sort-matching.jpg", "inLanguage": "en", "keywords": "token sort matching, token sort, fuzzy matching, data reconciliation, record matching Python, data harmonization", "wordCount": 737, "isPartOf": {"@id": "https://gibin.in/#website"}, "about": [{"@type": "Thing", "name": "Record linkage"}, {"@type": "Thing", "name": "Data reconciliation"}, {"@type": "Thing", "name": "Fuzzy string matching"}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://gibin.in/"}, {"@type": "ListItem", "position": 2, "name": "Projects", "item": "https://gibin.in/projects/"}, {"@type": "ListItem", "position": 3, "name": "Token sort matching: reconciling websites with a database", "item": "https://gibin.in/projects/token-sort-matching/"}]}]}</script>
+<script>document.documentElement.classList.add('js');try{var gmT=localStorage.getItem('gm-theme');if(gmT==='light'||gmT==='dark')document.documentElement.setAttribute('data-theme',gmT)}catch(e){}</script>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<header class="band">
+  <div class="container">
+    <div class="topbar">
+      <a class="mark" href="/" aria-label="Gibin Mathew, home">GM<span>.</span></a>
+      <nav class="topnav" aria-label="Site"><a href="/#approach">Approach</a><a href="/projects/" aria-current="page">Projects</a><a href="/blog/">Writing</a><a href="/#recommendations">Recommendations</a><a href="/#career">Career</a><a href="#contact">Contact</a></nav>
+      <button class="cord hint" id="cord" type="button" aria-label="Switch to light theme"><span class="halo" aria-hidden="true"></span><span class="cl"></span><span class="flies" aria-hidden="true"></span><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3Z"/></svg></span><span class="tip" id="cord-tip">pull for day</span></button>
+    </div>
+    <div class="ph">
+      <div>
+        <ol class="crumbs"><li><a href="/">gibin.in</a></li><li><a href="/projects/">Projects</a></li><li>Token sort matching</li></ol>
+        <span class="ph-kicker">Case study · Edvoy</span>
+        <h1 class="ph-title">Token sort matching: <em>reconciling</em> websites with a database</h1>
+        <p class="ph-dek">Intake Watcher compares what catalogue websites list with what's in our database, and sorts every listing into <strong>new, deleted, matched or modified</strong>. The hard part was names. I wrote the matching myself, with no fuzzy library and no similarity threshold.</p>
+        <div class="ph-facts"><span><b>~60%</b> less manual reconciliation</span><span><b>4</b> outcomes per listing</span><span><b>0</b> thresholds to tune</span></div>
+        <div class="byline"><div class="avatar"><img src="/gibin-mathew.webp" alt="" width="40" height="40"></div><span>Case study by <a href="/" rel="author">Gibin Mathew</a></span><span class="dot">·</span><span>Updated <time datetime="2026-10-18">18 Oct 2026</time></span></div>
+      </div>
+      
+<div class="fig" data-scene="tokens" role="img" aria-label="Animation: two differently written listing names are lower-cased, stripped of symbols, split into words, sorted and joined. Both produce the same key, so they match.">
+  <div class="fig-h"><span class="live"><b>token sort matching</b></span><span>website ↔ database</span></div>
+  <div class="tk-step" aria-hidden="true"><span>lower-case</span><span>strip symbols</span><span>split</span><span>sort</span><span>join</span><span>compare</span></div>
+  <div class="tk">
+    <div class="panel tk-row"><div class="panel-k"><span>on the website</span></div><div class="tk-src">MSc Data Science (Full Time)</div><div class="tk-chips"></div><div class="tk-key ok">datafullmscsciencetime</div></div>
+    <div class="panel tk-row"><div class="panel-k"><span>in the database</span></div><div class="tk-src">Data Science MSc - Full Time</div><div class="tk-chips"></div><div class="tk-key ok">datafullmscsciencetime</div></div>
+  </div>
+  <div class="verdict ok"><span>same key + same intake</span><span>MATCHED</span></div>
+  <div class="fig-f"><span>no similarity threshold, no library</span><span>sample listing</span></div>
+</div>
+    </div>
+  </div>
+</header>
+<main><div class="container"><div class="doc"><nav class="toc" aria-label="On this page"><b>On this page</b><ol><li><a href="#the-problem-the-same-thing-written-differently">The problem: the same thing, written differently</a></li><li><a href="#token-sort-the-way-i-built-it">Token sort, the way I built it</a></li><li><a href="#strictest-key-first-then-fall-back">Strictest key first, then fall back</a></li><li><a href="#four-outcomes">Four outcomes</a></li><li><a href="#how-it-runs">How it runs</a></li><li><a href="#what-i-d-tell-you-before-you-copy-this">What I&#x27;d tell you before you copy this</a></li><li><a href="#stack">Stack</a></li></ol><div class="side"><a href="/blog/token-sort-matching/">Token sort, explained with code →</a><a href="/projects/">← All projects</a></div></nav><article class="prose"><p class="lede">Every week, websites add listings, drop listings and quietly change the details on the ones they keep. Our database has to follow. Checking that by eye, row by row, was slow, and it was the kind of work where people miss things by Friday afternoon.</p>
+
+<div class="results three"><div><b>~60%</b><span>less manual reconciliation</span></div><div><b>4</b><span>outcomes: new, deleted, matched, modified</span></div><div><b>1</b><span>report a person can act on, in Excel and Slack</span></div></div>
+
+<h2 id="the-problem-the-same-thing-written-differently">The problem: the same thing, written differently</h2>
+<p>Intake Watcher tracks a listing's name, link, and intake month and year, on the website and in the database. In theory you just join the two lists. In practice the website says "MSc Data Science (Full Time)" and the database says "Data Science MSc - Full Time". Same course. A plain string comparison calls them different, and you get a false "new" and a false "deleted" from one listing.</p>
+<p>Matching names was the biggest challenge in the whole project. Everything else depended on getting it right.</p>
+
+<h2 id="token-sort-the-way-i-built-it">Token sort, the way I built it</h2>
+<p>Most name differences in our data were about order and punctuation, not spelling. So the fix is to make the order and punctuation disappear before comparing:</p>
+<ol>
+<li>Lower-case everything.</li>
+<li>Strip special characters like brackets and dashes.</li>
+<li>Split the name into words.</li>
+<li>Sort the words.</li>
+<li>Join them back together, without spaces, into a key.</li>
+</ol>
+<p>"MSc Data Science (Full Time)" and "Data Science MSc - Full Time" both become <code>datafullmscsciencetime</code>. Same key, so they match. The animation at the top of this page walks through exactly that.</p>
+<p>If you've used RapidFuzz or fuzzywuzzy, this is the idea behind <code>token_sort_ratio</code>. The difference is what happens next. Those libraries give you a similarity score, and you pick a cut-off. I compare the keys exactly. There's no threshold to tune and no "0.87, close enough". Two listings either produce the same key or they don't. I explain why that was the right call for this data, and when it wouldn't be, in <a href="/blog/token-sort-matching/">token sort matching, explained</a>.</p>
+
+<h2 id="strictest-key-first-then-fall-back">Strictest key first, then fall back</h2>
+<p>A name alone isn't enough. The same course can run in September and January, at two campuses, full-time and part-time. So the match key is the sorted name plus the intake month and year. Then, when both sides have them, it adds campus, study mode and duration.</p>
+
+<figure class="bfig" data-scene="keys" data-hit="3">
+  <div class="bk"><span>Strictest key first, then fall back</span><span>sample run</span></div>
+  <ol class="keys">
+    <li data-why="campus missing on website">name + intake + campus + study mode + duration<span class="r"></span></li>
+    <li data-why="campus missing on website">name + intake + campus + study mode<span class="r"></span></li>
+    <li data-why="no duration in database">name + intake + study mode + duration<span class="r"></span></li>
+    <li>name + intake + study mode<span class="r"></span></li>
+    <li>…<span class="r"></span></li>
+    <li>name + intake<span class="r"></span></li>
+  </ol>
+  <figcaption>A field only joins the key when both sides have it. The most specific key that both sides can build wins, so a vague match never beats a precise one.</figcaption>
+</figure>
+<p>The matcher tries the most specific combination first and works down. A field only joins the key if both the website and the database have it. That way a listing with full details never gets matched on a vaguer key while a precise match is available. It also checks two alias name fields in the database, because some listings have been renamed over the years and the old name still shows up on the web.</p>
+
+<h2 id="four-outcomes">Four outcomes</h2>
+
+<figure class="bfig" data-scene="cmp">
+  <div class="bk"><span>One reconciliation run</span><span>sample listings</span></div>
+  <div class="cmp">
+    <div><h4>Website</h4><ul>
+      <li data-r="m">MSc Data Science · Sep 2026<span data-o>matched</span></li>
+      <li data-r="c">BA Economics · Jan 2027<span data-o>modified</span></li>
+      <li data-r="n">MSc Robotics · Sep 2026<span data-o>new</span></li>
+    </ul></div>
+    <div><h4>Database</h4><ul>
+      <li data-r="m">Data Science MSc · Sep 2026<span data-o>matched</span></li>
+      <li data-r="c">Economics BA · Jan 2027 · fee changed<span data-o>modified</span></li>
+      <li data-r="d">MA History of Art · Sep 2026<span data-o>deleted</span></li>
+    </ul></div>
+  </div>
+  <figcaption>New: on the website, not in the database. Deleted: in the database, gone from the website. Matched: in both. Modified: in both, but something like the fee or campus changed.</figcaption>
+</figure>
+<p>Every listing ends up in one of four buckets. <strong>New</strong> means it's on the website but not in the database. <strong>Deleted</strong> means it's in the database but gone from the website. <strong>Matched</strong> means it's in both. <strong>Modified</strong> means it's in both but a data point, like the fee or the campus, changed.</p>
+<p>The output goes three ways: an Excel file for whoever does the update, a summary in MongoDB for the record, and a Slack message so the team knows a run finished and roughly what it found.</p>
+
+<h2 id="how-it-runs">How it runs</h2>
+<p>Intake Watcher doesn't run on its own schedule. A small companion service, Intake Scheduler, keeps a next-run date and a repeat interval for every source. When a source is due, it triggers the scrape, checks its status every few seconds until it finishes, then hands the fresh data to Intake Watcher. Slack hears about each step, pass or fail.</p>
+
+<h2 id="what-i-d-tell-you-before-you-copy-this">What I'd tell you before you copy this</h2>
+<ul>
+<li><strong>Look at your mismatches before you pick a method.</strong> Ours were order and punctuation. If yours are typos, token sort alone won't save you.</li>
+<li><strong>Exact keys are easier to defend.</strong> When someone asks why two listings matched, I can show them the key. With a threshold, the honest answer is "the score was above 0.85", and that's a harder conversation.</li>
+<li><strong>Abbreviations still need help.</strong> "MSc" and "Master of Science" won't sort into the same key. That's what the alias fields are for.</li>
+</ul>
+
+<h2 id="stack">Stack</h2>
+<p>Python, Pandas, Flask, MongoDB, Slack API. Excel output for the review step.</p>
+<p class="endnote">My role: I designed the matching logic and built it, including the token sort and key fallback. Sample listings on this page are made up.</p>
+</article></div></div><section class="related sec"><div class="container"><div class="sec-h"><div><span class="label">Keep reading</span><h2 class="h-sec">Related work</h2></div></div><div class="cards three"><a class="pcard rv" href="/blog/token-sort-matching/"><span class="w"><span>Writing</span><span>18 Oct 2026</span></span><h3>Token sort matching, explained: when you don&#x27;t need a fuzzy threshold</h3><p>Token sort with real RapidFuzz scores, a Python key function, strictest-key-first fallback, and when exact keys beat a fuzzy threshold.</p><span class="go">Read the post</span></a><a class="pcard rv" href="/projects/markdown-extractor/"><span class="w"><span>Edvoy</span><span>Platform</span></span><h3>Markdown Extractor: every website, one format an AI can read</h3><p>An agent writes a Playwright scraper per website. Every scraper outputs Markdown with a source header. A second agent answers plain-language questions from the files.</p><span class="go">Read the case study</span></a><a class="pcard rv" href="/projects/fees-validator/"><span class="w"><span>Edvoy</span><span>AI-assisted QC</span></span><h3>Fees Validator: find the fee, check it once, apply it everywhere</h3><span class="m">60-70% less manual QC*</span><p>An AI summariser highlights fees, dates and words like &quot;may&quot;. A reviewer verifies once and applies the fee to all related intakes, with a name and time on record.</p><span class="go">Read the case study</span></a></div></div></section></main>
+<footer class="contact" id="contact">
+  <div class="container">
+    <div class="inner">
+      <div>
+        <div class="contact-id"><div class="avatar"><img src="/gibin-mathew.webp" alt="Gibin Mathew" width="360" height="360" loading="lazy"></div></div>
+        <h2>Have a process that's still <em>done by hand?</em></h2>
+        <p>Happy to talk about automation, data platforms, or getting AI into production without breaking things.</p>
+      </div>
+      <div class="reach">
+        <div class="emailrow"><code id="email">gibin.mat96@gmail.com</code><button class="copy" id="copyBtn" type="button">Copy</button></div>
+        <a href="https://www.linkedin.com/in/gibinm" target="_blank" rel="noopener">linkedin.com/in/gibinm ↗</a>
+        <a href="/">gibin.in, the full profile →</a>
+      </div>
+    </div>
+    <p class="areas">I work on RPA and workflow automation, config-driven web automation, web scraping, data engineering and ETL, and AI-assisted data validation, mostly in Python, Playwright and Node.js. Based in Chennai, India.</p>
+    <div class="foot"><span>Gibin Mathew · RPA &amp; workflow automation · Chennai, India</span><span><a href="/projects/" style="color:inherit">Projects</a> · <a href="/blog/" style="color:inherit">Writing</a></span></div>
+  </div>
+</footer>
+<button class="totop" id="totop" type="button" aria-label="Back to top">↑</button>
+<script src="/assets/site.js" defer></script>
+<script>/* GoatCounter: privacy-friendly stats, live domain only. */
+window.goatcounter={no_onload:true};
+(function(){if(!/(^|\.)gibin\.in$/.test(location.hostname))return;var g=document.createElement('script');g.async=true;g.src='https://gc.zgo.at/count.js';g.setAttribute('data-goatcounter','https://gibin.goatcounter.com/count');
+g.onload=function(){try{window.goatcounter.count()}catch(e){}
+  if(/[?&](ref|utm_[a-z]+)=/.test(location.search)){try{history.replaceState(null,'',location.pathname+location.hash)}catch(e){}}};
+document.body.appendChild(g)})();</script>
+</body>
+</html>

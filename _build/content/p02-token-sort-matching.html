@@ -1,0 +1,61 @@
+<!--meta
+{"section":"projects","slug":"token-sort-matching","order":2,
+"title":"Token Sort Matching for Data Reconciliation | Gibin Mathew",
+"og_title":"Token sort matching: reconciling websites with a database",
+"description":"Case study: home-built token sort matching reconciles website listings with a database into new, deleted, matched or modified. ~60% less manual work.",
+"kicker":"Case study · Edvoy",
+"h1":"Token sort matching: <em>reconciling</em> websites with a database",
+"crumb":"Token sort matching",
+"dek":"Intake Watcher compares what catalogue websites list with what's in our database, and sorts every listing into <strong>new, deleted, matched or modified</strong>. The hard part was names. I wrote the matching myself, with no fuzzy library and no similarity threshold.",
+"facts":["<b>~60%</b> less manual reconciliation","<b>4</b> outcomes per listing","<b>0</b> thresholds to tune"],
+"fig":"tokens","date":"2026-10-18","updated":"2026-10-18",
+"summary":"Home-built token sort matching with strictest-key-first fallback. Every listing comes out new, deleted, matched or modified. About 60% less manual work.",
+"metric":"~60% less manual reconciliation","where":"Edvoy","year":"Intake Watcher",
+"keywords":["token sort matching","token sort","fuzzy matching","data reconciliation","record matching Python","data harmonization"],
+"about":["Record linkage","Data reconciliation","Fuzzy string matching"],
+"related":["/blog/token-sort-matching/","/projects/markdown-extractor/","/projects/fees-validator/"],
+"side":"<a href=\"/blog/token-sort-matching/\">Token sort, explained with code →</a>"}
+-->
+<p class="lede">Every week, websites add listings, drop listings and quietly change the details on the ones they keep. Our database has to follow. Checking that by eye, row by row, was slow, and it was the kind of work where people miss things by Friday afternoon.</p>
+
+<div class="results three"><div><b>~60%</b><span>less manual reconciliation</span></div><div><b>4</b><span>outcomes: new, deleted, matched, modified</span></div><div><b>1</b><span>report a person can act on, in Excel and Slack</span></div></div>
+
+<h2>The problem: the same thing, written differently</h2>
+<p>Intake Watcher tracks a listing's name, link, and intake month and year, on the website and in the database. In theory you just join the two lists. In practice the website says "MSc Data Science (Full Time)" and the database says "Data Science MSc - Full Time". Same course. A plain string comparison calls them different, and you get a false "new" and a false "deleted" from one listing.</p>
+<p>Matching names was the biggest challenge in the whole project. Everything else depended on getting it right.</p>
+
+<h2>Token sort, the way I built it</h2>
+<p>Most name differences in our data were about order and punctuation, not spelling. So the fix is to make the order and punctuation disappear before comparing:</p>
+<ol>
+<li>Lower-case everything.</li>
+<li>Strip special characters like brackets and dashes.</li>
+<li>Split the name into words.</li>
+<li>Sort the words.</li>
+<li>Join them back together, without spaces, into a key.</li>
+</ol>
+<p>"MSc Data Science (Full Time)" and "Data Science MSc - Full Time" both become <code>datafullmscsciencetime</code>. Same key, so they match. The animation at the top of this page walks through exactly that.</p>
+<p>If you've used RapidFuzz or fuzzywuzzy, this is the idea behind <code>token_sort_ratio</code>. The difference is what happens next. Those libraries give you a similarity score, and you pick a cut-off. I compare the keys exactly. There's no threshold to tune and no "0.87, close enough". Two listings either produce the same key or they don't. I explain why that was the right call for this data, and when it wouldn't be, in <a href="/blog/token-sort-matching/">token sort matching, explained</a>.</p>
+
+<h2>Strictest key first, then fall back</h2>
+<p>A name alone isn't enough. The same course can run in September and January, at two campuses, full-time and part-time. So the match key is the sorted name plus the intake month and year. Then, when both sides have them, it adds campus, study mode and duration.</p>
+<!--fig:keys-->
+<p>The matcher tries the most specific combination first and works down. A field only joins the key if both the website and the database have it. That way a listing with full details never gets matched on a vaguer key while a precise match is available. It also checks two alias name fields in the database, because some listings have been renamed over the years and the old name still shows up on the web.</p>
+
+<h2>Four outcomes</h2>
+<!--fig:cmp-->
+<p>Every listing ends up in one of four buckets. <strong>New</strong> means it's on the website but not in the database. <strong>Deleted</strong> means it's in the database but gone from the website. <strong>Matched</strong> means it's in both. <strong>Modified</strong> means it's in both but a data point, like the fee or the campus, changed.</p>
+<p>The output goes three ways: an Excel file for whoever does the update, a summary in MongoDB for the record, and a Slack message so the team knows a run finished and roughly what it found.</p>
+
+<h2>How it runs</h2>
+<p>Intake Watcher doesn't run on its own schedule. A small companion service, Intake Scheduler, keeps a next-run date and a repeat interval for every source. When a source is due, it triggers the scrape, checks its status every few seconds until it finishes, then hands the fresh data to Intake Watcher. Slack hears about each step, pass or fail.</p>
+
+<h2>What I'd tell you before you copy this</h2>
+<ul>
+<li><strong>Look at your mismatches before you pick a method.</strong> Ours were order and punctuation. If yours are typos, token sort alone won't save you.</li>
+<li><strong>Exact keys are easier to defend.</strong> When someone asks why two listings matched, I can show them the key. With a threshold, the honest answer is "the score was above 0.85", and that's a harder conversation.</li>
+<li><strong>Abbreviations still need help.</strong> "MSc" and "Master of Science" won't sort into the same key. That's what the alias fields are for.</li>
+</ul>
+
+<h2>Stack</h2>
+<p>Python, Pandas, Flask, MongoDB, Slack API. Excel output for the review step.</p>
+<p class="endnote">My role: I designed the matching logic and built it, including the token sort and key fallback. Sample listings on this page are made up.</p>

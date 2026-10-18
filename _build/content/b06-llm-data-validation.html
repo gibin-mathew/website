@@ -1,0 +1,55 @@
+<!--meta
+{"section":"blog","slug":"llm-data-validation","order":6,
+"title":"LLM Data Validation: What the AI Is Allowed to Do Alone",
+"og_title":"LLM-assisted data validation: what the AI is allowed to do alone",
+"description":"Rules from two AI data validation tools in production: the AI drafts, people decide, only exact matches publish, prompts are versioned.",
+"kicker":"AI · Data quality",
+"h1":"LLM-assisted data validation: what the AI is <em>allowed to do alone</em>",
+"crumb":"LLM data validation",
+"dek":"We built two AI-assisted validation tools that cut manual QC by 60-70%. Calling a model was the easy part. The real work was a short list of rules about <strong>what the model drafts, and what it may decide</strong>.",
+"fig":"gate","date":"2026-10-18","updated":"2026-10-18",
+"summary":"Draft vs decide, exact matches only, versioned prompts, model choice per run, and verifying once then applying everywhere. Lessons from two tools in production.",
+"keywords":["LLM data validation","AI data validation","AI-assisted QC","human in the loop AI","LLM data extraction","data quality automation"],
+"about":["Large language models","Data validation","Human-in-the-loop"],
+"related":["/projects/subject-validator/","/projects/fees-validator/","/blog/token-sort-matching/"]}
+-->
+<p class="lede">Most "AI for data quality" demos stop at the moment the model returns a nice-looking answer. In production that's where the work starts. The question isn't "can it read the page?", it's "what happens when it reads it slightly wrong?"</p>
+
+<h2>Two tools, one set of rules</h2>
+<p>At Edvoy, in Chennai, we run two AI-assisted validation tools on data scraped from the web, built in React, TypeScript, Node.js and MongoDB. The <a href="/projects/subject-validator/">Subject Validator</a> reads subject requirements and maps them to our master list. The <a href="/projects/fees-validator/">Fees Validator</a> finds fees on fee pages and applies them to the right intakes. Together they cut manual QC by 60-70%.</p>
+<p>They look different, but I built both on the same five rules,.</p>
+
+<h2>Rule 1: the AI drafts, people decide</h2>
+<p>Everything the model produces is a draft. In the Subject Validator it's a text summary and a table. In the Fees Validator it's highlights on the source page. Both are things a person reviews, edits and then verifies.</p>
+<p>I know that sounds slower than letting the model write straight to the database. It isn't, because the expensive part of manual QC was never typing. It was reading a long page to find the two facts that mattered. The model does the reading. The person does the deciding, in a fraction of the time.</p>
+
+<h2>Rule 2: only exact matches skip the queue</h2>
+<p>There's one thing the AI may decide alone. When a subject it found matches our master list exactly, it publishes. Anything less, even a close match, goes to a person with the closest candidate and a similarity score.</p>
+<p>I made the rule strict on purpose. "Further Maths" and "Mathematics" are close as strings and different as requirements. A threshold like "publish above 0.9" would be right most days and quietly wrong on the days it mattered. Exact match is the only bar a model can't clear by being nearly right. I make the same argument for record matching in <a href="/blog/token-sort-matching/">token sort matching, explained</a>.</p>
+
+<h2>Rule 3: show the source next to the answer</h2>
+<p>A reviewer can only check an answer quickly if the evidence is right there. In both tools the source page sits beside the AI's output, with the relevant text highlighted. In the Fees Validator the summariser highlights every amount and date, and it also flags words like "may" that change what a number means.</p>
+<p>Without the highlights, people either re-read the whole page, which wipes out the saving, or they skim and trust the model, which wipes out the point of review.</p>
+
+<h2>Rule 4: treat the prompt like code</h2>
+<p>The prompt in the Subject Validator is shared by the whole team and versioned. Everyone can see who changed it last and when. If one page needs a different instruction, the change is on the record.</p>
+<p>A prompt that anyone can edit quietly is a config that anyone can edit quietly. When output quality changes, the first question is "did the prompt change?", and you want to answer it in seconds.</p>
+
+<h2>Rule 5: pick the model per run, and watch the cost</h2>
+<p>Editors choose the model for each run: Gemini 2.5 Flash, a Gemma 3 model or DeepSeek. Each shows its daily limit, and token spend is tracked for DeepSeek. A short, clean page doesn't need the heaviest model. A messy one might.</p>
+<p>Making the choice visible did two things for us. It stopped quota surprises, and it made cost something the team sees every day, not something finance asks about later.</p>
+
+<h2>And one rule for speed: check once, apply everywhere</h2>
+<p>One fee often applies to many intakes. Once a reviewer verifies it, one click applies it to the right set: every intake, every full-time intake, or every intake at the same campus. Each record keeps who verified it and when.</p>
+<p>The AI saves the reading. The bulk apply saves the retyping. The audit trail keeps both honest.</p>
+
+<h2>A short checklist</h2>
+<ol>
+<li>Write down what the model may decide alone. Keep that list short.</li>
+<li>Make everything else a draft that a person verifies.</li>
+<li>Put the evidence next to the answer.</li>
+<li>Version the prompt, and show who changed it.</li>
+<li>Choose models per job, and keep cost visible.</li>
+<li>Record who verified what, and when.</li>
+</ol>
+<p>Honestly, none of this is about AI. It's the same thing I do with bots: automate the repetition, and put people where the judgement lives.</p>
