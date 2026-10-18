@@ -101,6 +101,20 @@
 <li>A dashboard with an honest success rate.</li>
 <li>Deployment, scaling and monitoring (Docker on AWS ECS).</li>
 </ul>
+
+<figure class="bfig" data-scene="stack">
+  <div class="bk"><span>Playwright drives the browser. The rest is yours.</span><span>what we built around it</span></div>
+  <div class="stk2">
+    <div class="given"><b>Playwright</b><span>browser control, auto-waiting, selectors</span></div>
+    <div><b>Job API + queue</b><span>FastAPI, Celery, RabbitMQ</span></div>
+    <div><b>Sessions + results</b><span>Redis</span></div>
+    <div><b>Step log</b><span>MongoDB</span></div>
+    <div><b>Human handover</b><span>OTP, CAPTCHA, uploads</span></div>
+    <div><b>Failure labels</b><span>who fixes what</span></div>
+    <div><b>Dashboard</b><span>honest success rate</span></div>
+    <div><b>Deploy + scale</b><span>Docker, AWS ECS</span></div>
+  </div>
+</figure>
 <p>None of that is exotic, but it's real engineering time. If you don't have engineers who'll own it for years, a platform is probably cheaper than it looks.</p>
 
 <h2 id="how-i-d-choose">How I'd choose</h2>
@@ -116,6 +130,26 @@
 <tr><td>Bot count will grow a lot and licences are the blocker</td><td>Playwright</td></tr>
 </tbody>
 </table>
+
+<figure class="bfig" data-scene="decide">
+  <div class="bk"><span>A quick way to pick</span><span data-case>scenario</span></div>
+  <div class="dt">
+    <div class="dt-q" data-n="q1">Is all the work inside a browser?</div>
+    <div class="dt-r">
+      <div class="dt-o" data-n="o1">No: desktop, Citrix, legacy apps<b>Platform RPA</b></div>
+      <div class="dt-q" data-n="q2">Many sites doing the same job differently?</div>
+    </div>
+    <div class="dt-r">
+      <div class="dt-o" data-n="o2">Yes<b>Playwright, config-driven</b></div>
+      <div class="dt-q" data-n="q3">Who will maintain the bots?</div>
+    </div>
+    <div class="dt-r">
+      <div class="dt-o" data-n="o3">Engineers<b>Playwright</b></div>
+      <div class="dt-o" data-n="o4">Business users<b>Platform RPA</b></div>
+    </div>
+  </div>
+  <figcaption>Not a rule, a starting point. The table above has the longer version.</figcaption>
+</figure>
 <p>For us the browser-only and many-similar-sites rows decided it. Every portal was a website, there were dozens of them, and each new one would have been another bot to build and license. With Playwright and a <a href="/blog/config-driven-rpa-playwright/">config-driven design</a>, a new portal is a config file.</p>
 
 <h2 id="the-part-that-matters-more-than-the-tool">The part that matters more than the tool</h2>

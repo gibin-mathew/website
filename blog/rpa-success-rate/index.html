@@ -96,12 +96,35 @@
 <li><strong>Connection issue:</strong> timeouts and slow pages. Usually fine on a retry.</li>
 <li><strong>Blocked, attention required:</strong> the bot hit something it shouldn't guess at. A person looks.</li>
 </ul>
+
+<figure class="bfig" data-scene="bins">
+  <div class="bk"><span>Every failed job gets one label</span><span>illustration</span></div>
+  <div class="bins">
+    <div class="bin" style="--c:var(--accent)"><b>Config error</b><span>our mistake in the config</span><div class="dots"><i></i><i></i><i></i></div></div>
+    <div class="bin" style="--c:var(--amber)"><b>Site changed</b><span>the portal moved something</span><div class="dots"><i></i><i></i></div></div>
+    <div class="bin" style="--c:#8a63d2"><b>Connection</b><span>timeouts, network, slow pages</span><div class="dots"><i></i><i></i></div></div>
+    <div class="bin" style="--c:var(--ok)"><b>Needs a person</b><span>blocked, attention required</span><div class="dots"><i></i><i></i></div></div>
+    <div class="bin x" style="--c:var(--muted)"><b>User stopped it</b><span>not counted against the platform</span><div class="dots"><i></i><i></i><i></i></div></div>
+  </div>
+  <figcaption>The dots are an illustration, not the real split. What matters is that each label sends the fix to a different person.</figcaption>
+</figure>
 <p>The labels matter more than the rate. A 94% that's mostly connection blips is a healthy platform. A 94% that's mostly site changes on one portal is a config that needs attention this week.</p>
 
 <h2 id="bot-time-is-not-wall-clock-time">Bot time is not wall-clock time</h2>
 <p>The other number people ask about is speed. By hand, one submission took about 30 minutes. The bot's own time averages about 5 minutes per job.</p>
 <p>That 5 minutes is bot time only. A job's wall-clock time is longer, because it includes pauses where a person enters a one-time code or gets documents ready. Those pauses can be long, and they're not the bot's doing. If I quoted wall-clock time, I'd be blaming the bot for waiting on people. If I counted the pauses as savings, I'd be inflating the hours saved. So I quote bot time, and I say that's what it is.</p>
 
+
+<figure class="bfig" data-scene="time">
+  <div class="bk"><span>Where the minutes go in one job</span><span>illustration, not to scale</span></div>
+  <div class="tm">
+    <div class="tm-row"><span>By hand</span><div class="tm-bar"><i class="hand" style="--w:100%"></i></div><b>~30 min</b></div>
+    <div class="tm-row"><span>One job, wall clock</span><div class="tm-bar"><i class="bot" style="--w:14%"></i><i class="wait" style="--w:22%"></i><i class="bot" style="--w:10%"></i><i class="wait" style="--w:30%"></i><i class="bot" style="--w:6%"></i></div><b>varies</b></div>
+    <div class="tm-row"><span>Bot time only</span><div class="tm-bar"><i class="bot" style="--w:17%"></i></div><b>~5 min avg</b></div>
+  </div>
+  <div class="legend2 lg-s"><span style="--c:var(--accent)">bot working</span><span style="--c:var(--amber)">waiting for a person</span><span style="--c:var(--muted)">done by hand</span></div>
+  <figcaption>I quote the last row. The amber gaps are people entering codes or getting documents ready. They aren't the bot's time, and they aren't counted as savings.</figcaption>
+</figure>
 <h2 id="a-checklist-for-your-own-success-rate">A checklist for your own success rate</h2>
 <ol>
 <li>Write down what counts as a success. "The bot finished" isn't it. "The target system confirmed it" is.</li>

@@ -229,3 +229,138 @@ INLINE["keys"] = """
   </ol>
   <figcaption>A field only joins the key when both sides have it. The most specific key that both sides can build wins, so a vague match never beats a precise one.</figcaption>
 </figure>"""
+
+# ---------- blog inline figures ----------
+INLINE["maint"] = """
+<figure class="bfig" data-scene="maint">
+  <div class="bk"><span>Same 40 portals, one redesign at a time</span><span>illustration</span></div>
+  <div class="mt-two">
+    <div class="mt-side"><div class="mt-h"><b>One bot per site</b><span>deploys <em data-dep="a">0</em></span></div>
+      <div class="mt-grid">""" + "".join('<i></i>' for _ in range(40)) + """</div>
+      <p class="mt-note" data-note="a">40 scripts to keep alive</p></div>
+    <div class="mt-side"><div class="mt-h"><b>One engine, 40 configs</b><span>deploys <em data-dep="b">0</em></span></div>
+      <div class="mt-engine">engine</div>
+      <div class="mt-grid cfgs">""" + "".join('<i></i>' for _ in range(40)) + """</div>
+      <p class="mt-note" data-note="b">1 engine, 40 small files</p></div>
+  </div>
+  <figcaption>Each flash is a portal changing its layout. On the left that's a code fix, a test and a release. On the right it's a config edit, and the engine stays as it is.</figcaption>
+</figure>"""
+
+INLINE["anatomy"] = """
+<figure class="bfig" data-scene="anatomy">
+  <div class="bk"><span>Three things every step says</span><span>anatomy of a config</span></div>
+  <div class="an">
+    <pre class="an-code"><span data-a="0">{ "fill": <b>"#first-name"</b>,</span><span data-a="1">  "from": <b>"name.first"</b> }</span><span>…</span><span data-a="2">"done_when": { "visible": <b>"text=Education history"</b> }</span></pre>
+    <ol class="an-list">
+      <li data-a="0"><b>Where it lives</b><span>a selector the engine can find on the page</span></li>
+      <li data-a="1"><b>What goes in</b><span>a path into the record, already cleaned</span></li>
+      <li data-a="2"><b>What "done" looks like</b><span>the marker that proves the page moved on</span></li>
+    </ol>
+  </div>
+</figure>"""
+
+INLINE["time"] = """
+<figure class="bfig" data-scene="time">
+  <div class="bk"><span>Where the minutes go in one job</span><span>illustration, not to scale</span></div>
+  <div class="tm">
+    <div class="tm-row"><span>By hand</span><div class="tm-bar"><i class="hand" style="--w:100%"></i></div><b>~30 min</b></div>
+    <div class="tm-row"><span>One job, wall clock</span><div class="tm-bar"><i class="bot" style="--w:14%"></i><i class="wait" style="--w:22%"></i><i class="bot" style="--w:10%"></i><i class="wait" style="--w:30%"></i><i class="bot" style="--w:6%"></i></div><b>varies</b></div>
+    <div class="tm-row"><span>Bot time only</span><div class="tm-bar"><i class="bot" style="--w:17%"></i></div><b>~5 min avg</b></div>
+  </div>
+  <div class="legend2 lg-s"><span style="--c:var(--accent)">bot working</span><span style="--c:var(--amber)">waiting for a person</span><span style="--c:var(--muted)">done by hand</span></div>
+  <figcaption>I quote the last row. The amber gaps are people entering codes or getting documents ready. They aren't the bot's time, and they aren't counted as savings.</figcaption>
+</figure>"""
+
+def _scores():
+    rows = [("MSc Data Science (Full Time)", "Data Science MSc - Full Time", 84, 100, 100, True),
+            ("Data Science MSc", "MSc in Data Science", 69, 91, 100, False),
+            ("Data Science", "Data Science and AI", 77, 77, 100, False),
+            ("MSc Data Science", "MSc Data Sciences", 97, 97, 97, False),
+            ("MSc Data Science", "Master of Science in Data Science", 65, 65, 86, False)]
+    out = []
+    for a, b, r, ts, tset, same in rows:
+        flag = '<span class="sc-flag ok">same course</span>' if same else ('<span class="sc-flag bad">different course, scored 100</span>' if b.endswith("and AI") else '')
+        out.append(f'''<div class="sc-row"><div class="sc-pair"><b>{a}</b><span>vs {b}</span>{flag}</div>
+          <div class="sc-bars"><div class="sc-b r"><i style="--v:{r}%"></i><em>{r}</em></div><div class="sc-b s"><i style="--v:{ts}%"></i><em>{ts}</em></div><div class="sc-b t"><i style="--v:{tset}%"></i><em>{tset}</em></div></div>
+          <div class="sc-key {'y' if same else 'n'}">{'key ✓' if same else 'key ✗'}</div></div>''')
+    return "".join(out)
+
+INLINE["scores"] = f"""
+<figure class="bfig" data-scene="scores">
+  <div class="bk"><span>RapidFuzz scores vs an exact sorted key</span><span>real scores, sample names</span></div>
+  <div class="legend2 lg-s"><span style="--c:#9aa6b8">ratio</span><span style="--c:var(--accent)">token sort</span><span style="--c:var(--amber)">token set</span></div>
+  <div class="sc">{_scores()}</div>
+  <figcaption>Token set gives a perfect 100 to two different courses. The exact key never says yes to the wrong pair. It does miss row two, which is what the alias names are for.</figcaption>
+</figure>"""
+
+INLINE["decide"] = """
+<figure class="bfig" data-scene="decide">
+  <div class="bk"><span>A quick way to pick</span><span data-case>scenario</span></div>
+  <div class="dt">
+    <div class="dt-q" data-n="q1">Is all the work inside a browser?</div>
+    <div class="dt-r">
+      <div class="dt-o" data-n="o1">No: desktop, Citrix, legacy apps<b>Platform RPA</b></div>
+      <div class="dt-q" data-n="q2">Many sites doing the same job differently?</div>
+    </div>
+    <div class="dt-r">
+      <div class="dt-o" data-n="o2">Yes<b>Playwright, config-driven</b></div>
+      <div class="dt-q" data-n="q3">Who will maintain the bots?</div>
+    </div>
+    <div class="dt-r">
+      <div class="dt-o" data-n="o3">Engineers<b>Playwright</b></div>
+      <div class="dt-o" data-n="o4">Business users<b>Platform RPA</b></div>
+    </div>
+  </div>
+  <figcaption>Not a rule, a starting point. The table above has the longer version.</figcaption>
+</figure>"""
+
+INLINE["stack"] = """
+<figure class="bfig" data-scene="stack">
+  <div class="bk"><span>Playwright drives the browser. The rest is yours.</span><span>what we built around it</span></div>
+  <div class="stk2">
+    <div class="given"><b>Playwright</b><span>browser control, auto-waiting, selectors</span></div>
+    <div><b>Job API + queue</b><span>FastAPI, Celery, RabbitMQ</span></div>
+    <div><b>Sessions + results</b><span>Redis</span></div>
+    <div><b>Step log</b><span>MongoDB</span></div>
+    <div><b>Human handover</b><span>OTP, CAPTCHA, uploads</span></div>
+    <div><b>Failure labels</b><span>who fixes what</span></div>
+    <div><b>Dashboard</b><span>honest success rate</span></div>
+    <div><b>Deploy + scale</b><span>Docker, AWS ECS</span></div>
+  </div>
+</figure>"""
+
+INLINE["states"] = """
+<figure class="bfig" data-scene="states">
+  <div class="bk"><span>Two ways a job can go</span><span data-case>a person steps in</span></div>
+  <div class="st">
+    <div class="st-n" data-s="run">Bot running</div><i class="st-a"></i>
+    <div class="st-n" data-s="pause">Paused for a person</div><i class="st-a"></i>
+    <div class="st-n" data-s="resume">Bot resumes</div><i class="st-a"></i>
+    <div class="st-n ok" data-s="done">Submitted</div>
+  </div>
+  <div class="st">
+    <div class="st-n" data-s="stuck">Can't find next section</div><i class="st-a"></i>
+    <div class="st-n" data-s="r1">Retry 1/3</div><i class="st-a"></i>
+    <div class="st-n" data-s="r2">Retry 2/3</div><i class="st-a"></i>
+    <div class="st-n" data-s="r3">Retry 3/3</div><i class="st-a"></i>
+    <div class="st-n bad" data-s="fail">Failed, with a label</div>
+  </div>
+  <figcaption>Bounded on purpose. A stuck job becomes a labelled failure someone can fix, not a loop that runs all night.</figcaption>
+</figure>"""
+
+INLINE["apply"] = """
+<figure class="bfig" data-scene="apply">
+  <div class="bk"><span>Verify once, choose the scope, apply</span><span>sample intakes</span></div>
+  <div class="ap">
+    <div class="ap-src"><span>verified fee</span><b>£18,500</b><em data-scope>every full-time intake</em></div>
+    <ul class="ap-list">
+      <li data-ft data-c="main">Sep 2026 · Full-time · Main campus</li>
+      <li data-ft data-c="main">Jan 2027 · Full-time · Main campus</li>
+      <li data-ft data-c="city">Sep 2026 · Full-time · City campus</li>
+      <li data-c="main">Sep 2026 · Part-time · Main campus</li>
+      <li data-ft data-c="city">Jan 2027 · Full-time · City campus</li>
+      <li data-c="city">Jan 2027 · Part-time · City campus</li>
+    </ul>
+  </div>
+  <figcaption>Three scopes: every intake, every full-time intake, or every intake at the same campus. One check, the right rows, a name and a time on each.</figcaption>
+</figure>"""

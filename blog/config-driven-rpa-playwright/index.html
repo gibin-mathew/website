@@ -73,6 +73,20 @@
 <p>Then the sites started changing. Not all at once, just one here and one there, a redesigned search page or a renamed button. And every change, on any one of those forty sites, meant the same routine: find the broken script, fix it, test it, deploy it.</p>
 <p>That's the hidden cost of one bot per site. You don't maintain an automation. You maintain forty of them. The work grows with the number of sites, not with the number of problems, and it never stops.</p>
 
+<figure class="bfig" data-scene="maint">
+  <div class="bk"><span>Same 40 portals, one redesign at a time</span><span>illustration</span></div>
+  <div class="mt-two">
+    <div class="mt-side"><div class="mt-h"><b>One bot per site</b><span>deploys <em data-dep="a">0</em></span></div>
+      <div class="mt-grid"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <p class="mt-note" data-note="a">40 scripts to keep alive</p></div>
+    <div class="mt-side"><div class="mt-h"><b>One engine, 40 configs</b><span>deploys <em data-dep="b">0</em></span></div>
+      <div class="mt-engine">engine</div>
+      <div class="mt-grid cfgs"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <p class="mt-note" data-note="b">1 engine, 40 small files</p></div>
+  </div>
+  <figcaption>Each flash is a portal changing its layout. On the left that's a code fix, a test and a release. On the right it's a config edit, and the engine stays as it is.</figcaption>
+</figure>
+
 <h2 id="flip-it-one-engine-many-configs">Flip it: one engine, many configs</h2>
 <p>When I had to automate form filling across dozens of external application portals at Edvoy, I didn't want to repeat that. So we flipped the design.</p>
 <p>There's one engine that knows how to read and fill a web form. It knows how to type into a field, pick from a dropdown, click a button, wait for a page, check whether something is on screen, and stop and ask for a person. It knows nothing about any particular portal.</p>
@@ -105,6 +119,18 @@
   ]
 }</code></pre>
 <span class="codecap">An imaginary portal. Values like name.first come from a record that was cleaned before the run.</span>
+
+<figure class="bfig" data-scene="anatomy">
+  <div class="bk"><span>Three things every step says</span><span>anatomy of a config</span></div>
+  <div class="an">
+    <pre class="an-code"><span data-a="0">{ "fill": <b>"#first-name"</b>,</span><span data-a="1">  "from": <b>"name.first"</b> }</span><span>…</span><span data-a="2">"done_when": { "visible": <b>"text=Education history"</b> }</span></pre>
+    <ol class="an-list">
+      <li data-a="0"><b>Where it lives</b><span>a selector the engine can find on the page</span></li>
+      <li data-a="1"><b>What goes in</b><span>a path into the record, already cleaned</span></li>
+      <li data-a="2"><b>What "done" looks like</b><span>the marker that proves the page moved on</span></li>
+    </ol>
+  </div>
+</figure>
 <p>Notice what's missing: no date formats, no string splitting, no "if the country is IN write India". That all happens once, in a data step that runs before the bot starts. The config only maps clean values to places on a page.</p>
 
 <h2 id="a-minimal-engine-in-playwright">A minimal engine in Playwright</h2>

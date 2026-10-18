@@ -40,6 +40,7 @@
 <h2>When the bot gets stuck</h2>
 <p>Not every pause is planned, and Playwright can't save you from every surprise. Sometimes a portal shows something unexpected, a pop-up or a changed section, and the bot can't find what it's looking for.</p>
 <p>Small problems retry on their own. A slow page gets a longer wait. For anything bigger, the bot pauses and lets the operator clear whatever is in the way, then tries again. The retries are bounded, 3 attempts by default and no more, so a stuck job turns into a labelled failure instead of a loop that runs all night.</p>
+<!--fig:states-->
 <p>I care most about the bounded part. A bot that retries forever hides problems. A bot that gives up after a few tries, with a reason attached, tells you exactly where your config or the portal needs attention.</p>
 
 <h2>Questions to ask before you automate a step</h2>

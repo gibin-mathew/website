@@ -90,6 +90,23 @@ token_sort_key("Data Science MSc - Full Time")   # 'datafullmscsciencetime'</cod
 <tr><td>MSc Data Science</td><td>Master of Science in Data Science</td><td>65</td><td>65</td><td>86</td><td>no</td></tr>
 </tbody>
 </table>
+
+<figure class="bfig" data-scene="scores">
+  <div class="bk"><span>RapidFuzz scores vs an exact sorted key</span><span>real scores, sample names</span></div>
+  <div class="legend2 lg-s"><span style="--c:#9aa6b8">ratio</span><span style="--c:var(--accent)">token sort</span><span style="--c:var(--amber)">token set</span></div>
+  <div class="sc"><div class="sc-row"><div class="sc-pair"><b>MSc Data Science (Full Time)</b><span>vs Data Science MSc - Full Time</span><span class="sc-flag ok">same course</span></div>
+          <div class="sc-bars"><div class="sc-b r"><i style="--v:84%"></i><em>84</em></div><div class="sc-b s"><i style="--v:100%"></i><em>100</em></div><div class="sc-b t"><i style="--v:100%"></i><em>100</em></div></div>
+          <div class="sc-key y">key ✓</div></div><div class="sc-row"><div class="sc-pair"><b>Data Science MSc</b><span>vs MSc in Data Science</span></div>
+          <div class="sc-bars"><div class="sc-b r"><i style="--v:69%"></i><em>69</em></div><div class="sc-b s"><i style="--v:91%"></i><em>91</em></div><div class="sc-b t"><i style="--v:100%"></i><em>100</em></div></div>
+          <div class="sc-key n">key ✗</div></div><div class="sc-row"><div class="sc-pair"><b>Data Science</b><span>vs Data Science and AI</span><span class="sc-flag bad">different course, scored 100</span></div>
+          <div class="sc-bars"><div class="sc-b r"><i style="--v:77%"></i><em>77</em></div><div class="sc-b s"><i style="--v:77%"></i><em>77</em></div><div class="sc-b t"><i style="--v:100%"></i><em>100</em></div></div>
+          <div class="sc-key n">key ✗</div></div><div class="sc-row"><div class="sc-pair"><b>MSc Data Science</b><span>vs MSc Data Sciences</span></div>
+          <div class="sc-bars"><div class="sc-b r"><i style="--v:97%"></i><em>97</em></div><div class="sc-b s"><i style="--v:97%"></i><em>97</em></div><div class="sc-b t"><i style="--v:97%"></i><em>97</em></div></div>
+          <div class="sc-key n">key ✗</div></div><div class="sc-row"><div class="sc-pair"><b>MSc Data Science</b><span>vs Master of Science in Data Science</span></div>
+          <div class="sc-bars"><div class="sc-b r"><i style="--v:65%"></i><em>65</em></div><div class="sc-b s"><i style="--v:65%"></i><em>65</em></div><div class="sc-b t"><i style="--v:86%"></i><em>86</em></div></div>
+          <div class="sc-key n">key ✗</div></div></div>
+  <figcaption>Token set gives a perfect 100 to two different courses. The exact key never says yes to the wrong pair. It does miss row two, which is what the alias names are for.</figcaption>
+</figure>
 <p>Look at row three. <code>token_set_ratio</code> scores "Data Science" and "Data Science and AI" a perfect 100, because every word in the shorter name appears in the longer one. Those are different courses. In a reconciliation job, that's a false match, and false matches are the worst kind of error: they hide a new listing and a deleted one at the same time.</p>
 <p>One small trap if you try this yourself: since RapidFuzz 3.0 the scorers don't pre-process strings by default. Without <code>processor=utils.default_process</code>, the first row scores 79 on token sort instead of 100, because the brackets and dash stay attached to the words.</p>
 <pre><code class="language-python">from rapidfuzz import fuzz, utils
@@ -118,6 +135,19 @@ def candidate_keys(row: dict, other_side_has) -&gt; list[tuple]:
         for combo in combinations(usable, n):
             keys.append(base + tuple(row[f] for f in combo))
     return keys</code></pre>
+
+<figure class="bfig" data-scene="keys" data-hit="3">
+  <div class="bk"><span>Strictest key first, then fall back</span><span>sample run</span></div>
+  <ol class="keys">
+    <li data-why="campus missing on website">name + intake + campus + study mode + duration<span class="r"></span></li>
+    <li data-why="campus missing on website">name + intake + campus + study mode<span class="r"></span></li>
+    <li data-why="no duration in database">name + intake + study mode + duration<span class="r"></span></li>
+    <li>name + intake + study mode<span class="r"></span></li>
+    <li>…<span class="r"></span></li>
+    <li>name + intake<span class="r"></span></li>
+  </ol>
+  <figcaption>A field only joins the key when both sides have it. The most specific key that both sides can build wins, so a vague match never beats a precise one.</figcaption>
+</figure>
 <p>With three optional fields that's up to eight keys per listing, tried from strictest to loosest. A listing never matches on a vague key while a precise one is available. We also check a couple of alias name fields, because some listings get renamed and the old name lives on somewhere on the web.</p>
 
 <h2 id="when-you-do-need-fuzzy-scores">When you do need fuzzy scores</h2>

@@ -19,6 +19,7 @@
 <p>At S&amp;P Global I built a crawler for financial filings across 40+ U.S. state portals. Each state had its own search page, its own result layout and its own PDF quirks, so each one got its own script. That felt natural. The sites were different, so the code was different.</p>
 <p>Then the sites started changing. Not all at once, just one here and one there, a redesigned search page or a renamed button. And every change, on any one of those forty sites, meant the same routine: find the broken script, fix it, test it, deploy it.</p>
 <p>That's the hidden cost of one bot per site. You don't maintain an automation. You maintain forty of them. The work grows with the number of sites, not with the number of problems, and it never stops.</p>
+<!--fig:maint-->
 
 <h2>Flip it: one engine, many configs</h2>
 <p>When I had to automate form filling across dozens of external application portals at Edvoy, I didn't want to repeat that. So we flipped the design.</p>
@@ -54,6 +55,7 @@
 }
 </pre>
 <span class="codecap">An imaginary portal. Values like name.first come from a record that was cleaned before the run.</span>
+<!--fig:anatomy-->
 <p>Notice what's missing: no date formats, no string splitting, no "if the country is IN write India". That all happens once, in a data step that runs before the bot starts. The config only maps clean values to places on a page.</p>
 
 <h2>A minimal engine in Playwright</h2>

@@ -92,6 +92,24 @@
 <h2 id="when-the-bot-gets-stuck">When the bot gets stuck</h2>
 <p>Not every pause is planned, and Playwright can't save you from every surprise. Sometimes a portal shows something unexpected, a pop-up or a changed section, and the bot can't find what it's looking for.</p>
 <p>Small problems retry on their own. A slow page gets a longer wait. For anything bigger, the bot pauses and lets the operator clear whatever is in the way, then tries again. The retries are bounded, 3 attempts by default and no more, so a stuck job turns into a labelled failure instead of a loop that runs all night.</p>
+
+<figure class="bfig" data-scene="states">
+  <div class="bk"><span>Two ways a job can go</span><span data-case>a person steps in</span></div>
+  <div class="st">
+    <div class="st-n" data-s="run">Bot running</div><i class="st-a"></i>
+    <div class="st-n" data-s="pause">Paused for a person</div><i class="st-a"></i>
+    <div class="st-n" data-s="resume">Bot resumes</div><i class="st-a"></i>
+    <div class="st-n ok" data-s="done">Submitted</div>
+  </div>
+  <div class="st">
+    <div class="st-n" data-s="stuck">Can't find next section</div><i class="st-a"></i>
+    <div class="st-n" data-s="r1">Retry 1/3</div><i class="st-a"></i>
+    <div class="st-n" data-s="r2">Retry 2/3</div><i class="st-a"></i>
+    <div class="st-n" data-s="r3">Retry 3/3</div><i class="st-a"></i>
+    <div class="st-n bad" data-s="fail">Failed, with a label</div>
+  </div>
+  <figcaption>Bounded on purpose. A stuck job becomes a labelled failure someone can fix, not a loop that runs all night.</figcaption>
+</figure>
 <p>I care most about the bounded part. A bot that retries forever hides problems. A bot that gives up after a few tries, with a reason attached, tells you exactly where your config or the portal needs attention.</p>
 
 <h2 id="questions-to-ask-before-you-automate-a-step">Questions to ask before you automate a step</h2>

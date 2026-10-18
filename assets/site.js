@@ -228,6 +228,55 @@ scenes.keys=function(el){
     s.push([420,function(){if(k===hit){x.className='hit';$('.r',x).textContent='match'}else{x.className='';$('.r',x).textContent=x.getAttribute('data-why')||'no match'}}])});
   s.push([2600,function(){}]);return s};
 
+/* ---------- blog inline figures ---------- */
+scenes.maint=function(el){
+  var A=$$('.mt-grid:not(.cfgs) i',el),B=$$('.mt-grid.cfgs i',el),da=$('[data-dep="a"]',el),db=$('[data-dep="b"]',el),na=$('[data-note="a"]',el),nb=$('[data-note="b"]',el),n=0;
+  var s=[[60,function(){A.concat(B).forEach(function(i){i.className=''});da.textContent='0';db.textContent='0';na.textContent='40 scripts to keep alive';nb.textContent='1 engine, 40 small files';n=0}]];
+  [3,17,28,9,35,22].forEach(function(k){
+    s.push([700,function(){A[k].className='hot';B[k].className='hot';na.textContent='portal '+(k+1)+' changed: fix, test, release';nb.textContent='portal '+(k+1)+' changed: edit its config'}]);
+    s.push([900,function(){n++;A[k].className='fixed';B[k].className='fixed';da.textContent=n;na.textContent='deployed again'}]);
+  });
+  s.push([2600,function(){}]);return s};
+scenes.anatomy=function(el){
+  var c=$$('.an-code [data-a]',el),l=$$('.an-list [data-a]',el);
+  function on(k){c.forEach(function(x){x.classList.toggle('on',x.getAttribute('data-a')==k)});l.forEach(function(x){x.classList.toggle('on',x.getAttribute('data-a')==k)})}
+  return [[60,function(){on(0)}],[1600,function(){on(1)}],[1600,function(){on(2)}],[1800,function(){}]]};
+scenes.time=function(el){
+  var b=$$('.tm-bar',el);
+  var s=[[60,function(){b.forEach(function(x){x.classList.remove('in')})}]];
+  b.forEach(function(x){s.push([500,function(){x.classList.add('in')}])});
+  s.push([4000,function(){}]);return s};
+scenes.scores=function(el){var sc=$('.sc',el);return [[60,function(){sc.classList.remove('in')}],[300,function(){sc.classList.add('in')}],[6000,function(){}]]};
+scenes.decide=function(el){
+  var n=function(k){return $('[data-n="'+k+'"]',el)},cs=$('[data-case]',el),all=$$('[data-n]',el);
+  var paths=[['A desktop app behind Citrix',['q1','o1']],['40 web portals, same form job',['q1','q2','o2']],['A few sites, an engineering team',['q1','q2','q3','o3']],['A few sites, ops team builds bots',['q1','q2','q3','o4']]];
+  var s=[];
+  paths.forEach(function(p){
+    s.push([60,function(){all.forEach(function(x){x.classList.remove('on')});cs.textContent=p[0]}]);
+    p[1].forEach(function(k){s.push([600,function(){n(k).classList.add('on')}])});
+    s.push([1600,function(){}]);
+  });
+  return s};
+scenes.stack=function(el){
+  var d=$$('.stk2 div:not(.given)',el);var s=[[60,function(){d.forEach(function(x){x.classList.remove('in')})}]];
+  d.forEach(function(x){s.push([450,function(){x.classList.add('in')}])});s.push([3000,function(){}]);return s};
+scenes.states=function(el){
+  var cs=$('[data-case]',el),q=function(k){return $('[data-s="'+k+'"]',el)},all=$$('[data-s]',el);
+  function only(k){all.forEach(function(x){x.classList.remove('on')});if(k)q(k).classList.add('on')}
+  var s=[[60,function(){cs.textContent='a person steps in';only('run')}],[900,function(){only('pause')}],[1400,function(){only('resume')}],[900,function(){only('done')}],[1500,function(){cs.textContent='the bot gets stuck';only('stuck')}]];
+  ['r1','r2','r3','fail'].forEach(function(k){s.push([800,function(){only(k)}])});
+  s.push([1600,function(){only('')}]);return s};
+scenes.apply=function(el){
+  var li=$$('.ap-list li',el),sc=$('[data-scope]',el);
+  var sets=[['every full-time intake',function(x){return x.hasAttribute('data-ft')}],['every intake at Main campus',function(x){return x.getAttribute('data-c')==='main'}],['every intake',function(){return true}]];
+  var s=[];
+  sets.forEach(function(st){
+    s.push([60,function(){li.forEach(function(x){x.classList.remove('hit')});sc.textContent=st[0]}]);
+    li.forEach(function(x){if(st[1](x))s.push([260,function(){x.classList.add('hit')}])});
+    s.push([1800,function(){}]);
+  });
+  return s};
+
 $$('[data-scene]').forEach(function(el){var f=scenes[el.getAttribute('data-scene')];if(f)player(el,f)});
 if(reduce)$$('svg.net').forEach(function(s){try{s.pauseAnimations()}catch(e){}});
 })();

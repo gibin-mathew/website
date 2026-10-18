@@ -47,12 +47,14 @@ success rate = successful jobs / (successful jobs + failed jobs)
 <li><strong>Connection issue:</strong> timeouts and slow pages. Usually fine on a retry.</li>
 <li><strong>Blocked, attention required:</strong> the bot hit something it shouldn't guess at. A person looks.</li>
 </ul>
+<!--fig:bins-->
 <p>The labels matter more than the rate. A 94% that's mostly connection blips is a healthy platform. A 94% that's mostly site changes on one portal is a config that needs attention this week.</p>
 
 <h2>Bot time is not wall-clock time</h2>
 <p>The other number people ask about is speed. By hand, one submission took about 30 minutes. The bot's own time averages about 5 minutes per job.</p>
 <p>That 5 minutes is bot time only. A job's wall-clock time is longer, because it includes pauses where a person enters a one-time code or gets documents ready. Those pauses can be long, and they're not the bot's doing. If I quoted wall-clock time, I'd be blaming the bot for waiting on people. If I counted the pauses as savings, I'd be inflating the hours saved. So I quote bot time, and I say that's what it is.</p>
 
+<!--fig:time-->
 <h2>A checklist for your own success rate</h2>
 <ol>
 <li>Write down what counts as a success. "The bot finished" isn't it. "The target system confirmed it" is.</li>

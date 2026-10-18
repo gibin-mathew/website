@@ -41,6 +41,7 @@ token_sort_key("Data Science MSc - Full Time")   # 'datafullmscsciencetime'
 <tr><td>MSc Data Science</td><td>Master of Science in Data Science</td><td>65</td><td>65</td><td>86</td><td>no</td></tr>
 </tbody>
 </table>
+<!--fig:scores-->
 <p>Look at row three. <code>token_set_ratio</code> scores "Data Science" and "Data Science and AI" a perfect 100, because every word in the shorter name appears in the longer one. Those are different courses. In a reconciliation job, that's a false match, and false matches are the worst kind of error: they hide a new listing and a deleted one at the same time.</p>
 <p>One small trap if you try this yourself: since RapidFuzz 3.0 the scorers don't pre-process strings by default. Without <code>processor=utils.default_process</code>, the first row scores 79 on token sort instead of 100, because the brackets and dash stay attached to the words.</p>
 <pre data-raw="python">
@@ -73,6 +74,7 @@ def candidate_keys(row: dict, other_side_has) -> list[tuple]:
             keys.append(base + tuple(row[f] for f in combo))
     return keys
 </pre>
+<!--fig:keys-->
 <p>With three optional fields that's up to eight keys per listing, tried from strictest to loosest. A listing never matches on a vague key while a precise one is available. We also check a couple of alias name fields, because some listings get renamed and the old name lives on somewhere on the web.</p>
 
 <h2>When you do need fuzzy scores</h2>
