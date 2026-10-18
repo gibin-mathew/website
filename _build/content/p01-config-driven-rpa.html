@@ -50,6 +50,10 @@
 <p>The API (FastAPI) checks the job and puts it on a queue (Celery with RabbitMQ). The engine, written in Node.js on Playwright, picks it up, loads the portal's config and works through the pages. Redis holds sessions and results. MongoDB holds the configs, the jobs and a log of every step. It all runs in Docker on AWS ECS Fargate, with separate staging and production clusters.</p>
 
 <h2>Calls I made, and why</h2>
+<h3>Build the editor, not just the engine</h3>
+<p>Every portal's config lives in MongoDB, not in the codebase. We built our own workflow editor for it. A portal is a chain of sections, each with a check that the right page is showing and a "continue" button to press. Inside each section are steps: type, select, click, date pickers, yes/no answers, radio groups, waits, manual pauses and repeat steps. There's a JSON view for anything the editor doesn't cover.</p>
+<p>The config list doubles as a health board. Each portal shows whether it's live, who changed it last, and its own success rate, so a portal that starts failing stands out before anyone files a ticket. Editing a portal is a save in the editor, not a release.</p>
+
 <h3>Clean the data once, before the bot starts</h3>
 <p>Our CRM keeps a full name in one field, countries as codes and dates in one format. Every portal wants something different. So a Python step runs first and turns raw CRM values into portal-ready values: names split and reordered, emails trimmed and lower-cased, country codes turned into names or three-letter codes, yes/no answers normalised, phone numbers given a country prefix.</p>
 <p>Two good things fall out of this. The bot never touches messy data. And a missing field shows up before the run starts, not on page six of a portal with a session about to time out.</p>
@@ -75,7 +79,7 @@
 
 <h2>What I'd tell someone building this</h2>
 <ul>
-<li><strong>Logic goes in the engine, differences go in the config.</strong> If you're writing site-specific code, ask why. Most of our portals run on config alone. A minority still carry a little portal-specific code in the engine, mostly to recognise when an unusual sign-in has finished. The engine now accepts those startup steps as config too, which is where they belong.</li>
+<li><strong>Logic goes in the engine, differences go in the config.</strong> If you're writing site-specific code, ask why. Portal configs live in MongoDB and are edited in our own workflow editor, so config changes never need a redeploy. A handful of unusual portals did push us to add general capabilities to the engine, mostly around unusual sign-ins. We keep that portal-specific code small, and the engine now takes those startup steps as config too.</li>
 <li><strong>Make "done" explicit.</strong> A bot that can't tell success from a silent failure is worse than no bot.</li>
 <li><strong>Guard the line.</strong> The first "quick special case" in the engine is how you end up back at forty scripts. Holding that line was most of my job.</li>
 </ul>

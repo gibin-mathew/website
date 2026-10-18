@@ -842,7 +842,7 @@ html,body{overflow-x:clip}
                 <div class="cf-stat"><span>to add a portal</span><b>mostly config</b></div>
               </div>
             </div>
-            <p class="dm-note">A new portal is mostly described, not programmed. That's how one engine reached 71 portals. A few with unusual sign-ins still carry a little portal-specific code.</p>
+            <p class="dm-note">A new portal is described, not programmed. Configs live in MongoDB and are edited in our own workflow editor, so config changes never need a redeploy.</p>
           </div>
           <div class="dm-scene" data-v="rpa" data-s="3" aria-hidden="true">
             <div class="lg-wrap">
@@ -955,7 +955,7 @@ html,body{overflow-x:clip}
             <div class="para">
               <h4>Calls I made</h4>
               <ol class="decisions">
-                <li><div><b>New portals come in as configuration.</b><span>A new portal is mostly added as config. Coverage grew to 71 portals on one engine. A few portals with unusual sign-ins still carry a little portal-specific code.</span></div></li>
+                <li><div><b>New portals come in as configuration.</b><span>Each portal is a JSON config in MongoDB, edited in a workflow editor we built. Coverage grew to 71 portals on one engine, and config changes never needed a redeploy.</span></div></li>
                 <li><div><b>Clean the data once, before the bot starts.</b><span>A Python step turns raw CRM data (names, dates, country codes, phone numbers, yes/no answers) into portal-ready values. The bot never touches messy data, and missing fields show up before a run, not halfway through it.</span></div></li>
                 <li><div><b>Let the page decide which questions apply.</b><span>Portals show and hide questions based on earlier answers. Rules in the config (if this is on the page, if that step worked, repeat until the list runs out) check what's really there and skip the rest, so one config covers every branch of a form.</span></div></li>
                 <li><div><b>I designed the human steps in from day one.</b><span>OTPs and CAPTCHAs go to a person, and the bot picks up again once they're done. Trying to automate those steps would have made the whole thing fragile. Small failures, like a slow page, retry on their own with a growing wait.</span></div></li>
