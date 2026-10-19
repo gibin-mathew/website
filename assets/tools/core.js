@@ -348,7 +348,7 @@
           } catch (e) { reject(e); }
         });
       }
-      try { if (!W) W = new Worker('/assets/tools/match-worker.js?v=2'); }
+      try { if (!W) W = new Worker('/assets/tools/match-worker.js?v=3'); }
       catch (e) { W = null; return local(); }
       payload.id = id;
       W.onmessage = function (e) {
@@ -401,8 +401,11 @@
   /* ---------- 1-2-3 stepper at the top of each tool: ticks itself as the person works ---------- */
   T.steps = function () {
     var box = T.$('.tg-steps'); if (!box) return;
-    var items = T.$$('li', box), out = T.$('#out'), tool = T.$('#tool');
+    var items = T.$$('li', box), out = T.$('#out') || T.$('#res'), tool = T.$('#tool');
     function hasInput() {
+      // form tools mark their required fields with data-req; step 1 is done once all of them are filled
+      var req = T.$$('[data-req]', tool);
+      if (req.length) return req.every(function (el) { return String(el.value).trim() !== ''; });
       return T.$$('.tsrc textarea, textarea.plain', tool).some(function (t) { return t.value.trim(); }) || !!T.$('.tsrc.has-file', tool);
     }
     function upd() {

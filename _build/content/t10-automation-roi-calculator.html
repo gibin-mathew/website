@@ -33,10 +33,10 @@
     <h3 class="qs-h"><span>1</span>The work today</h3>
     <div class="qgrid">
       <div class="fld"><span>How many jobs are done?</span>
-        <div class="unit"><input type="number" id="jobs" min="0" step="1" inputmode="decimal" placeholder="e.g. 120"><select id="per" aria-label="per"><option value="day">a day</option><option value="week">a week</option><option value="month">a month</option></select></div>
+        <div class="unit"><input type="number" id="jobs" data-req min="0" step="1" inputmode="decimal" placeholder="e.g. 120"><select id="per" aria-label="per"><option value="day">a day</option><option value="week">a week</option><option value="month">a month</option></select></div>
         <small>A job is one piece of work: one invoice entered, one form filled, one report checked. Count the whole team's total.</small></div>
       <div class="fld"><span>How long does one job take by hand?</span>
-        <div class="unit"><input type="number" id="mins" min="0" step="0.5" inputmode="decimal" placeholder="e.g. 10"><select id="unit" aria-label="unit"><option value="min">minutes</option><option value="hr">hours</option></select></div>
+        <div class="unit"><input type="number" id="mins" data-req min="0" step="0.5" inputmode="decimal" placeholder="e.g. 10"><select id="unit" aria-label="unit"><option value="min">minutes</option><option value="hr">hours</option></select></div>
         <small>Time a few real ones, including checking and fixing mistakes.</small></div>
       <div class="fld"><span>How many people do this work? <i class="opt">optional</i></span>
         <div class="unit"><input type="number" id="people" min="0" step="1" inputmode="numeric" placeholder="e.g. 3"><em>people</em></div>

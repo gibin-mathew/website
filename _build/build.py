@@ -47,7 +47,7 @@ FOOTER = """<footer class="contact" id="contact">
 
 
 OG_VERSION = "v2"   # bump to make WhatsApp/LinkedIn fetch fresh preview images
-ASSET_V = "2"       # bump when assets/tools/* change so browsers fetch fresh copies
+ASSET_V = "3"       # bump when assets/tools/* change so browsers fetch fresh copies
 
 
 SECTION_NAME = {"projects": "Projects", "blog": "Writing", "tools": "Free tools"}

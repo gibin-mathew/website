@@ -1,5 +1,5 @@
 /* Runs the matching off the main thread so the page stays responsive on big lists. */
-importScripts('fuzz.js?v=2');
+importScripts('fuzz.js?v=3');
 self.onmessage = function (e) {
   var m = e.data, last = 0;
   function progress(done, total) {
