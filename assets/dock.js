@@ -4,14 +4,15 @@ var d=document,de=d.documentElement,home=location.pathname==='/'||location.pathn
 var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
 function h(id){return home?'#'+id:'/#'+id}
 
-/* the same six items as the header menu */
-var NAV=[['approach','Approach',h('approach')],['projects','Projects','/projects/'],['blog','Writing','/blog/'],
+/* the same items as the header menu */
+var NAV=[['approach','Approach',h('approach')],['projects','Projects','/projects/'],['blog','Writing','/blog/'],['tools','Tools','/tools/'],
   ['recommendations','Recommendations',h('recommendations')],['career','Career',h('career')],['contact','Contact','#contact']];
 
 var JUMP=[
  ['Sections',[['Approach','Three rules I don\'t break',h('approach')],['Case studies','Short versions on the homepage',h('work')],['By the numbers','FTE, money and hours',h('numbers')],['Recommendations','15, word for word',h('recommendations')],['Career','Edvoy and S&P Global',h('career')],['Chess','Solve a mate in 2 from my games',h('chess')],['Contact','Email and LinkedIn','#contact']]],
  ['Projects',[['All projects','RPA and data automation portfolio','/projects/'],['Config-driven RPA','70+ portals · 94% success','/projects/config-driven-rpa/'],['Token sort matching','Website ↔ database reconciliation','/projects/token-sort-matching/'],['Markdown Extractor','Agent-written scrapers','/projects/markdown-extractor/'],['Subject Validator','AI drafts, a person signs off','/projects/subject-validator/'],['Fees Validator','Check once, apply everywhere','/projects/fees-validator/'],['S&P Global automation','168 FTE · 3.4M+ websites','/projects/sp-global-automation/']]],
  ['Writing',[['All writing','Notes from automation in production','/blog/'],['Config-driven RPA with Playwright','Why I stopped writing one bot per website','/blog/config-driven-rpa-playwright/'],['RPA success rate','94% vs ~90%, same jobs','/blog/rpa-success-rate/'],['Token sort matching, explained','When you don\'t need a threshold','/blog/token-sort-matching/'],['Playwright vs Blue Prism and UiPath','When code-first RPA wins','/blog/playwright-vs-rpa-platforms/'],['Human-in-the-loop RPA','OTPs, CAPTCHAs and uploads','/blog/human-in-the-loop-rpa/'],['LLM data validation','What the AI may do alone','/blog/llm-data-validation/']]],
+ ['Free tools',[['All free tools','Data tools that run in your browser','/tools/'],['Fuzzy match two lists','Best match and a score per row','/tools/fuzzy-match/'],['Value standardizer','Messy values to a master list','/tools/value-standardizer/'],['Remove duplicates','Clean and dedupe CSV or JSON','/tools/remove-duplicates/'],['CSV profiler','Data quality, column by column','/tools/csv-profiler/'],['CSV to SQL','CREATE TABLE and INSERTs','/tools/csv-to-sql/'],['JSON to CSV','Flatten nested JSON','/tools/json-to-csv/'],['MRZ parser','Passport check digits','/tools/mrz-parser/'],['Selector tester','CSS and XPath for scraping','/tools/selector-tester/'],['Date normalizer','Messy dates to one format','/tools/date-normalizer/'],['Automation ROI calculator','Hours, FTE and payback','/tools/automation-roi-calculator/']]],
  ['Elsewhere',[['LinkedIn','linkedin.com/in/gibinm','https://www.linkedin.com/in/gibinm'],['Email','gibin.mat96@gmail.com','mailto:gibin.mat96@gmail.com']]]];
 
 var ICON={search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>',
@@ -41,7 +42,7 @@ function setActive(k,label){
   now.innerHTML='<i>gibin.in /</i> '+(label||(a?a.textContent:(home?'Home':d.title.split('|')[0].trim())));
 }
 var path=location.pathname;
-var pageKey=/^\/projects\//.test(path)?'projects':/^\/blog\//.test(path)?'blog':'';
+var pageKey=/^\/projects\//.test(path)?'projects':/^\/blog\//.test(path)?'blog':/^\/tools\//.test(path)?'tools':'';
 var pageLabel=pageKey?(d.querySelector('.crumbs li:last-child')||{}).textContent:'';
 setActive(pageKey,pageLabel);
 

@@ -1,0 +1,64 @@
+<!--meta
+{"section": "tools","slug": "fuzzy-match","order": 1,"tool": "fuzzy","title": "Fuzzy Match Two Lists Online, Free (No Upload) | Gibin Mathew","og_title": "Fuzzy match two lists online","description": "Free fuzzy matching tool: paste two lists or upload CSVs, set a threshold, get the best match and a score for every row. A fuzzy VLOOKUP. Runs in your browser.","kicker": "Free tool · fuzzy matching","app_name": "Fuzzy list matcher","h1": "Fuzzy match <em>two lists</em>","crumb": "Fuzzy match","dek": "You have two lists that should line up, but the names are written differently: \"Acme Corp\" in one, \"ACME Corporation\" in the other. This finds the closest match for every row and tells you how sure it is.","facts": ["<b>●</b> Runs in your browser","Nothing uploaded","Free, no sign-up"],"summary": "Paste two lists or upload CSVs. Every row gets its best match, a 0 to 100 score and a verdict. Works as a fuzzy VLOOKUP.","metric": "tested on 20,000 × 20,000 rows","year": "Matching","where": "Free tool","category": "BusinessApplication","features": ["Paste lists or upload CSV/TSV","Five matching methods including token sort and token set","Adjustable threshold with a review band","Fuzzy VLOOKUP: attach list B columns to the result","Download CSV or copy to Excel","Runs locally in a Web Worker"],"date": "2026-10-19","updated": "2026-10-19","keywords": ["fuzzy match two lists","fuzzy matching tool online","fuzzy vlookup","compare two lists for similar names","fuzzy string matching","token sort ratio"],"related": ["/tools/value-standardizer/","/projects/token-sort-matching/","/blog/token-sort-matching/"],"side": "<a href=\"/projects/token-sort-matching/\">The production version of this →</a>","faq": [["Is my data uploaded anywhere?","No. The page reads your lists in your own browser and does the matching there, in a background thread. Nothing you paste or upload is sent to a server. You can disconnect from the internet after the page loads and it still works."],["How many rows can it handle?","I've tested it with 20,000 real-looking company names on each side, which takes a few seconds on a laptop. Bigger lists work too, they just take longer. There's a progress bar, and the page stays usable while it runs."],["What does the score mean?","It's a similarity from 0 to 100. 100 means the two values are identical once case, punctuation and spacing are ignored. With the default Smart method, anything above about 85 is usually the same thing written differently, and 75 to 85 is worth a human look."],["Can I match on two columns at once, like name and city?","Not directly. Join the columns into one before you paste them (in Excel, =A2&\" \"&B2) on both sides, and the matcher will treat the result as one value."],["Does it work with Excel files?","Save the sheet as CSV first (File, Save As, CSV UTF-8). You can also copy a column straight from Excel and paste it in, and that works fine."]],"fig": "t-fuzzy","uses": ["You need to <b>join two spreadsheets on a name</b> and VLOOKUP keeps returning #N/A","You're checking a <b>vendor or customer list against your master data</b>","You want to see <b>which names in one list are missing from the other</b>"],"steps": ["Paste or upload both lists","Choose how strict to be","Download the matches"]}
+-->
+<div class="tool" id="tool" data-og>
+  <div class="tool-top tg"><!--steps--><span class="acts"><button type="button" class="tbtn ghost sm" data-sample>Try it with sample data</button></span></div>
+  <div class="cols2">
+    <div class="tsrc" data-src="a" data-kind="list" data-hint="One value per line. For a CSV, pick the column after uploading" data-label="List A · your values" data-placeholder="One value per line, or upload a CSV&#10;&#10;Acme Corp&#10;Riverstone Foods &amp; Beverages&#10;Northfield Univ."></div>
+    <div class="tsrc" data-src="b" data-kind="list" data-hint="The clean list you trust" data-label="List B · match against" data-placeholder="The list to look up in&#10;&#10;ACME Corporation&#10;Riverstone Foods and Beverages&#10;Northfield University"></div>
+  </div>
+  <div class="ctrls">
+    <label class="fld"><span>Method</span><select id="method">
+      <option value="smart" selected>Smart (recommended)</option>
+      <option value="token_sort">Token sort: ignores word order</option>
+      <option value="token_set">Token set: ignores extra words</option>
+      <option value="ratio">Edit distance (Levenshtein)</option>
+      <option value="jaro_winkler">Jaro-Winkler: short names</option>
+    </select><small>Smart works for most lists</small></label>
+    <div class="fld"><span>Count as a match at</span><div class="rng"><input type="range" id="th" min="50" max="100" step="1" value="85" aria-label="Match threshold"><output id="thv" for="th">85</output></div><small>Higher is stricter. Pairs up to 10 below this are marked for a check</small></div>
+    <button type="button" class="tbtn" id="run">Match the lists</button>
+  </div>
+  <details class="more-opts"><summary>More options</summary>
+    <div class="ctrls">
+      <label class="chk"><input type="checkbox" id="o-punct" checked> Ignore punctuation</label>
+      <label class="chk"><input type="checkbox" id="o-acc" checked> Ignore accents (é = e)</label>
+      <label class="chk"><input type="checkbox" id="o-abbr" checked> Expand abbreviations (Corp, Ltd, Univ)</label>
+    </div>
+    <div class="ctrls">
+      <label class="fld"><span>Ignore these words</span><input type="text" id="stop" placeholder="e.g. the, pvt, llc" style="width:min(320px,100%)"><small>Comma separated. Ignored on both sides.</small></label>
+    </div>
+  </details>
+  <div class="tsay" id="say" hidden></div>
+  <div class="tprogw" id="prog" hidden></div>
+  <div class="out" id="out" hidden>
+    <div class="stats" id="stats"></div>
+    <div class="viz"><div id="hist"></div><div id="bd"></div></div>
+    <div class="acts"><div class="chipset" id="filter" role="tablist" aria-label="Filter results"></div><span class="sp"></span><button type="button" class="tbtn ghost sm" id="copy">Copy for Excel</button><button type="button" class="tbtn ghost sm" id="dl">Download CSV</button></div>
+    <div id="grid"></div>
+  </div>
+</div>
+<!--article-->
+<h2>How to use it</h2>
+<ol>
+<li>Put the values you want to look up in <strong>list A</strong>. One per line, or upload a CSV and pick the column.</li>
+<li>Put the clean reference list in <strong>list B</strong>. That's the list you're matching against.</li>
+<li>Hit <strong>Match the lists</strong>. Every value in A gets its closest value in B and a score.</li>
+<li>Drag the threshold. Results re-sort instantly into <strong>match</strong>, <strong>review</strong> (up to 10 points below the threshold) and <strong>no match</strong>, so you can find the line where your data stops being trustworthy.</li>
+<li>Download the CSV. If list A came from a CSV, all its original columns are kept. If list B did too, B's columns are attached to each match. That's the fuzzy VLOOKUP part.</li>
+</ol>
+
+<h2>How the matching works</h2>
+<p>Before comparing anything, both sides are cleaned the same way: lower-cased, accents stripped, punctuation turned into spaces, and "&amp;" read as "and". Common abbreviations are expanded, so "Corp" meets "Corporation" and "Univ." meets "University". Then each value is scored against the candidates in list B.</p>
+<p><strong>Smart</strong> is the default and the one I'd use. It compares word by word, and rare words count for more than common ones. If every name in your list ends in "Ltd", then "Ltd" says almost nothing, and Smart works that out from your own data. Numbers have to match exactly, so "Building 12" never matches "Building 13" just because the strings look alike. It then blends in whole-string edit distance, so typos like "Jonh Smith" still land on "John Smith".</p>
+<p>The other methods are there when you know what you need:</p>
+<ul>
+<li><strong>Token sort</strong> sorts the words before comparing. "Data Science MSc" and "MSc Data Science" score 100.</li>
+<li><strong>Token set</strong> also ignores extra words, so "Data Science" scores 100 against "MSc Data Science". Useful, but it will happily over-match short names.</li>
+<li><strong>Edit distance</strong> counts how many single-character edits turn one string into the other. Best for typos in otherwise identical text.</li>
+<li><strong>Jaro-Winkler</strong> rewards matching starts. Good for short personal names.</li>
+</ul>
+<p>For big lists the tool doesn't compare every pair. It builds an index of word fragments from list B and only scores the few dozen candidates that share the rarest fragments with each value. That's why 20,000 against 20,000 takes seconds instead of most of an hour.</p>
+
+<h2>Picking a threshold</h2>
+<p>There's no universal right number, and anyone who tells you otherwise hasn't looked at your data. Start at 85 with the Smart method, then open the <strong>review</strong> tab and read twenty rows. If they're mostly right, lower the threshold. If you see wrong pairs in <strong>matched</strong>, raise it. The review band exists so a person checks the borderline cases instead of the tool guessing.</p>
+<p class="note"><b>Where this comes from.</b> I built a stricter version of this for reconciling website listings against a database, where a wrong match is worse than no match. That version uses no threshold at all. <a href="/projects/token-sort-matching/">The case study</a> explains why, and <a href="/blog/token-sort-matching/">this post</a> walks through the code.</p>

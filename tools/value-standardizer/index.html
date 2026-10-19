@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Standardize Messy Values to a Master List, Free | Gibin Mathew</title>
+<meta name="description" content="Free data standardization tool: map messy values like UK, U.K. and Untied Kingdom onto one canonical list. Exact, alias and fuzzy rules. Runs in your browser.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="Gibin Mathew">
+<link rel="canonical" href="https://gibin.in/tools/value-standardizer/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gibin.in/tools/value-standardizer/">
+<meta property="og:title" content="Standardize messy values to a master list · Gibin Mathew">
+<meta property="og:description" content="Free data standardization tool: map messy values like UK, U.K. and Untied Kingdom onto one canonical list. Exact, alias and fuzzy rules. Runs in your browser.">
+<meta property="og:site_name" content="Gibin Mathew">
+<meta property="og:locale" content="en_IN">
+<meta property="og:image" content="https://gibin.in/og/value-standardizer-v2.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Standardize messy values to a master list · Gibin Mathew">
+<meta name="twitter:description" content="Free data standardization tool: map messy values like UK, U.K. and Untied Kingdom onto one canonical list. Exact, alias and fuzzy rules. Runs in your browser.">
+<meta name="twitter:image" content="https://gibin.in/og/value-standardizer-v2.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230B1320'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial,sans-serif' font-weight='800' font-size='28' fill='%23EEF2F8'%3EGM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100,500;112,700;125,800;125,900&family=Instrument+Serif:ital@1&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/base.css">
+<link rel="stylesheet" href="/assets/pages.css">
+<link rel="stylesheet" href="/assets/dock.css">
+<link rel="stylesheet" href="/assets/tools/tools.css?v=2">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "@id": "https://gibin.in/tools/value-standardizer/#app", "name": "Value standardizer", "url": "https://gibin.in/tools/value-standardizer/", "description": "Free data standardization tool: map messy values like UK, U.K. and Untied Kingdom onto one canonical list. Exact, alias and fuzzy rules. Runs in your browser.", "applicationCategory": "BusinessApplication", "operatingSystem": "Any (runs in the browser)", "browserRequirements": "Requires JavaScript", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "featureList": ["Exact, alias and fuzzy mapping in that order", "Threshold slider for fuzzy matches", "Pick the right value from a dropdown for anything unsure", "Download the mapping table or the full file with a standardized column", "Runs locally"], "image": "https://gibin.in/og/value-standardizer-v2.jpg", "inLanguage": "en", "author": {"@type": "Person", "@id": "https://gibin.in/#person", "name": "Gibin Mathew", "url": "https://gibin.in/", "jobTitle": "Data and Automation Manager", "sameAs": ["https://www.linkedin.com/in/gibinm"]}, "publisher": {"@id": "https://gibin.in/#person"}, "datePublished": "2026-10-19", "dateModified": "2026-10-19", "isPartOf": {"@id": "https://gibin.in/#website"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://gibin.in/"}, {"@type": "ListItem", "position": 2, "name": "Free tools", "item": "https://gibin.in/tools/"}, {"@type": "ListItem", "position": 3, "name": "Standardize messy values to one master list", "item": "https://gibin.in/tools/value-standardizer/"}]}, {"@type": "FAQPage", "@id": "https://gibin.in/tools/value-standardizer/#faq", "mainEntity": [{"@type": "Question", "name": "What's the difference between this and the fuzzy matcher?", "acceptedAnswer": {"@type": "Answer", "text": "The fuzzy matcher compares two lists row by row. This one works on distinct values: if \"UK\" appears 4,000 times, you decide it once. It also adds alias rules and a dropdown to override any mapping, because standardizing a column is about getting every value right, not just finding a likely match."}}, {"@type": "Question", "name": "What goes in the alias box?", "acceptedAnswer": {"@type": "Answer", "text": "Mappings that no string similarity would ever find, like UK to United Kingdom or Holland to Netherlands. One per line, written as alias = canonical value. The canonical value must be in your canonical list. Aliases are matched ignoring case, spaces and punctuation, so one UK line also covers U.K. and u k."}}, {"@type": "Question", "name": "Will it change values I didn't approve?", "acceptedAnswer": {"@type": "Answer", "text": "Only fuzzy matches at or above the threshold are mapped automatically, and you can see and change every one of them. Anything below goes to \"needs a decision\" and stays as it was unless you pick a value."}}, {"@type": "Question", "name": "Is my data uploaded?", "acceptedAnswer": {"@type": "Answer", "text": "No. The page does all the work in your browser. Nothing is sent to a server."}}]}]}</script>
+<script>document.documentElement.classList.add('js');try{var gmT=localStorage.getItem('gm-theme');if(gmT==='light'||gmT==='dark')document.documentElement.setAttribute('data-theme',gmT)}catch(e){}</script>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<header class="band">
+  <div class="container">
+    <div class="topbar">
+      <a class="mark" href="/" aria-label="Gibin Mathew, home">GM<span>.</span></a>
+      <nav class="topnav" aria-label="Site"><a href="/#approach">Approach</a><a href="/projects/">Projects</a><a href="/blog/">Writing</a><a href="/tools/" aria-current="page">Tools</a><a href="/#recommendations">Recommendations</a><a href="/#career">Career</a><a href="#contact">Contact</a></nav>
+      <button class="cord hint" id="cord" type="button" aria-label="Switch to light theme"><span class="halo" aria-hidden="true"></span><span class="cl"></span><span class="flies" aria-hidden="true"></span><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3Z"/></svg></span><span class="tip" id="cord-tip">pull for day</span></button>
+    </div>
+    <div class="ph tool-head">
+      <div>
+        <ol class="crumbs"><li><a href="/">gibin.in</a></li><li><a href="/tools/">Free tools</a></li><li>Value standardizer</li></ol>
+        <span class="ph-kicker">Free tool · data standardization</span>
+        <h1 class="ph-title">Standardize messy values to <em>one master list</em></h1>
+        <p class="ph-dek">One column, many spellings of the same thing: UK, U.K., United Kingdom, Untied Kingdom. Reports and pivot tables count each spelling as a different value. This maps every spelling onto the one value you choose, so the column finally adds up.</p>
+        <span class="ph-use-h">Use it when</span><ul class="ph-uses"><li>A <b>pivot table shows the same country, city or category three times</b> because it's spelled three ways</li><li>You're <b>merging data from several teams or forms</b> and each typed values differently</li><li>A column has to contain <b>only values from an approved list</b> before it goes into a system</li></ul><div class="ph-facts"><span><b>●</b> Runs in your browser</span><span>Nothing uploaded</span><span>Free, no sign-up</span></div>
+        
+      </div>
+      <div class="fig tf" role="img" aria-label="Animation: different spellings of the same country, like UK, U.K. and Untied Kingdom, are each mapped onto one standard value, United Kingdom, by exact match, an alias rule or fuzzy matching."><div class="fig-h"><span class="live"><b>many spellings → one standard value</b></span><span>exact · alias · fuzzy</span></div><div class="tf-std"><div class="tf-grp"><div class="tf-chips"><span class="tf-chip tf-in" style="--d:0.30s">UK<em>exact</em></span><span class="tf-chip tf-in" style="--d:0.55s">U.K.<em>exact</em></span><span class="tf-chip tf-in" style="--d:0.80s">united kingdom<em>exact</em></span><span class="tf-chip tf-in" style="--d:1.05s">Untied Kingdom<em>fuzzy</em></span><span class="tf-chip tf-in" style="--d:1.30s">Great Britain<em>alias</em></span></div><span class="tf-arrow tf-in" style="--d:1.80s">→</span><span class="tf-canon tf-pop" style="--d:2.10s">United Kingdom<small>5 spellings → 1</small></span></div><div class="tf-grp"><div class="tf-chips"><span class="tf-chip tf-in" style="--d:2.90s">USA<em>alias</em></span><span class="tf-chip tf-in" style="--d:3.15s">U.S.A.<em>alias</em></span><span class="tf-chip tf-in" style="--d:3.40s">United States of America<em>fuzzy</em></span></div><span class="tf-arrow tf-in" style="--d:4.40s">→</span><span class="tf-canon tf-pop" style="--d:4.70s">United States<small>3 spellings → 1</small></span></div></div><div class="fig-f"><span>decide each spelling once, every row follows</span><span>sample data</span></div></div>
+    </div>
+  </div>
+</header>
+<main><section class="toolsec"><div class="container"><div class="tool" id="tool" data-og>
+  <div class="tool-top tg"><ol class="tg-steps" aria-label="How to use it"><li>Paste the messy column</li><li>List the values you want</li><li>Check the mapping and download</li></ol><span class="acts"><button type="button" class="tbtn ghost sm" data-sample>Try it with sample data</button></span></div>
+  <div class="cols2">
+    <div class="tsrc" data-src="m" data-kind="list" data-hint="One value per line, or upload a CSV and pick the column" data-label="Messy values" data-placeholder="The column you want to clean, one value per line, or upload a CSV&#10;&#10;UK&#10;U.K.&#10;Untied Kingdom"></div>
+    <div class="tsrc" data-src="c" data-kind="list" data-hint="Your approved values, one per line" data-label="Canonical list" data-placeholder="The only values you want to end up with&#10;&#10;United Kingdom&#10;United States&#10;India"></div>
+  </div>
+  <label class="fld"><span>Alias rules, optional</span><small>For mappings no spell-check would find, like Holland = Netherlands or Bharat = India</small><textarea class="plain" id="alias" rows="3" style="min-height:84px" spellcheck="false" placeholder="One per line: alias = canonical value&#10;UK = United Kingdom&#10;Holland = Netherlands"></textarea></label>
+  <div class="ctrls">
+    <div class="fld"><span>Auto-map fuzzy matches at</span><div class="rng"><input type="range" id="th" min="60" max="100" step="1" value="85" aria-label="Fuzzy threshold"><output id="thv" for="th">85</output></div><small>Close spellings scoring at least this are mapped for you. The rest wait for your decision</small></div>
+    <button type="button" class="tbtn" id="run">Standardize</button>
+  </div>
+  <div class="tsay" id="say" hidden></div>
+  <div class="tprogw" id="prog" hidden></div>
+  <div class="out" id="out" hidden>
+    <div class="stats" id="stats"></div>
+    <div class="viz"><div id="bd"></div></div>
+    <div class="acts"><div class="chipset" id="filter" role="tablist" aria-label="Filter values"></div><span class="sp"></span><button type="button" class="tbtn ghost sm" id="dl-map">Download mapping</button><button type="button" class="tbtn ghost sm" id="dl-data">Download clean data</button></div>
+    <div id="grid"></div>
+  </div>
+</div>
+</div></section><div class="container"><div class="doc"><nav class="toc" aria-label="On this page"><b>On this page</b><ol><li><a href="#why-you-d-use-this">Why you&#x27;d use this</a></li><li><a href="#how-to-use-it">How to use it</a></li><li><a href="#the-order-it-tries-things-in">The order it tries things in</a></li><li><a href="#why-work-on-distinct-values">Why work on distinct values</a></li><li><a href="#questions">Questions</a></li></ol><div class="side"><a href="/projects/subject-validator/">Mapping at scale, with AI and a reviewer →</a><a href="/tools/">← All free tools</a></div></nav><article class="prose">
+<h2 id="why-you-d-use-this">Why you'd use this</h2>
+<p>Say you run a report of students by country. The pivot table shows <strong>UK 412, United Kingdom 380, U.K. 95, Untied Kingdom 12</strong>. That's one country counted four ways, and every chart built on it is wrong. The same thing happens with city names, product categories, job titles and department names, anywhere people type a value instead of picking it from a list.</p>
+<p>Fixing it by hand means find-and-replace, one spelling at a time, and hoping you caught them all. This tool shows you every distinct spelling at once, maps the obvious ones for you, and asks you only about the ones it isn't sure of. Then the whole column comes back clean.</p>
+<h2 id="how-to-use-it">How to use it</h2>
+<ol>
+<li>Paste the column you want to clean on the left, or upload the CSV and pick the column.</li>
+<li>Paste your <strong>canonical list</strong> on the right: the only values you want to end up with.</li>
+<li>Add <strong>alias rules</strong> for the mappings no algorithm will guess, like UK = United Kingdom.</li>
+<li>Hit <strong>Standardize</strong>. Every distinct value is mapped, with the number of rows it covers.</li>
+<li>Open <strong>Needs a decision</strong>, pick the right value from the dropdown, and download.</li>
+</ol>
+
+<h2 id="the-order-it-tries-things-in">The order it tries things in</h2>
+<p>Each distinct value goes through three checks, and the first one that hits wins:</p>
+<ol>
+<li><strong>Exact.</strong> The value is already in the canonical list once case, spaces and punctuation are ignored. "INDIA" and "india" both land on India.</li>
+<li><strong>Alias.</strong> One of your alias rules covers it. That's how "Bharat" becomes India and "U.K." becomes United Kingdom.</li>
+<li><strong>Fuzzy.</strong> The same smart matching as the <a href="/tools/fuzzy-match/">fuzzy matcher</a>. Typos like "Untied Kingdom" and "Nethrelands" score high and are mapped automatically if they clear the threshold.</li>
+</ol>
+<p>Anything left over is marked <strong>needs a decision</strong>, with the three best suggestions in its dropdown. "Republic of India" will usually show up here: India is the top suggestion, but it's your call, not the tool's.</p>
+
+<h2 id="why-work-on-distinct-values">Why work on distinct values</h2>
+<p>A column with 200,000 rows often has only a few hundred distinct spellings. Decide each spelling once and every row that uses it follows. It's also how controlled vocabularies are run in practice: a short mapping table that a person owns and reviews, applied to everything downstream. Download the mapping table and you can reuse it as the alias list next time.</p>
+<p class="note"><b>Where this comes from.</b> I've spent a lot of time on controlled vocabularies, getting product, operations and counsellor teams to use the same names for the same things. At scale, an AI drafts the mapping and a person approves it. <a href="/projects/subject-validator/">The Subject Validator case study</a> shows that version.</p>
+<h2 id="questions">Questions</h2><h3>What&#x27;s the difference between this and the fuzzy matcher?</h3><p>The fuzzy matcher compares two lists row by row. This one works on distinct values: if "UK" appears 4,000 times, you decide it once. It also adds alias rules and a dropdown to override any mapping, because standardizing a column is about getting every value right, not just finding a likely match.</p><h3>What goes in the alias box?</h3><p>Mappings that no string similarity would ever find, like UK to United Kingdom or Holland to Netherlands. One per line, written as alias = canonical value. The canonical value must be in your canonical list. Aliases are matched ignoring case, spaces and punctuation, so one UK line also covers U.K. and u k.</p><h3>Will it change values I didn&#x27;t approve?</h3><p>Only fuzzy matches at or above the threshold are mapped automatically, and you can see and change every one of them. Anything below goes to "needs a decision" and stays as it was unless you pick a value.</p><h3>Is my data uploaded?</h3><p>No. The page does all the work in your browser. Nothing is sent to a server.</p></article></div></div><section class="related sec"><div class="container"><div class="sec-h"><div><span class="label">Keep going</span><h2 class="h-sec">Related tools and work</h2></div></div><div class="cards three"><a class="pcard rv" href="/tools/fuzzy-match/"><span class="w"><span>Free tool</span><span>Matching</span></span><h3>Fuzzy match two lists</h3><span class="m">tested on 20,000 × 20,000 rows</span><p>Paste two lists or upload CSVs. Every row gets its best match, a 0 to 100 score and a verdict. Works as a fuzzy VLOOKUP.</p><span class="go">Open the tool</span></a><a class="pcard rv" href="/tools/remove-duplicates/"><span class="w"><span>Free tool</span><span>Cleaning</span></span><h3>Clean a CSV or JSON file and remove duplicates</h3><span class="m">exact and near duplicates</span><p>Trim, strip invisible characters, blank out N/A, then drop exact or near-duplicate rows. CSV, JSON and JSON Lines.</p><span class="go">Open the tool</span></a><a class="pcard rv" href="/projects/subject-validator/"><span class="w"><span>Edvoy</span><span>AI-assisted QC</span></span><h3>Subject Validator: AI reads the page, a person signs off</h3><span class="m">60-70% less manual QC*</span><p>Pick a model, run a shared versioned prompt, edit the AI&#x27;s table against the highlighted source. Exact matches publish; everything else goes to a person.</p><span class="go">Read the case study</span></a></div></div></section></main>
+<footer class="contact" id="contact">
+  <div class="container">
+    <div class="inner">
+      <div>
+        <div class="contact-id"><div class="avatar"><img src="/gibin-mathew.webp" alt="Gibin Mathew" width="360" height="360" loading="lazy"></div></div>
+        <h2>Have a process that's still <em>done by hand?</em></h2>
+        <p>Happy to talk about automation, data platforms, or getting AI into production without breaking things.</p>
+      </div>
+      <div class="reach">
+        <div class="emailrow"><code id="email">gibin.mat96@gmail.com</code><button class="copy" id="copyBtn" type="button">Copy</button></div>
+        <a href="https://www.linkedin.com/in/gibinm" target="_blank" rel="noopener">linkedin.com/in/gibinm ↗</a>
+        <a href="/">gibin.in, the full profile →</a>
+      </div>
+    </div>
+    <p class="areas">I work on RPA and workflow automation, config-driven web automation, web scraping, data engineering and ETL, and AI-assisted data validation, mostly in Python, Playwright and Node.js. Based in Chennai, India.</p>
+    <div class="foot"><span>Gibin Mathew · RPA &amp; workflow automation · Chennai, India</span><span><a href="/projects/" style="color:inherit">Projects</a> · <a href="/blog/" style="color:inherit">Writing</a> · <a href="/tools/" style="color:inherit">Free tools</a></span></div>
+  </div>
+</footer>
+<button class="totop" id="totop" type="button" aria-label="Back to top">↑</button>
+<script src="/assets/site.js" defer></script>
+<script src="/assets/dock.js" defer></script>
+<script src="/assets/tools/fuzz.js?v=2" defer></script><script src="/assets/tools/core.js?v=2" defer></script><script src="/assets/tools/standardize.js?v=2" defer></script>
+<script>/* GoatCounter: privacy-friendly stats, live domain only. */
+window.goatcounter={no_onload:true};
+(function(){if(!/(^|\.)gibin\.in$/.test(location.hostname))return;var g=document.createElement('script');g.async=true;g.src='https://gc.zgo.at/count.js';g.setAttribute('data-goatcounter','https://gibin.goatcounter.com/count');
+g.onload=function(){try{window.goatcounter.count()}catch(e){}
+  if(/[?&](ref|utm_[a-z]+)=/.test(location.search)){try{history.replaceState(null,'',location.pathname+location.hash)}catch(e){}}};
+document.body.appendChild(g)})();</script>
+</body>
+</html>

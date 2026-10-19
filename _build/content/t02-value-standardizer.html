@@ -1,0 +1,48 @@
+<!--meta
+{"section": "tools","slug": "value-standardizer","order": 2,"tool": "standardize","title": "Standardize Messy Values to a Master List, Free | Gibin Mathew","og_title": "Standardize messy values to a master list","description": "Free data standardization tool: map messy values like UK, U.K. and Untied Kingdom onto one canonical list. Exact, alias and fuzzy rules. Runs in your browser.","kicker": "Free tool · data standardization","app_name": "Value standardizer","h1": "Standardize messy values to <em>one master list</em>","crumb": "Value standardizer","dek": "One column, many spellings of the same thing: UK, U.K., United Kingdom, Untied Kingdom. Reports and pivot tables count each spelling as a different value. This maps every spelling onto the one value you choose, so the column finally adds up.","facts": ["<b>●</b> Runs in your browser","Nothing uploaded","Free, no sign-up"],"summary": "Map UK, U.K. and Untied Kingdom onto United Kingdom. Exact, alias and fuzzy rules, and you decide the leftovers.","metric": "controlled vocabularies, by hand","year": "Cleaning","where": "Free tool","category": "BusinessApplication","features": ["Exact, alias and fuzzy mapping in that order","Threshold slider for fuzzy matches","Pick the right value from a dropdown for anything unsure","Download the mapping table or the full file with a standardized column","Runs locally"],"date": "2026-10-19","updated": "2026-10-19","keywords": ["data standardization tool","standardize values","map values to master list","controlled vocabulary","clean country names","data harmonization"],"related": ["/tools/fuzzy-match/","/tools/remove-duplicates/","/projects/subject-validator/"],"side": "<a href=\"/projects/subject-validator/\">Mapping at scale, with AI and a reviewer →</a>","faq": [["What's the difference between this and the fuzzy matcher?","The fuzzy matcher compares two lists row by row. This one works on distinct values: if \"UK\" appears 4,000 times, you decide it once. It also adds alias rules and a dropdown to override any mapping, because standardizing a column is about getting every value right, not just finding a likely match."],["What goes in the alias box?","Mappings that no string similarity would ever find, like UK to United Kingdom or Holland to Netherlands. One per line, written as alias = canonical value. The canonical value must be in your canonical list. Aliases are matched ignoring case, spaces and punctuation, so one UK line also covers U.K. and u k."],["Will it change values I didn't approve?","Only fuzzy matches at or above the threshold are mapped automatically, and you can see and change every one of them. Anything below goes to \"needs a decision\" and stays as it was unless you pick a value."],["Is my data uploaded?","No. The page does all the work in your browser. Nothing is sent to a server."]],"fig": "t-std","uses": ["A <b>pivot table shows the same country, city or category three times</b> because it's spelled three ways","You're <b>merging data from several teams or forms</b> and each typed values differently","A column has to contain <b>only values from an approved list</b> before it goes into a system"],"steps": ["Paste the messy column","List the values you want","Check the mapping and download"]}
+-->
+<div class="tool" id="tool" data-og>
+  <div class="tool-top tg"><!--steps--><span class="acts"><button type="button" class="tbtn ghost sm" data-sample>Try it with sample data</button></span></div>
+  <div class="cols2">
+    <div class="tsrc" data-src="m" data-kind="list" data-hint="One value per line, or upload a CSV and pick the column" data-label="Messy values" data-placeholder="The column you want to clean, one value per line, or upload a CSV&#10;&#10;UK&#10;U.K.&#10;Untied Kingdom"></div>
+    <div class="tsrc" data-src="c" data-kind="list" data-hint="Your approved values, one per line" data-label="Canonical list" data-placeholder="The only values you want to end up with&#10;&#10;United Kingdom&#10;United States&#10;India"></div>
+  </div>
+  <label class="fld"><span>Alias rules, optional</span><small>For mappings no spell-check would find, like Holland = Netherlands or Bharat = India</small><textarea class="plain" id="alias" rows="3" style="min-height:84px" spellcheck="false" placeholder="One per line: alias = canonical value&#10;UK = United Kingdom&#10;Holland = Netherlands"></textarea></label>
+  <div class="ctrls">
+    <div class="fld"><span>Auto-map fuzzy matches at</span><div class="rng"><input type="range" id="th" min="60" max="100" step="1" value="85" aria-label="Fuzzy threshold"><output id="thv" for="th">85</output></div><small>Close spellings scoring at least this are mapped for you. The rest wait for your decision</small></div>
+    <button type="button" class="tbtn" id="run">Standardize</button>
+  </div>
+  <div class="tsay" id="say" hidden></div>
+  <div class="tprogw" id="prog" hidden></div>
+  <div class="out" id="out" hidden>
+    <div class="stats" id="stats"></div>
+    <div class="viz"><div id="bd"></div></div>
+    <div class="acts"><div class="chipset" id="filter" role="tablist" aria-label="Filter values"></div><span class="sp"></span><button type="button" class="tbtn ghost sm" id="dl-map">Download mapping</button><button type="button" class="tbtn ghost sm" id="dl-data">Download clean data</button></div>
+    <div id="grid"></div>
+  </div>
+</div>
+<!--article-->
+<h2>Why you'd use this</h2>
+<p>Say you run a report of students by country. The pivot table shows <strong>UK 412, United Kingdom 380, U.K. 95, Untied Kingdom 12</strong>. That's one country counted four ways, and every chart built on it is wrong. The same thing happens with city names, product categories, job titles and department names, anywhere people type a value instead of picking it from a list.</p>
+<p>Fixing it by hand means find-and-replace, one spelling at a time, and hoping you caught them all. This tool shows you every distinct spelling at once, maps the obvious ones for you, and asks you only about the ones it isn't sure of. Then the whole column comes back clean.</p>
+<h2>How to use it</h2>
+<ol>
+<li>Paste the column you want to clean on the left, or upload the CSV and pick the column.</li>
+<li>Paste your <strong>canonical list</strong> on the right: the only values you want to end up with.</li>
+<li>Add <strong>alias rules</strong> for the mappings no algorithm will guess, like UK = United Kingdom.</li>
+<li>Hit <strong>Standardize</strong>. Every distinct value is mapped, with the number of rows it covers.</li>
+<li>Open <strong>Needs a decision</strong>, pick the right value from the dropdown, and download.</li>
+</ol>
+
+<h2>The order it tries things in</h2>
+<p>Each distinct value goes through three checks, and the first one that hits wins:</p>
+<ol>
+<li><strong>Exact.</strong> The value is already in the canonical list once case, spaces and punctuation are ignored. "INDIA" and "india" both land on India.</li>
+<li><strong>Alias.</strong> One of your alias rules covers it. That's how "Bharat" becomes India and "U.K." becomes United Kingdom.</li>
+<li><strong>Fuzzy.</strong> The same smart matching as the <a href="/tools/fuzzy-match/">fuzzy matcher</a>. Typos like "Untied Kingdom" and "Nethrelands" score high and are mapped automatically if they clear the threshold.</li>
+</ol>
+<p>Anything left over is marked <strong>needs a decision</strong>, with the three best suggestions in its dropdown. "Republic of India" will usually show up here: India is the top suggestion, but it's your call, not the tool's.</p>
+
+<h2>Why work on distinct values</h2>
+<p>A column with 200,000 rows often has only a few hundred distinct spellings. Decide each spelling once and every row that uses it follows. It's also how controlled vocabularies are run in practice: a short mapping table that a person owns and reviews, applied to everything downstream. Download the mapping table and you can reuse it as the alias list next time.</p>
+<p class="note"><b>Where this comes from.</b> I've spent a lot of time on controlled vocabularies, getting product, operations and counsellor teams to use the same names for the same things. At scale, an AI drafts the mapping and a person approves it. <a href="/projects/subject-validator/">The Subject Validator case study</a> shows that version.</p>

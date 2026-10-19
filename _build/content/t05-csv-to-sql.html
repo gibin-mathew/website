@@ -1,0 +1,54 @@
+<!--meta
+{"section": "tools","slug": "csv-to-sql","order": 5,"tool": "csvsql","title": "CSV to SQL Converter: CREATE TABLE and INSERT, Free | Gibin Mathew","og_title": "CSV to SQL: CREATE TABLE and INSERT statements","description": "Free CSV to SQL converter for PostgreSQL, MySQL, SQLite and SQL Server. Infers column types, keeps leading zeros, escapes quotes, batches INSERTs. No upload.","kicker": "Free tool · CSV to SQL","app_name": "CSV to SQL converter","h1": "Turn a CSV into <em>SQL</em>","crumb": "CSV to SQL","dek": "Got a spreadsheet and need it inside a database? This writes the SQL for you: a table with the right column types, and the statements that insert every row. Paste it into your database tool and run it.","facts": ["<b>●</b> Runs in your browser","Nothing uploaded","Free, no sign-up"],"summary": "CREATE TABLE with inferred types and batched INSERTs for PostgreSQL, MySQL, SQLite and SQL Server. Leading zeros kept.","metric": "4 SQL dialects","year": "Conversion","where": "Free tool","category": "DeveloperApplication","features": ["PostgreSQL, MySQL, SQLite and SQL Server","Type inference: integer, bigint, decimal with precision, boolean, date, timestamp, text","Leading zeros kept as text","Editable column names, types and NULL rules","Batched INSERTs, optional transaction, DROP and primary key","Correct quoting and escaping per dialect"],"date": "2026-10-19","updated": "2026-10-19","keywords": ["csv to sql","csv to sql insert statements","csv to create table","convert csv to mysql","csv to postgresql","csv to sqlite insert"],"related": ["/tools/csv-profiler/","/tools/json-to-csv/","/tools/remove-duplicates/"],"side": "<a href=\"/tools/csv-profiler/\">Profile the CSV first →</a>","faq": [["Which databases does it support?","PostgreSQL, MySQL (and MariaDB), SQLite and SQL Server. Each gets its own identifier quoting, string escaping, type names and transaction syntax. SQL Server batches are capped at 1,000 rows, which is that database's limit for one VALUES list."],["How are types chosen?","A column is an integer only if every filled value is a whole number without leading zeros. Decimals get a precision and scale that fit the widest value. Dates need to be real calendar dates in YYYY-MM-DD form; anything else stays text. When in doubt it picks text, because a wrong numeric type fails the load and text never does. You can change any type before copying."],["Why is my number column showing as text?","Usually one value isn't a plain number: \"1,200\" with a comma, \"N/A\", a currency symbol, or a code like 060001 where the leading zero matters. Run the file through the CSV profiler to find which one, or just change the type by hand."],["Is there a size limit?","Big files work. The preview stops at 300 KB so the page stays fast, but Copy and Download always give you the whole script."],["Is my CSV uploaded?","No. The SQL is generated in your browser. Nothing is sent to a server."]],"fig": "t-sql","uses": ["You need to <b>load a CSV into PostgreSQL, MySQL, SQLite or SQL Server</b> without an import wizard","The import wizard <b>keeps guessing types wrong</b>, like turning pincode 060001 into 60001","You want <b>test data in a database</b> in a couple of minutes"],"steps": ["Paste or upload the CSV","Pick your database","Copy or download the SQL"]}
+-->
+<div class="tool" id="tool" data-og>
+  <div class="tool-top tg"><!--steps--><span class="acts"><button type="button" class="tbtn ghost sm" data-sample>Try it with sample data</button></span></div>
+  <div class="tsrc" data-src="d" data-kind="table" data-hint="The first row becomes the column names" data-label="Your CSV" data-placeholder="Paste CSV with a header row, or upload the file&#10;&#10;id,name,amount&#10;1,Priya Raman,1250.00"></div>
+  <div class="ctrls">
+    <label class="fld"><span>Database</span><select id="dialect" data-regen><option value="pg">PostgreSQL</option><option value="mysql">MySQL / MariaDB</option><option value="sqlite">SQLite</option><option value="mssql">SQL Server</option></select><small>Quoting and types are written for it</small></label>
+    <label class="fld"><span>Table name</span><input type="text" id="tname" value="my_table" class="mono-in" style="width:14em"></label>
+    <button type="button" class="tbtn" id="run">Generate SQL</button>
+  </div>
+  <details class="more-opts"><summary>Options</summary>
+    <div class="ctrls" style="gap:6px 18px">
+      <label class="chk"><input type="checkbox" id="o-create" data-regen checked> CREATE TABLE</label>
+      <label class="chk"><input type="checkbox" id="o-insert" data-regen checked> INSERT rows</label>
+      <label class="chk"><input type="checkbox" id="o-drop" data-regen> DROP TABLE first</label>
+      <label class="chk"><input type="checkbox" id="o-tx" data-regen checked> Wrap INSERTs in a transaction</label>
+      <label class="chk"><input type="checkbox" id="o-null" data-regen checked> Empty cells become NULL</label>
+      <label class="chk"><input type="checkbox" id="o-clean" data-regen checked> snake_case column names</label>
+    </div>
+    <div class="ctrls">
+      <label class="fld"><span>Rows per INSERT</span><select id="batch" data-regen><option value="1">1</option><option value="100">100</option><option value="500" selected>500</option><option value="1000">1,000</option></select></label>
+      <label class="fld"><span>Primary key</span><select id="pk" data-regen><option value="">None</option></select></label>
+    </div>
+  </details>
+  <div class="tsay" id="say" hidden></div>
+  <div class="out" id="out" hidden>
+    <div id="cols"></div>
+    <div class="acts"><span class="tprog-t" id="meta"></span><span class="sp"></span><button type="button" class="tbtn ghost sm" id="copy">Copy SQL</button><button type="button" class="tbtn ghost sm" id="dl">Download .sql</button></div>
+    <div class="codeout"><pre id="sql"></pre></div>
+  </div>
+</div>
+<!--article-->
+<h2>How to use it</h2>
+<ol>
+<li>Paste the CSV or upload it. The first row should be the column names.</li>
+<li>Pick your database and a table name, then hit <strong>Generate SQL</strong>.</li>
+<li>Check the column table. Rename columns, change types or untick NULL. The SQL updates as you go.</li>
+<li>Copy it, or download the .sql file and run it with your usual client.</li>
+</ol>
+
+<h2>How the types are picked</h2>
+<p>Every filled value in a column is checked, not just the first few rows, because the row that breaks a load is usually row 40,000.</p>
+<ul>
+<li><strong>Integer</strong> when every value is a whole number. It moves up to BIGINT past 2,147,483,647, and to a 38-digit DECIMAL past that.</li>
+<li><strong>Decimal</strong> with a precision and scale wide enough for the longest value on both sides of the point. No silent rounding.</li>
+<li><strong>Boolean</strong> only for true and false. Yes/no stays text, because guessing there goes wrong.</li>
+<li><strong>Date</strong> and <strong>timestamp</strong> only for real ISO dates like 2026-01-05. 05/01/2026 could be May or January, so it stays text. Fix those first with the <a href="/tools/date-normalizer/">date normalizer</a>.</li>
+<li><strong>Text</strong> for everything else, including codes with leading zeros like pincodes. VARCHAR lengths round up to a sensible size.</li>
+</ul>
+
+<h2>The details that usually break</h2>
+<p>Quotes inside values are doubled, so O'Neil goes in as 'O''Neil'. MySQL also gets its backslashes escaped, since it treats them as escape characters by default. SQL Server strings are written as N'...' so non-English text survives, and its INSERTs never exceed 1,000 rows per statement. Column names are quoted the way each database expects, so a column called "order" or "group" won't collide with a keyword.</p>
+<p class="note"><b>Before you load.</b> If the file came from somewhere you don't control, run it through the <a href="/tools/csv-profiler/">CSV profiler</a> first. Five minutes there saves an afternoon of rejected rows.</p>

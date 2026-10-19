@@ -13,3 +13,14 @@ https://gibin.in/projects/markdown-extractor/
 https://gibin.in/projects/subject-validator/
 https://gibin.in/projects/fees-validator/
 https://gibin.in/projects/sp-global-automation/
+https://gibin.in/tools/
+https://gibin.in/tools/fuzzy-match/
+https://gibin.in/tools/value-standardizer/
+https://gibin.in/tools/remove-duplicates/
+https://gibin.in/tools/csv-profiler/
+https://gibin.in/tools/csv-to-sql/
+https://gibin.in/tools/json-to-csv/
+https://gibin.in/tools/mrz-parser/
+https://gibin.in/tools/selector-tester/
+https://gibin.in/tools/date-normalizer/
+https://gibin.in/tools/automation-roi-calculator/

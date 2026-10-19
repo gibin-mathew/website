@@ -1,0 +1,55 @@
+<!--meta
+{"section": "tools","slug": "date-normalizer","order": 9,"tool": "dates","title": "Convert Messy Dates to One Format (YYYY-MM-DD), Free | Gibin Mathew","og_title": "Convert messy dates to one format","description": "Free date format converter: turn a column of mixed dates (15/01/2026, Jan 15 2026, 20260115, Excel serials) into YYYY-MM-DD. Flags ambiguous dates. No upload.","kicker": "Free tool · date cleaning","app_name": "Messy date normalizer","h1": "Turn messy dates into <em>one format</em>","crumb": "Date normalizer","dek": "Dates typed by different people end up in different formats: 15/01/2026, Jan 15 2026, 20260115. Sorting, filters and databases all trip over that. Paste the column and get every date back in one format, with the unclear ones flagged.","facts": ["<b>●</b> Runs in your browser","Nothing uploaded","Free, no sign-up"],"summary": "Mixed date formats into YYYY-MM-DD or any format you like. Works out day/month order from the data and flags what's ambiguous.","metric": "20+ input formats","year": "Cleaning","where": "Free tool","category": "BusinessApplication","features": ["ISO, numeric with / - . separators, written months, weekdays, ordinals, compact YYYYMMDD","Times with AM/PM and time zones","Excel serial numbers and Unix timestamps","Detects day/month vs month/day from the column itself","Flags ambiguous dates, 2-digit years and impossible dates like 31 February","Output as ISO, ISO 8601, DD/MM/YYYY, MM/DD/YYYY, Unix or a custom pattern"],"date": "2026-10-19","updated": "2026-10-19","keywords": ["convert date format online","normalize dates","date format converter","convert dates to yyyy-mm-dd","excel serial date converter","clean dates in csv"],"related": ["/tools/csv-profiler/","/tools/csv-to-sql/","/tools/value-standardizer/"],"side": "<a href=\"/tools/csv-profiler/\">Find mixed date formats first →</a>","faq": [["How does it decide between day/month and month/day?","From your data. If any date in the column has a first number above 12, like 15/01/2026, the column is day/month. If the second number is above 12, it's month/day. When nothing in the column settles it, it reads day/month and says so, and you can switch it. Every date that could be read both ways is flagged either way."],["What happens to 2-digit years?","They're expanded with a pivot year: below the pivot is the 2000s, at or above is the 1900s. The default pivot is 50, so 26 becomes 2026 and 74 becomes 1974. Change it if your data is mostly birthdays, and every 2-digit year is flagged so you can check."],["Does it handle Excel date numbers?","Yes, if you tick Excel serial numbers. 46037 becomes 2026-01-15. It's off by default because a column of five-digit numbers could just as well be pincodes or IDs."],["What about time zones?","If a value has an offset like +05:30 or Z, it's kept in ISO 8601 output and applied when converting to Unix time. Values without an offset are left as they are, with no time zone guessed."],["Is my data uploaded?","No. Parsing happens in your browser."]],"fig": "t-dates","uses": ["A <b>date column won't sort properly</b> because the formats are mixed","Excel is showing dates as <b>numbers like 46037</b>","You're <b>loading dates into a database</b> that only accepts YYYY-MM-DD"],"steps": ["Paste or upload the dates","Pick the format you want","Download the clean column"]}
+-->
+<div class="tool" id="tool" data-og>
+  <div class="tool-top tg"><!--steps--><span class="acts"><button type="button" class="tbtn ghost sm" data-sample>Try it with sample dates</button></span></div>
+  <div class="tsrc" data-src="d" data-kind="list" data-hint="One date per line, or upload a CSV and pick the date column" data-label="Your dates" data-placeholder="One date per line, or upload a CSV and pick the column&#10;&#10;15/01/2026&#10;Jan 15, 2026&#10;2026-01-15T14:30:00+05:30"></div>
+  <div class="ctrls">
+    <label class="fld"><span>Output format</span><select id="fmt">
+      <option value="iso" selected>2026-01-15 (ISO date)</option><option value="isodt">2026-01-15 14:30:00</option><option value="iso8601">2026-01-15T14:30:00+05:30 (ISO 8601)</option>
+      <option value="dmy">15/01/2026</option><option value="mdy">01/15/2026</option><option value="dot">15.01.2026</option><option value="dmmm">15 Jan 2026</option><option value="mmmm">January 15, 2026</option>
+      <option value="unix">Unix seconds</option><option value="custom">Custom pattern</option></select></label>
+    <label class="fld" id="custom-f" hidden><span>Pattern</span><input type="text" id="custom" class="mono-in" value="DD-MMM-YYYY" style="width:12em"><small>YYYY YY MMMM MMM MM M DD D HH mm ss</small></label>
+    <label class="fld"><span>Numeric dates are</span><select id="order"><option value="auto" selected>Work it out from the data</option><option value="dmy">Day first (15/01)</option><option value="mdy">Month first (01/15)</option></select><small>Decides whether 03/04 means 3 April or March 4</small></label>
+    <button type="button" class="tbtn" id="run">Convert dates</button>
+  </div>
+  <details class="more-opts"><summary>More options</summary>
+    <div class="ctrls" style="gap:6px 18px">
+      <label class="chk"><input type="checkbox" id="o-excel"> Read 5-digit numbers as Excel dates</label>
+      <label class="chk"><input type="checkbox" id="o-unix"> Read 10 and 13-digit numbers as Unix time</label>
+      <label class="fld"><span>2-digit year pivot</span><input type="number" id="pivot" value="50" min="0" max="99" style="width:6em"><small>Below this is 20xx, else 19xx</small></label>
+    </div>
+  </details>
+  <div class="tsay" id="say" hidden></div>
+  <div class="out" id="out" hidden>
+    <div class="stats" id="stats"></div>
+    <div class="viz"><div id="bd"></div><div id="bd2"></div></div>
+    <div class="acts"><div class="chipset" id="filter" role="tablist" aria-label="Filter"></div><span class="sp"></span><button type="button" class="tbtn ghost sm" id="copy">Copy output column</button><button type="button" class="tbtn ghost sm" id="dl">Download CSV</button></div>
+    <div id="grid"></div>
+  </div>
+</div>
+<!--article-->
+<h2>How to use it</h2>
+<ol>
+<li>Paste the dates, one per line, or upload the CSV and pick the date column.</li>
+<li>Pick the output format. ISO (2026-01-15) is the safe choice for databases and spreadsheets.</li>
+<li>Hit <strong>Convert dates</strong>, then check the <strong>Ambiguous</strong> and <strong>Failed</strong> tabs before you use the result.</li>
+<li>Download the CSV. If you uploaded one, the normalized column is added next to your original columns.</li>
+</ol>
+
+<h2>What it understands</h2>
+<ul>
+<li>ISO dates and timestamps: 2026-01-15, 2026-01-15T14:30:00+05:30</li>
+<li>Numbers with slashes, dashes or dots: 15/01/2026, 01-15-2026, 15.01.26</li>
+<li>Written months in any order: 15 Jan 2026, Jan 15, 2026, 15-Jan-2026, 2026 Jan 15</li>
+<li>Weekdays and ordinals: Thursday, 15th January 2026</li>
+<li>Email-style dates: Tue, 15 Jan 2026 10:30:00 +0530</li>
+<li>Compact dates: 20260115</li>
+<li>Month and year only: January 2026 (becomes the 1st, and says so)</li>
+<li>Excel serial numbers and Unix timestamps, when you switch them on</li>
+</ul>
+<p>Every date is checked against the real calendar. 31/02/2026 and 29/02/2025 fail with a reason instead of rolling over into March the way some spreadsheet functions do.</p>
+
+<h2>The 03/04/2026 problem</h2>
+<p>Is it the 3rd of April or the 4th of March? There's no way to tell from the date alone, and most converters pick one without telling you. This tool looks at the whole column first. If anything in it can only be day/month, like 15/01/2026, it reads the rest that way too. If the column contains both kinds, it says so, because that usually means two sources were merged and someone needs to look. Either way, every date that could be read two ways is flagged.</p>
+<p class="note"><b>Before a database load.</b> <a href="/tools/csv-to-sql/">CSV to SQL</a> only types a column as DATE when every value is ISO, on purpose. Normalize here first and you get a real DATE column instead of text.</p>

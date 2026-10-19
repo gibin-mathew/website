@@ -1,0 +1,44 @@
+<!--meta
+{"section": "tools","slug": "selector-tester","order": 8,"tool": "selector","title": "CSS Selector and XPath Tester for Web Scraping, Free | Gibin Mathew","og_title": "CSS selector and XPath tester for web scraping","description": "Free CSS selector and XPath tester: paste page HTML, define fields, see the extracted rows live, then copy Python (parsel) or Playwright code. No upload.","kicker": "Free tool · web scraping","app_name": "CSS selector and XPath tester","h1": "Test <em>scraping selectors</em> on real HTML","crumb": "Selector tester","dek": "For people who write web scrapers. A scraper needs selectors: short patterns that point at what you want on a page, like every product name and price. Paste a page's HTML, try your selectors, and see exactly what they pull out before you write any code.","facts": ["<b>●</b> Runs in your browser","Nothing uploaded","Free, no sign-up"],"summary": "Paste page HTML, write CSS or XPath per field, watch the rows fill in. Copy the result as Python or Playwright code.","metric": "CSS and XPath","year": "Scraping","where": "Free tool","category": "DeveloperApplication","features": ["CSS selectors and XPath 1.0","Repeat-for-each item selector with per-field extraction","Text, attributes, HTML, counts, all matches","Live hit counts per field","Resolves relative links against a base URL","Copy as Python (parsel) or Playwright code, download CSV or JSON","Pasted HTML is parsed inert: no scripts run, nothing loads"],"date": "2026-10-19","updated": "2026-10-19","keywords": ["css selector tester","xpath tester","test xpath online","web scraping selector tool","css selector for scraping","parsel selector"],"related": ["/projects/sp-global-automation/","/projects/markdown-extractor/","/tools/json-to-csv/"],"side": "<a href=\"/projects/sp-global-automation/\">Scrapers at S&amp;P Global scale →</a>","faq": [["Why paste HTML instead of a URL?","A browser page can't fetch another website's HTML because of cross-origin rules, and a tool that proxied it for you would see everything you test. Pasting keeps it local. In Chrome, right-click the page, View page source, select all and copy. For pages that build their content with JavaScript, copy the element from DevTools instead (right-click in Elements, Copy, Copy outerHTML)."],["Is it safe to paste HTML from any site?","Yes. The HTML is parsed into a detached document that never touches this page. Scripts in it don't run, and images, styles and iframes in it don't load. The sample even includes a script tag to show it."],["What's \"repeat for each\"?","The selector for one item on a listing page: a product card, a search result, a table row. Each field is then searched inside that item, so fields stay lined up even when one item is missing a value. Leave it empty to run each selector over the whole page."],["Does the generated code work as is?","It mirrors exactly what the tool did, so if the table looks right here, the code returns the same rows from the same HTML. The Python version uses parsel, the selector library behind Scrapy. The Playwright version runs inside the page, so you can also paste the inner function into the browser console."],["CSS or XPath?","CSS is shorter and covers most cases. XPath can do what CSS can't: select by text (//a[contains(., 'Next')]), step up to a parent, or read an attribute directly (//a/@href). Inside a repeat-for-each item, start XPath with a dot (.//h2) so it searches the item, not the whole page."]],"fig": "t-sel","uses": ["You're <b>writing a scraper</b> in Python, Playwright or Selenium and want the selectors right first","A <b>scraper stopped returning data</b> and you need to find which selector broke","You're <b>learning CSS selectors or XPath</b> and want to see results as you type"],"steps": ["Paste the page HTML","Write a selector for each field","Copy the rows or the code"]}
+-->
+<div class="tool" id="tool" data-og>
+  <div class="tool-top tg"><!--steps--><span class="acts"><button type="button" class="tbtn ghost sm" data-sample>Try it with a sample page</button></span></div>
+  <div class="tsrc" data-src="h" data-kind="text" data-hint="In Chrome: right-click the page, View page source, select all, copy" data-label="Page HTML" data-accept=".html,.htm,.xml,.txt" data-placeholder="Paste the page source or an element's outerHTML&#10;&#10;&lt;div class=&quot;product&quot;&gt;&lt;h2&gt;Masala Chai&lt;/h2&gt;&lt;span class=&quot;price&quot;&gt;₹ 320&lt;/span&gt;&lt;/div&gt;"></div>
+  <div class="ctrls">
+    <label class="fld"><span>Selector type</span><select id="mode"><option value="css">CSS</option><option value="xpath">XPath</option></select></label>
+    <label class="fld" style="flex:1 1 260px"><span>Repeat for each, optional</span><input type="text" id="each" class="mono-in" placeholder="e.g. div.product" spellcheck="false" autocapitalize="off" style="width:100%"></label>
+    <label class="fld" style="flex:1 1 220px"><span>Base URL for links, optional</span><input type="text" id="base" class="mono-in" placeholder="https://example.com" spellcheck="false" autocapitalize="off" style="width:100%"></label>
+  </div>
+  <div class="fld"><span>Fields</span><div class="fields" id="fields"></div></div>
+  <div class="acts"><button type="button" class="tbtn ghost sm" id="add">+ Add field</button><label class="chk" style="min-height:30px"><input type="checkbox" id="ws" checked> Tidy whitespace in text</label></div>
+  <div class="tsay" id="say" hidden></div>
+  <div class="out" id="out" hidden>
+    <div class="acts"><span class="tprog-t" id="meta"></span><span class="sp"></span><button type="button" class="tbtn ghost sm" id="copy-py">Copy Python</button><button type="button" class="tbtn ghost sm" id="copy-js">Copy Playwright</button><button type="button" class="tbtn ghost sm" id="dl-json">JSON</button><button type="button" class="tbtn ghost sm" id="dl">CSV</button></div>
+    <div id="grid"></div>
+  </div>
+</div>
+<!--article-->
+<h2>Why you'd use this</h2>
+<p>This one is for people who build web scrapers: programs that visit a page and copy out data, like prices from a shop or listings from a directory. Every scraper depends on selectors, short patterns such as <code>div.product h2</code> that tell it which part of the page to read.</p>
+<p>Getting them wrong is the most common reason a scraper returns empty columns or shifted data. Usually you only find out after writing the code and running it. Here you paste the page, try selectors, and see the exact rows they'd produce, as you type. When it looks right, copy the working Python or Playwright code. If you don't write scrapers, this isn't the tool for you, and that's fine.</p>
+<h2>How to use it</h2>
+<ol>
+<li>Get the HTML. View page source and copy it all, or copy one element's outerHTML from DevTools if the page builds its content with JavaScript.</li>
+<li>Paste it in. Nothing in it runs.</li>
+<li>Set <strong>repeat for each</strong> to the selector for one item, like div.product or table tr.</li>
+<li>Add a field per value you want. The number next to each field shows how many items it found something in. Amber means it matched nothing.</li>
+<li>When every field is green, copy the code or download the rows.</li>
+</ol>
+
+<h2>Selectors that survive a redesign</h2>
+<p>Most scrapers break because the selector was copied from DevTools and describes the page's layout instead of its meaning. A few habits that keep them alive longer:</p>
+<ul>
+<li><strong>Prefer meaning over position.</strong> .price or [itemprop=price] outlasts div &gt; div:nth-child(3) &gt; span.</li>
+<li><strong>Use data attributes when they exist.</strong> data-id, data-sku and data-testid are there for machines and change less often than class names.</li>
+<li><strong>Scope fields to an item.</strong> With repeat-for-each, a product with no rating gets an empty cell instead of shifting every rating after it up by one row.</li>
+<li><strong>Watch the hit counts.</strong> A field that matches in 2 of 3 items is telling you something. Sometimes it's real (out of stock), sometimes the markup differs on that item.</li>
+</ul>
+
+<h2>Why not just give it a URL?</h2>
+<p>A web page isn't allowed to read another site's HTML, and a tool that fetched pages through its own server would see every URL you test. Pasting is one more step, but it means you can test selectors on a logged-in page, an internal tool, or a saved file, and none of it leaves your machine.</p>
+<p class="note"><b>Where this comes from.</b> I've written scrapers for a living: at S&amp;P Global, crawlers that covered 3.4 million company websites and 40+ government filing portals, and now <a href="/projects/markdown-extractor/">agent-written scrapers</a> that a second agent checks. Getting selectors right on real HTML before writing the scraper saves most of the debugging.</p>

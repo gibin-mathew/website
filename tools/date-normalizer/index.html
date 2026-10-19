@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Convert Messy Dates to One Format (YYYY-MM-DD), Free | Gibin Mathew</title>
+<meta name="description" content="Free date format converter: turn a column of mixed dates (15/01/2026, Jan 15 2026, 20260115, Excel serials) into YYYY-MM-DD. Flags ambiguous dates. No upload.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="Gibin Mathew">
+<link rel="canonical" href="https://gibin.in/tools/date-normalizer/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gibin.in/tools/date-normalizer/">
+<meta property="og:title" content="Convert messy dates to one format · Gibin Mathew">
+<meta property="og:description" content="Free date format converter: turn a column of mixed dates (15/01/2026, Jan 15 2026, 20260115, Excel serials) into YYYY-MM-DD. Flags ambiguous dates. No upload.">
+<meta property="og:site_name" content="Gibin Mathew">
+<meta property="og:locale" content="en_IN">
+<meta property="og:image" content="https://gibin.in/og/date-normalizer-v2.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Convert messy dates to one format · Gibin Mathew">
+<meta name="twitter:description" content="Free date format converter: turn a column of mixed dates (15/01/2026, Jan 15 2026, 20260115, Excel serials) into YYYY-MM-DD. Flags ambiguous dates. No upload.">
+<meta name="twitter:image" content="https://gibin.in/og/date-normalizer-v2.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230B1320'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial,sans-serif' font-weight='800' font-size='28' fill='%23EEF2F8'%3EGM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100,500;112,700;125,800;125,900&family=Instrument+Serif:ital@1&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/base.css">
+<link rel="stylesheet" href="/assets/pages.css">
+<link rel="stylesheet" href="/assets/dock.css">
+<link rel="stylesheet" href="/assets/tools/tools.css?v=2">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "@id": "https://gibin.in/tools/date-normalizer/#app", "name": "Messy date normalizer", "url": "https://gibin.in/tools/date-normalizer/", "description": "Free date format converter: turn a column of mixed dates (15/01/2026, Jan 15 2026, 20260115, Excel serials) into YYYY-MM-DD. Flags ambiguous dates. No upload.", "applicationCategory": "BusinessApplication", "operatingSystem": "Any (runs in the browser)", "browserRequirements": "Requires JavaScript", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "featureList": ["ISO, numeric with / - . separators, written months, weekdays, ordinals, compact YYYYMMDD", "Times with AM/PM and time zones", "Excel serial numbers and Unix timestamps", "Detects day/month vs month/day from the column itself", "Flags ambiguous dates, 2-digit years and impossible dates like 31 February", "Output as ISO, ISO 8601, DD/MM/YYYY, MM/DD/YYYY, Unix or a custom pattern"], "image": "https://gibin.in/og/date-normalizer-v2.jpg", "inLanguage": "en", "author": {"@type": "Person", "@id": "https://gibin.in/#person", "name": "Gibin Mathew", "url": "https://gibin.in/", "jobTitle": "Data and Automation Manager", "sameAs": ["https://www.linkedin.com/in/gibinm"]}, "publisher": {"@id": "https://gibin.in/#person"}, "datePublished": "2026-10-19", "dateModified": "2026-10-19", "isPartOf": {"@id": "https://gibin.in/#website"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://gibin.in/"}, {"@type": "ListItem", "position": 2, "name": "Free tools", "item": "https://gibin.in/tools/"}, {"@type": "ListItem", "position": 3, "name": "Turn messy dates into one format", "item": "https://gibin.in/tools/date-normalizer/"}]}, {"@type": "FAQPage", "@id": "https://gibin.in/tools/date-normalizer/#faq", "mainEntity": [{"@type": "Question", "name": "How does it decide between day/month and month/day?", "acceptedAnswer": {"@type": "Answer", "text": "From your data. If any date in the column has a first number above 12, like 15/01/2026, the column is day/month. If the second number is above 12, it's month/day. When nothing in the column settles it, it reads day/month and says so, and you can switch it. Every date that could be read both ways is flagged either way."}}, {"@type": "Question", "name": "What happens to 2-digit years?", "acceptedAnswer": {"@type": "Answer", "text": "They're expanded with a pivot year: below the pivot is the 2000s, at or above is the 1900s. The default pivot is 50, so 26 becomes 2026 and 74 becomes 1974. Change it if your data is mostly birthdays, and every 2-digit year is flagged so you can check."}}, {"@type": "Question", "name": "Does it handle Excel date numbers?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, if you tick Excel serial numbers. 46037 becomes 2026-01-15. It's off by default because a column of five-digit numbers could just as well be pincodes or IDs."}}, {"@type": "Question", "name": "What about time zones?", "acceptedAnswer": {"@type": "Answer", "text": "If a value has an offset like +05:30 or Z, it's kept in ISO 8601 output and applied when converting to Unix time. Values without an offset are left as they are, with no time zone guessed."}}, {"@type": "Question", "name": "Is my data uploaded?", "acceptedAnswer": {"@type": "Answer", "text": "No. Parsing happens in your browser."}}]}]}</script>
+<script>document.documentElement.classList.add('js');try{var gmT=localStorage.getItem('gm-theme');if(gmT==='light'||gmT==='dark')document.documentElement.setAttribute('data-theme',gmT)}catch(e){}</script>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<header class="band">
+  <div class="container">
+    <div class="topbar">
+      <a class="mark" href="/" aria-label="Gibin Mathew, home">GM<span>.</span></a>
+      <nav class="topnav" aria-label="Site"><a href="/#approach">Approach</a><a href="/projects/">Projects</a><a href="/blog/">Writing</a><a href="/tools/" aria-current="page">Tools</a><a href="/#recommendations">Recommendations</a><a href="/#career">Career</a><a href="#contact">Contact</a></nav>
+      <button class="cord hint" id="cord" type="button" aria-label="Switch to light theme"><span class="halo" aria-hidden="true"></span><span class="cl"></span><span class="flies" aria-hidden="true"></span><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3Z"/></svg></span><span class="tip" id="cord-tip">pull for day</span></button>
+    </div>
+    <div class="ph tool-head">
+      <div>
+        <ol class="crumbs"><li><a href="/">gibin.in</a></li><li><a href="/tools/">Free tools</a></li><li>Date normalizer</li></ol>
+        <span class="ph-kicker">Free tool · date cleaning</span>
+        <h1 class="ph-title">Turn messy dates into <em>one format</em></h1>
+        <p class="ph-dek">Dates typed by different people end up in different formats: 15/01/2026, Jan 15 2026, 20260115. Sorting, filters and databases all trip over that. Paste the column and get every date back in one format, with the unclear ones flagged.</p>
+        <span class="ph-use-h">Use it when</span><ul class="ph-uses"><li>A <b>date column won't sort properly</b> because the formats are mixed</li><li>Excel is showing dates as <b>numbers like 46037</b></li><li>You're <b>loading dates into a database</b> that only accepts YYYY-MM-DD</li></ul><div class="ph-facts"><span><b>●</b> Runs in your browser</span><span>Nothing uploaded</span><span>Free, no sign-up</span></div>
+        
+      </div>
+      <div class="fig tf" role="img" aria-label="Animation: dates written six different ways are rewritten as one ISO format. One that could be April or March is flagged as ambiguous, and 31 February is rejected."><div class="fig-h"><span class="live"><b>any format in → one format out</b></span><span>YYYY-MM-DD</span></div><div class="tf-dates"><div class="tf-dr"><span class="tf-in" style="--d:0.30s">15/01/2026</span><span class="tf-arrow tf-in" style="--d:0.50s">→</span><b class="tf-in " style="--d:0.70s">2026-01-15</b><span></span></div><div class="tf-dr"><span class="tf-in" style="--d:0.75s">Jan 15, 2026</span><span class="tf-arrow tf-in" style="--d:0.95s">→</span><b class="tf-in " style="--d:1.15s">2026-01-15</b><span></span></div><div class="tf-dr"><span class="tf-in" style="--d:1.20s">20260115</span><span class="tf-arrow tf-in" style="--d:1.40s">→</span><b class="tf-in " style="--d:1.60s">2026-01-15</b><span></span></div><div class="tf-dr"><span class="tf-in" style="--d:1.65s">46037</span><span class="tf-arrow tf-in" style="--d:1.85s">→</span><b class="tf-in " style="--d:2.05s">2026-01-15</b><span class="tag blue tf-pop" style="--d:2.25s">Excel date</span></div><div class="tf-dr"><span class="tf-in" style="--d:2.10s">03/04/2026</span><span class="tf-arrow tf-in" style="--d:2.30s">→</span><b class="tf-in amber" style="--d:2.50s">2026-04-03</b><span class="tag amber tf-pop" style="--d:2.70s">ambiguous</span></div><div class="tf-dr"><span class="tf-in" style="--d:2.55s">31/02/2026</span><span class="tf-arrow tf-in" style="--d:2.75s">→</span><b class="tf-in bad" style="--d:2.95s">no such date</b><span></span></div></div><div class="fig-f"><span>checks the real calendar, flags what could go either way</span><span>sample data</span></div></div>
+    </div>
+  </div>
+</header>
+<main><section class="toolsec"><div class="container"><div class="tool" id="tool" data-og>
+  <div class="tool-top tg"><ol class="tg-steps" aria-label="How to use it"><li>Paste or upload the dates</li><li>Pick the format you want</li><li>Download the clean column</li></ol><span class="acts"><button type="button" class="tbtn ghost sm" data-sample>Try it with sample dates</button></span></div>
+  <div class="tsrc" data-src="d" data-kind="list" data-hint="One date per line, or upload a CSV and pick the date column" data-label="Your dates" data-placeholder="One date per line, or upload a CSV and pick the column&#10;&#10;15/01/2026&#10;Jan 15, 2026&#10;2026-01-15T14:30:00+05:30"></div>
+  <div class="ctrls">
+    <label class="fld"><span>Output format</span><select id="fmt">
+      <option value="iso" selected>2026-01-15 (ISO date)</option><option value="isodt">2026-01-15 14:30:00</option><option value="iso8601">2026-01-15T14:30:00+05:30 (ISO 8601)</option>
+      <option value="dmy">15/01/2026</option><option value="mdy">01/15/2026</option><option value="dot">15.01.2026</option><option value="dmmm">15 Jan 2026</option><option value="mmmm">January 15, 2026</option>
+      <option value="unix">Unix seconds</option><option value="custom">Custom pattern</option></select></label>
+    <label class="fld" id="custom-f" hidden><span>Pattern</span><input type="text" id="custom" class="mono-in" value="DD-MMM-YYYY" style="width:12em"><small>YYYY YY MMMM MMM MM M DD D HH mm ss</small></label>
+    <label class="fld"><span>Numeric dates are</span><select id="order"><option value="auto" selected>Work it out from the data</option><option value="dmy">Day first (15/01)</option><option value="mdy">Month first (01/15)</option></select><small>Decides whether 03/04 means 3 April or March 4</small></label>
+    <button type="button" class="tbtn" id="run">Convert dates</button>
+  </div>
+  <details class="more-opts"><summary>More options</summary>
+    <div class="ctrls" style="gap:6px 18px">
+      <label class="chk"><input type="checkbox" id="o-excel"> Read 5-digit numbers as Excel dates</label>
+      <label class="chk"><input type="checkbox" id="o-unix"> Read 10 and 13-digit numbers as Unix time</label>
+      <label class="fld"><span>2-digit year pivot</span><input type="number" id="pivot" value="50" min="0" max="99" style="width:6em"><small>Below this is 20xx, else 19xx</small></label>
+    </div>
+  </details>
+  <div class="tsay" id="say" hidden></div>
+  <div class="out" id="out" hidden>
+    <div class="stats" id="stats"></div>
+    <div class="viz"><div id="bd"></div><div id="bd2"></div></div>
+    <div class="acts"><div class="chipset" id="filter" role="tablist" aria-label="Filter"></div><span class="sp"></span><button type="button" class="tbtn ghost sm" id="copy">Copy output column</button><button type="button" class="tbtn ghost sm" id="dl">Download CSV</button></div>
+    <div id="grid"></div>
+  </div>
+</div>
+</div></section><div class="container"><div class="doc"><nav class="toc" aria-label="On this page"><b>On this page</b><ol><li><a href="#how-to-use-it">How to use it</a></li><li><a href="#what-it-understands">What it understands</a></li><li><a href="#the-03-04-2026-problem">The 03/04/2026 problem</a></li><li><a href="#questions">Questions</a></li></ol><div class="side"><a href="/tools/csv-profiler/">Find mixed date formats first →</a><a href="/tools/">← All free tools</a></div></nav><article class="prose">
+<h2 id="how-to-use-it">How to use it</h2>
+<ol>
+<li>Paste the dates, one per line, or upload the CSV and pick the date column.</li>
+<li>Pick the output format. ISO (2026-01-15) is the safe choice for databases and spreadsheets.</li>
+<li>Hit <strong>Convert dates</strong>, then check the <strong>Ambiguous</strong> and <strong>Failed</strong> tabs before you use the result.</li>
+<li>Download the CSV. If you uploaded one, the normalized column is added next to your original columns.</li>
+</ol>
+
+<h2 id="what-it-understands">What it understands</h2>
+<ul>
+<li>ISO dates and timestamps: 2026-01-15, 2026-01-15T14:30:00+05:30</li>
+<li>Numbers with slashes, dashes or dots: 15/01/2026, 01-15-2026, 15.01.26</li>
+<li>Written months in any order: 15 Jan 2026, Jan 15, 2026, 15-Jan-2026, 2026 Jan 15</li>
+<li>Weekdays and ordinals: Thursday, 15th January 2026</li>
+<li>Email-style dates: Tue, 15 Jan 2026 10:30:00 +0530</li>
+<li>Compact dates: 20260115</li>
+<li>Month and year only: January 2026 (becomes the 1st, and says so)</li>
+<li>Excel serial numbers and Unix timestamps, when you switch them on</li>
+</ul>
+<p>Every date is checked against the real calendar. 31/02/2026 and 29/02/2025 fail with a reason instead of rolling over into March the way some spreadsheet functions do.</p>
+
+<h2 id="the-03-04-2026-problem">The 03/04/2026 problem</h2>
+<p>Is it the 3rd of April or the 4th of March? There's no way to tell from the date alone, and most converters pick one without telling you. This tool looks at the whole column first. If anything in it can only be day/month, like 15/01/2026, it reads the rest that way too. If the column contains both kinds, it says so, because that usually means two sources were merged and someone needs to look. Either way, every date that could be read two ways is flagged.</p>
+<p class="note"><b>Before a database load.</b> <a href="/tools/csv-to-sql/">CSV to SQL</a> only types a column as DATE when every value is ISO, on purpose. Normalize here first and you get a real DATE column instead of text.</p>
+<h2 id="questions">Questions</h2><h3>How does it decide between day/month and month/day?</h3><p>From your data. If any date in the column has a first number above 12, like 15/01/2026, the column is day/month. If the second number is above 12, it's month/day. When nothing in the column settles it, it reads day/month and says so, and you can switch it. Every date that could be read both ways is flagged either way.</p><h3>What happens to 2-digit years?</h3><p>They're expanded with a pivot year: below the pivot is the 2000s, at or above is the 1900s. The default pivot is 50, so 26 becomes 2026 and 74 becomes 1974. Change it if your data is mostly birthdays, and every 2-digit year is flagged so you can check.</p><h3>Does it handle Excel date numbers?</h3><p>Yes, if you tick Excel serial numbers. 46037 becomes 2026-01-15. It's off by default because a column of five-digit numbers could just as well be pincodes or IDs.</p><h3>What about time zones?</h3><p>If a value has an offset like +05:30 or Z, it's kept in ISO 8601 output and applied when converting to Unix time. Values without an offset are left as they are, with no time zone guessed.</p><h3>Is my data uploaded?</h3><p>No. Parsing happens in your browser.</p></article></div></div><section class="related sec"><div class="container"><div class="sec-h"><div><span class="label">Keep going</span><h2 class="h-sec">Related tools and work</h2></div></div><div class="cards three"><a class="pcard rv" href="/tools/csv-profiler/"><span class="w"><span>Free tool</span><span>Data quality</span></span><h3>Check a CSV&#x27;s data quality in seconds</h3><span class="m">14 checks per column</span><p>Every column profiled: real type, missing values, placeholders, outliers, mixed formats and IDs that repeat.</p><span class="go">Open the tool</span></a><a class="pcard rv" href="/tools/csv-to-sql/"><span class="w"><span>Free tool</span><span>Conversion</span></span><h3>Turn a CSV into SQL</h3><span class="m">4 SQL dialects</span><p>CREATE TABLE with inferred types and batched INSERTs for PostgreSQL, MySQL, SQLite and SQL Server. Leading zeros kept.</p><span class="go">Open the tool</span></a><a class="pcard rv" href="/tools/value-standardizer/"><span class="w"><span>Free tool</span><span>Cleaning</span></span><h3>Standardize messy values to one master list</h3><span class="m">controlled vocabularies, by hand</span><p>Map UK, U.K. and Untied Kingdom onto United Kingdom. Exact, alias and fuzzy rules, and you decide the leftovers.</p><span class="go">Open the tool</span></a></div></div></section></main>
+<footer class="contact" id="contact">
+  <div class="container">
+    <div class="inner">
+      <div>
+        <div class="contact-id"><div class="avatar"><img src="/gibin-mathew.webp" alt="Gibin Mathew" width="360" height="360" loading="lazy"></div></div>
+        <h2>Have a process that's still <em>done by hand?</em></h2>
+        <p>Happy to talk about automation, data platforms, or getting AI into production without breaking things.</p>
+      </div>
+      <div class="reach">
+        <div class="emailrow"><code id="email">gibin.mat96@gmail.com</code><button class="copy" id="copyBtn" type="button">Copy</button></div>
+        <a href="https://www.linkedin.com/in/gibinm" target="_blank" rel="noopener">linkedin.com/in/gibinm ↗</a>
+        <a href="/">gibin.in, the full profile →</a>
+      </div>
+    </div>
+    <p class="areas">I work on RPA and workflow automation, config-driven web automation, web scraping, data engineering and ETL, and AI-assisted data validation, mostly in Python, Playwright and Node.js. Based in Chennai, India.</p>
+    <div class="foot"><span>Gibin Mathew · RPA &amp; workflow automation · Chennai, India</span><span><a href="/projects/" style="color:inherit">Projects</a> · <a href="/blog/" style="color:inherit">Writing</a> · <a href="/tools/" style="color:inherit">Free tools</a></span></div>
+  </div>
+</footer>
+<button class="totop" id="totop" type="button" aria-label="Back to top">↑</button>
+<script src="/assets/site.js" defer></script>
+<script src="/assets/dock.js" defer></script>
+<script src="/assets/tools/fuzz.js?v=2" defer></script><script src="/assets/tools/core.js?v=2" defer></script><script src="/assets/tools/dates.js?v=2" defer></script>
+<script>/* GoatCounter: privacy-friendly stats, live domain only. */
+window.goatcounter={no_onload:true};
+(function(){if(!/(^|\.)gibin\.in$/.test(location.hostname))return;var g=document.createElement('script');g.async=true;g.src='https://gc.zgo.at/count.js';g.setAttribute('data-goatcounter','https://gibin.goatcounter.com/count');
+g.onload=function(){try{window.goatcounter.count()}catch(e){}
+  if(/[?&](ref|utm_[a-z]+)=/.test(location.search)){try{history.replaceState(null,'',location.pathname+location.hash)}catch(e){}}};
+document.body.appendChild(g)})();</script>
+</body>
+</html>

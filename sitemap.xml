@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://gibin.in/</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-19</lastmod>
     <image:image><image:loc>https://gibin.in/gibin-mathew.jpg</image:loc></image:image>
     <image:image><image:loc>https://gibin.in/og.jpg</image:loc></image:image>
     <image:image><image:loc>https://gibin.in/certificate.webp</image:loc></image:image>
@@ -76,5 +76,60 @@
     <loc>https://gibin.in/projects/sp-global-automation/</loc>
     <lastmod>2026-10-18</lastmod>
     <image:image><image:loc>https://gibin.in/og/sp-global-automation-v2.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://gibin.in/tools/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <image:image><image:loc>https://gibin.in/og/tools-v2.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://gibin.in/tools/fuzzy-match/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <image:image><image:loc>https://gibin.in/og/fuzzy-match-v2.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://gibin.in/tools/value-standardizer/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <image:image><image:loc>https://gibin.in/og/value-standardizer-v2.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://gibin.in/tools/remove-duplicates/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <image:image><image:loc>https://gibin.in/og/remove-duplicates-v2.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://gibin.in/tools/csv-profiler/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <image:image><image:loc>https://gibin.in/og/csv-profiler-v2.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://gibin.in/tools/csv-to-sql/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <image:image><image:loc>https://gibin.in/og/csv-to-sql-v2.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://gibin.in/tools/json-to-csv/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <image:image><image:loc>https://gibin.in/og/json-to-csv-v2.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://gibin.in/tools/mrz-parser/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <image:image><image:loc>https://gibin.in/og/mrz-parser-v2.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://gibin.in/tools/selector-tester/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <image:image><image:loc>https://gibin.in/og/selector-tester-v2.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://gibin.in/tools/date-normalizer/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <image:image><image:loc>https://gibin.in/og/date-normalizer-v2.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://gibin.in/tools/automation-roi-calculator/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <image:image><image:loc>https://gibin.in/og/automation-roi-calculator-v2.jpg</image:loc></image:image>
   </url>
 </urlset>

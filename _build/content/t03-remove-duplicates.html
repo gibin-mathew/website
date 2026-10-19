@@ -1,0 +1,53 @@
+<!--meta
+{"section": "tools","slug": "remove-duplicates","order": 3,"tool": "dedupe","title": "Remove Duplicates from CSV or JSON Online, Free | Gibin Mathew","og_title": "Clean a CSV or JSON file and remove duplicates","description": "Free CSV and JSON cleaner: trim spaces, strip invisible characters, blank out N/A, then remove exact or near-duplicate rows. Runs in your browser.","kicker": "Free tool · data cleaning","app_name": "CSV and JSON cleaner and deduplicator","h1": "Clean a CSV or JSON file and <em>remove duplicates</em>","crumb": "Remove duplicates","dek": "Upload a CSV or JSON file. Every cell gets tidied (stray spaces, hidden characters, N/A), then rows that repeat are removed, even when the repeats aren't typed exactly the same. You see every row that was removed and which row it repeated.","facts": ["<b>●</b> Runs in your browser","Nothing uploaded","Free, no sign-up"],"summary": "Trim, strip invisible characters, blank out N/A, then drop exact or near-duplicate rows. CSV, JSON and JSON Lines.","metric": "exact and near duplicates","year": "Cleaning","where": "Free tool","category": "BusinessApplication","features": ["CSV, TSV, JSON and JSON Lines","Trim, collapse spaces, strip invisible characters, fix curly quotes, blank placeholders","Exact or near-duplicate detection on chosen columns","Keep the first or last copy","See and download every removed row","Runs locally"],"date": "2026-10-19","updated": "2026-10-19","keywords": ["remove duplicates from csv online","csv deduplicator","remove duplicate rows","json deduplicate","csv cleaner","find near duplicates"],"related": ["/tools/csv-profiler/","/tools/fuzzy-match/","/tools/value-standardizer/"],"side": "<a href=\"/tools/csv-profiler/\">Check data quality first →</a>","faq": [["What counts as a duplicate?","Two rows are duplicates when the columns you ticked hold the same values. By default case and punctuation are ignored, so PRIYA.RAMAN@example.com and priya.raman@example.com are the same email. Near-duplicate mode goes further and catches rows that are similar but not identical, like \"Acme Corp, Chennai\" and \"Acme Corporation, Chennai\"."],["Which copy is kept?","The first one in the file, unless you switch to keeping the last. Everything removed is listed with the row it duplicated, and you can download that list to check it."],["Does cleaning change my data?","Only the options you leave ticked. Trimming and stripping invisible characters are on by default because they almost never hurt. Blanking out placeholders like N/A and null is off by default, because sometimes N/A means something."],["How big a file can it take?","Files up to 200 MB load. Exact duplicate removal on a few hundred thousand rows takes a second or two. Near-duplicate mode does far more work per row, and I'd keep it under about 50,000 rows."],["Is my file uploaded?","No. The page reads and cleans it in your browser. There's no server involved."]],"fig": "t-dedupe","uses": ["A <b>contact or customer list has the same person twice</b>, once with capitals or a trailing space","You <b>merged exports from two systems</b> and some rows now appear twice","You need a <b>clean file before importing it</b> into a CRM, mailing tool or database"],"steps": ["Paste or upload the file","Tick the columns that define a duplicate","Download the clean file"]}
+-->
+<div class="tool" id="tool" data-og>
+  <div class="tool-top tg"><!--steps--><span class="acts"><button type="button" class="tbtn ghost sm" data-sample>Try it with sample data</button></span></div>
+  <div class="tsrc" data-src="d" data-kind="text" data-hint="CSV needs a header row. JSON can be a list of records or one record per line" data-label="Your data · CSV, TSV, JSON or JSON Lines" data-accept=".csv,.tsv,.txt,.json,.jsonl,.ndjson" data-placeholder="Paste CSV with a header row, or JSON (an array of objects)&#10;&#10;name,email,city&#10;Priya Raman,priya@example.com,Chennai"></div>
+  <div class="ctrls"><label class="chk"><input type="checkbox" id="hdr" checked> CSV: first row is a header</label></div>
+  <div class="fld"><span>Compare on these columns <button type="button" class="tbtn ghost sm" id="all" style="margin-left:6px">all / none</button></span><small>Two rows are duplicates when every ticked column matches. For a contact list, ticking only email is usually right</small><div class="ctrls" id="cols" style="gap:4px 16px"></div></div>
+  <div class="ctrls">
+    <label class="fld"><span>Duplicates</span><select id="mode"><option value="exact" selected>Exact (after cleaning)</option><option value="near">Near duplicates (fuzzy)</option></select><small>Near also catches small spelling differences</small></label>
+    <span id="exact-opts" class="ctrls" style="gap:6px 16px"><label class="chk"><input type="checkbox" id="e-case" checked> Ignore case</label><label class="chk"><input type="checkbox" id="e-punct" checked> Ignore spaces and punctuation</label></span>
+    <div class="fld" id="near" hidden><span>Similar at</span><div class="rng"><input type="range" id="th" min="70" max="100" value="92" aria-label="Near duplicate threshold"><output id="thv">92</output></div></div>
+    <label class="fld"><span>Keep</span><select id="keep"><option value="first">First copy</option><option value="last">Last copy</option></select></label>
+  </div>
+  <details class="more-opts" open><summary>Cleaning</summary>
+    <div class="ctrls" style="gap:6px 18px">
+      <label class="chk"><input type="checkbox" id="c-trim" checked> Trim spaces at the ends</label>
+      <label class="chk"><input type="checkbox" id="c-sp" checked> Collapse double spaces</label>
+      <label class="chk"><input type="checkbox" id="c-inv" checked> Remove invisible characters</label>
+      <label class="chk"><input type="checkbox" id="c-empty" checked> Drop empty rows</label>
+      <label class="chk"><input type="checkbox" id="c-q"> Straighten curly quotes</label>
+      <label class="chk"><input type="checkbox" id="c-ph"> Blank out N/A, null, none, -</label>
+      <label class="fld"><span>Letter case</span><select id="c-case"><option value="keep">Keep as is</option><option value="lower">lower case</option><option value="upper">UPPER CASE</option><option value="title">Title Case</option></select></label>
+    </div>
+  </details>
+  <div class="acts"><button type="button" class="tbtn" id="run">Clean and remove duplicates</button></div>
+  <div class="tsay" id="say" hidden></div>
+  <div class="tprogw" id="prog" hidden></div>
+  <div class="out" id="out" hidden>
+    <div class="stats" id="stats"></div>
+    <div class="viz"><div id="bd"></div></div>
+    <div class="acts"><div class="chipset" id="views" role="tablist" aria-label="Show"></div><span class="sp"></span><button type="button" class="tbtn ghost sm" id="dl-rm">Download removed rows</button><button type="button" class="tbtn ghost sm" id="dl">Download clean data</button></div>
+    <div id="grid"></div>
+  </div>
+</div>
+<!--article-->
+<h2>How to use it</h2>
+<ol>
+<li>Paste your data or upload the file. CSV, TSV, a JSON array of objects, and JSON Lines all work.</li>
+<li>Tick the columns that define a duplicate. For a contact list that's often just email. Leave all ticked to only drop rows that are identical everywhere.</li>
+<li>Pick <strong>exact</strong> or <strong>near duplicates</strong>, and which copy to keep.</li>
+<li>Check the cleaning options, then hit the button.</li>
+<li>Look at <strong>Removed duplicates</strong> before you trust the result. Every removed row shows which row it duplicated.</li>
+</ol>
+
+<h2>Clean first, then compare</h2>
+<p>Most "duplicates" that slip through are the same value with junk around it: a trailing space, a non-breaking space pasted in from a web page, a zero-width character nobody can see. If you compare before cleaning, those rows look different. So the cleaning runs first, on every cell, and the duplicate check runs on the cleaned values.</p>
+<p>Invisible characters deserve a mention. Zero-width spaces, soft hyphens and byte order marks come in through copy and paste and break joins, lookups and filters without showing up anywhere. The remove-invisible option strips them and turns non-breaking spaces into normal ones.</p>
+
+<h2>Exact or near duplicates</h2>
+<p><strong>Exact</strong> compares the ticked columns after cleaning, ignoring case and punctuation if you leave those options on. It's fast and predictable, and it's the right choice when you have a reliable key like an email or an ID.</p>
+<p><strong>Near duplicates</strong> uses the same matching engine as the <a href="/tools/fuzzy-match/">fuzzy matcher</a> to find rows that are similar enough, then groups them, so if A matches B and B matches C, all three are one group and only one survives. Start at 92 and read the removed rows. Near-duplicate removal is where people lose real records, so the tool shows you every decision.</p>
+<p class="note"><b>Tip.</b> If you're not sure what's wrong with a file yet, run it through the <a href="/tools/csv-profiler/">CSV profiler</a> first. It shows placeholders, stray whitespace and near-unique ID columns before you start deleting anything.</p>

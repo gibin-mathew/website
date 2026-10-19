@@ -1,0 +1,43 @@
+<!--meta
+{"section": "tools","slug": "json-to-csv","order": 6,"tool": "jsoncsv","title": "Nested JSON to CSV Converter, Flatten JSON Free | Gibin Mathew","og_title": "Flatten nested JSON to CSV","description": "Free JSON to CSV converter that flattens nested objects and handles arrays your way: join them, spread them into columns, or one row per item. No upload.","kicker": "Free tool · JSON to CSV","app_name": "Nested JSON to CSV converter","h1": "Flatten <em>nested JSON</em> into a CSV","crumb": "JSON to CSV","dek": "JSON is the format apps and APIs hand data over in. It's hard to open in Excel because things sit inside other things: a customer inside an order, items inside a customer. This flattens it into a normal table, one column per field.","facts": ["<b>●</b> Runs in your browser","Nothing uploaded","Free, no sign-up"],"summary": "Nested objects become dotted columns. Lists are joined, spread into columns, or exploded into one row per item.","metric": "3 ways to handle arrays","year": "Conversion","where": "Free tool","category": "DeveloperApplication","features": ["JSON and JSON Lines","Finds the list of records inside an API response","Nested objects flattened to dotted column names","Arrays joined, spread into numbered columns, or exploded into rows","Download CSV (opens cleanly in Excel) or copy as TSV","Exact error position for invalid JSON"],"date": "2026-10-19","updated": "2026-10-19","keywords": ["json to csv","nested json to csv","flatten json","json to csv converter online","convert json to excel","json lines to csv"],"related": ["/tools/csv-to-sql/","/tools/remove-duplicates/","/tools/csv-profiler/"],"side": "<a href=\"/tools/csv-to-sql/\">Then load it with CSV to SQL →</a>","faq": [["My JSON is one big object, not a list. Will it work?","Yes. Most API responses wrap the records, like {\"page\": 1, \"orders\": [...]}. The tool finds the lists inside and picks the biggest one as the records. You can switch to another list, or treat the whole object as one row."],["What does one row per item do?","If each order has a list of items, you get one row per item, with the order's fields repeated on each. That's usually what you want for analysis in Excel or SQL. Other lists in the record are joined into one cell."],["Why do some cells contain JSON?","When you choose to join lists and the list holds objects rather than plain values, there's no clean way to put them in one cell, so they're kept as JSON. Switch to numbered columns or one row per item to break them out."],["Will Excel open the CSV properly?","Yes. The download includes a UTF-8 byte order mark, which is what Excel needs to show non-English characters correctly. Leading zeros will still be stripped by Excel unless you import the column as text."],["Is my data uploaded?","No. Parsing and flattening happen in your browser."]],"fig": "t-json","uses": ["A <b>developer or an app gave you a .json file</b> and you need it in Excel or Google Sheets","A tool like <b>Shopify, Stripe or your CRM only exports JSON</b>","Each record holds a <b>list inside it</b>, like an order with several items, and you want one row per item"],"steps": ["Paste or upload the JSON","Choose how lists become rows","Download the CSV"]}
+-->
+<div class="tool" id="tool" data-og>
+  <div class="tool-top tg"><!--steps--><span class="acts"><button type="button" class="tbtn ghost sm" data-sample>Try it with sample data</button></span></div>
+  <div class="tsrc" data-src="d" data-kind="text" data-hint="A list of records, a full API response, or JSON Lines" data-label="Your JSON" data-accept=".json,.jsonl,.ndjson,.txt" data-placeholder='Paste JSON or JSON Lines, or upload a file&#10;&#10;[{"id": 1, "customer": {"name": "Priya", "city": "Chennai"}, "tags": ["gift"]}]'></div>
+  <div class="ctrls">
+    <label class="fld" id="root-f" hidden><span>Records are in</span><select id="root"></select></label>
+    <label class="fld"><span>Lists inside a record</span><select id="arr"><option value="join">Join into one cell</option><option value="index">Spread into numbered columns</option><option value="rows">One row per item</option></select><small>Like an order's items. One row per item is easiest in Excel</small></label>
+    <label class="fld" id="explode-f" hidden><span>One row per item of</span><select id="explode"></select></label>
+    <label class="fld" id="join-f"><span>Join with</span><select id="join"><option value="; ">; (semicolon)</option><option value=", ">, (comma)</option><option value=" | ">| (pipe)</option><option value="\n">new line</option></select></label>
+    <label class="fld"><span>Nested names</span><select id="sep"><option value=".">customer.city</option><option value="_">customer_city</option><option value="__">customer__city</option><option value="/">customer/city</option></select></label>
+    <button type="button" class="tbtn" id="run">Convert to CSV</button>
+  </div>
+  <div class="tsay" id="say" hidden></div>
+  <div class="out" id="out" hidden>
+    <div class="acts"><span class="tprog-t" id="meta"></span><span class="sp"></span><button type="button" class="tbtn ghost sm" id="copy">Copy for Excel</button><button type="button" class="tbtn ghost sm" id="dl">Download CSV</button></div>
+    <div id="grid"></div>
+  </div>
+</div>
+<!--article-->
+<h2>Why you'd use this</h2>
+<p>Most software sends data in JSON. Ask a developer for "the orders data", export from Shopify, Stripe, HubSpot or almost any API, and you often get a .json file instead of a spreadsheet. Open it in Excel and you get one long line of brackets and quotes, or an error.</p>
+<p>The reason is nesting. An order holds a customer, the customer holds an address, and the order also holds a list of items. A spreadsheet can't put a list inside a cell. This tool unpacks all of that into columns you recognise, like customer.address.city, and lets you choose what happens to the lists. Then you download a normal CSV and carry on in Excel or Google Sheets.</p>
+<h2>How to use it</h2>
+<ol>
+<li>Paste JSON, or upload a .json or .jsonl file.</li>
+<li>If the records sit inside a wrapper, check <strong>Records are in</strong> points at the right list.</li>
+<li>Choose what happens to lists inside each record.</li>
+<li>Hit <strong>Convert to CSV</strong>, check the preview, and download.</li>
+</ol>
+
+<h2>Three ways to handle lists</h2>
+<p>Nested objects are easy: the city inside a customer's address becomes a column called customer.address.city. Lists are where every JSON to CSV converter has to make a choice, and most make it for you. Here you pick:</p>
+<ul>
+<li><strong>Join into one cell.</strong> ["gift", "priority"] becomes gift; priority. Best for tags and short lists of plain values.</li>
+<li><strong>Spread into numbered columns.</strong> items.0.sku, items.1.sku and so on. Fine when every record has two or three items, painful when one has fifty.</li>
+<li><strong>One row per item.</strong> An order with three items becomes three rows, each carrying the order's id, date and customer. This is the shape you want for a pivot table or a SQL load.</li>
+</ul>
+
+<h2>When the JSON is broken</h2>
+<p>If the text isn't valid JSON, you get the line and column where parsing failed, which is usually a trailing comma or a missing quote one line above. If it's JSON Lines (one object per line, common in logs and data exports), that's detected on its own.</p>
+<p class="note"><b>Next step.</b> Once it's a CSV, <a href="/tools/csv-to-sql/">CSV to SQL</a> writes the CREATE TABLE and INSERT statements to load it.</p>

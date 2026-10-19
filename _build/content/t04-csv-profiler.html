@@ -1,0 +1,43 @@
+<!--meta
+{"section": "tools","slug": "csv-profiler","order": 4,"tool": "profiler","title": "CSV Data Quality Checker and Profiler, Free | Gibin Mathew","og_title": "CSV data quality checker and profiler","description": "Free CSV profiler: column types, missing values, duplicates, outliers, mixed date formats and broken emails, column by column. Runs in your browser, no upload.","kicker": "Free tool · data quality","app_name": "CSV profiler and data quality checker","h1": "Check a CSV's <em>data quality</em> in seconds","crumb": "CSV profiler","dek": "Before you trust a spreadsheet, find out what's wrong with it. Drop in a CSV and every column gets a health check: how much is missing, what kind of data it really holds, and the problems that will break an import, a report or a formula.","facts": ["<b>●</b> Runs in your browser","Nothing uploaded","Free, no sign-up"],"summary": "Every column profiled: real type, missing values, placeholders, outliers, mixed formats and IDs that repeat.","metric": "14 checks per column","year": "Data quality","where": "Free tool","category": "BusinessApplication","features": ["Type detection for numbers, dates, emails, URLs, codes with leading zeros","Missing values and text placeholders like N/A","Duplicate rows and repeating IDs","Outliers by interquartile range","Mixed formats, letter-case variants, stray whitespace, invisible characters","Download the profile as CSV or copy it as a Markdown table"],"date": "2026-10-19","updated": "2026-10-19","keywords": ["csv data quality checker","data profiling tool online","csv profiler","check csv for errors","data quality report","find missing values in csv"],"related": ["/tools/remove-duplicates/","/tools/date-normalizer/","/blog/llm-data-validation/"],"side": "<a href=\"/blog/llm-data-validation/\">How I validate data with AI and people →</a>","faq": [["What does it check?","For every column: the type the values actually follow, empty cells, placeholders like N/A or null stored as text, stray spaces, invisible characters, values in a different format from the rest, broken email addresses, numbers with thousands separators, ambiguous dates, outliers, the same value in different letter case, and ID-like columns where values repeat. For the whole file: duplicate rows and completely empty rows."],["How does it decide a column's type?","It classifies each value on its own, then calls the column a type if at least 95% of filled values agree. If they don't, it says the column is mixed and shows the split, which is usually the most useful thing on the page."],["What counts as an outlier?","A number more than three interquartile ranges below the first quartile or above the third. That's deliberately loose, so it flags the 98,000 in a column of 1,000s and not ordinary spread."],["Does it change my file?","No. It only reads it. To fix what it finds, use the deduplicator, the value standardizer or the date normalizer, all linked on this page."],["Is my data uploaded?","No. The profile is built in your browser and nothing is sent anywhere."]],"fig": "t-profile","uses": ["Someone sent you a <b>file you've never seen</b> and you need to know if it's usable","An <b>import or upload keeps failing</b> and the error doesn't say why","You're about to <b>build a report or dashboard</b> and want to catch blanks and odd values first"],"steps": ["Paste or upload a CSV","Run the health check","Read what to fix"]}
+-->
+<div class="tool" id="tool" data-og>
+  <div class="tool-top tg"><!--steps--><span class="acts"><button type="button" class="tbtn ghost sm" data-sample>Try it with sample data</button></span></div>
+  <div class="tsrc" data-src="d" data-kind="table" data-hint="The first row should hold the column names" data-label="Your CSV" data-placeholder="Paste CSV or TSV with a header row, or upload the file&#10;&#10;order_id,customer,amount&#10;1001,Priya Raman,1250.00"></div>
+  <div class="acts"><button type="button" class="tbtn" id="run">Profile the data</button></div>
+  <div class="tsay" id="say" hidden></div>
+  <div class="tprogw" id="prog" hidden></div>
+  <div class="out" id="out" hidden>
+    <div class="stats" id="stats"></div>
+    <div id="overall"></div>
+    <div class="viz" id="glance"></div>
+    <div class="acts"><span class="sp"></span><button type="button" class="tbtn ghost sm" id="md">Copy as Markdown</button><button type="button" class="tbtn ghost sm" id="dl">Download profile CSV</button></div>
+    <div class="pcards" id="cards"></div>
+  </div>
+</div>
+<!--article-->
+<h2>Why you'd use this</h2>
+<p>A spreadsheet can look fine and still be broken. An amount column with one "1,200" typed as text makes SUM skip it. A date column with "05/01/2026" in among the 2026-01-05s sorts in the wrong order. An order ID that appears twice doubles a customer's total. None of this shows up when you scroll through the file.</p>
+<p>The profiler reads every value in every column and tells you, in plain words, where those problems are. Run it on any file you didn't create yourself before you build a report on it, send it to a client, or load it into a system. It takes seconds and it's the cheapest way to avoid an embarrassing number.</p>
+<h2>How to use it</h2>
+<ol>
+<li>Paste the CSV or upload it. Tab-separated and semicolon-separated files are detected on their own.</li>
+<li>Hit <strong>Profile the data</strong>. Each column gets a card.</li>
+<li>Read the amber and red notes first. They're the things that break imports, joins and dashboards.</li>
+<li>Copy the profile as Markdown to paste into a ticket or a doc, or download it as CSV.</li>
+</ol>
+
+<h2>What it looks for, and why</h2>
+<p>Most data problems aren't exotic. They're the same dozen things in every file, and they're cheap to catch before a load and expensive to catch after. These are the ones the profiler checks:</p>
+<ul>
+<li><strong>Placeholders stored as values.</strong> "N/A", "null" and "-" make a column look complete when it isn't. They're counted apart from real empty cells, and shown in amber on the fill bar.</li>
+<li><strong>Mixed formats.</strong> A date column where most rows are 2026-01-05 but a few are 05/01/2026 or "Jan 9 2026". An amount column where one value is "1,200" in quotes. These break type casting, and they're often the first thing a database load rejects.</li>
+<li><strong>IDs that repeat.</strong> If a column is named like an ID and almost every value is unique, the few repeats are probably the most important rows in the file.</li>
+<li><strong>Leading zeros.</strong> Pincodes, account codes and phone numbers lose their leading zeros the moment someone opens the file in Excel.</li>
+<li><strong>Case variants and stray spaces.</strong> "Paid", "paid" and "PAID" group as three statuses in a pivot table.</li>
+<li><strong>Outliers.</strong> Not to delete them, but to look at them. In the sample data, one order is 98,000 in a column of 1,000s. Maybe it's real. Someone should check.</li>
+</ul>
+
+<h2>Where this fits</h2>
+<p>A profile is a starting point, not a verdict. It tells you where to look. Then you fix the data on purpose: duplicates with the <a href="/tools/remove-duplicates/">deduplicator</a>, inconsistent names with the <a href="/tools/value-standardizer/">value standardizer</a>, mixed dates with the <a href="/tools/date-normalizer/">date normalizer</a>, and SQL with <a href="/tools/csv-to-sql/">CSV to SQL</a> once it's clean.</p>
+<p class="note"><b>Where this comes from.</b> Most of my validation work is deciding what a machine can check on its own and what a person has to see. <a href="/blog/llm-data-validation/">This post</a> is about drawing that line when the checker is an LLM.</p>

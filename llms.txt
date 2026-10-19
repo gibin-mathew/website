@@ -48,6 +48,21 @@ Data and Automation Manager at Edvoy, Chennai (July 2021 to present). Leads a te
 - https://gibin.in/blog/human-in-the-loop-rpa/ : designing OTP, CAPTCHA and upload handovers into RPA
 - https://gibin.in/blog/llm-data-validation/ : rules for what an AI may decide alone in data validation
 
+## Free tools
+
+All run in the browser; nothing is uploaded.
+
+- https://gibin.in/tools/fuzzy-match/ : fuzzy match two lists (fuzzy VLOOKUP) with a score and threshold
+- https://gibin.in/tools/value-standardizer/ : map messy values onto a canonical list with exact, alias and fuzzy rules
+- https://gibin.in/tools/remove-duplicates/ : clean a CSV or JSON file and remove exact or near-duplicate rows
+- https://gibin.in/tools/csv-profiler/ : CSV data quality checker, column by column
+- https://gibin.in/tools/csv-to-sql/ : CSV to CREATE TABLE and INSERT statements for PostgreSQL, MySQL, SQLite and SQL Server
+- https://gibin.in/tools/json-to-csv/ : flatten nested JSON into CSV
+- https://gibin.in/tools/mrz-parser/ : passport and ID card MRZ parser with ICAO 9303 check digits
+- https://gibin.in/tools/selector-tester/ : CSS selector and XPath tester for web scraping, with Python and Playwright code
+- https://gibin.in/tools/date-normalizer/ : convert messy dates to one format and flag ambiguous ones
+- https://gibin.in/tools/automation-roi-calculator/ : automation ROI, FTE and payback calculator
+
 ## Skills
 
 RPA, workflow automation, web automation, web scraping, data engineering, ETL, data validation and data quality, LLM workflows, Python, Node.js, Playwright, Selenium, FastAPI, MongoDB, MySQL, RabbitMQ, Redis, Docker, AWS, Blue Prism, Appian, OCR, team leadership.

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Remove Duplicates from CSV or JSON Online, Free | Gibin Mathew</title>
+<meta name="description" content="Free CSV and JSON cleaner: trim spaces, strip invisible characters, blank out N/A, then remove exact or near-duplicate rows. Runs in your browser.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="Gibin Mathew">
+<link rel="canonical" href="https://gibin.in/tools/remove-duplicates/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gibin.in/tools/remove-duplicates/">
+<meta property="og:title" content="Clean a CSV or JSON file and remove duplicates · Gibin Mathew">
+<meta property="og:description" content="Free CSV and JSON cleaner: trim spaces, strip invisible characters, blank out N/A, then remove exact or near-duplicate rows. Runs in your browser.">
+<meta property="og:site_name" content="Gibin Mathew">
+<meta property="og:locale" content="en_IN">
+<meta property="og:image" content="https://gibin.in/og/remove-duplicates-v2.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Clean a CSV or JSON file and remove duplicates · Gibin Mathew">
+<meta name="twitter:description" content="Free CSV and JSON cleaner: trim spaces, strip invisible characters, blank out N/A, then remove exact or near-duplicate rows. Runs in your browser.">
+<meta name="twitter:image" content="https://gibin.in/og/remove-duplicates-v2.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230B1320'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial,sans-serif' font-weight='800' font-size='28' fill='%23EEF2F8'%3EGM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100,500;112,700;125,800;125,900&family=Instrument+Serif:ital@1&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/base.css">
+<link rel="stylesheet" href="/assets/pages.css">
+<link rel="stylesheet" href="/assets/dock.css">
+<link rel="stylesheet" href="/assets/tools/tools.css?v=2">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "@id": "https://gibin.in/tools/remove-duplicates/#app", "name": "CSV and JSON cleaner and deduplicator", "url": "https://gibin.in/tools/remove-duplicates/", "description": "Free CSV and JSON cleaner: trim spaces, strip invisible characters, blank out N/A, then remove exact or near-duplicate rows. Runs in your browser.", "applicationCategory": "BusinessApplication", "operatingSystem": "Any (runs in the browser)", "browserRequirements": "Requires JavaScript", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "featureList": ["CSV, TSV, JSON and JSON Lines", "Trim, collapse spaces, strip invisible characters, fix curly quotes, blank placeholders", "Exact or near-duplicate detection on chosen columns", "Keep the first or last copy", "See and download every removed row", "Runs locally"], "image": "https://gibin.in/og/remove-duplicates-v2.jpg", "inLanguage": "en", "author": {"@type": "Person", "@id": "https://gibin.in/#person", "name": "Gibin Mathew", "url": "https://gibin.in/", "jobTitle": "Data and Automation Manager", "sameAs": ["https://www.linkedin.com/in/gibinm"]}, "publisher": {"@id": "https://gibin.in/#person"}, "datePublished": "2026-10-19", "dateModified": "2026-10-19", "isPartOf": {"@id": "https://gibin.in/#website"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://gibin.in/"}, {"@type": "ListItem", "position": 2, "name": "Free tools", "item": "https://gibin.in/tools/"}, {"@type": "ListItem", "position": 3, "name": "Clean a CSV or JSON file and remove duplicates", "item": "https://gibin.in/tools/remove-duplicates/"}]}, {"@type": "FAQPage", "@id": "https://gibin.in/tools/remove-duplicates/#faq", "mainEntity": [{"@type": "Question", "name": "What counts as a duplicate?", "acceptedAnswer": {"@type": "Answer", "text": "Two rows are duplicates when the columns you ticked hold the same values. By default case and punctuation are ignored, so PRIYA.RAMAN@example.com and priya.raman@example.com are the same email. Near-duplicate mode goes further and catches rows that are similar but not identical, like \"Acme Corp, Chennai\" and \"Acme Corporation, Chennai\"."}}, {"@type": "Question", "name": "Which copy is kept?", "acceptedAnswer": {"@type": "Answer", "text": "The first one in the file, unless you switch to keeping the last. Everything removed is listed with the row it duplicated, and you can download that list to check it."}}, {"@type": "Question", "name": "Does cleaning change my data?", "acceptedAnswer": {"@type": "Answer", "text": "Only the options you leave ticked. Trimming and stripping invisible characters are on by default because they almost never hurt. Blanking out placeholders like N/A and null is off by default, because sometimes N/A means something."}}, {"@type": "Question", "name": "How big a file can it take?", "acceptedAnswer": {"@type": "Answer", "text": "Files up to 200 MB load. Exact duplicate removal on a few hundred thousand rows takes a second or two. Near-duplicate mode does far more work per row, and I'd keep it under about 50,000 rows."}}, {"@type": "Question", "name": "Is my file uploaded?", "acceptedAnswer": {"@type": "Answer", "text": "No. The page reads and cleans it in your browser. There's no server involved."}}]}]}</script>
+<script>document.documentElement.classList.add('js');try{var gmT=localStorage.getItem('gm-theme');if(gmT==='light'||gmT==='dark')document.documentElement.setAttribute('data-theme',gmT)}catch(e){}</script>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<header class="band">
+  <div class="container">
+    <div class="topbar">
+      <a class="mark" href="/" aria-label="Gibin Mathew, home">GM<span>.</span></a>
+      <nav class="topnav" aria-label="Site"><a href="/#approach">Approach</a><a href="/projects/">Projects</a><a href="/blog/">Writing</a><a href="/tools/" aria-current="page">Tools</a><a href="/#recommendations">Recommendations</a><a href="/#career">Career</a><a href="#contact">Contact</a></nav>
+      <button class="cord hint" id="cord" type="button" aria-label="Switch to light theme"><span class="halo" aria-hidden="true"></span><span class="cl"></span><span class="flies" aria-hidden="true"></span><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3Z"/></svg></span><span class="tip" id="cord-tip">pull for day</span></button>
+    </div>
+    <div class="ph tool-head">
+      <div>
+        <ol class="crumbs"><li><a href="/">gibin.in</a></li><li><a href="/tools/">Free tools</a></li><li>Remove duplicates</li></ol>
+        <span class="ph-kicker">Free tool · data cleaning</span>
+        <h1 class="ph-title">Clean a CSV or JSON file and <em>remove duplicates</em></h1>
+        <p class="ph-dek">Upload a CSV or JSON file. Every cell gets tidied (stray spaces, hidden characters, N/A), then rows that repeat are removed, even when the repeats aren't typed exactly the same. You see every row that was removed and which row it repeated.</p>
+        <span class="ph-use-h">Use it when</span><ul class="ph-uses"><li>A <b>contact or customer list has the same person twice</b>, once with capitals or a trailing space</li><li>You <b>merged exports from two systems</b> and some rows now appear twice</li><li>You need a <b>clean file before importing it</b> into a CRM, mailing tool or database</li></ul><div class="ph-facts"><span><b>●</b> Runs in your browser</span><span>Nothing uploaded</span><span>Free, no sign-up</span></div>
+        
+      </div>
+      <div class="fig tf" role="img" aria-label="Animation: a six-row table is cleaned. Two rows that repeat earlier rows once spaces and capital letters are ignored are marked as duplicates, an empty row is marked, and all three are removed, leaving three clean rows."><div class="fig-h"><span class="live"><b>clean, then drop the repeats</b></span><span>compared on: name, email</span></div><div class="tf-tbl"><div class="tf-row" style="--d:0.20s"><span class="tf-n">1</span><span>Priya Raman</span><span>priya@example.com</span><span></span></div><div class="tf-row" style="--d:0.45s"><span class="tf-n">2</span><span>Arjun Mehta</span><span>arjun@example.com</span><span></span></div><div class="tf-row tf-gone" style="--d:0.70s"><span class="tf-n">3</span><span>&nbsp;Priya Raman&nbsp;</span><span>PRIYA@example.com</span><span class="tag amber tf-pop" style="--d:2.80s">dup of row 1</span></div><div class="tf-row" style="--d:0.95s"><span class="tf-n">4</span><span>Sara Thomas</span><span>sara@example.com</span><span></span></div><div class="tf-row tf-gone" style="--d:1.20s"><span class="tf-n">5</span><span>Sara Thomas</span><span>sara@example.com</span><span class="tag amber tf-pop" style="--d:3.20s">dup of row 4</span></div><div class="tf-row tf-gone" style="--d:1.45s"><span class="tf-n">6</span><span>&nbsp;</span><span></span><span class="tag amber tf-pop" style="--d:3.40s">empty row</span></div></div><div class="tf-count"><span class="tf-in" style="--d:0.20s">6 rows in</span><b class="tf-pop" style="--d:5.00s">3 clean rows out</b></div><div class="fig-f"><span>trailing spaces and capitals no longer hide duplicates</span><span>sample data</span></div></div>
+    </div>
+  </div>
+</header>
+<main><section class="toolsec"><div class="container"><div class="tool" id="tool" data-og>
+  <div class="tool-top tg"><ol class="tg-steps" aria-label="How to use it"><li>Paste or upload the file</li><li>Tick the columns that define a duplicate</li><li>Download the clean file</li></ol><span class="acts"><button type="button" class="tbtn ghost sm" data-sample>Try it with sample data</button></span></div>
+  <div class="tsrc" data-src="d" data-kind="text" data-hint="CSV needs a header row. JSON can be a list of records or one record per line" data-label="Your data · CSV, TSV, JSON or JSON Lines" data-accept=".csv,.tsv,.txt,.json,.jsonl,.ndjson" data-placeholder="Paste CSV with a header row, or JSON (an array of objects)&#10;&#10;name,email,city&#10;Priya Raman,priya@example.com,Chennai"></div>
+  <div class="ctrls"><label class="chk"><input type="checkbox" id="hdr" checked> CSV: first row is a header</label></div>
+  <div class="fld"><span>Compare on these columns <button type="button" class="tbtn ghost sm" id="all" style="margin-left:6px">all / none</button></span><small>Two rows are duplicates when every ticked column matches. For a contact list, ticking only email is usually right</small><div class="ctrls" id="cols" style="gap:4px 16px"></div></div>
+  <div class="ctrls">
+    <label class="fld"><span>Duplicates</span><select id="mode"><option value="exact" selected>Exact (after cleaning)</option><option value="near">Near duplicates (fuzzy)</option></select><small>Near also catches small spelling differences</small></label>
+    <span id="exact-opts" class="ctrls" style="gap:6px 16px"><label class="chk"><input type="checkbox" id="e-case" checked> Ignore case</label><label class="chk"><input type="checkbox" id="e-punct" checked> Ignore spaces and punctuation</label></span>
+    <div class="fld" id="near" hidden><span>Similar at</span><div class="rng"><input type="range" id="th" min="70" max="100" value="92" aria-label="Near duplicate threshold"><output id="thv">92</output></div></div>
+    <label class="fld"><span>Keep</span><select id="keep"><option value="first">First copy</option><option value="last">Last copy</option></select></label>
+  </div>
+  <details class="more-opts" open><summary>Cleaning</summary>
+    <div class="ctrls" style="gap:6px 18px">
+      <label class="chk"><input type="checkbox" id="c-trim" checked> Trim spaces at the ends</label>
+      <label class="chk"><input type="checkbox" id="c-sp" checked> Collapse double spaces</label>
+      <label class="chk"><input type="checkbox" id="c-inv" checked> Remove invisible characters</label>
+      <label class="chk"><input type="checkbox" id="c-empty" checked> Drop empty rows</label>
+      <label class="chk"><input type="checkbox" id="c-q"> Straighten curly quotes</label>
+      <label class="chk"><input type="checkbox" id="c-ph"> Blank out N/A, null, none, -</label>
+      <label class="fld"><span>Letter case</span><select id="c-case"><option value="keep">Keep as is</option><option value="lower">lower case</option><option value="upper">UPPER CASE</option><option value="title">Title Case</option></select></label>
+    </div>
+  </details>
+  <div class="acts"><button type="button" class="tbtn" id="run">Clean and remove duplicates</button></div>
+  <div class="tsay" id="say" hidden></div>
+  <div class="tprogw" id="prog" hidden></div>
+  <div class="out" id="out" hidden>
+    <div class="stats" id="stats"></div>
+    <div class="viz"><div id="bd"></div></div>
+    <div class="acts"><div class="chipset" id="views" role="tablist" aria-label="Show"></div><span class="sp"></span><button type="button" class="tbtn ghost sm" id="dl-rm">Download removed rows</button><button type="button" class="tbtn ghost sm" id="dl">Download clean data</button></div>
+    <div id="grid"></div>
+  </div>
+</div>
+</div></section><div class="container"><div class="doc"><nav class="toc" aria-label="On this page"><b>On this page</b><ol><li><a href="#how-to-use-it">How to use it</a></li><li><a href="#clean-first-then-compare">Clean first, then compare</a></li><li><a href="#exact-or-near-duplicates">Exact or near duplicates</a></li><li><a href="#questions">Questions</a></li></ol><div class="side"><a href="/tools/csv-profiler/">Check data quality first →</a><a href="/tools/">← All free tools</a></div></nav><article class="prose">
+<h2 id="how-to-use-it">How to use it</h2>
+<ol>
+<li>Paste your data or upload the file. CSV, TSV, a JSON array of objects, and JSON Lines all work.</li>
+<li>Tick the columns that define a duplicate. For a contact list that's often just email. Leave all ticked to only drop rows that are identical everywhere.</li>
+<li>Pick <strong>exact</strong> or <strong>near duplicates</strong>, and which copy to keep.</li>
+<li>Check the cleaning options, then hit the button.</li>
+<li>Look at <strong>Removed duplicates</strong> before you trust the result. Every removed row shows which row it duplicated.</li>
+</ol>
+
+<h2 id="clean-first-then-compare">Clean first, then compare</h2>
+<p>Most "duplicates" that slip through are the same value with junk around it: a trailing space, a non-breaking space pasted in from a web page, a zero-width character nobody can see. If you compare before cleaning, those rows look different. So the cleaning runs first, on every cell, and the duplicate check runs on the cleaned values.</p>
+<p>Invisible characters deserve a mention. Zero-width spaces, soft hyphens and byte order marks come in through copy and paste and break joins, lookups and filters without showing up anywhere. The remove-invisible option strips them and turns non-breaking spaces into normal ones.</p>
+
+<h2 id="exact-or-near-duplicates">Exact or near duplicates</h2>
+<p><strong>Exact</strong> compares the ticked columns after cleaning, ignoring case and punctuation if you leave those options on. It's fast and predictable, and it's the right choice when you have a reliable key like an email or an ID.</p>
+<p><strong>Near duplicates</strong> uses the same matching engine as the <a href="/tools/fuzzy-match/">fuzzy matcher</a> to find rows that are similar enough, then groups them, so if A matches B and B matches C, all three are one group and only one survives. Start at 92 and read the removed rows. Near-duplicate removal is where people lose real records, so the tool shows you every decision.</p>
+<p class="note"><b>Tip.</b> If you're not sure what's wrong with a file yet, run it through the <a href="/tools/csv-profiler/">CSV profiler</a> first. It shows placeholders, stray whitespace and near-unique ID columns before you start deleting anything.</p>
+<h2 id="questions">Questions</h2><h3>What counts as a duplicate?</h3><p>Two rows are duplicates when the columns you ticked hold the same values. By default case and punctuation are ignored, so PRIYA.RAMAN@example.com and priya.raman@example.com are the same email. Near-duplicate mode goes further and catches rows that are similar but not identical, like "Acme Corp, Chennai" and "Acme Corporation, Chennai".</p><h3>Which copy is kept?</h3><p>The first one in the file, unless you switch to keeping the last. Everything removed is listed with the row it duplicated, and you can download that list to check it.</p><h3>Does cleaning change my data?</h3><p>Only the options you leave ticked. Trimming and stripping invisible characters are on by default because they almost never hurt. Blanking out placeholders like N/A and null is off by default, because sometimes N/A means something.</p><h3>How big a file can it take?</h3><p>Files up to 200 MB load. Exact duplicate removal on a few hundred thousand rows takes a second or two. Near-duplicate mode does far more work per row, and I'd keep it under about 50,000 rows.</p><h3>Is my file uploaded?</h3><p>No. The page reads and cleans it in your browser. There's no server involved.</p></article></div></div><section class="related sec"><div class="container"><div class="sec-h"><div><span class="label">Keep going</span><h2 class="h-sec">Related tools and work</h2></div></div><div class="cards three"><a class="pcard rv" href="/tools/csv-profiler/"><span class="w"><span>Free tool</span><span>Data quality</span></span><h3>Check a CSV&#x27;s data quality in seconds</h3><span class="m">14 checks per column</span><p>Every column profiled: real type, missing values, placeholders, outliers, mixed formats and IDs that repeat.</p><span class="go">Open the tool</span></a><a class="pcard rv" href="/tools/fuzzy-match/"><span class="w"><span>Free tool</span><span>Matching</span></span><h3>Fuzzy match two lists</h3><span class="m">tested on 20,000 × 20,000 rows</span><p>Paste two lists or upload CSVs. Every row gets its best match, a 0 to 100 score and a verdict. Works as a fuzzy VLOOKUP.</p><span class="go">Open the tool</span></a><a class="pcard rv" href="/tools/value-standardizer/"><span class="w"><span>Free tool</span><span>Cleaning</span></span><h3>Standardize messy values to one master list</h3><span class="m">controlled vocabularies, by hand</span><p>Map UK, U.K. and Untied Kingdom onto United Kingdom. Exact, alias and fuzzy rules, and you decide the leftovers.</p><span class="go">Open the tool</span></a></div></div></section></main>
+<footer class="contact" id="contact">
+  <div class="container">
+    <div class="inner">
+      <div>
+        <div class="contact-id"><div class="avatar"><img src="/gibin-mathew.webp" alt="Gibin Mathew" width="360" height="360" loading="lazy"></div></div>
+        <h2>Have a process that's still <em>done by hand?</em></h2>
+        <p>Happy to talk about automation, data platforms, or getting AI into production without breaking things.</p>
+      </div>
+      <div class="reach">
+        <div class="emailrow"><code id="email">gibin.mat96@gmail.com</code><button class="copy" id="copyBtn" type="button">Copy</button></div>
+        <a href="https://www.linkedin.com/in/gibinm" target="_blank" rel="noopener">linkedin.com/in/gibinm ↗</a>
+        <a href="/">gibin.in, the full profile →</a>
+      </div>
+    </div>
+    <p class="areas">I work on RPA and workflow automation, config-driven web automation, web scraping, data engineering and ETL, and AI-assisted data validation, mostly in Python, Playwright and Node.js. Based in Chennai, India.</p>
+    <div class="foot"><span>Gibin Mathew · RPA &amp; workflow automation · Chennai, India</span><span><a href="/projects/" style="color:inherit">Projects</a> · <a href="/blog/" style="color:inherit">Writing</a> · <a href="/tools/" style="color:inherit">Free tools</a></span></div>
+  </div>
+</footer>
+<button class="totop" id="totop" type="button" aria-label="Back to top">↑</button>
+<script src="/assets/site.js" defer></script>
+<script src="/assets/dock.js" defer></script>
+<script src="/assets/tools/fuzz.js?v=2" defer></script><script src="/assets/tools/core.js?v=2" defer></script><script src="/assets/tools/dedupe.js?v=2" defer></script>
+<script>/* GoatCounter: privacy-friendly stats, live domain only. */
+window.goatcounter={no_onload:true};
+(function(){if(!/(^|\.)gibin\.in$/.test(location.hostname))return;var g=document.createElement('script');g.async=true;g.src='https://gc.zgo.at/count.js';g.setAttribute('data-goatcounter','https://gibin.goatcounter.com/count');
+g.onload=function(){try{window.goatcounter.count()}catch(e){}
+  if(/[?&](ref|utm_[a-z]+)=/.test(location.search)){try{history.replaceState(null,'',location.pathname+location.hash)}catch(e){}}};
+document.body.appendChild(g)})();</script>
+</body>
+</html>

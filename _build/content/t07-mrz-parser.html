@@ -1,0 +1,35 @@
+<!--meta
+{"section": "tools","slug": "mrz-parser","order": 7,"tool": "mrz","title": "Passport MRZ Parser and Check Digit Validator, Free | Gibin Mathew","og_title": "Passport MRZ parser and check digit validator","description": "Free MRZ reader for passports, ID cards and visas (TD1, TD2, TD3). Decodes every field and verifies ICAO 9303 check digits. Nothing leaves your browser.","kicker": "Free tool · ICAO 9303","app_name": "Passport MRZ parser and validator","h1": "Read and check a <em>passport MRZ</em>","crumb": "MRZ parser","dek": "The two lines of letters and &lt;&lt;&lt; at the bottom of a passport photo page hold the holder's details and a set of check digits. Paste them here to read every field and confirm the check digits add up, which catches typos and scanner misreads.","facts": ["<b>●</b> Runs in your browser","Nothing uploaded","Free, no sign-up"],"summary": "Decodes passport, ID card and visa MRZs and recalculates every ICAO 9303 check digit. Spots O-for-0 misreads.","metric": "TD1, TD2, TD3 and visas","year": "Documents","where": "Free tool","category": "UtilitiesApplication","features": ["Passports (TD3), ID cards (TD1, TD2) and visas (MRV-A, MRV-B)","Recalculates all ICAO 9303 check digits including the composite","Suggests single-character OCR misreads that would fix a failed check","Country names for ICAO codes, expiry status and age","Handles long document numbers on TD1 cards","Check digit calculator"],"date": "2026-10-19","updated": "2026-10-19","keywords": ["mrz parser","passport mrz check digit","mrz validator","machine readable zone decoder","icao 9303 check digit calculator","passport mrz reader online"],"related": ["/tools/date-normalizer/","/projects/","/blog/llm-data-validation/"],"side": "<a href=\"/projects/\">The OCR pipeline this came from →</a>","faq": [["Is the passport data sent anywhere?","No. The MRZ is decoded by JavaScript running in your browser and never leaves your device. There's no server behind this page to send it to. Still, use specimen or test data where you can, as you would with any tool."],["What does a passing check digit prove?","That the characters were read or typed correctly. The check digits are simple arithmetic (weights 7, 3, 1, modulo 10) that anyone can compute, so a passing MRZ says nothing about whether the document is genuine. Verification needs the chip and the issuing country's certificates."],["Which documents does it support?","Passports (TD3, two lines of 44), ID cards (TD1, three lines of 30, and TD2, two lines of 36) and machine-readable visas (MRV-A and MRV-B). The format is picked from the line count and length."],["Why does it say a check failed when I typed it right?","Usually because OCR, or a person, swapped a look-alike character: O and 0, I and 1, B and 8, S and 5. When one swap would make a failed check pass, the tool says which. The other common cause is a missing \"<\" at the end of a line, which changes the line length."],["How is the year worked out from a 2-digit date?","Birth years that would be in the future go to the 1900s, so 74 is 1974 and 05 is 2005. Expiry years go to the 2000s. That's the usual convention, and for very old or very young holders it can be ambiguous, which is a limit of the MRZ format itself."]],"fig": "t-mrz","uses": ["Your <b>OCR or scanning software read a passport</b> and you want to know the read is right","You're <b>typing passport details into a form</b> and want to double-check them","You're <b>building document checks</b> and need known-good results to compare against"],"steps": ["Paste the MRZ lines","Read the decoded fields","Confirm the checks pass"]}
+-->
+<div class="tool" id="tool" data-og>
+  <div class="tool-top tg"><!--steps--><span class="acts"><button type="button" class="tbtn ghost sm" data-sample>Try a passport sample</button><button type="button" class="tbtn ghost sm" id="s-td1">Try an ID card sample</button></span></div>
+  <div class="tsrc">
+    <div class="src-bar"><label for="mrz">MRZ lines</label><span class="src-act"><button type="button" class="tbtn ghost sm" id="clear">Clear</button></span></div>
+    <textarea id="mrz" class="plain mrz-in" spellcheck="false" autocomplete="off" autocapitalize="characters" rows="3" placeholder="P&lt;UTOERIKSSON&lt;&lt;ANNA&lt;MARIA&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&#10;L898902C36UTO7408122F1204159ZE184226B&lt;&lt;&lt;&lt;&lt;10"></textarea>
+  </div>
+  <div class="tsay" id="say" hidden></div>
+  <div class="out" id="out" hidden></div>
+  <details class="more-opts"><summary>Check digit calculator</summary>
+    <div class="calc"><label class="fld"><span>Characters</span><input type="text" id="calc" class="mono-in" placeholder="L898902C3" autocomplete="off" style="width:min(320px,100%);text-transform:uppercase"></label><span id="calc-out" aria-live="polite"></span></div>
+  </details>
+</div>
+<!--article-->
+<h2>How to use it</h2>
+<ol>
+<li>Copy the MRZ, the block of capital letters and &lt; signs at the bottom of the photo page, from your OCR output or type it in.</li>
+<li>Paste it in. Line breaks can be missing; a single 88-character string is split into two passport lines on its own.</li>
+<li>Read the verdict, then the decoded fields. Red check digits are the ones that don't add up.</li>
+</ol>
+
+<h2>How the check digits work</h2>
+<p>ICAO 9303 protects the document number, date of birth, date of expiry and, on passports, the personal number with one check digit each. A final composite digit covers most of the second line. The arithmetic is the same everywhere: digits keep their value, A to Z count as 10 to 35, the filler &lt; counts as 0, each character is multiplied by 7, 3, 1, 7, 3, 1 and so on, and the check digit is the total modulo 10.</p>
+<p>For the ICAO specimen document number L898902C3: L is 21, so 21×7 + 8×3 + 9×1 + 8×7 + 9×3 + 0×1 + 2×7 + 12×3 + 3×1 = 316, and 316 mod 10 is 6. That 6 is the character right after the number. Try it in the calculator under the tool.</p>
+
+<h2>What it catches</h2>
+<ul>
+<li><strong>OCR misreads.</strong> When a check fails and swapping one look-alike character (O/0, I/1, B/8, S/5, Z/2, G/6) would fix it, the tool suggests the corrected value.</li>
+<li><strong>Wrong line lengths.</strong> A missing filler at the end of a line is the most common copy-paste error. You're told which line is short and by how much.</li>
+<li><strong>Impossible dates.</strong> A 31st of February, or a month 13, fails even if the check digit happens to match.</li>
+<li><strong>Unknown country codes.</strong> Issuing state and nationality are checked against ICAO codes, including the special ones like XXA for stateless persons and GBN for British National (Overseas).</li>
+</ul>
+<p class="note"><b>Where this comes from.</b> At work I built a pipeline that finds the MRZ on a scanned passport, reads it with OCR and runs exactly these checks before anything goes further. A failed check digit is the cheapest way to catch a bad read. It's in the "also built" section of my <a href="/projects/">projects page</a>.</p>

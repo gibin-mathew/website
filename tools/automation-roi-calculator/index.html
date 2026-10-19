@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Automation Savings and FTE Calculator, Free | Gibin Mathew</title>
+<meta name="description" content="Free calculator: how many hours, FTE and how much money an automation saves. Plain questions, money optional, and every step of the maths shown.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="Gibin Mathew">
+<link rel="canonical" href="https://gibin.in/tools/automation-roi-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gibin.in/tools/automation-roi-calculator/">
+<meta property="og:title" content="Automation savings and FTE calculator · Gibin Mathew">
+<meta property="og:description" content="Free calculator: how many hours, FTE and how much money an automation saves. Plain questions, money optional, and every step of the maths shown.">
+<meta property="og:site_name" content="Gibin Mathew">
+<meta property="og:locale" content="en_IN">
+<meta property="og:image" content="https://gibin.in/og/automation-roi-calculator-v2.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Automation savings and FTE calculator · Gibin Mathew">
+<meta name="twitter:description" content="Free calculator: how many hours, FTE and how much money an automation saves. Plain questions, money optional, and every step of the maths shown.">
+<meta name="twitter:image" content="https://gibin.in/og/automation-roi-calculator-v2.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230B1320'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial,sans-serif' font-weight='800' font-size='28' fill='%23EEF2F8'%3EGM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100,500;112,700;125,800;125,900&family=Instrument+Serif:ital@1&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/base.css">
+<link rel="stylesheet" href="/assets/pages.css">
+<link rel="stylesheet" href="/assets/dock.css">
+<link rel="stylesheet" href="/assets/tools/tools.css?v=2">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "@id": "https://gibin.in/tools/automation-roi-calculator/#app", "name": "Automation savings and FTE calculator", "url": "https://gibin.in/tools/automation-roi-calculator/", "description": "Free calculator: how many hours, FTE and how much money an automation saves. Plain questions, money optional, and every step of the maths shown.", "applicationCategory": "BusinessApplication", "operatingSystem": "Any (runs in the browser)", "browserRequirements": "Requires JavaScript", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "featureList": ["Plain questions: jobs per day, minutes per job, team size", "Hours saved and FTE freed, with the share of the team's time", "Money optional: from yearly employee cost (CTC) or cost per job", "Payback and 3-year gain when a build cost is given", "Step-by-step working shown after every calculation", "Shareable link and copyable summary"], "image": "https://gibin.in/og/automation-roi-calculator-v2.jpg", "inLanguage": "en", "author": {"@type": "Person", "@id": "https://gibin.in/#person", "name": "Gibin Mathew", "url": "https://gibin.in/", "jobTitle": "Data and Automation Manager", "sameAs": ["https://www.linkedin.com/in/gibinm"]}, "publisher": {"@id": "https://gibin.in/#person"}, "datePublished": "2026-10-19", "dateModified": "2026-10-19", "isPartOf": {"@id": "https://gibin.in/#website"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://gibin.in/"}, {"@type": "ListItem", "position": 2, "name": "Free tools", "item": "https://gibin.in/tools/"}, {"@type": "ListItem", "position": 3, "name": "How much will automation save you?", "item": "https://gibin.in/tools/automation-roi-calculator/"}]}, {"@type": "FAQPage", "@id": "https://gibin.in/tools/automation-roi-calculator/#faq", "mainEntity": [{"@type": "Question", "name": "What does FTE mean?", "acceptedAnswer": {"@type": "Answer", "text": "Full-time equivalent: the amount of work one person does in a full working month. With 8-hour days and 22 working days, 1 FTE is 176 hours a month. Work that takes 88 hours a month is 0.5 FTE, whether one person spends half their time on it or four people spend an eighth each."}}, {"@type": "Question", "name": "How do you calculate FTE saved?", "acceptedAnswer": {"@type": "Answer", "text": "Hours saved per month divided by the hours in one FTE month. If automation saves 264 hours a month and one FTE is 176 hours, that's 264 ÷ 176 = 1.5 FTE. The calculator shows this step with your own numbers."}}, {"@type": "Question", "name": "Does freeing 1.5 FTE mean 1.5 fewer people?", "acceptedAnswer": {"@type": "Answer", "text": "Usually not. Freed time tends to go to work that was waiting: backlogs, quality checks, customers. The FTE figure tells you how big the effect is, not who leaves. Saying that plainly in a business case makes it more credible, not less."}}, {"@type": "Question", "name": "What should I put for the share the automation handles?", "acceptedAnswer": {"@type": "Answer", "text": "The share of jobs it finishes with nobody touching them. The rest go back to a person at full time. If you don't know yet, 70 to 90% is realistic for a well-built automation; 100% almost never happens."}}, {"@type": "Question", "name": "Which cost should I use, CTC or cost per job?", "acceptedAnswer": {"@type": "Answer", "text": "Use CTC (the yearly cost of one employee, including benefits) if you know salaries. Use cost per job if you pay per job, for example to an outsourcing partner. Both are turned into a cost per hour of work, shown in the working."}}, {"@type": "Question", "name": "Is anything I type saved?", "acceptedAnswer": {"@type": "Answer", "text": "No. Everything stays in your browser. The share link carries the numbers in the link itself, so only people you send it to can see them."}}]}]}</script>
+<script>document.documentElement.classList.add('js');try{var gmT=localStorage.getItem('gm-theme');if(gmT==='light'||gmT==='dark')document.documentElement.setAttribute('data-theme',gmT)}catch(e){}</script>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<header class="band">
+  <div class="container">
+    <div class="topbar">
+      <a class="mark" href="/" aria-label="Gibin Mathew, home">GM<span>.</span></a>
+      <nav class="topnav" aria-label="Site"><a href="/#approach">Approach</a><a href="/projects/">Projects</a><a href="/blog/">Writing</a><a href="/tools/" aria-current="page">Tools</a><a href="/#recommendations">Recommendations</a><a href="/#career">Career</a><a href="#contact">Contact</a></nav>
+      <button class="cord hint" id="cord" type="button" aria-label="Switch to light theme"><span class="halo" aria-hidden="true"></span><span class="cl"></span><span class="flies" aria-hidden="true"></span><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3Z"/></svg></span><span class="tip" id="cord-tip">pull for day</span></button>
+    </div>
+    <div class="ph tool-head">
+      <div>
+        <ol class="crumbs"><li><a href="/">gibin.in</a></li><li><a href="/tools/">Free tools</a></li><li>FTE and savings calculator</li></ol>
+        <span class="ph-kicker">Free tool · FTE and savings</span>
+        <h1 class="ph-title">How much will automation <em>save you?</em></h1>
+        <p class="ph-dek">Answer a few plain questions about the work: how many jobs, how long each takes, how much the automation will handle. You get the hours saved and how many full-time people that equals. Add salaries or costs only if you want the money too.</p>
+        <span class="ph-use-h">Use it when</span><ul class="ph-uses"><li>You want to know <b>how many people's worth of work</b> an automation would take off a team</li><li>You need <b>numbers for a business case</b> or a budget approval</li><li>You're deciding <b>which process to automate first</b></li></ul><div class="ph-facts"><span><b>●</b> Runs in your browser</span><span>Shows its working</span><span>Free, no sign-up</span></div>
+        
+      </div>
+      <div class="fig tf" role="img" aria-label="Animation: a team of three spends 20 hours a day on a task. After automation handles 80% of the jobs, only 5.6 hours a day are left, which frees about 1.8 full-time people."><div class="fig-h"><span class="live"><b>time today vs with automation</b></span><span>120 jobs a day · 10 min each</span></div><div class="tf-fte"><div class="tf-hb"><span>Today</span><span class="tf-bar2"><i class="tf-fill" style="--d:.3s;--w:100%"></i></span><b class="tf-in" style="--d:1.00s">20 h a day</b></div><div class="tf-hb"><span>With automation</span><span class="tf-bar2"><i class="tf-fill ok" style="--d:1.4s;--w:28%"></i></span><b class="tf-in" style="--d:2.10s">5.6 h a day</b></div><div class="tf-team"><span class="tf-lbl tf-in" style="--d:2.60s">Your team of 3</span><div class="tf-ppl"><span class="tf-p free" style="--d:2.80s"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></span><span class="tf-p free" style="--d:3.10s"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></span><span class="tf-p" style="--d:3.40s"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></span></div><b class="tf-big tf-pop" style="--d:3.90s">≈ 1.8 FTE freed</b></div></div><div class="fig-f"><span>1 FTE = one person working full time</span><span>example numbers</span></div></div>
+    </div>
+  </div>
+</header>
+<main><section class="toolsec"><div class="container"><div class="tool" id="tool" data-og>
+  <div class="tool-top tg"><ol class="tg-steps" aria-label="How to use it"><li>Describe the work today</li><li>Say how much the automation will do</li><li>Calculate and read how it was worked out</li></ol><span class="acts"><button type="button" class="tbtn ghost sm" data-sample>Try it with an example</button></span></div>
+
+  <section class="qs">
+    <h3 class="qs-h"><span>1</span>The work today</h3>
+    <div class="qgrid">
+      <div class="fld"><span>How many jobs are done?</span>
+        <div class="unit"><input type="number" id="jobs" min="0" step="1" inputmode="decimal" placeholder="e.g. 120"><select id="per" aria-label="per"><option value="day">a day</option><option value="week">a week</option><option value="month">a month</option></select></div>
+        <small>A job is one piece of work: one invoice entered, one form filled, one report checked. Count the whole team's total.</small></div>
+      <div class="fld"><span>How long does one job take by hand?</span>
+        <div class="unit"><input type="number" id="mins" min="0" step="0.5" inputmode="decimal" placeholder="e.g. 10"><select id="unit" aria-label="unit"><option value="min">minutes</option><option value="hr">hours</option></select></div>
+        <small>Time a few real ones, including checking and fixing mistakes.</small></div>
+      <div class="fld"><span>How many people do this work? <i class="opt">optional</i></span>
+        <div class="unit"><input type="number" id="people" min="0" step="1" inputmode="numeric" placeholder="e.g. 3"><em>people</em></div>
+        <small>Used to show how much of the team's time is freed up.</small></div>
+    </div>
+  </section>
+
+  <section class="qs">
+    <h3 class="qs-h"><span>2</span>With automation</h3>
+    <div class="qgrid">
+      <div class="fld"><span>How many jobs will the automation finish on its own?</span>
+        <div class="rng"><input type="range" id="auto" min="0" max="100" step="5" value="80" aria-label="Share of jobs automated"><output id="autov">80%</output></div>
+        <small>The rest still go to a person. 100% is rare: inputs arrive broken and systems change. 70 to 90% is realistic.</small></div>
+      <div class="fld"><span>Minutes a person still spends on each automated job <i class="opt">optional</i></span>
+        <div class="unit"><input type="number" id="check" min="0" step="0.5" value="0" inputmode="decimal"><em>min</em></div>
+        <small>A quick look, an approval, fixing the odd one. Leave 0 if nobody checks.</small></div>
+    </div>
+  </section>
+
+  <section class="qs">
+    <h3 class="qs-h"><span>3</span>Money <i class="opt">optional</i></h3>
+    <label class="chk sw"><input type="checkbox" id="money"> Also work out the money saved</label>
+    <div id="money-box" hidden>
+      <div class="qgrid">
+        <label class="fld"><span>Currency</span><select id="cur"><option value="INR">Indian rupee (₹)</option><option value="USD">US dollar ($)</option><option value="EUR">Euro (€)</option><option value="GBP">Pound (£)</option><option value="AED">UAE dirham (AED)</option><option value="SGD">Singapore dollar (S$)</option><option value="AUD">Australian dollar (A$)</option><option value="CAD">Canadian dollar (C$)</option></select></label>
+        <label class="fld"><span>I know the cost as</span><select id="mode"><option value="ctc">Yearly cost of one employee (CTC)</option><option value="job">Cost of one job done by hand</option></select><small>Pick whichever number you have.</small></label>
+        <div class="fld" id="ctc-f"><span>Yearly cost of one employee</span><div class="unit"><em data-sym>₹</em><input type="number" id="ctc" min="0" step="1000" inputmode="decimal" placeholder="e.g. 600000"><em>/ year</em></div><small>CTC: salary plus benefits. An average across the team is fine.</small></div>
+        <div class="fld" id="cjob-f" hidden><span>Cost of one job done by hand</span><div class="unit"><em data-sym>₹</em><input type="number" id="cjob" min="0" step="1" inputmode="decimal" placeholder="e.g. 60"><em>/ job</em></div><small>For example what an outsourcing partner charges per job.</small></div>
+        <div class="fld"><span>One-time cost to build it <i class="opt">optional</i></span><div class="unit"><em data-sym>₹</em><input type="number" id="build" min="0" step="1000" inputmode="decimal" placeholder="e.g. 400000"></div><small>Development, setup, testing. Needed for payback.</small></div>
+        <div class="fld"><span>Monthly cost to run it <i class="opt">optional</i></span><div class="unit"><em data-sym>₹</em><input type="number" id="run" min="0" step="100" inputmode="decimal" placeholder="e.g. 15000"><em>/ month</em></div><small>Licences, servers, support.</small></div>
+      </div>
+    </div>
+  </section>
+
+  <details class="more-opts"><summary>Working time used for FTE: <span id="fte-def">1 FTE = 8 h × 22 days = 176 hours a month</span></summary>
+    <div class="ctrls">
+      <label class="fld"><span>Working hours in a day</span><div class="unit"><input type="number" id="hday" value="8" min="1" max="24" step="0.5" inputmode="decimal"><em>hours</em></div></label>
+      <label class="fld"><span>Working days in a month</span><div class="unit"><input type="number" id="days" value="22" min="1" max="31" step="1" inputmode="numeric"><em>days</em></div></label>
+    </div>
+    <p class="fte-x"><b>What's an FTE?</b> Full-time equivalent: the work one person does in a full working month. It lets you add up part-time effort. Four people spending a quarter of their time on a task is 1 FTE of work.</p>
+  </details>
+
+  <div class="acts"><button type="button" class="tbtn" id="calc">Calculate</button></div>
+
+  <div id="res" class="out" hidden>
+    <p class="headline" id="headline"></p>
+    <div class="stats" id="tiles"></div>
+    <div class="tsay" id="warn" hidden></div>
+    <div class="viz"><div id="bars"></div><div id="team"></div></div>
+    <div class="chartw" id="chart-w" hidden><h3>Money over three years</h3><p>Savings minus build and running costs, month by month. Below zero you're still paying back the build.</p><div id="chart"></div></div>
+    <div class="calcbox"><h3>How we calculated this</h3><div class="math" id="math"></div></div>
+    <div class="acts"><span class="sp"></span><button type="button" class="tbtn ghost sm" id="summary">Copy summary</button><button type="button" class="tbtn ghost sm" id="share">Copy share link</button></div>
+  </div>
+</div>
+</div></section><div class="container"><div class="doc"><nav class="toc" aria-label="On this page"><b>On this page</b><ol><li><a href="#what-fte-means-and-how-it-s-calculated">What FTE means, and how it&#x27;s calculated</a></li><li><a href="#getting-the-inputs-right">Getting the inputs right</a></li><li><a href="#freed-time-isn-t-fewer-people">Freed time isn&#x27;t fewer people</a></li><li><a href="#questions">Questions</a></li></ol><div class="side"><a href="/blog/rpa-success-rate/">Measuring success rate honestly →</a><a href="/tools/">← All free tools</a></div></nav><article class="prose">
+<h2 id="what-fte-means-and-how-it-s-calculated">What FTE means, and how it's calculated</h2>
+<p><strong>FTE stands for full-time equivalent.</strong> It's a way of measuring work in people instead of hours. One FTE is the work of one person working full time for a month. With 8-hour days and 22 working days, that's 176 hours.</p>
+<p>The calculation is two divisions:</p>
+<ol>
+<li><strong>Hours saved a month</strong> = hours the work takes today − hours it still takes with automation.</li>
+<li><strong>FTE freed</strong> = hours saved a month ÷ hours in one FTE month.</li>
+</ol>
+<p>Example: a team handles 120 jobs a day at 10 minutes each. That's 120 × 22 × 10 ÷ 60 = 440 hours a month, or 2.5 FTE of work. If automation finishes 80% of the jobs and someone spends a minute checking each one, the work drops to about 123 hours. 440 − 123 = 317 hours saved, and 317 ÷ 176 = 1.8 FTE freed.</p>
+
+<h2 id="getting-the-inputs-right">Getting the inputs right</h2>
+<ul>
+<li><strong>Jobs:</strong> count them from your system, a ticket queue or a week of logs. Averages are fine.</li>
+<li><strong>Time per job:</strong> time five real jobs with a stopwatch. Estimates from memory are usually too low.</li>
+<li><strong>Share automated:</strong> be honest. Jobs the automation can't finish go back to a person at full time, and that's the number most business cases inflate.</li>
+<li><strong>Money:</strong> use the yearly cost of one employee (CTC) if you know salaries, or the cost per job if you pay per job. Leave money off entirely if you only need FTE.</li>
+</ul>
+
+<h2 id="freed-time-isn-t-fewer-people">Freed time isn't fewer people</h2>
+<p>An automation that frees 1.8 FTE rarely means 1.8 fewer people. Freed time usually goes to work that was waiting: backlogs, quality checks, the customers nobody had time for. The FTE number sizes the effect so you can compare options. A business case that says this plainly is more credible than one that promises headcount cuts.</p>
+<p class="note"><b>Where this comes from.</b> This is the arithmetic I use to size automation work. The hardest input is the share automated, and it's easy to flatter. <a href="/blog/rpa-success-rate/">This post</a> is about measuring it honestly, and <a href="/projects/sp-global-automation/">the S&amp;P Global case study</a> shows the same sums at scale.</p>
+<h2 id="questions">Questions</h2><h3>What does FTE mean?</h3><p>Full-time equivalent: the amount of work one person does in a full working month. With 8-hour days and 22 working days, 1 FTE is 176 hours a month. Work that takes 88 hours a month is 0.5 FTE, whether one person spends half their time on it or four people spend an eighth each.</p><h3>How do you calculate FTE saved?</h3><p>Hours saved per month divided by the hours in one FTE month. If automation saves 264 hours a month and one FTE is 176 hours, that's 264 ÷ 176 = 1.5 FTE. The calculator shows this step with your own numbers.</p><h3>Does freeing 1.5 FTE mean 1.5 fewer people?</h3><p>Usually not. Freed time tends to go to work that was waiting: backlogs, quality checks, customers. The FTE figure tells you how big the effect is, not who leaves. Saying that plainly in a business case makes it more credible, not less.</p><h3>What should I put for the share the automation handles?</h3><p>The share of jobs it finishes with nobody touching them. The rest go back to a person at full time. If you don't know yet, 70 to 90% is realistic for a well-built automation; 100% almost never happens.</p><h3>Which cost should I use, CTC or cost per job?</h3><p>Use CTC (the yearly cost of one employee, including benefits) if you know salaries. Use cost per job if you pay per job, for example to an outsourcing partner. Both are turned into a cost per hour of work, shown in the working.</p><h3>Is anything I type saved?</h3><p>No. Everything stays in your browser. The share link carries the numbers in the link itself, so only people you send it to can see them.</p></article></div></div><section class="related sec"><div class="container"><div class="sec-h"><div><span class="label">Keep going</span><h2 class="h-sec">Related tools and work</h2></div></div><div class="cards three"><a class="pcard rv" href="/blog/rpa-success-rate/"><span class="w"><span>Writing</span><span>18 Oct 2026</span></span><h3>RPA success rate: the same jobs, two honest-looking numbers</h3><p>Success ÷ (success + failed), why user-stopped jobs don&#x27;t count either way, bot time vs wall-clock time, and why every failure needs a label.</p><span class="go">Read the post</span></a><a class="pcard rv" href="/projects/config-driven-rpa/"><span class="w"><span>Edvoy</span><span>2026</span></span><h3>Config-driven RPA: one engine, 70+ portals</h3><span class="m">94% success · 70+ portals</span><p>One Playwright engine, a JSON config per portal, people for OTPs and uploads. 3,000+ submissions at 94% success across 70+ application portals.</p><span class="go">Read the case study</span></a><a class="pcard rv" href="/projects/sp-global-automation/"><span class="w"><span>S&amp;P Global</span><span>2017-2021</span></span><h3>Crawlers and RPA at S&amp;P Global</h3><span class="m">168 FTE of capacity</span><p>A social handle crawler across 3.4M+ websites (160 FTE, $1.1M), a filings crawler across 40+ U.S. state portals, ESG scraping, and Blue Prism and Appian RPA.</p><span class="go">Read the case study</span></a></div></div></section></main>
+<footer class="contact" id="contact">
+  <div class="container">
+    <div class="inner">
+      <div>
+        <div class="contact-id"><div class="avatar"><img src="/gibin-mathew.webp" alt="Gibin Mathew" width="360" height="360" loading="lazy"></div></div>
+        <h2>Have a process that's still <em>done by hand?</em></h2>
+        <p>Happy to talk about automation, data platforms, or getting AI into production without breaking things.</p>
+      </div>
+      <div class="reach">
+        <div class="emailrow"><code id="email">gibin.mat96@gmail.com</code><button class="copy" id="copyBtn" type="button">Copy</button></div>
+        <a href="https://www.linkedin.com/in/gibinm" target="_blank" rel="noopener">linkedin.com/in/gibinm ↗</a>
+        <a href="/">gibin.in, the full profile →</a>
+      </div>
+    </div>
+    <p class="areas">I work on RPA and workflow automation, config-driven web automation, web scraping, data engineering and ETL, and AI-assisted data validation, mostly in Python, Playwright and Node.js. Based in Chennai, India.</p>
+    <div class="foot"><span>Gibin Mathew · RPA &amp; workflow automation · Chennai, India</span><span><a href="/projects/" style="color:inherit">Projects</a> · <a href="/blog/" style="color:inherit">Writing</a> · <a href="/tools/" style="color:inherit">Free tools</a></span></div>
+  </div>
+</footer>
+<button class="totop" id="totop" type="button" aria-label="Back to top">↑</button>
+<script src="/assets/site.js" defer></script>
+<script src="/assets/dock.js" defer></script>
+<script src="/assets/tools/fuzz.js?v=2" defer></script><script src="/assets/tools/core.js?v=2" defer></script><script src="/assets/tools/roi.js?v=2" defer></script>
+<script>/* GoatCounter: privacy-friendly stats, live domain only. */
+window.goatcounter={no_onload:true};
+(function(){if(!/(^|\.)gibin\.in$/.test(location.hostname))return;var g=document.createElement('script');g.async=true;g.src='https://gc.zgo.at/count.js';g.setAttribute('data-goatcounter','https://gibin.goatcounter.com/count');
+g.onload=function(){try{window.goatcounter.count()}catch(e){}
+  if(/[?&](ref|utm_[a-z]+)=/.test(location.search)){try{history.replaceState(null,'',location.pathname+location.hash)}catch(e){}}};
+document.body.appendChild(g)})();</script>
+</body>
+</html>

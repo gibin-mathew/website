@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CSV Data Quality Checker and Profiler, Free | Gibin Mathew</title>
+<meta name="description" content="Free CSV profiler: column types, missing values, duplicates, outliers, mixed date formats and broken emails, column by column. Runs in your browser, no upload.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="Gibin Mathew">
+<link rel="canonical" href="https://gibin.in/tools/csv-profiler/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gibin.in/tools/csv-profiler/">
+<meta property="og:title" content="CSV data quality checker and profiler · Gibin Mathew">
+<meta property="og:description" content="Free CSV profiler: column types, missing values, duplicates, outliers, mixed date formats and broken emails, column by column. Runs in your browser, no upload.">
+<meta property="og:site_name" content="Gibin Mathew">
+<meta property="og:locale" content="en_IN">
+<meta property="og:image" content="https://gibin.in/og/csv-profiler-v2.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CSV data quality checker and profiler · Gibin Mathew">
+<meta name="twitter:description" content="Free CSV profiler: column types, missing values, duplicates, outliers, mixed date formats and broken emails, column by column. Runs in your browser, no upload.">
+<meta name="twitter:image" content="https://gibin.in/og/csv-profiler-v2.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230B1320'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial,sans-serif' font-weight='800' font-size='28' fill='%23EEF2F8'%3EGM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100,500;112,700;125,800;125,900&family=Instrument+Serif:ital@1&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/base.css">
+<link rel="stylesheet" href="/assets/pages.css">
+<link rel="stylesheet" href="/assets/dock.css">
+<link rel="stylesheet" href="/assets/tools/tools.css?v=2">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "@id": "https://gibin.in/tools/csv-profiler/#app", "name": "CSV profiler and data quality checker", "url": "https://gibin.in/tools/csv-profiler/", "description": "Free CSV profiler: column types, missing values, duplicates, outliers, mixed date formats and broken emails, column by column. Runs in your browser, no upload.", "applicationCategory": "BusinessApplication", "operatingSystem": "Any (runs in the browser)", "browserRequirements": "Requires JavaScript", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "featureList": ["Type detection for numbers, dates, emails, URLs, codes with leading zeros", "Missing values and text placeholders like N/A", "Duplicate rows and repeating IDs", "Outliers by interquartile range", "Mixed formats, letter-case variants, stray whitespace, invisible characters", "Download the profile as CSV or copy it as a Markdown table"], "image": "https://gibin.in/og/csv-profiler-v2.jpg", "inLanguage": "en", "author": {"@type": "Person", "@id": "https://gibin.in/#person", "name": "Gibin Mathew", "url": "https://gibin.in/", "jobTitle": "Data and Automation Manager", "sameAs": ["https://www.linkedin.com/in/gibinm"]}, "publisher": {"@id": "https://gibin.in/#person"}, "datePublished": "2026-10-19", "dateModified": "2026-10-19", "isPartOf": {"@id": "https://gibin.in/#website"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://gibin.in/"}, {"@type": "ListItem", "position": 2, "name": "Free tools", "item": "https://gibin.in/tools/"}, {"@type": "ListItem", "position": 3, "name": "Check a CSV's data quality in seconds", "item": "https://gibin.in/tools/csv-profiler/"}]}, {"@type": "FAQPage", "@id": "https://gibin.in/tools/csv-profiler/#faq", "mainEntity": [{"@type": "Question", "name": "What does it check?", "acceptedAnswer": {"@type": "Answer", "text": "For every column: the type the values actually follow, empty cells, placeholders like N/A or null stored as text, stray spaces, invisible characters, values in a different format from the rest, broken email addresses, numbers with thousands separators, ambiguous dates, outliers, the same value in different letter case, and ID-like columns where values repeat. For the whole file: duplicate rows and completely empty rows."}}, {"@type": "Question", "name": "How does it decide a column's type?", "acceptedAnswer": {"@type": "Answer", "text": "It classifies each value on its own, then calls the column a type if at least 95% of filled values agree. If they don't, it says the column is mixed and shows the split, which is usually the most useful thing on the page."}}, {"@type": "Question", "name": "What counts as an outlier?", "acceptedAnswer": {"@type": "Answer", "text": "A number more than three interquartile ranges below the first quartile or above the third. That's deliberately loose, so it flags the 98,000 in a column of 1,000s and not ordinary spread."}}, {"@type": "Question", "name": "Does it change my file?", "acceptedAnswer": {"@type": "Answer", "text": "No. It only reads it. To fix what it finds, use the deduplicator, the value standardizer or the date normalizer, all linked on this page."}}, {"@type": "Question", "name": "Is my data uploaded?", "acceptedAnswer": {"@type": "Answer", "text": "No. The profile is built in your browser and nothing is sent anywhere."}}]}]}</script>
+<script>document.documentElement.classList.add('js');try{var gmT=localStorage.getItem('gm-theme');if(gmT==='light'||gmT==='dark')document.documentElement.setAttribute('data-theme',gmT)}catch(e){}</script>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<header class="band">
+  <div class="container">
+    <div class="topbar">
+      <a class="mark" href="/" aria-label="Gibin Mathew, home">GM<span>.</span></a>
+      <nav class="topnav" aria-label="Site"><a href="/#approach">Approach</a><a href="/projects/">Projects</a><a href="/blog/">Writing</a><a href="/tools/" aria-current="page">Tools</a><a href="/#recommendations">Recommendations</a><a href="/#career">Career</a><a href="#contact">Contact</a></nav>
+      <button class="cord hint" id="cord" type="button" aria-label="Switch to light theme"><span class="halo" aria-hidden="true"></span><span class="cl"></span><span class="flies" aria-hidden="true"></span><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3Z"/></svg></span><span class="tip" id="cord-tip">pull for day</span></button>
+    </div>
+    <div class="ph tool-head">
+      <div>
+        <ol class="crumbs"><li><a href="/">gibin.in</a></li><li><a href="/tools/">Free tools</a></li><li>CSV profiler</li></ol>
+        <span class="ph-kicker">Free tool · data quality</span>
+        <h1 class="ph-title">Check a CSV's <em>data quality</em> in seconds</h1>
+        <p class="ph-dek">Before you trust a spreadsheet, find out what's wrong with it. Drop in a CSV and every column gets a health check: how much is missing, what kind of data it really holds, and the problems that will break an import, a report or a formula.</p>
+        <span class="ph-use-h">Use it when</span><ul class="ph-uses"><li>Someone sent you a <b>file you've never seen</b> and you need to know if it's usable</li><li>An <b>import or upload keeps failing</b> and the error doesn't say why</li><li>You're about to <b>build a report or dashboard</b> and want to catch blanks and odd values first</li></ul><div class="ph-facts"><span><b>●</b> Runs in your browser</span><span>Nothing uploaded</span><span>Free, no sign-up</span></div>
+        
+      </div>
+      <div class="fig tf" role="img" aria-label="Animation: each column of a CSV gets a bar showing how full it is, then the problems in it pop up: a repeating ID, a missing email, N/A stored as text, mixed date formats and inconsistent capitals."><div class="fig-h"><span class="live"><b>every column, checked</b></span><span>orders.csv · 12 rows</span></div><div class="tf-prof"><div class="tf-pc"><span class="tf-pn">order_id</span><span class="tf-bar"><i class="tf-fill" style="--d:0.30s" data-w="100" style="--d:0.30s;--w:100%"></i></span><span class="tag bad tf-pop" style="--d:2.40s">1 ID repeats</span></div><div class="tf-pc"><span class="tf-pn">email</span><span class="tf-bar"><i class="tf-fill" style="--d:0.65s" data-w="92" style="--d:0.65s;--w:92%"></i></span><span class="tag amber tf-pop" style="--d:2.80s">1 missing, 1 broken</span></div><div class="tf-pc"><span class="tf-pn">amount</span><span class="tf-bar"><i class="tf-fill" style="--d:1.00s" data-w="92" style="--d:1.00s;--w:92%"></i></span><span class="tag amber tf-pop" style="--d:3.20s">N/A stored as text</span></div><div class="tf-pc"><span class="tf-pn">order_date</span><span class="tf-bar"><i class="tf-fill" style="--d:1.35s" data-w="100" style="--d:1.35s;--w:100%"></i></span><span class="tag amber tf-pop" style="--d:3.60s">3 date formats</span></div><div class="tf-pc"><span class="tf-pn">city</span><span class="tf-bar"><i class="tf-fill" style="--d:1.70s" data-w="100" style="--d:1.70s;--w:100%"></i></span><span class="tag amber tf-pop" style="--d:4.00s">Chennai vs chennai</span></div></div><div class="tf-count"><span class="tf-in" style="--d:0.20s">12 rows · 8 columns</span><b class="tf-pop" style="--d:4.60s">16 things to check before you load it</b></div><div class="fig-f"><span>what breaks imports, joins and dashboards</span><span>sample data</span></div></div>
+    </div>
+  </div>
+</header>
+<main><section class="toolsec"><div class="container"><div class="tool" id="tool" data-og>
+  <div class="tool-top tg"><ol class="tg-steps" aria-label="How to use it"><li>Paste or upload a CSV</li><li>Run the health check</li><li>Read what to fix</li></ol><span class="acts"><button type="button" class="tbtn ghost sm" data-sample>Try it with sample data</button></span></div>
+  <div class="tsrc" data-src="d" data-kind="table" data-hint="The first row should hold the column names" data-label="Your CSV" data-placeholder="Paste CSV or TSV with a header row, or upload the file&#10;&#10;order_id,customer,amount&#10;1001,Priya Raman,1250.00"></div>
+  <div class="acts"><button type="button" class="tbtn" id="run">Profile the data</button></div>
+  <div class="tsay" id="say" hidden></div>
+  <div class="tprogw" id="prog" hidden></div>
+  <div class="out" id="out" hidden>
+    <div class="stats" id="stats"></div>
+    <div id="overall"></div>
+    <div class="viz" id="glance"></div>
+    <div class="acts"><span class="sp"></span><button type="button" class="tbtn ghost sm" id="md">Copy as Markdown</button><button type="button" class="tbtn ghost sm" id="dl">Download profile CSV</button></div>
+    <div class="pcards" id="cards"></div>
+  </div>
+</div>
+</div></section><div class="container"><div class="doc"><nav class="toc" aria-label="On this page"><b>On this page</b><ol><li><a href="#why-you-d-use-this">Why you&#x27;d use this</a></li><li><a href="#how-to-use-it">How to use it</a></li><li><a href="#what-it-looks-for-and-why">What it looks for, and why</a></li><li><a href="#where-this-fits">Where this fits</a></li><li><a href="#questions">Questions</a></li></ol><div class="side"><a href="/blog/llm-data-validation/">How I validate data with AI and people →</a><a href="/tools/">← All free tools</a></div></nav><article class="prose">
+<h2 id="why-you-d-use-this">Why you'd use this</h2>
+<p>A spreadsheet can look fine and still be broken. An amount column with one "1,200" typed as text makes SUM skip it. A date column with "05/01/2026" in among the 2026-01-05s sorts in the wrong order. An order ID that appears twice doubles a customer's total. None of this shows up when you scroll through the file.</p>
+<p>The profiler reads every value in every column and tells you, in plain words, where those problems are. Run it on any file you didn't create yourself before you build a report on it, send it to a client, or load it into a system. It takes seconds and it's the cheapest way to avoid an embarrassing number.</p>
+<h2 id="how-to-use-it">How to use it</h2>
+<ol>
+<li>Paste the CSV or upload it. Tab-separated and semicolon-separated files are detected on their own.</li>
+<li>Hit <strong>Profile the data</strong>. Each column gets a card.</li>
+<li>Read the amber and red notes first. They're the things that break imports, joins and dashboards.</li>
+<li>Copy the profile as Markdown to paste into a ticket or a doc, or download it as CSV.</li>
+</ol>
+
+<h2 id="what-it-looks-for-and-why">What it looks for, and why</h2>
+<p>Most data problems aren't exotic. They're the same dozen things in every file, and they're cheap to catch before a load and expensive to catch after. These are the ones the profiler checks:</p>
+<ul>
+<li><strong>Placeholders stored as values.</strong> "N/A", "null" and "-" make a column look complete when it isn't. They're counted apart from real empty cells, and shown in amber on the fill bar.</li>
+<li><strong>Mixed formats.</strong> A date column where most rows are 2026-01-05 but a few are 05/01/2026 or "Jan 9 2026". An amount column where one value is "1,200" in quotes. These break type casting, and they're often the first thing a database load rejects.</li>
+<li><strong>IDs that repeat.</strong> If a column is named like an ID and almost every value is unique, the few repeats are probably the most important rows in the file.</li>
+<li><strong>Leading zeros.</strong> Pincodes, account codes and phone numbers lose their leading zeros the moment someone opens the file in Excel.</li>
+<li><strong>Case variants and stray spaces.</strong> "Paid", "paid" and "PAID" group as three statuses in a pivot table.</li>
+<li><strong>Outliers.</strong> Not to delete them, but to look at them. In the sample data, one order is 98,000 in a column of 1,000s. Maybe it's real. Someone should check.</li>
+</ul>
+
+<h2 id="where-this-fits">Where this fits</h2>
+<p>A profile is a starting point, not a verdict. It tells you where to look. Then you fix the data on purpose: duplicates with the <a href="/tools/remove-duplicates/">deduplicator</a>, inconsistent names with the <a href="/tools/value-standardizer/">value standardizer</a>, mixed dates with the <a href="/tools/date-normalizer/">date normalizer</a>, and SQL with <a href="/tools/csv-to-sql/">CSV to SQL</a> once it's clean.</p>
+<p class="note"><b>Where this comes from.</b> Most of my validation work is deciding what a machine can check on its own and what a person has to see. <a href="/blog/llm-data-validation/">This post</a> is about drawing that line when the checker is an LLM.</p>
+<h2 id="questions">Questions</h2><h3>What does it check?</h3><p>For every column: the type the values actually follow, empty cells, placeholders like N/A or null stored as text, stray spaces, invisible characters, values in a different format from the rest, broken email addresses, numbers with thousands separators, ambiguous dates, outliers, the same value in different letter case, and ID-like columns where values repeat. For the whole file: duplicate rows and completely empty rows.</p><h3>How does it decide a column&#x27;s type?</h3><p>It classifies each value on its own, then calls the column a type if at least 95% of filled values agree. If they don't, it says the column is mixed and shows the split, which is usually the most useful thing on the page.</p><h3>What counts as an outlier?</h3><p>A number more than three interquartile ranges below the first quartile or above the third. That's deliberately loose, so it flags the 98,000 in a column of 1,000s and not ordinary spread.</p><h3>Does it change my file?</h3><p>No. It only reads it. To fix what it finds, use the deduplicator, the value standardizer or the date normalizer, all linked on this page.</p><h3>Is my data uploaded?</h3><p>No. The profile is built in your browser and nothing is sent anywhere.</p></article></div></div><section class="related sec"><div class="container"><div class="sec-h"><div><span class="label">Keep going</span><h2 class="h-sec">Related tools and work</h2></div></div><div class="cards three"><a class="pcard rv" href="/tools/remove-duplicates/"><span class="w"><span>Free tool</span><span>Cleaning</span></span><h3>Clean a CSV or JSON file and remove duplicates</h3><span class="m">exact and near duplicates</span><p>Trim, strip invisible characters, blank out N/A, then drop exact or near-duplicate rows. CSV, JSON and JSON Lines.</p><span class="go">Open the tool</span></a><a class="pcard rv" href="/tools/date-normalizer/"><span class="w"><span>Free tool</span><span>Cleaning</span></span><h3>Turn messy dates into one format</h3><span class="m">20+ input formats</span><p>Mixed date formats into YYYY-MM-DD or any format you like. Works out day/month order from the data and flags what&#x27;s ambiguous.</p><span class="go">Open the tool</span></a><a class="pcard rv" href="/blog/llm-data-validation/"><span class="w"><span>Writing</span><span>18 Oct 2026</span></span><h3>LLM-assisted data validation: what the AI is allowed to do alone</h3><p>Draft vs decide, exact matches only, versioned prompts, model choice per run, and verifying once then applying everywhere. Lessons from two tools in production.</p><span class="go">Read the post</span></a></div></div></section></main>
+<footer class="contact" id="contact">
+  <div class="container">
+    <div class="inner">
+      <div>
+        <div class="contact-id"><div class="avatar"><img src="/gibin-mathew.webp" alt="Gibin Mathew" width="360" height="360" loading="lazy"></div></div>
+        <h2>Have a process that's still <em>done by hand?</em></h2>
+        <p>Happy to talk about automation, data platforms, or getting AI into production without breaking things.</p>
+      </div>
+      <div class="reach">
+        <div class="emailrow"><code id="email">gibin.mat96@gmail.com</code><button class="copy" id="copyBtn" type="button">Copy</button></div>
+        <a href="https://www.linkedin.com/in/gibinm" target="_blank" rel="noopener">linkedin.com/in/gibinm ↗</a>
+        <a href="/">gibin.in, the full profile →</a>
+      </div>
+    </div>
+    <p class="areas">I work on RPA and workflow automation, config-driven web automation, web scraping, data engineering and ETL, and AI-assisted data validation, mostly in Python, Playwright and Node.js. Based in Chennai, India.</p>
+    <div class="foot"><span>Gibin Mathew · RPA &amp; workflow automation · Chennai, India</span><span><a href="/projects/" style="color:inherit">Projects</a> · <a href="/blog/" style="color:inherit">Writing</a> · <a href="/tools/" style="color:inherit">Free tools</a></span></div>
+  </div>
+</footer>
+<button class="totop" id="totop" type="button" aria-label="Back to top">↑</button>
+<script src="/assets/site.js" defer></script>
+<script src="/assets/dock.js" defer></script>
+<script src="/assets/tools/fuzz.js?v=2" defer></script><script src="/assets/tools/core.js?v=2" defer></script><script src="/assets/tools/profiler.js?v=2" defer></script>
+<script>/* GoatCounter: privacy-friendly stats, live domain only. */
+window.goatcounter={no_onload:true};
+(function(){if(!/(^|\.)gibin\.in$/.test(location.hostname))return;var g=document.createElement('script');g.async=true;g.src='https://gc.zgo.at/count.js';g.setAttribute('data-goatcounter','https://gibin.goatcounter.com/count');
+g.onload=function(){try{window.goatcounter.count()}catch(e){}
+  if(/[?&](ref|utm_[a-z]+)=/.test(location.search)){try{history.replaceState(null,'',location.pathname+location.hash)}catch(e){}}};
+document.body.appendChild(g)})();</script>
+</body>
+</html>

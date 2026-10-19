@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CSS Selector and XPath Tester for Web Scraping, Free | Gibin Mathew</title>
+<meta name="description" content="Free CSS selector and XPath tester: paste page HTML, define fields, see the extracted rows live, then copy Python (parsel) or Playwright code. No upload.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="Gibin Mathew">
+<link rel="canonical" href="https://gibin.in/tools/selector-tester/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gibin.in/tools/selector-tester/">
+<meta property="og:title" content="CSS selector and XPath tester for web scraping · Gibin Mathew">
+<meta property="og:description" content="Free CSS selector and XPath tester: paste page HTML, define fields, see the extracted rows live, then copy Python (parsel) or Playwright code. No upload.">
+<meta property="og:site_name" content="Gibin Mathew">
+<meta property="og:locale" content="en_IN">
+<meta property="og:image" content="https://gibin.in/og/selector-tester-v2.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CSS selector and XPath tester for web scraping · Gibin Mathew">
+<meta name="twitter:description" content="Free CSS selector and XPath tester: paste page HTML, define fields, see the extracted rows live, then copy Python (parsel) or Playwright code. No upload.">
+<meta name="twitter:image" content="https://gibin.in/og/selector-tester-v2.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230B1320'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial,sans-serif' font-weight='800' font-size='28' fill='%23EEF2F8'%3EGM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100,500;112,700;125,800;125,900&family=Instrument+Serif:ital@1&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/base.css">
+<link rel="stylesheet" href="/assets/pages.css">
+<link rel="stylesheet" href="/assets/dock.css">
+<link rel="stylesheet" href="/assets/tools/tools.css?v=2">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "@id": "https://gibin.in/tools/selector-tester/#app", "name": "CSS selector and XPath tester", "url": "https://gibin.in/tools/selector-tester/", "description": "Free CSS selector and XPath tester: paste page HTML, define fields, see the extracted rows live, then copy Python (parsel) or Playwright code. No upload.", "applicationCategory": "DeveloperApplication", "operatingSystem": "Any (runs in the browser)", "browserRequirements": "Requires JavaScript", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "featureList": ["CSS selectors and XPath 1.0", "Repeat-for-each item selector with per-field extraction", "Text, attributes, HTML, counts, all matches", "Live hit counts per field", "Resolves relative links against a base URL", "Copy as Python (parsel) or Playwright code, download CSV or JSON", "Pasted HTML is parsed inert: no scripts run, nothing loads"], "image": "https://gibin.in/og/selector-tester-v2.jpg", "inLanguage": "en", "author": {"@type": "Person", "@id": "https://gibin.in/#person", "name": "Gibin Mathew", "url": "https://gibin.in/", "jobTitle": "Data and Automation Manager", "sameAs": ["https://www.linkedin.com/in/gibinm"]}, "publisher": {"@id": "https://gibin.in/#person"}, "datePublished": "2026-10-19", "dateModified": "2026-10-19", "isPartOf": {"@id": "https://gibin.in/#website"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://gibin.in/"}, {"@type": "ListItem", "position": 2, "name": "Free tools", "item": "https://gibin.in/tools/"}, {"@type": "ListItem", "position": 3, "name": "Test scraping selectors on real HTML", "item": "https://gibin.in/tools/selector-tester/"}]}, {"@type": "FAQPage", "@id": "https://gibin.in/tools/selector-tester/#faq", "mainEntity": [{"@type": "Question", "name": "Why paste HTML instead of a URL?", "acceptedAnswer": {"@type": "Answer", "text": "A browser page can't fetch another website's HTML because of cross-origin rules, and a tool that proxied it for you would see everything you test. Pasting keeps it local. In Chrome, right-click the page, View page source, select all and copy. For pages that build their content with JavaScript, copy the element from DevTools instead (right-click in Elements, Copy, Copy outerHTML)."}}, {"@type": "Question", "name": "Is it safe to paste HTML from any site?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The HTML is parsed into a detached document that never touches this page. Scripts in it don't run, and images, styles and iframes in it don't load. The sample even includes a script tag to show it."}}, {"@type": "Question", "name": "What's \"repeat for each\"?", "acceptedAnswer": {"@type": "Answer", "text": "The selector for one item on a listing page: a product card, a search result, a table row. Each field is then searched inside that item, so fields stay lined up even when one item is missing a value. Leave it empty to run each selector over the whole page."}}, {"@type": "Question", "name": "Does the generated code work as is?", "acceptedAnswer": {"@type": "Answer", "text": "It mirrors exactly what the tool did, so if the table looks right here, the code returns the same rows from the same HTML. The Python version uses parsel, the selector library behind Scrapy. The Playwright version runs inside the page, so you can also paste the inner function into the browser console."}}, {"@type": "Question", "name": "CSS or XPath?", "acceptedAnswer": {"@type": "Answer", "text": "CSS is shorter and covers most cases. XPath can do what CSS can't: select by text (//a[contains(., 'Next')]), step up to a parent, or read an attribute directly (//a/@href). Inside a repeat-for-each item, start XPath with a dot (.//h2) so it searches the item, not the whole page."}}]}]}</script>
+<script>document.documentElement.classList.add('js');try{var gmT=localStorage.getItem('gm-theme');if(gmT==='light'||gmT==='dark')document.documentElement.setAttribute('data-theme',gmT)}catch(e){}</script>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<header class="band">
+  <div class="container">
+    <div class="topbar">
+      <a class="mark" href="/" aria-label="Gibin Mathew, home">GM<span>.</span></a>
+      <nav class="topnav" aria-label="Site"><a href="/#approach">Approach</a><a href="/projects/">Projects</a><a href="/blog/">Writing</a><a href="/tools/" aria-current="page">Tools</a><a href="/#recommendations">Recommendations</a><a href="/#career">Career</a><a href="#contact">Contact</a></nav>
+      <button class="cord hint" id="cord" type="button" aria-label="Switch to light theme"><span class="halo" aria-hidden="true"></span><span class="cl"></span><span class="flies" aria-hidden="true"></span><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3Z"/></svg></span><span class="tip" id="cord-tip">pull for day</span></button>
+    </div>
+    <div class="ph tool-head">
+      <div>
+        <ol class="crumbs"><li><a href="/">gibin.in</a></li><li><a href="/tools/">Free tools</a></li><li>Selector tester</li></ol>
+        <span class="ph-kicker">Free tool · web scraping</span>
+        <h1 class="ph-title">Test <em>scraping selectors</em> on real HTML</h1>
+        <p class="ph-dek">For people who write web scrapers. A scraper needs selectors: short patterns that point at what you want on a page, like every product name and price. Paste a page's HTML, try your selectors, and see exactly what they pull out before you write any code.</p>
+        <span class="ph-use-h">Use it when</span><ul class="ph-uses"><li>You're <b>writing a scraper</b> in Python, Playwright or Selenium and want the selectors right first</li><li>A <b>scraper stopped returning data</b> and you need to find which selector broke</li><li>You're <b>learning CSS selectors or XPath</b> and want to see results as you type</li></ul><div class="ph-facts"><span><b>●</b> Runs in your browser</span><span>Nothing uploaded</span><span>Free, no sign-up</span></div>
+        
+      </div>
+      <div class="fig tf" role="img" aria-label="Animation: a CSS selector is typed, the matching product names and prices light up inside the page HTML, and they come out as rows of a table."><div class="fig-h"><span class="live"><b>selector → the data you want</b></span><span>CSS or XPath</span></div><div class="tf-selq"><span class="tf-type" style="--d:.2s">div.product → h2, .price</span></div><div class="tf-two"><div class="panel"><div class="panel-k"><span>page HTML</span></div><pre class="tf-pre">&lt;div class="product"&gt;
+  &lt;h2&gt;<b class="tf-glow" style="--d:1.2s">Masala Chai</b>&lt;/h2&gt;
+  &lt;span class="price"&gt;<b class="tf-glow" style="--d:1.5s">₹ 320</b>&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="product"&gt;
+  &lt;h2&gt;<b class="tf-glow" style="--d:1.8s">Filter Coffee</b>&lt;/h2&gt;
+  &lt;span class="price"&gt;<b class="tf-glow" style="--d:2.1s">₹ 899</b>&lt;/span&gt;
+&lt;/div&gt;</pre></div><div class="panel"><div class="panel-k"><span>extracted</span></div><div class="tf-mini tf-mini2"><div class="tf-mh tf-in" style="--d:2.50s"><span>title</span><span>price</span></div><div class="tf-mr tf-in" style="--d:2.90s"><span>Masala Chai</span><span>₹ 320</span></div><div class="tf-mr tf-in" style="--d:3.30s"><span>Filter Coffee</span><span>₹ 899</span></div></div><p class="tf-note tf-in" style="--d:3.90s">Then copy it as Python or Playwright code</p></div></div><div class="fig-f"><span>test before you write the scraper</span><span>sample page</span></div></div>
+    </div>
+  </div>
+</header>
+<main><section class="toolsec"><div class="container"><div class="tool" id="tool" data-og>
+  <div class="tool-top tg"><ol class="tg-steps" aria-label="How to use it"><li>Paste the page HTML</li><li>Write a selector for each field</li><li>Copy the rows or the code</li></ol><span class="acts"><button type="button" class="tbtn ghost sm" data-sample>Try it with a sample page</button></span></div>
+  <div class="tsrc" data-src="h" data-kind="text" data-hint="In Chrome: right-click the page, View page source, select all, copy" data-label="Page HTML" data-accept=".html,.htm,.xml,.txt" data-placeholder="Paste the page source or an element's outerHTML&#10;&#10;&lt;div class=&quot;product&quot;&gt;&lt;h2&gt;Masala Chai&lt;/h2&gt;&lt;span class=&quot;price&quot;&gt;₹ 320&lt;/span&gt;&lt;/div&gt;"></div>
+  <div class="ctrls">
+    <label class="fld"><span>Selector type</span><select id="mode"><option value="css">CSS</option><option value="xpath">XPath</option></select></label>
+    <label class="fld" style="flex:1 1 260px"><span>Repeat for each, optional</span><input type="text" id="each" class="mono-in" placeholder="e.g. div.product" spellcheck="false" autocapitalize="off" style="width:100%"></label>
+    <label class="fld" style="flex:1 1 220px"><span>Base URL for links, optional</span><input type="text" id="base" class="mono-in" placeholder="https://example.com" spellcheck="false" autocapitalize="off" style="width:100%"></label>
+  </div>
+  <div class="fld"><span>Fields</span><div class="fields" id="fields"></div></div>
+  <div class="acts"><button type="button" class="tbtn ghost sm" id="add">+ Add field</button><label class="chk" style="min-height:30px"><input type="checkbox" id="ws" checked> Tidy whitespace in text</label></div>
+  <div class="tsay" id="say" hidden></div>
+  <div class="out" id="out" hidden>
+    <div class="acts"><span class="tprog-t" id="meta"></span><span class="sp"></span><button type="button" class="tbtn ghost sm" id="copy-py">Copy Python</button><button type="button" class="tbtn ghost sm" id="copy-js">Copy Playwright</button><button type="button" class="tbtn ghost sm" id="dl-json">JSON</button><button type="button" class="tbtn ghost sm" id="dl">CSV</button></div>
+    <div id="grid"></div>
+  </div>
+</div>
+</div></section><div class="container"><div class="doc"><nav class="toc" aria-label="On this page"><b>On this page</b><ol><li><a href="#why-you-d-use-this">Why you&#x27;d use this</a></li><li><a href="#how-to-use-it">How to use it</a></li><li><a href="#selectors-that-survive-a-redesign">Selectors that survive a redesign</a></li><li><a href="#why-not-just-give-it-a-url">Why not just give it a URL?</a></li><li><a href="#questions">Questions</a></li></ol><div class="side"><a href="/projects/sp-global-automation/">Scrapers at S&amp;P Global scale →</a><a href="/tools/">← All free tools</a></div></nav><article class="prose">
+<h2 id="why-you-d-use-this">Why you'd use this</h2>
+<p>This one is for people who build web scrapers: programs that visit a page and copy out data, like prices from a shop or listings from a directory. Every scraper depends on selectors, short patterns such as <code>div.product h2</code> that tell it which part of the page to read.</p>
+<p>Getting them wrong is the most common reason a scraper returns empty columns or shifted data. Usually you only find out after writing the code and running it. Here you paste the page, try selectors, and see the exact rows they'd produce, as you type. When it looks right, copy the working Python or Playwright code. If you don't write scrapers, this isn't the tool for you, and that's fine.</p>
+<h2 id="how-to-use-it">How to use it</h2>
+<ol>
+<li>Get the HTML. View page source and copy it all, or copy one element's outerHTML from DevTools if the page builds its content with JavaScript.</li>
+<li>Paste it in. Nothing in it runs.</li>
+<li>Set <strong>repeat for each</strong> to the selector for one item, like div.product or table tr.</li>
+<li>Add a field per value you want. The number next to each field shows how many items it found something in. Amber means it matched nothing.</li>
+<li>When every field is green, copy the code or download the rows.</li>
+</ol>
+
+<h2 id="selectors-that-survive-a-redesign">Selectors that survive a redesign</h2>
+<p>Most scrapers break because the selector was copied from DevTools and describes the page's layout instead of its meaning. A few habits that keep them alive longer:</p>
+<ul>
+<li><strong>Prefer meaning over position.</strong> .price or [itemprop=price] outlasts div &gt; div:nth-child(3) &gt; span.</li>
+<li><strong>Use data attributes when they exist.</strong> data-id, data-sku and data-testid are there for machines and change less often than class names.</li>
+<li><strong>Scope fields to an item.</strong> With repeat-for-each, a product with no rating gets an empty cell instead of shifting every rating after it up by one row.</li>
+<li><strong>Watch the hit counts.</strong> A field that matches in 2 of 3 items is telling you something. Sometimes it's real (out of stock), sometimes the markup differs on that item.</li>
+</ul>
+
+<h2 id="why-not-just-give-it-a-url">Why not just give it a URL?</h2>
+<p>A web page isn't allowed to read another site's HTML, and a tool that fetched pages through its own server would see every URL you test. Pasting is one more step, but it means you can test selectors on a logged-in page, an internal tool, or a saved file, and none of it leaves your machine.</p>
+<p class="note"><b>Where this comes from.</b> I've written scrapers for a living: at S&amp;P Global, crawlers that covered 3.4 million company websites and 40+ government filing portals, and now <a href="/projects/markdown-extractor/">agent-written scrapers</a> that a second agent checks. Getting selectors right on real HTML before writing the scraper saves most of the debugging.</p>
+<h2 id="questions">Questions</h2><h3>Why paste HTML instead of a URL?</h3><p>A browser page can't fetch another website's HTML because of cross-origin rules, and a tool that proxied it for you would see everything you test. Pasting keeps it local. In Chrome, right-click the page, View page source, select all and copy. For pages that build their content with JavaScript, copy the element from DevTools instead (right-click in Elements, Copy, Copy outerHTML).</p><h3>Is it safe to paste HTML from any site?</h3><p>Yes. The HTML is parsed into a detached document that never touches this page. Scripts in it don't run, and images, styles and iframes in it don't load. The sample even includes a script tag to show it.</p><h3>What&#x27;s &quot;repeat for each&quot;?</h3><p>The selector for one item on a listing page: a product card, a search result, a table row. Each field is then searched inside that item, so fields stay lined up even when one item is missing a value. Leave it empty to run each selector over the whole page.</p><h3>Does the generated code work as is?</h3><p>It mirrors exactly what the tool did, so if the table looks right here, the code returns the same rows from the same HTML. The Python version uses parsel, the selector library behind Scrapy. The Playwright version runs inside the page, so you can also paste the inner function into the browser console.</p><h3>CSS or XPath?</h3><p>CSS is shorter and covers most cases. XPath can do what CSS can't: select by text (//a[contains(., 'Next')]), step up to a parent, or read an attribute directly (//a/@href). Inside a repeat-for-each item, start XPath with a dot (.//h2) so it searches the item, not the whole page.</p></article></div></div><section class="related sec"><div class="container"><div class="sec-h"><div><span class="label">Keep going</span><h2 class="h-sec">Related tools and work</h2></div></div><div class="cards three"><a class="pcard rv" href="/projects/sp-global-automation/"><span class="w"><span>S&amp;P Global</span><span>2017-2021</span></span><h3>Crawlers and RPA at S&amp;P Global</h3><span class="m">168 FTE of capacity</span><p>A social handle crawler across 3.4M+ websites (160 FTE, $1.1M), a filings crawler across 40+ U.S. state portals, ESG scraping, and Blue Prism and Appian RPA.</p><span class="go">Read the case study</span></a><a class="pcard rv" href="/projects/markdown-extractor/"><span class="w"><span>Edvoy</span><span>Platform</span></span><h3>Markdown Extractor: every website, one format an AI can read</h3><p>An agent writes a Playwright scraper per website. Every scraper outputs Markdown with a source header. A second agent answers plain-language questions from the files.</p><span class="go">Read the case study</span></a><a class="pcard rv" href="/tools/json-to-csv/"><span class="w"><span>Free tool</span><span>Conversion</span></span><h3>Flatten nested JSON into a CSV</h3><span class="m">3 ways to handle arrays</span><p>Nested objects become dotted columns. Lists are joined, spread into columns, or exploded into one row per item.</p><span class="go">Open the tool</span></a></div></div></section></main>
+<footer class="contact" id="contact">
+  <div class="container">
+    <div class="inner">
+      <div>
+        <div class="contact-id"><div class="avatar"><img src="/gibin-mathew.webp" alt="Gibin Mathew" width="360" height="360" loading="lazy"></div></div>
+        <h2>Have a process that's still <em>done by hand?</em></h2>
+        <p>Happy to talk about automation, data platforms, or getting AI into production without breaking things.</p>
+      </div>
+      <div class="reach">
+        <div class="emailrow"><code id="email">gibin.mat96@gmail.com</code><button class="copy" id="copyBtn" type="button">Copy</button></div>
+        <a href="https://www.linkedin.com/in/gibinm" target="_blank" rel="noopener">linkedin.com/in/gibinm ↗</a>
+        <a href="/">gibin.in, the full profile →</a>
+      </div>
+    </div>
+    <p class="areas">I work on RPA and workflow automation, config-driven web automation, web scraping, data engineering and ETL, and AI-assisted data validation, mostly in Python, Playwright and Node.js. Based in Chennai, India.</p>
+    <div class="foot"><span>Gibin Mathew · RPA &amp; workflow automation · Chennai, India</span><span><a href="/projects/" style="color:inherit">Projects</a> · <a href="/blog/" style="color:inherit">Writing</a> · <a href="/tools/" style="color:inherit">Free tools</a></span></div>
+  </div>
+</footer>
+<button class="totop" id="totop" type="button" aria-label="Back to top">↑</button>
+<script src="/assets/site.js" defer></script>
+<script src="/assets/dock.js" defer></script>
+<script src="/assets/tools/fuzz.js?v=2" defer></script><script src="/assets/tools/core.js?v=2" defer></script><script src="/assets/tools/selector.js?v=2" defer></script>
+<script>/* GoatCounter: privacy-friendly stats, live domain only. */
+window.goatcounter={no_onload:true};
+(function(){if(!/(^|\.)gibin\.in$/.test(location.hostname))return;var g=document.createElement('script');g.async=true;g.src='https://gc.zgo.at/count.js';g.setAttribute('data-goatcounter','https://gibin.goatcounter.com/count');
+g.onload=function(){try{window.goatcounter.count()}catch(e){}
+  if(/[?&](ref|utm_[a-z]+)=/.test(location.search)){try{history.replaceState(null,'',location.pathname+location.hash)}catch(e){}}};
+document.body.appendChild(g)})();</script>
+</body>
+</html>

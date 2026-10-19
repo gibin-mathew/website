@@ -131,10 +131,21 @@ def main():
             fig_png, right = None, ""
             site.goto(BASE + build.url_of(p), wait_until="networkidle")
             el = site.query_selector("header .fig")
+            if not el and p["section"] == "tools" and p.get("slug"):
+                # tool pages: load the sample data, then photograph the tool itself
+                btn = site.query_selector("[data-sample]")
+                if btn:
+                    btn.click(); site.wait_for_timeout(1200)
+                site.add_style_tag(content=".dock,.tabs,.totop,.progress,.jump{display:none!important}")
+                site.evaluate("window.scrollTo(0, 0)"); site.wait_for_timeout(150)
+                el = site.query_selector("[data-og]")
             if el:
                 fig_png = TMP / f"{name}.png"; el.screenshot(path=str(fig_png))
             elif p["section"] == "blog":
                 right = '<div class="list">' + "".join(f'<div><span>{html.escape(q["kicker"])}</span><b>{html.escape(q["h1_plain"])}</b></div>' for q in posts[:3]) + "</div>"
+            elif p["section"] == "tools":
+                tl = sorted([q for q in pages if q["section"] == "tools" and q.get("slug")], key=lambda q: q.get("order", 0))
+                right = '<div class="list">' + "".join(f'<div><span>{html.escape(q.get("year", "Free tool"))}</span><b>{html.escape(q.get("app_name", q["h1_plain"]))}</b></div>' for q in tl[:3]) + "</div>"
             shoot(page_card(p, fig_png, right), ROOT / "og" / f"{name}-{V}.jpg")
             print("og", name)
         shoot(person_card("gibin.in"), ROOT / "og" / f"home-{V}.jpg"); print("og home")

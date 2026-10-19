@@ -364,3 +364,110 @@ INLINE["apply"] = """
   </div>
   <figcaption>Three scopes: every intake, every full-time intake, or every intake at the same campus. One check, the right rows, a name and a time on each.</figcaption>
 </figure>"""
+
+# ---------------------------------------------------------------------------------------------
+# Tool figures: a before -> after story per tool, animated with CSS only (assets/tools/tools.css).
+# Each element fades in on its own delay (--d) and the whole scene loops. Reduced motion shows the end state.
+# ---------------------------------------------------------------------------------------------
+def _d(sec):
+    return f' style="--d:{sec:.2f}s"'
+
+_pairs = [("Acme Corp", "ACME Corporation", "100", "ok"), ("Northfield Univ.", "Northfield University", "100", "ok"),
+          ("Jonh Smith", "John Smith", "91", "ok"), ("Orchid Health Care", "Orchid Healthcare", "84", "amber"),
+          ("Hooli Labs", "no good match", "31", "bad")]
+HERO["t-fuzzy"] = ('<div class="fig tf" role="img" aria-label="Animation: each name in list A is joined to its closest name in list B with a score. '
+    'Exact and near matches score high, a borderline pair is flagged for review, and a name with no partner scores low.">'
+    '<div class="fig-h"><span class="live"><b>list A → closest in list B</b></span><span>score 0 to 100</span></div>'
+    '<div class="tf-pairs"><div class="tf-ph"><span>List A (yours)</span><span></span><span>List B (reference)</span><span>score</span></div>' +
+    "".join(f'<div class="tf-pair"><span class="tf-in"{_d(.3+i*.7)}>{a}</span><span class="tf-ln {c}"{_d(.55+i*.7)}><i></i></span>'
+            f'<span class="tf-in {"tf-dim" if c=="bad" else ""}"{_d(.8+i*.7)}>{b}</span><span class="tag {c} tf-pop"{_d(1.0+i*.7)}>{s}</span></div>'
+            for i, (a, b, s, c) in enumerate(_pairs)) +
+    '</div><div class="tf-key tf-in"' + _d(4.6) + '><span><i class="ok"></i>match</span><span><i class="amber"></i>check by hand</span><span><i class="bad"></i>no match</span></div>'
+    '<div class="fig-f"><span>typos, word order, Corp vs Corporation</span><span>sample data</span></div></div>')
+
+_groups = [(["UK", "U.K.", "united kingdom", "Untied Kingdom", "Great Britain"], ["exact", "exact", "exact", "fuzzy", "alias"], "United Kingdom"),
+           (["USA", "U.S.A.", "United States of America"], ["alias", "alias", "fuzzy"], "United States")]
+_g = ""
+for gi, (msgs, how, canon) in enumerate(_groups):
+    base = .3 + gi * 2.6
+    chips = "".join(f'<span class="tf-chip tf-in"{_d(base + k*.25)}>{m}<em>{h}</em></span>' for k, (m, h) in enumerate(zip(msgs, how)))
+    _g += (f'<div class="tf-grp"><div class="tf-chips">{chips}</div><span class="tf-arrow tf-in"{_d(base+1.5)}>→</span>'
+           f'<span class="tf-canon tf-pop"{_d(base+1.8)}>{canon}<small>{len(msgs)} spellings → 1</small></span></div>')
+HERO["t-std"] = ('<div class="fig tf" role="img" aria-label="Animation: different spellings of the same country, like UK, U.K. and Untied Kingdom, are each mapped onto one standard value, United Kingdom, by exact match, an alias rule or fuzzy matching.">'
+    '<div class="fig-h"><span class="live"><b>many spellings → one standard value</b></span><span>exact · alias · fuzzy</span></div>'
+    f'<div class="tf-std">{_g}</div>'
+    '<div class="fig-f"><span>decide each spelling once, every row follows</span><span>sample data</span></div></div>')
+
+_rows = [("Priya Raman", "priya@example.com", ""), ("Arjun Mehta", "arjun@example.com", ""), ("&nbsp;Priya Raman&nbsp;", "PRIYA@example.com", "dup of row 1"),
+         ("Sara Thomas", "sara@example.com", ""), ("Sara Thomas", "sara@example.com", "dup of row 4"), ("", "", "empty row")]
+HERO["t-dedupe"] = ('<div class="fig tf" role="img" aria-label="Animation: a six-row table is cleaned. Two rows that repeat earlier rows once spaces and capital letters are ignored are marked as duplicates, an empty row is marked, and all three are removed, leaving three clean rows.">'
+    '<div class="fig-h"><span class="live"><b>clean, then drop the repeats</b></span><span>compared on: name, email</span></div><div class="tf-tbl">' +
+    "".join(f'<div class="tf-row{" tf-gone" if t else ""}"{_d(.2+i*.25)}><span class="tf-n">{i+1}</span><span>{n or "&nbsp;"}</span><span>{e}</span>'
+            f'{f"<span class={chr(34)}tag amber tf-pop{chr(34)}{_d(2.4+i*.2)}>{t}</span>" if t else "<span></span>"}</div>' for i, (n, e, t) in enumerate(_rows)) +
+    '</div><div class="tf-count"><span class="tf-in"' + _d(.2) + '>6 rows in</span><b class="tf-pop"' + _d(5.0) + '>3 clean rows out</b></div>'
+    '<div class="fig-f"><span>trailing spaces and capitals no longer hide duplicates</span><span>sample data</span></div></div>')
+
+_cols = [("order_id", 100, "1 ID repeats", "bad"), ("email", 92, "1 missing, 1 broken", "amber"), ("amount", 92, "N/A stored as text", "amber"), ("order_date", 100, "3 date formats", "amber"), ("city", 100, "Chennai vs chennai", "amber")]
+HERO["t-profile"] = ('<div class="fig tf" role="img" aria-label="Animation: each column of a CSV gets a bar showing how full it is, then the problems in it pop up: a repeating ID, a missing email, N/A stored as text, mixed date formats and inconsistent capitals.">'
+    '<div class="fig-h"><span class="live"><b>every column, checked</b></span><span>orders.csv · 12 rows</span></div><div class="tf-prof">' +
+    "".join(f'<div class="tf-pc"><span class="tf-pn">{n}</span><span class="tf-bar"><i class="tf-fill"{_d(.3+i*.35)} data-w="{w}" style="--d:{.3+i*.35:.2f}s;--w:{w}%"></i></span>'
+            f'<span class="tag {c} tf-pop"{_d(2.4+i*.4)}>{t}</span></div>' for i, (n, w, t, c) in enumerate(_cols)) +
+    '</div><div class="tf-count"><span class="tf-in"' + _d(.2) + '>12 rows · 8 columns</span><b class="tf-pop"' + _d(4.6) + '>16 things to check before you load it</b></div>'
+    '<div class="fig-f"><span>what breaks imports, joins and dashboards</span><span>sample data</span></div></div>')
+
+_sql = ['CREATE TABLE "orders" (', '  "id" INTEGER,', '  "name" TEXT,', '  "amount" NUMERIC(6,2),', '  "pin" TEXT <c>-- keeps 060001</c>', ');',
+        'INSERT INTO "orders" VALUES', "  (1001, 'Priya', 1250.00, '600042'),", "  (1004, 'O''Neil', 760.25, '060001');"]
+HERO["t-sql"] = ('<div class="fig tf" role="img" aria-label="Animation: three lines of a CSV turn into a CREATE TABLE statement with sensible column types and an INSERT statement, with the apostrophe in O\'Neil escaped and the leading zero in a pincode kept.">'
+    '<div class="fig-h"><span class="live"><b>CSV → ready-to-run SQL</b></span><span class="models"><span class="tag blue">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">SQLite</span><span class="tag">SQL Server</span></span></div>'
+    '<div class="tf-two"><div class="panel"><div class="panel-k"><span>orders.csv</span></div><pre class="tf-pre">id,name,amount,pin\n1001,Priya,1250.00,600042\n1004,O\'Neil,760.25,060001</pre></div>'
+    '<div class="panel"><div class="panel-k"><span>orders.sql</span></div><pre class="tf-pre">' +
+    "".join(f'<span class="tf-type"{_d(.5+i*.45)}>{l.replace("<c>", "<i>").replace("</c>", "</i>")}</span>' for i, l in enumerate(_sql)) +
+    '</pre></div></div><div class="fig-f"><span>types picked from every row, quotes escaped</span><span>sample data</span></div></div>')
+
+HERO["t-json"] = ('<div class="fig tf" role="img" aria-label="Animation: a nested JSON order with a customer object and a list of two items becomes a flat table with columns like customer.city, one row per item.">'
+    '<div class="fig-h"><span class="live"><b>nested JSON → flat table</b></span><span>one row per item</span></div>'
+    '<div class="tf-two"><div class="panel"><div class="panel-k"><span>api-response.json</span></div><pre class="tf-pre">{ "id": 1001,\n  "customer": {\n    "name": "Priya",\n    <b class="k1">"city": "Chennai"</b> },\n  "items": [\n    { <b class="k2">"sku": "TEA-250"</b> },\n    { <b class="k2">"sku": "MUG-01"</b> } ] }</pre></div>'
+    '<div class="panel"><div class="panel-k"><span>data.csv</span></div><div class="tf-mini">'
+    '<div class="tf-mh tf-in"' + _d(.6) + '><span>id</span><span class="k1">customer.city</span><span class="k2">items.sku</span></div>'
+    '<div class="tf-mr tf-in"' + _d(1.6) + '><span>1001</span><span>Chennai</span><span>TEA-250</span></div>'
+    '<div class="tf-mr tf-in"' + _d(2.4) + '><span>1001</span><span>Chennai</span><span>MUG-01</span></div>'
+    '</div><p class="tf-note tf-in"' + _d(3.4) + '>Opens straight in Excel, Sheets or a database</p></div></div>'
+    '<div class="fig-f"><span>API responses, exports, logs</span><span>sample data</span></div></div>')
+
+HERO["t-mrz"] = ('<div class="fig tf" role="img" aria-label="Animation: the two lines of a passport machine-readable zone are split into fields, and each check digit is recalculated and confirmed.">'
+    '<div class="fig-h"><span class="live"><b>passport MRZ, decoded and checked</b></span><span>ICAO 9303</span></div>'
+    '<div class="tf-mrz"><div>P&lt;UTO<span class="m-name">ERIKSSON&lt;&lt;ANNA&lt;MARIA</span>&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</div>'
+    '<div><span class="tf-hl" style="--d:.4s">L898902C3</span><b class="tf-ck" style="--d:.9s">6</b>UTO<span class="tf-hl" style="--d:1.5s">740812</span><b class="tf-ck" style="--d:2.0s">2</b>F<span class="tf-hl" style="--d:2.6s">120415</span><b class="tf-ck" style="--d:3.1s">9</b>ZE184226B&lt;&lt;&lt;&lt;&lt;1<b class="tf-ck" style="--d:3.8s">0</b></div></div>'
+    '<div class="rows">' +
+    "".join(f'<div class="row in ok tf-in"{_d(d)}><span>{k}<small>{v}</small></span><span class="tag ok">check {c} ✓</span></div>'
+            for k, v, c, d in [("Document number", "L898902C3", "6", 1.0), ("Date of birth", "12 Aug 1974", "2", 2.1), ("Date of expiry", "15 Apr 2012", "9", 3.2), ("Whole line", "composite", "0", 3.9)]) +
+    '</div><div class="fig-f"><span>catches OCR misreads like O for 0</span><span>ICAO specimen</span></div></div>')
+
+HERO["t-sel"] = ('<div class="fig tf" role="img" aria-label="Animation: a CSS selector is typed, the matching product names and prices light up inside the page HTML, and they come out as rows of a table.">'
+    '<div class="fig-h"><span class="live"><b>selector → the data you want</b></span><span>CSS or XPath</span></div>'
+    '<div class="tf-selq"><span class="tf-type" style="--d:.2s">div.product → h2, .price</span></div>'
+    '<div class="tf-two"><div class="panel"><div class="panel-k"><span>page HTML</span></div><pre class="tf-pre">&lt;div class="product"&gt;\n  &lt;h2&gt;<b class="tf-glow" style="--d:1.2s">Masala Chai</b>&lt;/h2&gt;\n  &lt;span class="price"&gt;<b class="tf-glow" style="--d:1.5s">₹ 320</b>&lt;/span&gt;\n&lt;/div&gt;\n&lt;div class="product"&gt;\n  &lt;h2&gt;<b class="tf-glow" style="--d:1.8s">Filter Coffee</b>&lt;/h2&gt;\n  &lt;span class="price"&gt;<b class="tf-glow" style="--d:2.1s">₹ 899</b>&lt;/span&gt;\n&lt;/div&gt;</pre></div>'
+    '<div class="panel"><div class="panel-k"><span>extracted</span></div><div class="tf-mini tf-mini2">'
+    '<div class="tf-mh tf-in"' + _d(2.5) + '><span>title</span><span>price</span></div>'
+    '<div class="tf-mr tf-in"' + _d(2.9) + '><span>Masala Chai</span><span>₹ 320</span></div>'
+    '<div class="tf-mr tf-in"' + _d(3.3) + '><span>Filter Coffee</span><span>₹ 899</span></div>'
+    '</div><p class="tf-note tf-in"' + _d(3.9) + '>Then copy it as Python or Playwright code</p></div></div>'
+    '<div class="fig-f"><span>test before you write the scraper</span><span>sample page</span></div></div>')
+
+_dates = [("15/01/2026", "2026-01-15", "", ""), ("Jan 15, 2026", "2026-01-15", "", ""), ("20260115", "2026-01-15", "", ""), ("46037", "2026-01-15", "Excel date", ""),
+          ("03/04/2026", "2026-04-03", "ambiguous", "amber"), ("31/02/2026", "no such date", "", "bad")]
+HERO["t-dates"] = ('<div class="fig tf" role="img" aria-label="Animation: dates written six different ways are rewritten as one ISO format. One that could be April or March is flagged as ambiguous, and 31 February is rejected.">'
+    '<div class="fig-h"><span class="live"><b>any format in → one format out</b></span><span>YYYY-MM-DD</span></div><div class="tf-dates">' +
+    "".join(f'<div class="tf-dr"><span class="tf-in"{_d(.3+i*.45)}>{a}</span><span class="tf-arrow tf-in"{_d(.5+i*.45)}>→</span>'
+            f'<b class="tf-in {c}"{_d(.7+i*.45)}>{b}</b>{f"<span class={chr(34)}tag {c or chr(98)+chr(108)+chr(117)+chr(101)} tf-pop{chr(34)}{_d(.9+i*.45)}>{t}</span>" if t else "<span></span>"}</div>'
+            for i, (a, b, t, c) in enumerate(_dates)) +
+    '</div><div class="fig-f"><span>checks the real calendar, flags what could go either way</span><span>sample data</span></div></div>')
+
+HERO["t-fte"] = ('<div class="fig tf" role="img" aria-label="Animation: a team of three spends 20 hours a day on a task. After automation handles 80% of the jobs, only 5.6 hours a day are left, which frees about 1.8 full-time people.">'
+    '<div class="fig-h"><span class="live"><b>time today vs with automation</b></span><span>120 jobs a day · 10 min each</span></div>'
+    '<div class="tf-fte"><div class="tf-hb"><span>Today</span><span class="tf-bar2"><i class="tf-fill" style="--d:.3s;--w:100%"></i></span><b class="tf-in"' + _d(1.0) + '>20 h a day</b></div>'
+    '<div class="tf-hb"><span>With automation</span><span class="tf-bar2"><i class="tf-fill ok" style="--d:1.4s;--w:28%"></i></span><b class="tf-in"' + _d(2.1) + '>5.6 h a day</b></div>'
+    '<div class="tf-team"><span class="tf-lbl tf-in"' + _d(2.6) + '>Your team of 3</span><div class="tf-ppl">' +
+    "".join(f'<span class="tf-p{" free" if k < 2 else ""}"{_d(2.8+k*.3)}><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></span>' for k in range(3)) +
+    '</div><b class="tf-big tf-pop"' + _d(3.9) + '>≈ 1.8 FTE freed</b></div></div>'
+    '<div class="fig-f"><span>1 FTE = one person working full time</span><span>example numbers</span></div></div>')

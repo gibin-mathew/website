@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Passport MRZ Parser and Check Digit Validator, Free | Gibin Mathew</title>
+<meta name="description" content="Free MRZ reader for passports, ID cards and visas (TD1, TD2, TD3). Decodes every field and verifies ICAO 9303 check digits. Nothing leaves your browser.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="Gibin Mathew">
+<link rel="canonical" href="https://gibin.in/tools/mrz-parser/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gibin.in/tools/mrz-parser/">
+<meta property="og:title" content="Passport MRZ parser and check digit validator · Gibin Mathew">
+<meta property="og:description" content="Free MRZ reader for passports, ID cards and visas (TD1, TD2, TD3). Decodes every field and verifies ICAO 9303 check digits. Nothing leaves your browser.">
+<meta property="og:site_name" content="Gibin Mathew">
+<meta property="og:locale" content="en_IN">
+<meta property="og:image" content="https://gibin.in/og/mrz-parser-v2.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Passport MRZ parser and check digit validator · Gibin Mathew">
+<meta name="twitter:description" content="Free MRZ reader for passports, ID cards and visas (TD1, TD2, TD3). Decodes every field and verifies ICAO 9303 check digits. Nothing leaves your browser.">
+<meta name="twitter:image" content="https://gibin.in/og/mrz-parser-v2.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230B1320'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial,sans-serif' font-weight='800' font-size='28' fill='%23EEF2F8'%3EGM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100,500;112,700;125,800;125,900&family=Instrument+Serif:ital@1&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/base.css">
+<link rel="stylesheet" href="/assets/pages.css">
+<link rel="stylesheet" href="/assets/dock.css">
+<link rel="stylesheet" href="/assets/tools/tools.css?v=2">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "@id": "https://gibin.in/tools/mrz-parser/#app", "name": "Passport MRZ parser and validator", "url": "https://gibin.in/tools/mrz-parser/", "description": "Free MRZ reader for passports, ID cards and visas (TD1, TD2, TD3). Decodes every field and verifies ICAO 9303 check digits. Nothing leaves your browser.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any (runs in the browser)", "browserRequirements": "Requires JavaScript", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "featureList": ["Passports (TD3), ID cards (TD1, TD2) and visas (MRV-A, MRV-B)", "Recalculates all ICAO 9303 check digits including the composite", "Suggests single-character OCR misreads that would fix a failed check", "Country names for ICAO codes, expiry status and age", "Handles long document numbers on TD1 cards", "Check digit calculator"], "image": "https://gibin.in/og/mrz-parser-v2.jpg", "inLanguage": "en", "author": {"@type": "Person", "@id": "https://gibin.in/#person", "name": "Gibin Mathew", "url": "https://gibin.in/", "jobTitle": "Data and Automation Manager", "sameAs": ["https://www.linkedin.com/in/gibinm"]}, "publisher": {"@id": "https://gibin.in/#person"}, "datePublished": "2026-10-19", "dateModified": "2026-10-19", "isPartOf": {"@id": "https://gibin.in/#website"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://gibin.in/"}, {"@type": "ListItem", "position": 2, "name": "Free tools", "item": "https://gibin.in/tools/"}, {"@type": "ListItem", "position": 3, "name": "Read and check a passport MRZ", "item": "https://gibin.in/tools/mrz-parser/"}]}, {"@type": "FAQPage", "@id": "https://gibin.in/tools/mrz-parser/#faq", "mainEntity": [{"@type": "Question", "name": "Is the passport data sent anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No. The MRZ is decoded by JavaScript running in your browser and never leaves your device. There's no server behind this page to send it to. Still, use specimen or test data where you can, as you would with any tool."}}, {"@type": "Question", "name": "What does a passing check digit prove?", "acceptedAnswer": {"@type": "Answer", "text": "That the characters were read or typed correctly. The check digits are simple arithmetic (weights 7, 3, 1, modulo 10) that anyone can compute, so a passing MRZ says nothing about whether the document is genuine. Verification needs the chip and the issuing country's certificates."}}, {"@type": "Question", "name": "Which documents does it support?", "acceptedAnswer": {"@type": "Answer", "text": "Passports (TD3, two lines of 44), ID cards (TD1, three lines of 30, and TD2, two lines of 36) and machine-readable visas (MRV-A and MRV-B). The format is picked from the line count and length."}}, {"@type": "Question", "name": "Why does it say a check failed when I typed it right?", "acceptedAnswer": {"@type": "Answer", "text": "Usually because OCR, or a person, swapped a look-alike character: O and 0, I and 1, B and 8, S and 5. When one swap would make a failed check pass, the tool says which. The other common cause is a missing \"<\" at the end of a line, which changes the line length."}}, {"@type": "Question", "name": "How is the year worked out from a 2-digit date?", "acceptedAnswer": {"@type": "Answer", "text": "Birth years that would be in the future go to the 1900s, so 74 is 1974 and 05 is 2005. Expiry years go to the 2000s. That's the usual convention, and for very old or very young holders it can be ambiguous, which is a limit of the MRZ format itself."}}]}]}</script>
+<script>document.documentElement.classList.add('js');try{var gmT=localStorage.getItem('gm-theme');if(gmT==='light'||gmT==='dark')document.documentElement.setAttribute('data-theme',gmT)}catch(e){}</script>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<header class="band">
+  <div class="container">
+    <div class="topbar">
+      <a class="mark" href="/" aria-label="Gibin Mathew, home">GM<span>.</span></a>
+      <nav class="topnav" aria-label="Site"><a href="/#approach">Approach</a><a href="/projects/">Projects</a><a href="/blog/">Writing</a><a href="/tools/" aria-current="page">Tools</a><a href="/#recommendations">Recommendations</a><a href="/#career">Career</a><a href="#contact">Contact</a></nav>
+      <button class="cord hint" id="cord" type="button" aria-label="Switch to light theme"><span class="halo" aria-hidden="true"></span><span class="cl"></span><span class="flies" aria-hidden="true"></span><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3Z"/></svg></span><span class="tip" id="cord-tip">pull for day</span></button>
+    </div>
+    <div class="ph tool-head">
+      <div>
+        <ol class="crumbs"><li><a href="/">gibin.in</a></li><li><a href="/tools/">Free tools</a></li><li>MRZ parser</li></ol>
+        <span class="ph-kicker">Free tool · ICAO 9303</span>
+        <h1 class="ph-title">Read and check a <em>passport MRZ</em></h1>
+        <p class="ph-dek">The two lines of letters and &lt;&lt;&lt; at the bottom of a passport photo page hold the holder's details and a set of check digits. Paste them here to read every field and confirm the check digits add up, which catches typos and scanner misreads.</p>
+        <span class="ph-use-h">Use it when</span><ul class="ph-uses"><li>Your <b>OCR or scanning software read a passport</b> and you want to know the read is right</li><li>You're <b>typing passport details into a form</b> and want to double-check them</li><li>You're <b>building document checks</b> and need known-good results to compare against</li></ul><div class="ph-facts"><span><b>●</b> Runs in your browser</span><span>Nothing uploaded</span><span>Free, no sign-up</span></div>
+        
+      </div>
+      <div class="fig tf" role="img" aria-label="Animation: the two lines of a passport machine-readable zone are split into fields, and each check digit is recalculated and confirmed."><div class="fig-h"><span class="live"><b>passport MRZ, decoded and checked</b></span><span>ICAO 9303</span></div><div class="tf-mrz"><div>P&lt;UTO<span class="m-name">ERIKSSON&lt;&lt;ANNA&lt;MARIA</span>&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</div><div><span class="tf-hl" style="--d:.4s">L898902C3</span><b class="tf-ck" style="--d:.9s">6</b>UTO<span class="tf-hl" style="--d:1.5s">740812</span><b class="tf-ck" style="--d:2.0s">2</b>F<span class="tf-hl" style="--d:2.6s">120415</span><b class="tf-ck" style="--d:3.1s">9</b>ZE184226B&lt;&lt;&lt;&lt;&lt;1<b class="tf-ck" style="--d:3.8s">0</b></div></div><div class="rows"><div class="row in ok tf-in" style="--d:1.00s"><span>Document number<small>L898902C3</small></span><span class="tag ok">check 6 ✓</span></div><div class="row in ok tf-in" style="--d:2.10s"><span>Date of birth<small>12 Aug 1974</small></span><span class="tag ok">check 2 ✓</span></div><div class="row in ok tf-in" style="--d:3.20s"><span>Date of expiry<small>15 Apr 2012</small></span><span class="tag ok">check 9 ✓</span></div><div class="row in ok tf-in" style="--d:3.90s"><span>Whole line<small>composite</small></span><span class="tag ok">check 0 ✓</span></div></div><div class="fig-f"><span>catches OCR misreads like O for 0</span><span>ICAO specimen</span></div></div>
+    </div>
+  </div>
+</header>
+<main><section class="toolsec"><div class="container"><div class="tool" id="tool" data-og>
+  <div class="tool-top tg"><ol class="tg-steps" aria-label="How to use it"><li>Paste the MRZ lines</li><li>Read the decoded fields</li><li>Confirm the checks pass</li></ol><span class="acts"><button type="button" class="tbtn ghost sm" data-sample>Try a passport sample</button><button type="button" class="tbtn ghost sm" id="s-td1">Try an ID card sample</button></span></div>
+  <div class="tsrc">
+    <div class="src-bar"><label for="mrz">MRZ lines</label><span class="src-act"><button type="button" class="tbtn ghost sm" id="clear">Clear</button></span></div>
+    <textarea id="mrz" class="plain mrz-in" spellcheck="false" autocomplete="off" autocapitalize="characters" rows="3" placeholder="P&lt;UTOERIKSSON&lt;&lt;ANNA&lt;MARIA&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&#10;L898902C36UTO7408122F1204159ZE184226B&lt;&lt;&lt;&lt;&lt;10"></textarea>
+  </div>
+  <div class="tsay" id="say" hidden></div>
+  <div class="out" id="out" hidden></div>
+  <details class="more-opts"><summary>Check digit calculator</summary>
+    <div class="calc"><label class="fld"><span>Characters</span><input type="text" id="calc" class="mono-in" placeholder="L898902C3" autocomplete="off" style="width:min(320px,100%);text-transform:uppercase"></label><span id="calc-out" aria-live="polite"></span></div>
+  </details>
+</div>
+</div></section><div class="container"><div class="doc"><nav class="toc" aria-label="On this page"><b>On this page</b><ol><li><a href="#how-to-use-it">How to use it</a></li><li><a href="#how-the-check-digits-work">How the check digits work</a></li><li><a href="#what-it-catches">What it catches</a></li><li><a href="#questions">Questions</a></li></ol><div class="side"><a href="/projects/">The OCR pipeline this came from →</a><a href="/tools/">← All free tools</a></div></nav><article class="prose">
+<h2 id="how-to-use-it">How to use it</h2>
+<ol>
+<li>Copy the MRZ, the block of capital letters and &lt; signs at the bottom of the photo page, from your OCR output or type it in.</li>
+<li>Paste it in. Line breaks can be missing; a single 88-character string is split into two passport lines on its own.</li>
+<li>Read the verdict, then the decoded fields. Red check digits are the ones that don't add up.</li>
+</ol>
+
+<h2 id="how-the-check-digits-work">How the check digits work</h2>
+<p>ICAO 9303 protects the document number, date of birth, date of expiry and, on passports, the personal number with one check digit each. A final composite digit covers most of the second line. The arithmetic is the same everywhere: digits keep their value, A to Z count as 10 to 35, the filler &lt; counts as 0, each character is multiplied by 7, 3, 1, 7, 3, 1 and so on, and the check digit is the total modulo 10.</p>
+<p>For the ICAO specimen document number L898902C3: L is 21, so 21×7 + 8×3 + 9×1 + 8×7 + 9×3 + 0×1 + 2×7 + 12×3 + 3×1 = 316, and 316 mod 10 is 6. That 6 is the character right after the number. Try it in the calculator under the tool.</p>
+
+<h2 id="what-it-catches">What it catches</h2>
+<ul>
+<li><strong>OCR misreads.</strong> When a check fails and swapping one look-alike character (O/0, I/1, B/8, S/5, Z/2, G/6) would fix it, the tool suggests the corrected value.</li>
+<li><strong>Wrong line lengths.</strong> A missing filler at the end of a line is the most common copy-paste error. You're told which line is short and by how much.</li>
+<li><strong>Impossible dates.</strong> A 31st of February, or a month 13, fails even if the check digit happens to match.</li>
+<li><strong>Unknown country codes.</strong> Issuing state and nationality are checked against ICAO codes, including the special ones like XXA for stateless persons and GBN for British National (Overseas).</li>
+</ul>
+<p class="note"><b>Where this comes from.</b> At work I built a pipeline that finds the MRZ on a scanned passport, reads it with OCR and runs exactly these checks before anything goes further. A failed check digit is the cheapest way to catch a bad read. It's in the "also built" section of my <a href="/projects/">projects page</a>.</p>
+<h2 id="questions">Questions</h2><h3>Is the passport data sent anywhere?</h3><p>No. The MRZ is decoded by JavaScript running in your browser and never leaves your device. There's no server behind this page to send it to. Still, use specimen or test data where you can, as you would with any tool.</p><h3>What does a passing check digit prove?</h3><p>That the characters were read or typed correctly. The check digits are simple arithmetic (weights 7, 3, 1, modulo 10) that anyone can compute, so a passing MRZ says nothing about whether the document is genuine. Verification needs the chip and the issuing country's certificates.</p><h3>Which documents does it support?</h3><p>Passports (TD3, two lines of 44), ID cards (TD1, three lines of 30, and TD2, two lines of 36) and machine-readable visas (MRV-A and MRV-B). The format is picked from the line count and length.</p><h3>Why does it say a check failed when I typed it right?</h3><p>Usually because OCR, or a person, swapped a look-alike character: O and 0, I and 1, B and 8, S and 5. When one swap would make a failed check pass, the tool says which. The other common cause is a missing "<" at the end of a line, which changes the line length.</p><h3>How is the year worked out from a 2-digit date?</h3><p>Birth years that would be in the future go to the 1900s, so 74 is 1974 and 05 is 2005. Expiry years go to the 2000s. That's the usual convention, and for very old or very young holders it can be ambiguous, which is a limit of the MRZ format itself.</p></article></div></div><section class="related sec"><div class="container"><div class="sec-h"><div><span class="label">Keep going</span><h2 class="h-sec">Related tools and work</h2></div></div><div class="cards three"><a class="pcard rv" href="/tools/date-normalizer/"><span class="w"><span>Free tool</span><span>Cleaning</span></span><h3>Turn messy dates into one format</h3><span class="m">20+ input formats</span><p>Mixed date formats into YYYY-MM-DD or any format you like. Works out day/month order from the data and flags what&#x27;s ambiguous.</p><span class="go">Open the tool</span></a><a class="pcard rv" href="/projects/"><span class="w"><span></span><span></span></span><h3>RPA and data automation portfolio</h3><p>RPA and data automation portfolio of Gibin Mathew, Chennai: config-driven RPA on Playwright, token sort matching, AI data validation and web crawlers.</p><span class="go">Read the case study</span></a><a class="pcard rv" href="/blog/llm-data-validation/"><span class="w"><span>Writing</span><span>18 Oct 2026</span></span><h3>LLM-assisted data validation: what the AI is allowed to do alone</h3><p>Draft vs decide, exact matches only, versioned prompts, model choice per run, and verifying once then applying everywhere. Lessons from two tools in production.</p><span class="go">Read the post</span></a></div></div></section></main>
+<footer class="contact" id="contact">
+  <div class="container">
+    <div class="inner">
+      <div>
+        <div class="contact-id"><div class="avatar"><img src="/gibin-mathew.webp" alt="Gibin Mathew" width="360" height="360" loading="lazy"></div></div>
+        <h2>Have a process that's still <em>done by hand?</em></h2>
+        <p>Happy to talk about automation, data platforms, or getting AI into production without breaking things.</p>
+      </div>
+      <div class="reach">
+        <div class="emailrow"><code id="email">gibin.mat96@gmail.com</code><button class="copy" id="copyBtn" type="button">Copy</button></div>
+        <a href="https://www.linkedin.com/in/gibinm" target="_blank" rel="noopener">linkedin.com/in/gibinm ↗</a>
+        <a href="/">gibin.in, the full profile →</a>
+      </div>
+    </div>
+    <p class="areas">I work on RPA and workflow automation, config-driven web automation, web scraping, data engineering and ETL, and AI-assisted data validation, mostly in Python, Playwright and Node.js. Based in Chennai, India.</p>
+    <div class="foot"><span>Gibin Mathew · RPA &amp; workflow automation · Chennai, India</span><span><a href="/projects/" style="color:inherit">Projects</a> · <a href="/blog/" style="color:inherit">Writing</a> · <a href="/tools/" style="color:inherit">Free tools</a></span></div>
+  </div>
+</footer>
+<button class="totop" id="totop" type="button" aria-label="Back to top">↑</button>
+<script src="/assets/site.js" defer></script>
+<script src="/assets/dock.js" defer></script>
+<script src="/assets/tools/fuzz.js?v=2" defer></script><script src="/assets/tools/core.js?v=2" defer></script><script src="/assets/tools/mrz.js?v=2" defer></script>
+<script>/* GoatCounter: privacy-friendly stats, live domain only. */
+window.goatcounter={no_onload:true};
+(function(){if(!/(^|\.)gibin\.in$/.test(location.hostname))return;var g=document.createElement('script');g.async=true;g.src='https://gc.zgo.at/count.js';g.setAttribute('data-goatcounter','https://gibin.goatcounter.com/count');
+g.onload=function(){try{window.goatcounter.count()}catch(e){}
+  if(/[?&](ref|utm_[a-z]+)=/.test(location.search)){try{history.replaceState(null,'',location.pathname+location.hash)}catch(e){}}};
+document.body.appendChild(g)})();</script>
+</body>
+</html>
