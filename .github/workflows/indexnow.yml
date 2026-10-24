@@ -1,19 +1,75 @@
 name: IndexNow ping
-# Tells Bing, Yandex, Seznam and other IndexNow engines that the site changed.
-# The URL list comes from _build/urls.txt, which the page build keeps up to date.
+# Tells Bing, Yandex, Seznam, Naver and other IndexNow engines which pages changed.
+# Only changed URLs are sent (what Bing asks for). Run it by hand to resubmit the whole sitemap.
 on:
   push:
     branches: [main]
+  workflow_run:
+    # The build job commits generated pages with the bot token, which does not start
+    # new workflows. Its completion does, so pages it rebuilt get pinged too.
+    workflows: ["Build pages and preview cards"]
+    types: [completed]
   workflow_dispatch:
 jobs:
   ping:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Wait for GitHub Pages to publish
-        run: sleep 90
-      - name: Submit URLs to IndexNow
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Work out which URLs changed
+        env:
+          EVENT: ${{ github.event_name }}
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+          RUN_SHA: ${{ github.event.workflow_run.head_sha }}
         run: |
-          BODY=$(python3 -c "import json;u=[l.strip() for l in open('_build/urls.txt') if l.strip()]+['https://gibin.in/llms.txt','https://gibin.in/sitemap.xml'];print(json.dumps({'host':'gibin.in','key':'7b10cfa22ac315815959883d3525d19f','keyLocation':'https://gibin.in/7b10cfa22ac315815959883d3525d19f.txt','urlList':u}))")
+          python3 - <<'PY'
+          import json, os, re, subprocess
+          ev = os.environ["EVENT"]
+          sitemap = re.findall(r"<loc>([^<]+)</loc>", open("sitemap.xml").read())
+          live = set(sitemap) | {"https://gibin.in/llms.txt"}
+          build_paths = ("_build/", "assets/")
+
+          def changed(rng):
+              out = subprocess.run(["git", "diff", "--name-only", rng], capture_output=True, text=True)
+              return out.stdout.split() if out.returncode == 0 else None
+
+          if ev == "workflow_dispatch":
+              files = None
+          elif ev == "workflow_run":
+              files = changed(f"{os.environ['RUN_SHA']}~1..HEAD")
+          else:
+              files = changed(f"{os.environ['BEFORE']}..{os.environ['AFTER']}")
+
+          if files is None:
+              urls = sorted(live)
+          else:
+              # On a push the build job will regenerate blog/projects/tools; let its run ping those.
+              if ev == "push" and any(f.startswith(build_paths) for f in files):
+                  files = [f for f in files if not f.startswith(("blog/", "projects/", "tools/"))]
+              urls = set()
+              for f in files:
+                  if f == "index.html":
+                      urls.add("https://gibin.in/")
+                  elif f.endswith("/index.html"):
+                      urls.add("https://gibin.in/" + f[: -len("index.html")])
+                  elif f in ("llms.txt", "sitemap.xml"):
+                      urls.add("https://gibin.in/llms.txt" if f == "llms.txt" else "https://gibin.in/")
+              urls = sorted(u for u in urls if u in live)
+
+          print("\n".join(urls) or "No public pages changed")
+          json.dump(urls, open("/tmp/urls.json", "w"))
+          PY
+      - name: Wait for GitHub Pages to publish
+        run: |
+          [ "$(cat /tmp/urls.json)" = "[]" ] && exit 0
+          sleep 90
+      - name: Submit to IndexNow
+        run: |
+          [ "$(cat /tmp/urls.json)" = "[]" ] && { echo "Nothing to submit"; exit 0; }
+          body=$(python3 -c 'import json;print(json.dumps({"host":"gibin.in","key":"7b10cfa22ac315815959883d3525d19f","keyLocation":"https://gibin.in/7b10cfa22ac315815959883d3525d19f.txt","urlList":json.load(open("/tmp/urls.json"))}))')
           curl -sS --fail-with-body -w "\nHTTP %{http_code}\n" -X POST "https://api.indexnow.org/indexnow" \
-            -H "Content-Type: application/json; charset=utf-8" -d "$BODY"
+            -H "Content-Type: application/json; charset=utf-8" -d "$body"
