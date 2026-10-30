@@ -26,6 +26,7 @@ Data and Automation Manager at Edvoy, Chennai (July 2021 to present). Leads a te
 - Subject Validator: AI-assisted QC of catalogue pages with multi-model selection (Gemini, Gemma, DeepSeek), a versioned prompt editor, an interactive text summary and JSON editor, and a subject identifier that auto-publishes only exact matches.
 - Fees Validator: an AI summariser extracts and highlights fees from scraped pages; reviewers verify and apply a fee to all related intakes in one step. Together the two validators cut manual QC by 60-70%.
 - Intake Watcher: home-built token-sort matching (no library) that reconciles course intakes between websites and the database into new, deleted, matched and modified. About 60% less manual reconciliation.
+- Low-code workflow automation on Activepieces and n8n, including an Activepieces pipeline that automates building, running, repairing and checking web scrapers.
 - Workflow automation with Slack alerts (about 35% faster turnaround), travel document (passport MRZ) validation with OpenCV and Tesseract, website change monitoring.
 - S&P Global: a Python and Selenium crawler that found official social media handles across 3.4M+ company websites (about 160 FTE of research, $1.1M potential revenue); a financial filings crawler across 40+ U.S. state portals; ESG document scraping.
 

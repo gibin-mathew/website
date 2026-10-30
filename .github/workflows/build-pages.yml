@@ -9,7 +9,6 @@ on:
       - '_build/build.py'
       - '_build/figures.py'
       - '_build/og.py'
-      - '_build/shortlinks.json'
       - 'assets/**'
   workflow_dispatch:
 permissions:
@@ -45,5 +44,4 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A blog projects tools og sitemap.xml _build/urls.txt
-          git add -A $(python3 -c "import json;print(' '.join(json.load(open('_build/shortlinks.json'))))")
           if git diff --cached --quiet; then echo "Nothing changed"; else git commit -m "Build pages and preview cards" && git push; fi
