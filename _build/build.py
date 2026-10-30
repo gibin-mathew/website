@@ -13,7 +13,6 @@ SITE = "https://gibin.in"
 CONTENT = ROOT / "_build" / "content"
 
 FONTS = "https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100,500;112,700;125,800;125,900&family=Instrument+Serif:ital@1&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap"
-ICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230B1320'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial,sans-serif' font-weight='800' font-size='28' fill='%23EEF2F8'%3EGM%3C/text%3E%3C/svg%3E"
 PERSON = {"@type": "Person", "@id": f"{SITE}/#person", "name": "Gibin Mathew", "url": f"{SITE}/",
           "jobTitle": "Data and Automation Manager", "sameAs": ["https://www.linkedin.com/in/gibinm"]}
 
@@ -275,7 +274,9 @@ def render(p, all_pages):
 <meta name="twitter:title" content="{esc(og_title(p))}">
 <meta name="twitter:description" content="{esc(p["description"])}">
 <meta name="twitter:image" content="{og}">
-<link rel="icon" href="{ICON}">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="{FONTS}">
