@@ -32,3 +32,15 @@ python3 _build/build.py
 python3 -m http.server 8790 --bind 127.0.0.1 &   # in the repo root (8765 is taken on this Mac)
 FONTS=/path/to/node_modules BASE=http://127.0.0.1:8790 python3 _build/og.py
 ```
+
+## Analytics (assets/track.js)
+Every page loads `/assets/track.js` (GoatCounter, no cookies). The first page of a visit is labelled with its source
+(`AI · ChatGPT`, `Search · Google`, `Social · LinkedIn`, `Resume · <company>`, `Email · Gmail`, `Referral · <site>`, `Direct`);
+`?ref=`, `?utm_source=` and `?utm_campaign=` win over the browser referrer. The label is kept in sessionStorage, so later
+pages of the same visit carry the same source. Events: `click/email`, `click/copy-email`, `click/linkedin`, `click/github`,
+`out/<host>`, `tool/<slug>/used|download|copy`, `chess/solved-<n>`. Off gibin.in nothing is sent; calls go to the console.
+Bump `ASSET_V` in build.py (and `?v=` in index.html) after editing track.js.
+
+## Quick answers
+Add `"faq": [["Question?", "40-55 word answer."], ...]` to a case study or post's meta. It renders as a "Quick answers"
+section and as FAQPage schema with the same text. Answers must be true and match the page.

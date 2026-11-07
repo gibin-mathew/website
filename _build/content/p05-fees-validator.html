@@ -8,12 +8,13 @@
 "crumb":"Fees Validator",
 "dek":"Fee pages bury numbers inside paragraphs, and one fee often applies to dozens of intakes. Typing it into each one is how mistakes creep in. So the AI finds it, <strong>a person checks it once</strong>, and one click applies it where it belongs.",
 "facts":["<b>60-70%</b> less manual QC*","Shift + A summariser","one fix, many intakes"],
-"fig":"fees","date":"2026-10-18","updated":"2026-10-18",
+"fig":"fees","date":"2026-10-18","updated": "2026-11-08",
 "summary":"An AI summariser highlights fees, dates and words like \"may\". A reviewer verifies once and applies the fee to all related intakes, with a name and time on record.",
 "metric":"60-70% less manual QC*","where":"Edvoy","year":"AI-assisted QC",
 "keywords":["AI fee extraction","data verification workflow","human in the loop","bulk data update","data quality tool"],
 "about":["Data validation","Human-in-the-loop","Information extraction"],
-"related":["/projects/subject-validator/","/blog/llm-data-validation/","/projects/token-sort-matching/"]}
+"related":["/projects/subject-validator/","/blog/llm-data-validation/","/projects/token-sort-matching/"],
+"faq":[["How does one fix update many intakes?", "After a reviewer verifies a fee, one click applies it to a chosen scope: every intake, every full-time intake, or every intake at the same campus. Part-time intakes stay untouched when the fee is full-time only, so a bulk update never flattens differences that are real."], ["What does the AI summariser do?", "Shift + A runs it on the scraped fee page. It pulls out the fees, highlights every amount and date, and flags words like \"may\" that change what a number means. The reviewer reads the highlights instead of the whole page, then accepts or corrects the fee for each intake."], ["How do you know who entered a fee?", "Every verified record stores who verified it and when. If a number is questioned later, there's a name and a time on it. A contributors list shows the most active and most recent verifiers, and dashboards by source and by person show where review work stands."]]}
 -->
 <p class="lede">The question for this tool wasn't "can an AI read a fee page?". It was "how do we make sure a fee is checked by a person exactly once, and then never retyped?"</p>
 

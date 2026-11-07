@@ -18,12 +18,6 @@ PERSON = {"@type": "Person", "@id": f"{SITE}/#person", "name": "Gibin Mathew", "
 
 CORD = '<button class="cord hint" id="cord" type="button" aria-label="Switch to light theme"><span class="halo" aria-hidden="true"></span><span class="cl"></span><span class="flies" aria-hidden="true"></span><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3Z"/></svg></span><span class="tip" id="cord-tip">pull for day</span></button>'
 
-GOAT = """<script>/* GoatCounter: privacy-friendly stats, live domain only. */
-window.goatcounter={no_onload:true};
-(function(){if(!/(^|\\.)gibin\\.in$/.test(location.hostname))return;var g=document.createElement('script');g.async=true;g.src='https://gc.zgo.at/count.js';g.setAttribute('data-goatcounter','https://gibin.goatcounter.com/count');
-g.onload=function(){try{window.goatcounter.count()}catch(e){}
-  if(/[?&](ref|utm_[a-z]+)=/.test(location.search)){try{history.replaceState(null,'',location.pathname+location.hash)}catch(e){}}};
-document.body.appendChild(g)})();</script>"""
 
 FOOTER = """<footer class="contact" id="contact">
   <div class="container">
@@ -46,7 +40,8 @@ FOOTER = """<footer class="contact" id="contact">
 
 
 OG_VERSION = "v2"   # bump to make WhatsApp/LinkedIn fetch fresh preview images
-ASSET_V = "3"       # bump when assets/tools/* change so browsers fetch fresh copies
+ASSET_V = "4"       # bump when assets/tools/* or track.js change so browsers fetch fresh copies
+GOAT = f'<script src="/assets/track.js?v={ASSET_V}" defer></script>'  # GoatCounter: visit source/channel + events
 
 
 SECTION_NAME = {"projects": "Projects", "blog": "Writing", "tools": "Free tools"}
@@ -169,13 +164,20 @@ def schema(p, url, all_pages):
         if p.get("about"):
             art["about"] = [{"@type": "Thing", "name": a} for a in p["about"]]
         graph = [art, bc]
+        if p.get("faq"):
+            graph.append({"@type": "FAQPage", "@id": SITE + url + "#faq", "mainEntity": [
+                {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": re.sub(r"<[^>]+>", "", a)}} for q, a in p["faq"]]})
     return json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False)
 
 
 def render(p, all_pages):
     url = url_of(p)
     by_url = {url_of(q): q for q in all_pages}
-    body, toc = prep_body(p["body"])
+    raw = p["body"]
+    if p.get("faq") and p["section"] != "tools" and p.get("slug"):
+        # answer-first Q&A: the question, then a direct 40-55 word answer (same text goes into FAQPage schema)
+        raw += '<h2 id="quick-answers">Quick answers</h2><div class="qa">' + "".join(f"<h3>{esc(q)}</h3><p>{esc(a)}</p>" for q, a in p["faq"]) + "</div>"
+    body, toc = prep_body(raw)
     hub = not p.get("slug")
     section_name = SECTION_NAME[p["section"]]
     crumbs = f'<ol class="crumbs"><li><a href="/">gibin.in</a></li><li>{"<a href=\"/" + p["section"] + "/\">" + section_name + "</a>" if not hub else section_name}</li>{"" if hub else "<li>" + esc(p.get("crumb", p["h1_plain"])) + "</li>"}</ol>'

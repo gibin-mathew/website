@@ -82,6 +82,7 @@ function init() {
       last = [from, to];
       const king = findKing('b'); draw({ mate: king });
       say(p.win, 'ok'); step = 2;
+      if (window.gmTrack) window.gmTrack('chess/solved-' + (idx + 1), 'Solved chess puzzle ' + (idx + 1), true);
     } else {
       busy = true; last = [from, to]; draw();
       say('Close, but the king can still move. Try another.', 'bad');

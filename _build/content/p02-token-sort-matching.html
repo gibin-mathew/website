@@ -8,13 +8,14 @@
 "crumb":"Token sort matching",
 "dek":"Intake Watcher compares what catalogue websites list with what's in our database, and sorts every listing into <strong>new, deleted, matched or modified</strong>. The hard part was names. I wrote the matching myself, with no fuzzy library and no similarity threshold.",
 "facts":["<b>~60%</b> less manual reconciliation","<b>4</b> outcomes per listing","<b>0</b> thresholds to tune"],
-"fig":"tokens","date":"2026-10-18","updated":"2026-10-18",
+"fig":"tokens","date":"2026-10-18","updated": "2026-11-08",
 "summary":"Home-built token sort matching with strictest-key-first fallback. Every listing comes out new, deleted, matched or modified. About 60% less manual work.",
 "metric":"~60% less manual reconciliation","where":"Edvoy","year":"Intake Watcher",
 "keywords":["token sort matching","token sort","fuzzy matching","data reconciliation","record matching Python","data harmonization"],
 "about":["Record linkage","Data reconciliation","Fuzzy string matching"],
 "related":["/blog/token-sort-matching/","/projects/markdown-extractor/","/projects/fees-validator/"],
-"side":"<a href=\"/blog/token-sort-matching/\">Token sort, explained with code →</a>"}
+"side":"<a href=\"/blog/token-sort-matching/\">Token sort, explained with code →</a>",
+"faq":[["What is token sort matching?", "Token sort matching makes two names comparable by ignoring word order and punctuation. Lower-case the text, strip special characters, split it into words, sort them and join them into one key. \"MSc Data Science (Full Time)\" and \"Data Science MSc - Full Time\" give the same key, so they match."], ["Why match exactly instead of using a similarity threshold?", "Because the differences in this data were word order and punctuation, not spelling. Comparing sorted keys exactly gives a clear yes or no, with nothing to tune and no near-miss slipping through as a match. If the data had real typos, a fuzzy score with a reviewed threshold would be the better tool."], ["What does Intake Watcher report?", "Every listing gets one of four outcomes: new (only on the website), deleted (only in the database), matched (on both, unchanged) or modified (on both, with changed details). Results go to an Excel file, a MongoDB summary and Slack, and the tool cut manual reconciliation by about 60%."], ["How does it keep different intakes of one course apart?", "The match key is the sorted name plus the intake month and year. When both sides have them, it also adds campus, study mode and duration. It tries the strictest key first and falls back to looser ones, so the September and January runs of the same course are never merged."]]}
 -->
 <p class="lede">Every week, websites add listings, drop listings and quietly change the details on the ones they keep. Our database has to follow. Checking that by eye, row by row, was slow, and it was the kind of work where people miss things by Friday afternoon.</p>
 

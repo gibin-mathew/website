@@ -8,12 +8,13 @@
 "crumb":"Markdown Extractor",
 "dek":"No two websites lay out their data the same way. So instead of one scraper fighting all of them, an agent writes a scraper for each site, and <strong>every scraper hands back the same thing: clean Markdown</strong>. A second agent answers questions from those files in plain language.",
 "facts":["Playwright scrapers","Markdown out","S3 + streaming API","plain-language queries"],
-"fig":"md","date":"2026-10-18","updated":"2026-10-18",
+"fig":"md","date":"2026-10-18","updated": "2026-11-08",
 "summary":"An agent writes a Playwright scraper per website. Every scraper outputs Markdown with a source header. A second agent answers plain-language questions from the files.",
 "where":"Edvoy","year":"Platform",
 "keywords":["AI web scraping","Playwright scraper","HTML to Markdown","LLM data extraction","web scraping platform","scraper automation"],
 "about":["Web scraping","Large language models","Data pipelines"],
-"related":["/projects/token-sort-matching/","/projects/subject-validator/","/blog/llm-data-validation/"]}
+"related":["/projects/token-sort-matching/","/projects/subject-validator/","/blog/llm-data-validation/"],
+"faq":[["Why Markdown instead of JSON?", "Because we didn't know every question people would ask of the data. JSON makes you choose fields up front. Markdown keeps a page's headings, lists, tables and text, a person can read it, and language models handle it well. Structure can be added later, for the cases that need it."], ["What does the agent do, and what does a person do?", "The agent writes a Playwright scraper for each new website, on top of a shared library that handles cookie banners, scrolling, page scripts, Markdown conversion, retries and rate limits. A person reviews the scraper. Because the library does the repeated work, each scraper stays short and quick to check."], ["What is the platform made of?", "A few small services instead of one big one: an API gateway, a runner for the Playwright scripts, a live log streamer, a scheduler, a worker that uploads results to S3, and a listener that pulls in scraper code when it's pushed to Bitbucket. A React dashboard sits on top."]]}
 -->
 <p class="lede">Our data comes from a long list of catalogue websites. Some load content as you scroll. Some hide it behind cookie banners. Some tuck the useful parts inside page scripts. Before this, the answer was a hand-written scraper per site, each returning data in its own shape, each breaking without telling anyone.</p>
 

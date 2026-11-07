@@ -8,12 +8,13 @@
 "crumb":"Subject Validator",
 "dek":"Subject requirements are written differently on every page. Reading them all by hand didn't scale. Letting an AI publish them unchecked wasn't an option. So the AI drafts, and <strong>only exact matches publish on their own</strong>.",
 "facts":["<b>60-70%</b> less manual QC*","<b>3</b> model families","<b>2</b> paths: publish or review"],
-"fig":"subject","date":"2026-10-18","updated":"2026-10-18",
+"fig":"subject","date":"2026-10-18","updated": "2026-11-08",
 "summary":"Pick a model, run a shared versioned prompt, edit the AI's table against the highlighted source. Exact matches publish; everything else goes to a person.",
 "metric":"60-70% less manual QC*","where":"Edvoy","year":"AI-assisted QC",
 "keywords":["AI data validation","LLM data validation","human in the loop AI","data quality","AI-assisted QC","Gemini DeepSeek"],
 "about":["Data validation","Large language models","Human-in-the-loop"],
-"related":["/projects/fees-validator/","/blog/llm-data-validation/","/projects/markdown-extractor/"]}
+"related":["/projects/fees-validator/","/blog/llm-data-validation/","/projects/markdown-extractor/"],
+"faq":[["What is the AI allowed to do on its own?", "Only publish an exact match. Every subject the AI finds is mapped to our master list, and only a score of 1.0 publishes without a person. Anything lower shows its closest match and a similarity score, and an editor decides. A wrong subject on a published record costs more than a review."], ["Which AI models does it use?", "The editor picks a model per run from the Gemini, Gemma and DeepSeek families, lighter to heavier. Each model shows its daily limit, so nobody burns through a quota by accident. The prompt is shared and versioned, showing who changed it last and when, so a bad result can be traced."], ["Is the subject matching semantic?", "No. The similarity score is plain string similarity, and I don't call it semantic because it isn't. Its only job is to suggest the closest subject on the master list for a person to confirm. The decision that matters, publish or review, rests on an exact match or a human."], ["How much manual work does it save?", "Together with the Fees Validator, it cut manual QC by about 60-70%. That figure covers both tools combined, not each one on its own. Editors now check a highlighted AI draft against the source page instead of reading every page and mapping each subject from scratch."]]}
 -->
 <p class="lede">The model was never the hard part. The hard part was deciding what it's allowed to do alone, and building a screen where a person can check its work quickly enough that checking is worth it.</p>
 

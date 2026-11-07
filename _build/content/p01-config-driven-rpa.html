@@ -1,6 +1,6 @@
 <!--meta
 {"section":"projects","slug":"config-driven-rpa","order":1,
-"title":"Config-Driven RPA with Playwright, 70+ Portals | Gibin Mathew",
+"title":"Config-Driven RPA in Playwright, 70+ Portals | Gibin Mathew",
 "og_title":"Config-driven RPA: one engine, 70+ application portals",
 "description":"Case study: one Playwright engine, a JSON config per portal. 3,000+ submissions across 70+ application portals at 94% success, 1,200+ hours saved.",
 "kicker":"Case study · Edvoy · 2026",
@@ -8,13 +8,14 @@
 "crumb":"Config-driven RPA",
 "dek":"Our teams were retyping the same record into dozens of external application portals, about 30 minutes a time. I led the design of one Playwright engine that reads a small config per portal, so a new portal is <strong>described, not programmed</strong>.",
 "facts":["<b>3,000+</b> submissions","<b>94%</b> success rate","<b>70+</b> portals","<b>1,200+</b> hours saved"],
-"fig":"config","date":"2026-10-18","updated":"2026-10-18",
+"fig":"config","date":"2026-10-18","updated": "2026-11-08",
 "summary":"One Playwright engine, a JSON config per portal, people for OTPs and uploads. 3,000+ submissions at 94% success across 70+ application portals.",
 "metric":"94% success · 70+ portals","where":"Edvoy","year":"2026",
 "keywords":["config-driven RPA","config driven RPA Playwright","RPA case study","web form automation","Playwright RPA","application portal automation"],
 "about":["Robotic process automation","Playwright","Web automation"],
 "related":["/blog/config-driven-rpa-playwright/","/blog/rpa-success-rate/","/blog/human-in-the-loop-rpa/"],
-"side":"<a href=\"/blog/config-driven-rpa-playwright/\">The thinking behind it →</a>"}
+"side":"<a href=\"/blog/config-driven-rpa-playwright/\">The thinking behind it →</a>",
+"faq":[["What is config-driven RPA?", "Config-driven RPA is one automation engine that reads a small config per website, instead of a separate bot for every site. The config says where each field lives, what value goes in it and what \"done\" looks like. Adding or changing a portal means editing config, not engine code."], ["How is the 94% success rate calculated?", "Successful jobs divided by successful plus failed jobs. Jobs an operator stopped on purpose are left out, because they aren't platform failures. Count every job, stops included, and the same dashboard gives about 90%. I show both numbers and explain the choice in the post on RPA success rate."], ["Which steps still need a person?", "OTPs, CAPTCHAs and document uploads. The bot pauses at those steps, the operator completes them, and the bot carries on from where it stopped. Automating them would make the whole system fragile, and some shouldn't be automated at all, so they were designed in as human steps from day one."], ["What stack does it run on?", "Python cleans the data before a run. The engine is Node.js on Playwright, behind a FastAPI service with Celery and RabbitMQ as the job queue. Redis holds sessions, MongoDB holds configs and step logs, and operators use a React side panel. It runs in Docker on AWS ECS Fargate."]]}
 -->
 <p class="lede">If you automate forms on other people's websites, the hard part isn't filling a field. It's that every site is different and keeps changing. This page covers how we built around that, what the numbers look like, and the calls I'd make again.</p>
 
