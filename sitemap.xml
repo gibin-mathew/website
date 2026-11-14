@@ -43,6 +43,16 @@
     <image:image><image:loc>https://gibin.in/og/llm-data-validation-v2.jpg</image:loc></image:image>
   </url>
   <url>
+    <loc>https://gibin.in/fun/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <image:image><image:loc>https://gibin.in/og/fun-v2.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://gibin.in/fun/trust-issues/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <image:image><image:loc>https://gibin.in/og/trust-issues-v2.jpg</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://gibin.in/projects/</loc>
     <lastmod>2026-10-18</lastmod>
     <image:image><image:loc>https://gibin.in/og/projects-v2.jpg</image:loc></image:image>

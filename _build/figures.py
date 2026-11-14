@@ -471,3 +471,36 @@ HERO["t-fte"] = ('<div class="fig tf" role="img" aria-label="Animation: a team o
     "".join(f'<span class="tf-p{" free" if k < 2 else ""}"{_d(2.8+k*.3)}><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></span>' for k in range(3)) +
     '</div><b class="tf-big tf-pop"' + _d(3.9) + '>≈ 1.8 FTE freed</b></div></div>'
     '<div class="fig-f"><span>1 FTE = one person working full time</span><span>example numbers</span></div></div>')
+
+
+# ---------- /fun/ ----------
+HERO["game"] = """
+<div class="fig gm-fig" role="img" aria-label="Animation: a small platformer. The player runs and jumps towards a door marked EXIT, and every time it gets close the door slides further away.">
+  <style>
+  .gm-fig .gm-stage{position:relative;height:190px;border-radius:12px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01));border:1px solid var(--line,rgba(255,255,255,.12))}
+  .gm-fig .gm-floor{position:absolute;left:0;right:0;bottom:0;height:26px;background:rgba(255,255,255,.08);border-top:2px solid rgba(255,255,255,.22)}
+  .gm-fig .gm-blk{position:absolute;bottom:26px;height:14px;border-radius:4px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2)}
+  .gm-fig .gm-b1{left:28%;width:76px}
+  .gm-fig .gm-b2{left:52%;width:62px;bottom:72px}
+  .gm-fig .gm-guy{position:absolute;bottom:26px;left:8%;width:20px;height:24px;border-radius:5px;background:var(--acc,#7dd3fc);box-shadow:0 0 0 2px rgba(0,0,0,.25);animation:gm-run 6s cubic-bezier(.3,.1,.5,1) infinite}
+  .gm-fig .gm-guy::after{content:"";position:absolute;top:6px;left:4px;width:4px;height:4px;border-radius:50%;background:rgba(0,0,0,.55);box-shadow:8px 0 0 rgba(0,0,0,.55)}
+  .gm-fig .gm-door{position:absolute;bottom:26px;right:9%;width:30px;height:44px;border-radius:5px 5px 0 0;background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.35);animation:gm-flee 6s ease-in-out infinite}
+  .gm-fig .gm-door span{position:absolute;top:-19px;left:50%;transform:translateX(-50%);font:600 9px/1 var(--mono,ui-monospace,monospace);letter-spacing:.09em;color:rgba(255,255,255,.6)}
+  .gm-fig .gm-door::after{content:"";position:absolute;top:19px;right:5px;width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.45)}
+  .gm-fig .gm-say{position:absolute;top:14px;left:50%;transform:translateX(-50%);font:600 11px/1 var(--mono,ui-monospace,monospace);color:rgba(255,255,255,.42);letter-spacing:.04em;animation:gm-say 6s steps(1,end) infinite}
+  @keyframes gm-run{0%{left:8%;bottom:26px}18%{left:26%;bottom:26px}26%{left:33%;bottom:40px}38%{left:46%;bottom:40px}48%{left:55%;bottom:86px}62%{left:68%;bottom:86px}72%{left:78%;bottom:26px}86%{left:80%;bottom:26px}100%{left:8%;bottom:26px}}
+  @keyframes gm-flee{0%,60%{right:9%;opacity:1}72%{right:3%;opacity:1}73%{right:3%;opacity:.25}80%{right:-12%;opacity:0}86%{right:9%;opacity:0}100%{right:9%;opacity:1}}
+  @keyframes gm-say{0%,70%{content:"reach the door"}72%,99%{content:"the door disagrees"}}
+  @media (prefers-reduced-motion:reduce){.gm-fig .gm-guy,.gm-fig .gm-door,.gm-fig .gm-say{animation:none}}
+  </style>
+  <div class="fig-h"><span class="live"><b>Trust Issues</b></span><span>a platformer that lies to you</span></div>
+  <div class="gm-stage">
+    <span class="gm-say">reach the door</span>
+    <div class="gm-blk gm-b1"></div>
+    <div class="gm-blk gm-b2"></div>
+    <div class="gm-door"><span>EXIT</span></div>
+    <div class="gm-guy"></div>
+    <div class="gm-floor"></div>
+  </div>
+  <div class="fig-f"><span>no real money, ever</span><span>play.gibin.in · trust-issues.life</span></div>
+</div>"""

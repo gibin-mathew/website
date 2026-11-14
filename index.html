@@ -744,9 +744,41 @@ html,body{overflow-x:clip}
 .ts-r code{font:12px var(--f-mono);color:var(--band-ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ts-r.fin{opacity:1;border-color:var(--band-ok)}.ts-r.fin code{color:var(--band-ok)}
 @media (max-width:520px){.ts-h{display:none}.ts-r{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.ts-r em{grid-column:1/-1}}
+/* Off the clock: Trust Issues game showcase */
+.game-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,480px);gap:clamp(28px,5vw,72px);align-items:center}
+@media (max-width:900px){.game-wrap{grid-template-columns:minmax(0,1fr)}}
+.game-ctas{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0 16px}
+.game-ctas .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14.5px;padding:11px 18px;border-radius:8px;text-decoration:none;transition:transform .2s ease,background .2s ease,border-color .2s ease}
+.game-ctas .btn:hover{transform:translateY(-2px)}
+.game-ctas .btn.primary{background:var(--accent);color:#fff;border:1px solid var(--accent)}
+.game-ctas .btn.primary:hover{opacity:.92}
+.game-ctas .btn.ghost{color:var(--ink);border:1px solid var(--line);background:var(--surface)}
+.game-ctas .btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
+.fig{position:relative;border:1px solid var(--band-line);border-radius:18px;background:linear-gradient(180deg,var(--band-2),var(--band));padding:16px;min-height:280px;display:flex;flex-direction:column;gap:12px;overflow:hidden;box-shadow:0 30px 80px -40px rgba(0,0,0,.6)}
+.fig-h{display:flex;justify-content:space-between;align-items:center;gap:10px;font:500 11.5px var(--f-mono);color:var(--band-muted)}
+.fig-h b{color:var(--band-ink);font-weight:500}
+.fig-h .live{display:inline-flex;align-items:center;gap:6px}
+.fig-h .live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--band-ok);box-shadow:0 0 0 4px rgba(79,208,143,.18);animation:pulse 2s ease-in-out infinite}
+.fig-f{margin-top:auto;display:flex;justify-content:space-between;gap:10px;font:500 11px var(--f-mono);color:var(--band-muted);border-top:1px solid var(--band-line);padding-top:10px;flex-wrap:wrap}
+.fig-f b{color:var(--band-ink);font-weight:500}
+.gm-fig .gm-stage{position:relative;height:190px;border-radius:12px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01));border:1px solid var(--band-line,rgba(255,255,255,.12))}
+.gm-fig .gm-floor{position:absolute;left:0;right:0;bottom:0;height:26px;background:rgba(255,255,255,.08);border-top:2px solid rgba(255,255,255,.22)}
+.gm-fig .gm-blk{position:absolute;bottom:26px;height:14px;border-radius:4px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2)}
+.gm-fig .gm-b1{left:28%;width:76px}
+.gm-fig .gm-b2{left:52%;width:62px;bottom:72px}
+.gm-fig .gm-guy{position:absolute;bottom:26px;left:8%;width:20px;height:24px;border-radius:5px;background:var(--band-accent,#6F95FF);box-shadow:0 0 0 2px rgba(0,0,0,.25);animation:gm-run 6s cubic-bezier(.3,.1,.5,1) infinite}
+.gm-fig .gm-guy::after{content:"";position:absolute;top:6px;left:4px;width:4px;height:4px;border-radius:50%;background:rgba(0,0,0,.55);box-shadow:8px 0 0 rgba(0,0,0,.55)}
+.gm-fig .gm-door{position:absolute;bottom:26px;right:9%;width:30px;height:44px;border-radius:5px 5px 0 0;background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.35);animation:gm-flee 6s ease-in-out infinite}
+.gm-fig .gm-door span{position:absolute;top:-19px;left:50%;transform:translateX(-50%);font:600 9px/1 var(--f-mono,ui-monospace,monospace);letter-spacing:.09em;color:rgba(255,255,255,.6)}
+.gm-fig .gm-door::after{content:"";position:absolute;top:19px;right:5px;width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.45)}
+.gm-fig .gm-say{position:absolute;top:14px;left:50%;transform:translateX(-50%);font:600 11px/1 var(--f-mono,ui-monospace,monospace);color:rgba(255,255,255,.42);letter-spacing:.04em;animation:gm-say 6s steps(1,end) infinite}
+@keyframes gm-run{0%{left:8%;bottom:26px}18%{left:26%;bottom:26px}26%{left:33%;bottom:40px}38%{left:46%;bottom:40px}48%{left:55%;bottom:86px}62%{left:68%;bottom:86px}72%{left:78%;bottom:26px}86%{left:80%;bottom:26px}100%{left:8%;bottom:26px}}
+@keyframes gm-flee{0%,60%{right:9%;opacity:1}72%{right:3%;opacity:1}73%{right:3%;opacity:.25}80%{right:-12%;opacity:0}86%{right:9%;opacity:0}100%{right:9%;opacity:1}}
+@keyframes gm-say{0%,70%{content:"reach the door"}72%,99%{content:"the door disagrees"}}
+@media (prefers-reduced-motion:reduce){.gm-fig .gm-guy,.gm-fig .gm-door,.gm-fig .gm-say{animation:none}}
 </style>
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://gibin.in/#website", "url": "https://gibin.in/", "name": "Gibin Mathew", "alternateName": "gibin.in", "inLanguage": "en", "publisher": {"@id": "https://gibin.in/#person"}}, {"@type": "ProfilePage", "@id": "https://gibin.in/#profile", "url": "https://gibin.in/", "name": "Gibin Mathew | RPA & Workflow Automation Manager, Chennai", "isPartOf": {"@id": "https://gibin.in/#website"}, "mainEntity": {"@id": "https://gibin.in/#person"}, "primaryImageOfPage": {"@id": "https://gibin.in/#photo"}, "dateModified": "2026-10-18T21:00:00+05:30", "inLanguage": "en"}, {"@type": "Person", "@id": "https://gibin.in/#person", "name": "Gibin Mathew", "givenName": "Gibin", "familyName": "Mathew", "alternateName": ["Gibin", "Gibin M", "gibinm"], "url": "https://gibin.in/", "email": "mailto:gibin.mat96@gmail.com", "image": {"@type": "ImageObject", "@id": "https://gibin.in/#photo", "url": "https://gibin.in/gibin-mathew.jpg", "contentUrl": "https://gibin.in/gibin-mathew.jpg", "width": 1200, "height": 1200, "caption": "Gibin Mathew, RPA and workflow automation manager in Chennai"}, "jobTitle": "Data and Automation Manager", "description": "RPA and workflow automation manager in Chennai, India. Builds config-driven RPA, web automation, data pipelines and AI-assisted data validation. Previously Senior Automation Specialist at S&P Global Market Intelligence.", "hasOccupation": {"@type": "Occupation", "name": "Automation Manager", "alternateName": ["RPA Manager", "RPA Lead", "Automation Manager", "Data Engineering Manager", "Data Operations and Automation Manager"], "occupationLocation": {"@type": "City", "name": "Chennai"}, "skills": "RPA, workflow automation, web automation, data engineering, ETL, Python, Playwright, Activepieces, n8n, AI-assisted validation"}, "worksFor": {"@type": "Organization", "name": "Edvoy", "url": "https://edvoy.com"}, "address": {"@type": "PostalAddress", "addressLocality": "Chennai", "addressRegion": "Tamil Nadu", "addressCountry": "IN"}, "homeLocation": {"@type": "Place", "name": "Chennai, India"}, "alumniOf": [{"@type": "CollegeOrUniversity", "name": "Bangalore University"}, {"@type": "Organization", "name": "S&P Global Market Intelligence"}], "hasCredential": {"@type": "EducationalOccupationalCredential", "name": "DSA & System Design", "credentialCategory": "Certificate of completion", "recognizedBy": {"@type": "Organization", "name": "HeyCoach"}}, "award": ["Essential Excellence Data Award, S&P Global (2020)", "Breakthrough Achievement Award, S&P Global (2019)", "Rising Star, S&P Global (2018)"], "knowsAbout": ["Robotic Process Automation", "RPA", "Config-driven RPA", "Workflow automation", "Intelligent automation", "Process automation", "Web automation", "Web scraping", "Data engineering", "ETL", "Data pipelines", "Data validation", "Data quality", "AI-assisted data validation", "LLM workflows", "Generative AI in production", "Python", "Playwright", "Selenium", "Node.js", "FastAPI", "MongoDB", "RabbitMQ", "Redis", "Docker", "AWS", "Blue Prism", "Appian", "Activepieces", "n8n", "Low-code workflow automation", "OCR", "Team leadership"], "sameAs": ["https://www.linkedin.com/in/gibinm", "https://github.com/gibin-mathew"], "subjectOf": {"@type": "CollectionPage", "url": "https://gibin.in/projects/", "name": "RPA and data automation portfolio"}}]}
+{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://gibin.in/#website", "url": "https://gibin.in/", "name": "Gibin Mathew", "alternateName": "gibin.in", "inLanguage": "en", "publisher": {"@id": "https://gibin.in/#person"}}, {"@type": "ProfilePage", "@id": "https://gibin.in/#profile", "url": "https://gibin.in/", "name": "Gibin Mathew | RPA & Workflow Automation Manager, Chennai", "isPartOf": {"@id": "https://gibin.in/#website"}, "mainEntity": {"@id": "https://gibin.in/#person"}, "primaryImageOfPage": {"@id": "https://gibin.in/#photo"}, "dateModified": "2026-10-18T21:00:00+05:30", "inLanguage": "en"}, {"@type": "Person", "@id": "https://gibin.in/#person", "name": "Gibin Mathew", "givenName": "Gibin", "familyName": "Mathew", "alternateName": ["Gibin", "Gibin M", "gibinm"], "url": "https://gibin.in/", "email": "mailto:gibin.mat96@gmail.com", "image": {"@type": "ImageObject", "@id": "https://gibin.in/#photo", "url": "https://gibin.in/gibin-mathew.jpg", "contentUrl": "https://gibin.in/gibin-mathew.jpg", "width": 1200, "height": 1200, "caption": "Gibin Mathew, RPA and workflow automation manager in Chennai"}, "jobTitle": "Data and Automation Manager", "description": "RPA and workflow automation manager in Chennai, India. Builds config-driven RPA, web automation, data pipelines and AI-assisted data validation. Previously Senior Automation Specialist at S&P Global Market Intelligence.", "hasOccupation": {"@type": "Occupation", "name": "Automation Manager", "alternateName": ["RPA Manager", "RPA Lead", "Automation Manager", "Data Engineering Manager", "Data Operations and Automation Manager"], "occupationLocation": {"@type": "City", "name": "Chennai"}, "skills": "RPA, workflow automation, web automation, data engineering, ETL, Python, Playwright, Activepieces, n8n, AI-assisted validation"}, "worksFor": {"@type": "Organization", "name": "Edvoy", "url": "https://edvoy.com"}, "address": {"@type": "PostalAddress", "addressLocality": "Chennai", "addressRegion": "Tamil Nadu", "addressCountry": "IN"}, "homeLocation": {"@type": "Place", "name": "Chennai, India"}, "alumniOf": [{"@type": "CollegeOrUniversity", "name": "Bangalore University"}, {"@type": "Organization", "name": "S&P Global Market Intelligence"}], "hasCredential": {"@type": "EducationalOccupationalCredential", "name": "DSA & System Design", "credentialCategory": "Certificate of completion", "recognizedBy": {"@type": "Organization", "name": "HeyCoach"}}, "award": ["Essential Excellence Data Award, S&P Global (2020)", "Breakthrough Achievement Award, S&P Global (2019)", "Rising Star, S&P Global (2018)"], "knowsAbout": ["Robotic Process Automation", "RPA", "Config-driven RPA", "Workflow automation", "Intelligent automation", "Process automation", "Web automation", "Web scraping", "Data engineering", "ETL", "Data pipelines", "Data validation", "Data quality", "AI-assisted data validation", "LLM workflows", "Generative AI in production", "Python", "Playwright", "Selenium", "Node.js", "FastAPI", "MongoDB", "RabbitMQ", "Redis", "Docker", "AWS", "Blue Prism", "Appian", "Activepieces", "n8n", "Low-code workflow automation", "OCR", "Team leadership"], "sameAs": ["https://www.linkedin.com/in/gibinm", "https://github.com/gibin-mathew"], "subjectOf": {"@type": "CollectionPage", "url": "https://gibin.in/projects/", "name": "RPA and data automation portfolio"}}, {"@type": "VideoGame", "@id": "https://gibin.in/#trust-issues", "name": "Trust Issues", "url": "https://play.gibin.in", "sameAs": ["https://www.trust-issues.life/"], "author": {"@id": "https://gibin.in/#person"}, "description": "Trust Issues is an unfair browser platformer where the exit moves, the rules change, and the game is quietly on the level's side.", "genre": ["Platformer", "Puzzle"], "gamePlatform": ["Web Browser"], "applicationCategory": "Game", "operatingSystem": "Any"}]}
 </script>
 <script>document.documentElement.classList.add('js');try{var gmT=localStorage.getItem('gm-theme');if(gmT==='light'||gmT==='dark')document.documentElement.setAttribute('data-theme',gmT)}catch(e){}</script>
 <link rel="stylesheet" href="/assets/dock.css">
@@ -765,6 +797,7 @@ html,body{overflow-x:clip}
         <a href="/projects/">Projects</a>
         <a href="/blog/">Writing</a>
         <a href="/tools/">Tools</a>
+        <a href="/fun/">Fun</a>
         <a href="#recommendations">Recommendations</a>
         <a href="#career">Career</a>
         <a href="#contact">Contact</a>
@@ -1409,6 +1442,34 @@ html,body{overflow-x:clip}
     </div>
   </section>
 
+  <section class="reveal block" id="fun" style="padding-top:0">
+    <div class="container game-wrap">
+      <div>
+        <span class="label">Off the clock · Side project</span>
+        <h2 class="h-sec">Trust Issues: a platformer that <span class="serif">lies to you.</span></h2>
+        <p class="intro">Most platformers are honest. The floor is floor, the exit is the exit. I wanted one where none of that holds, the door disagrees, and the game is quietly on the level's side instead of yours. Built in evenings with Claude—runs completely in your browser on phone or keyboard, with zero real money.</p>
+        <div class="game-ctas">
+          <a class="btn primary" href="https://play.gibin.in" target="_blank" rel="noopener">Play on play.gibin.in ↗</a>
+          <a class="btn ghost" href="https://www.trust-issues.life/" target="_blank" rel="noopener">trust-issues.life ↗</a>
+          <a class="btn ghost" href="/fun/trust-issues/">Read the story →</a>
+        </div>
+        <p class="csrc" style="margin-top:16px">Runs in the browser on phone and laptop · Touch controls &amp; keyboard support · No downloads, ads, or purchases required.</p>
+      </div>
+      <div class="fig gm-fig" role="img" aria-label="Animation: a small platformer. The player runs and jumps towards a door marked EXIT, and every time it gets close the door slides further away.">
+        <div class="fig-h"><span class="live"><b>Trust Issues</b></span><span>browser platformer</span></div>
+        <div class="gm-stage">
+          <span class="gm-say">reach the door</span>
+          <div class="gm-blk gm-b1"></div>
+          <div class="gm-blk gm-b2"></div>
+          <div class="gm-door"><span>EXIT</span></div>
+          <div class="gm-guy"></div>
+          <div class="gm-floor"></div>
+        </div>
+        <div class="fig-f"><span>no real money, ever</span><span><a href="https://play.gibin.in" target="_blank" rel="noopener" style="color:inherit">play.gibin.in</a> · <a href="https://www.trust-issues.life/" target="_blank" rel="noopener" style="color:inherit">trust-issues.life</a></span></div>
+      </div>
+    </div>
+  </section>
+
   <section class="reveal block" id="chess">
     <div class="container chess-wrap">
       <div>
@@ -1473,7 +1534,7 @@ html,body{overflow-x:clip}
       </div>
     </div>
     <p class="areas">I work on RPA and workflow automation, config-driven web automation, web scraping, data engineering and ETL, and AI-assisted data validation, mostly in Python, Playwright and Node.js. Based in Chennai, India.</p>
-    <div class="foot"><span>Gibin Mathew · RPA &amp; workflow automation · Chennai, India</span><span><a href="/tools/" style="color:inherit">Free data tools</a> · Figures as of October 2026</span></div>
+    <div class="foot"><span>Gibin Mathew · RPA &amp; workflow automation · Chennai, India</span><span><a href="/projects/" style="color:inherit">Projects</a> · <a href="/blog/" style="color:inherit">Writing</a> · <a href="/tools/" style="color:inherit">Free tools</a> · <a href="/fun/" style="color:inherit">Fun</a> · <a href="https://play.gibin.in" target="_blank" rel="noopener" style="color:inherit">play.gibin.in ↗</a></span></div>
   </div>
 </footer>
 

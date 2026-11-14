@@ -64,6 +64,12 @@ All run in the browser; nothing is uploaded.
 - https://gibin.in/tools/date-normalizer/ : convert messy dates to one format and flag ambiguous ones
 - https://gibin.in/tools/automation-roi-calculator/ : automation ROI, FTE and payback calculator
 
+## Fun and side projects
+
+- https://gibin.in/fun/ : side projects and experiments built off the clock
+- https://gibin.in/fun/trust-issues/ : Trust Issues write-up (a browser platformer that lies to you, built with Claude)
+- https://play.gibin.in/ : Play Trust Issues directly in browser (also live at https://www.trust-issues.life/)
+
 ## Skills
 
 RPA, workflow automation, web automation, web scraping, data engineering, ETL, data validation and data quality, LLM workflows, Python, Node.js, Playwright, Selenium, FastAPI, MongoDB, MySQL, RabbitMQ, Redis, Docker, AWS, Blue Prism, Appian, OCR, team leadership.

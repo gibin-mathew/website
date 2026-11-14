@@ -34,7 +34,7 @@ FOOTER = """<footer class="contact" id="contact">
       </div>
     </div>
     <p class="areas">I work on RPA and workflow automation, config-driven web automation, web scraping, data engineering and ETL, and AI-assisted data validation, mostly in Python, Playwright and Node.js. Based in Chennai, India.</p>
-    <div class="foot"><span>Gibin Mathew · RPA &amp; workflow automation · Chennai, India</span><span><a href="/projects/" style="color:inherit">Projects</a> · <a href="/blog/" style="color:inherit">Writing</a> · <a href="/tools/" style="color:inherit">Free tools</a></span></div>
+    <div class="foot"><span>Gibin Mathew · RPA &amp; workflow automation · Chennai, India</span><span><a href="/projects/" style="color:inherit">Projects</a> · <a href="/blog/" style="color:inherit">Writing</a> · <a href="/tools/" style="color:inherit">Free tools</a> · <a href="/fun/" style="color:inherit">Fun</a> · <a href="https://play.gibin.in" target="_blank" rel="noopener" style="color:inherit">play.gibin.in ↗</a></span></div>
   </div>
 </footer>"""
 
@@ -44,7 +44,7 @@ ASSET_V = "4"       # bump when assets/tools/* or track.js change so browsers fe
 GOAT = f'<script src="/assets/track.js?v={ASSET_V}" defer></script>'  # GoatCounter: visit source/channel + events
 
 
-SECTION_NAME = {"projects": "Projects", "blog": "Writing", "tools": "Free tools"}
+SECTION_NAME = {"projects": "Projects", "blog": "Writing", "tools": "Free tools", "fun": "Fun"}
 
 
 def og_path(p):
@@ -107,7 +107,7 @@ def card(p, by_url):
     where = p.get("where", "Writing" if p["section"] == "blog" else "")
     right = p.get("date_label") or (fmt_date(p["date"]) if p["section"] == "blog" else p.get("year", ""))
     return (f'<a class="pcard rv" href="{url_of(p)}"><span class="w"><span>{esc(where)}</span><span>{esc(right)}</span></span>'
-            f'<h3>{p["card_title"] if p.get("card_title") else esc(p["h1_plain"])}</h3>{m}<p>{esc(p.get("summary") or p["description"])}</p><span class="go">{ {"projects": "Read the case study", "tools": "Open the tool"}.get(p["section"], "Read the post") }</span></a>')
+            f'<h3>{p["card_title"] if p.get("card_title") else esc(p["h1_plain"])}</h3>{m}<p>{esc(p.get("summary") or p["description"])}</p><span class="go">{ {"projects": "Read the case study", "tools": "Open the tool", "fun": "Take a look"}.get(p["section"], "Read the post") }</span></a>')
 
 
 def fmt_date(d):
@@ -116,7 +116,7 @@ def fmt_date(d):
 
 # The one menu. Every page, the homepage and the floating dock must show exactly these labels in this order.
 # check_header() below stops the build if any of them drift.
-NAV_ITEMS = [("/#approach", "Approach", ""), ("/projects/", "Projects", "projects"), ("/blog/", "Writing", "blog"), ("/tools/", "Tools", "tools"),
+NAV_ITEMS = [("/#approach", "Approach", ""), ("/projects/", "Projects", "projects"), ("/blog/", "Writing", "blog"), ("/tools/", "Tools", "tools"), ("/fun/", "Fun", "fun"),
              ("/#recommendations", "Recommendations", ""), ("/#career", "Career", ""), ("#contact", "Contact", "")]
 
 
@@ -184,7 +184,7 @@ def render(p, all_pages):
     rt = max(1, round(words(p["body"]) / 220))
     if p["section"] == "blog" and not hub:
         by = f'<div class="byline"><div class="avatar"><img src="/gibin-mathew.webp" alt="" width="40" height="40"></div><span>By <a href="/" rel="author">Gibin Mathew</a></span><span class="dot">·</span><time datetime="{p["date"]}">{fmt_date(p["date"])}</time><span class="dot">·</span><span>{rt} min read</span></div>'
-    elif not hub and p["section"] == "tools":
+    elif not hub and p["section"] in ("tools", "fun"):
         by = ""
     elif not hub:
         by = f'<div class="byline"><div class="avatar"><img src="/gibin-mathew.webp" alt="" width="40" height="40"></div><span>Case study by <a href="/" rel="author">Gibin Mathew</a></span><span class="dot">·</span><span>Updated <time datetime="{p["updated"]}">{fmt_date(p["updated"])}</time></span></div>'
@@ -202,7 +202,7 @@ def render(p, all_pages):
         kids.sort(key=lambda q: q["date"] if p["section"] == "blog" else q.get("order", 99), reverse=p["section"] == "blog")
         if p["section"] == "tools":
             listing = '<div class="cards three tool-cards">' + "".join(card(q, by_url) for q in kids) + "</div>"
-        elif p["section"] == "projects":
+        elif p["section"] in ("projects", "fun"):
             listing = '<div class="cards">' + "".join(card(q, by_url) for q in kids) + "</div>"
         else:
             listing = '<div class="list">' + "".join(
